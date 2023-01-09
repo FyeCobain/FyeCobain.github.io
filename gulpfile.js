@@ -72,9 +72,9 @@ function imgAvif(done){
 //Establecer watchdog de archivos
 function watchFiles(done){
   watch(paths.scssFiles, css);
-  watch(paths.rawImages, parallel(img, imgWebp, imgAvif));
+  watch(paths.rawImages, parallel(img/*, imgWebp, imgAvif*/));
   done();
 }
 
 //Exportación por defecto
-exports.default = parallel(css, img, imgWebp, imgAvif,  watchFiles);
+exports.default = parallel(css, img, /*imgWebp, imgAvif, */watchFiles);

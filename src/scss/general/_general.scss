@@ -1,4 +1,40 @@
+@use 'variables' as vars;
+
+/* Estilos generales del documento */
+
+html{
+  font-size: 6.25%;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 body{
-    background-color: aliceblue;
-    color: palevioletred;
+  font-size: 16rem;
+  background-color: vars.$color-bg-primary;
+  color: vars.$color-green;
+}
+
+/* Estilos generales de los elementos */
+img{
+  max-width: 100%;
+  display: block;
+}
+
+h1, h2, h3, h4, h5, h6, p{
+  margin: 0;
+}
+
+.App{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container{
+  max-width: 98%;
+  flex: 1 1;
+  background-color: darken($color: vars.$color-bg-primary, $amount: 10);
 }
