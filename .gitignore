@@ -3,6 +3,9 @@
 
 # production
 /build
+asset-manifest.json
+*.map
+*.LICENSE.txt
 
 # misc
 /src/img/*

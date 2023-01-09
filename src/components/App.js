@@ -7,8 +7,8 @@ const App = function(){
 
   return(
     <div className="App">
-      <h1>Fye Cobain</h1>
-      <p>Page in progres....</p>
+      <h1>{name}</h1>
+      <p>Page still in progres...</p>
     </div>
   );
 }
