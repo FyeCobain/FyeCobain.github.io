@@ -1,9 +1,79 @@
+@use 'general/variables' as vars;
+
 .header{
-    margin-top: 50rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    .photo{
-        height: 200rem;
+  margin-top: 20rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  // Saludo
+  &__hello{
+    font-size: 24rem;
+    margin-bottom: 5rem;
+    span{
+      font-weight: bold;
+      text-decoration: underline;
     }
+  }
+
+  // h2 con el nombre
+  &__dev-name{
+    font-size: 58rem;
+  }
+
+  //Foto y mensaje de bienvenida
+  &__photo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .photo{
+      margin-top: 16rem;
+      width: 200rem;
+      height: 200rem;
+      border-radius: 50%;
+      border: 4px solid vars.$color-green;
+    }
+
+    .bubble{
+      position: absolute;
+      font-weight: 100;
+      color: #fbeedb;
+      font-size: 200rem;
+      margin: 0 0 20rem 400rem;
+    }
+
+    .welcome{
+      color: vars.$color-green;
+      font-size: 25rem;
+      position: absolute;
+      background-color: #ff000000;
+      max-width: 150rem;
+      text-align: center;
+      padding: 0;
+      margin: 0 0 50rem 402rem;
+    }
+  }
+
+  // Título y trabajo
+  &__dev-title, &__dev-work{
+    margin: 10rem;
+    display: flex;
+    align-items: center;
+  }
+
+  // Ícono título
+  .dev-title-icon{
+    color: vars.$color-green;
+    font-size: 40rem;
+    margin-right: 10rem;
+  }
+
+  // Iocno trabajo
+  .dev-work-icon{
+    font-size: 27rem;
+    margin-right: 10rem;
+  }
+
+  
 }

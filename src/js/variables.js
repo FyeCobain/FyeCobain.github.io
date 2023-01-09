@@ -7,19 +7,23 @@ const globalStrings = {
 const esStrings = {
     pageTitle: `${globalStrings.devName} - Portafolio web`,
     pageDescription: `${globalStrings.devName} - Portafolio web`,
-    photoAlt: 'Foto del desarrollador',
-    hello: 'Hola, yo soy',
+    helloPart1: 'Hola',
+    helloPart2: ', soy',
     devTitle: 'Ingeniero en Sistemas Computacionales',
-    devWork: 'Desarrollador de software'
+    devWork: 'Desarrollador de software',
+    photoAlt: 'Foto del desarrollador',
+    welcome: 'Ésta es mi página web'
 }
 
 const enStrings = {
     pageTitle: `${globalStrings.devName} - Portfolio website`,
     pageDescription: `${globalStrings.devName} - Portfolio`,
-    photoAlt: 'Developer\'s photo',
-    hello: 'Hello, I\'m',
+    helloPart1: 'Hello',
+    helloPart2: ', I\'m',
     devTitle: 'Computer Systems engineer',
-    devWork: 'Software developer'
+    devWork: 'Software developer',
+    photoAlt: 'Developer\'s photo',
+    welcome: 'Welcome to my webpage'
 }
 
 export { globalStrings, esStrings, enStrings };
