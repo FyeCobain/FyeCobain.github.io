@@ -12,7 +12,7 @@ const esStrings = {
     devTitle: 'Ingeniero en Sistemas Computacionales',
     devWork: 'Desarrollador de software',
     photoAlt: 'Foto del desarrollador',
-    welcome: '¡Bienvenido(a) a mi web!'
+    welcome: '¡Bienvenido(a) a mi página!'
 }
 
 const enStrings = {

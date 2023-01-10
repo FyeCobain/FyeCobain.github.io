@@ -366,6 +366,10 @@ p {
 }
 .header__dev-name {
   font-size: 58rem;
+  background: linear-gradient(to right, #12afb7, #11a6ae);
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .header__photo {
   display: flex;
@@ -379,9 +383,56 @@ p {
   border-radius: 50%;
   border: 4px solid #11a6ae;
 }
+@-webkit-keyframes bubble {
+  0% {
+    rotate: 0deg;
+  }
+  25% {
+    rotate: 5deg;
+  }
+  75% {
+    rotate: -5deg;
+  }
+  100% {
+    rotate: 0deg;
+  }
+}
+@keyframes bubble {
+  0% {
+    rotate: 0deg;
+  }
+  25% {
+    rotate: 5deg;
+  }
+  75% {
+    rotate: -5deg;
+  }
+  100% {
+    rotate: 0deg;
+  }
+}
 .header .bubble-container {
   position: absolute;
-  margin: 0 0 70rem 390rem;
+  margin: 0 0 70rem 400rem;
+  -webkit-animation-name: bubble;
+          animation-name: bubble;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-iteration-count: 2;
+          animation-iteration-count: 2;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+}
+.header .bubble-container:hover {
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  cursor: cell;
+}
+.header .bubble-container:hover .bubble {
+  box-shadow: 0px 0px 8rem 0px #888888;
+}
+.header .bubble-container:hover .bubble p {
+  color: #13bcc5;
 }
 .header .bubble-container .bubble {
   position: relative;
@@ -393,15 +444,16 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0px 0px 10rem #888888;
 }
 .header .bubble-container .bubble p {
   font-size: 24rem;
   text-align: center;
   position: relative;
-  padding: 5rem;
+  padding: 6rem;
   color: #11a6ae;
   font-family: "Comic Sans", sans-serif;
+  -webkit-user-select: none;
+          user-select: none;
 }
 .header .bubble-container .bubble p:before {
   content: "";
