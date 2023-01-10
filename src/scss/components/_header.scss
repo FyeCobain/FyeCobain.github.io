@@ -52,6 +52,7 @@
   .bubble-container{
     position: absolute;
     margin: 0 0 70rem 400rem;
+    border-radius: 50%;
     animation-name: bubble;
     animation-duration: 1s;
     animation-iteration-count: 2;
@@ -86,7 +87,6 @@
         position: relative;
         padding: 6rem;
         color: vars.$color-green;
-        font-family: 'Comic Sans', sans-serif;
         user-select: none;
       }
 

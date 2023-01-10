@@ -414,6 +414,7 @@ p {
 .header .bubble-container {
   position: absolute;
   margin: 0 0 70rem 400rem;
+  border-radius: 50%;
   -webkit-animation-name: bubble;
           animation-name: bubble;
   -webkit-animation-duration: 1s;
@@ -451,7 +452,6 @@ p {
   position: relative;
   padding: 6rem;
   color: #11a6ae;
-  font-family: "Comic Sans", sans-serif;
   -webkit-user-select: none;
           user-select: none;
 }
