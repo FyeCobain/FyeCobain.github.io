@@ -320,7 +320,7 @@ body {
   font-size: 16rem;
   font-family: "Roboto", sans-serif;
   background-color: #1F2041;
-  color: #119DA4;
+  color: #11a6ae;
 }
 
 /* Estilos generales de los elementos */
@@ -357,7 +357,7 @@ p {
   align-items: center;
 }
 .header__hello {
-  font-size: 24rem;
+  font-size: 25rem;
   margin-bottom: 5rem;
 }
 .header__hello span {
@@ -377,32 +377,60 @@ p {
   width: 200rem;
   height: 200rem;
   border-radius: 50%;
-  border: 4px solid #119DA4;
+  border: 4px solid #11a6ae;
 }
-.header__photo .bubble {
+.header .bubble-container {
   position: absolute;
-  font-weight: 100;
-  color: #fbeedb;
-  font-size: 200rem;
-  margin: 0 0 20rem 400rem;
+  margin: 0 0 70rem 390rem;
 }
-.header__photo .welcome {
-  color: #119DA4;
-  font-size: 25rem;
-  position: absolute;
-  background-color: rgba(255, 0, 0, 0);
-  max-width: 150rem;
+.header .bubble-container .bubble {
+  position: relative;
+  width: 180rem;
+  height: 130rem;
+  border: 3rem #FFFFFF;
+  border-style: solid;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0px 10rem #888888;
+}
+.header .bubble-container .bubble p {
+  font-size: 24rem;
   text-align: center;
-  padding: 0;
-  margin: 0 0 50rem 402rem;
+  position: relative;
+  padding: 5rem;
+  color: #11a6ae;
+  font-family: "Comic Sans", sans-serif;
+}
+.header .bubble-container .bubble p:before {
+  content: "";
+  position: absolute;
+  border: 25rem solid;
+  left: 12rem;
+  top: 85rem;
+  border-color: #FFFFFF transparent transparent #FFFFFF;
+  rotate: 22deg;
+}
+.header .bubble-container .bubble p:after {
+  content: "";
+  position: absolute;
+  border: 22rem solid;
+  left: 19rem;
+  top: 82rem;
+  border-color: #1F2041 transparent transparent #1F2041;
+  rotate: 22deg;
 }
 .header__dev-title, .header__dev-work {
   margin: 10rem;
   display: flex;
   align-items: center;
 }
+.header__dev-title p, .header__dev-work p {
+  font-size: 18rem;
+}
 .header .dev-title-icon {
-  color: #119DA4;
+  color: #11a6ae;
   font-size: 40rem;
   margin-right: 10rem;
 }

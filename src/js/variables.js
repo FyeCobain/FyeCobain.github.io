@@ -12,7 +12,7 @@ const esStrings = {
     devTitle: 'Ingeniero en Sistemas Computacionales',
     devWork: 'Desarrollador de software',
     photoAlt: 'Foto del desarrollador',
-    welcome: 'Ésta es mi página web'
+    welcome: '¡Bienvenido(a) a mi web!'
 }
 
 const enStrings = {
@@ -23,7 +23,7 @@ const enStrings = {
     devTitle: 'Computer Systems engineer',
     devWork: 'Software developer',
     photoAlt: 'Developer\'s photo',
-    welcome: 'Welcome to my webpage'
+    welcome: 'Welcome to my webpage!'
 }
 
 export { globalStrings, esStrings, enStrings };
