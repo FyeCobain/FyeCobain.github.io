@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /* Document
    ========================================================================== */
@@ -306,10 +307,12 @@ template {
   display: none;
 }
 
+/* Media queries */
 /* Estilos generales del documento */
 html {
   font-size: 6.25%;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 *, *:before, *:after {
@@ -338,6 +341,10 @@ p {
   margin: 0;
 }
 
+section {
+  margin-top: 50rem;
+}
+
 .App {
   display: flex;
   flex-direction: column;
@@ -347,18 +354,77 @@ p {
 .container {
   max-width: 98%;
   flex: 1 1;
+  display: flex;
+  justify-content: center;
   background-color: #1f2041;
 }
 
-.header {
-  margin-top: 20rem;
+/* Navegación flotante */
+.nav {
+  position: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  z-index: 1;
+  right: 1rem;
+  height: 100vh;
+  font-size: 20rem;
+  /* Mixins de la navegación */
+  /* Contenedor de iconos de navegación */
+  /* Cada icono de navegación */
+}
+@media (min-width: 768px) {
+  .nav {
+    font-size: 25rem;
+    right: 40rem;
+  }
+}
+@media (min-width: 1024px) {
+  .nav {
+    right: 200rem;
+  }
+}
+.nav__icons {
+  background-color: rgba(25, 100, 126, 0.2);
+  border-radius: 6rem;
+}
+.nav__icon {
+  padding: 10rem 5rem;
+  opacity: 0.8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nav__icon svg:hover {
+  cursor: pointer;
+}
+@media (min-width: 1024px) {
+  .nav__icon svg:hover {
+    color: #FFC857;
+  }
+}
+.nav__icon.nav__language {
+  color: #978bbf;
+}
+.nav__icon.current {
+  color: #FFFFFF;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  /* Contenedores de título universitario y profesión */
+  /* Ícono de título universitario */
+  /* Texto de título universitario */
+  /* Ícono de profesión */
+  /* Texto de profesión */
 }
 .header__hello {
   font-size: 25rem;
-  margin-bottom: 5rem;
+  margin: 30rem 0 5rem 0;
 }
 .header__hello span {
   font-weight: bold;
@@ -370,11 +436,13 @@ p {
   -webkit-background-clip: text;
           background-clip: text;
   -webkit-text-fill-color: transparent;
+  margin: 10rem;
 }
 .header__photo {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 10rem;
 }
 .header__photo .photo {
   margin-top: 16rem;
@@ -423,6 +491,12 @@ p {
           animation-iteration-count: 2;
   -webkit-animation-timing-function: linear;
           animation-timing-function: linear;
+  display: none;
+}
+@media (min-width: 768px) {
+  .header .bubble-container {
+    display: block;
+  }
 }
 .header .bubble-container:hover {
   -webkit-animation-iteration-count: infinite;
@@ -474,19 +548,81 @@ p {
   rotate: 22deg;
 }
 .header__dev-title, .header__dev-work {
-  margin: 10rem;
+  margin: 15rem 0rem;
   display: flex;
   align-items: center;
-}
-.header__dev-title p, .header__dev-work p {
-  font-size: 18rem;
+  justify-content: center;
 }
 .header .dev-title-icon {
-  color: #11a6ae;
   font-size: 40rem;
-  margin-right: 10rem;
+  position: absolute;
+}
+.header .es .dev-title-icon {
+  margin-right: 315rem;
+}
+@media (min-width: 768px) {
+  .header .es .dev-title-icon {
+    margin-right: 355rem;
+  }
+}
+.header .en .dev-title-icon {
+  margin-right: 235rem;
+}
+@media (min-width: 768px) {
+  .header .en .dev-title-icon {
+    margin-right: 260rem;
+  }
+}
+.header .dev-title-text {
+  margin-left: 25rem;
+}
+@media (min-width: 768px) {
+  .header .dev-title-text {
+    font-size: 18rem;
+  }
 }
 .header .dev-work-icon {
   font-size: 27rem;
-  margin-right: 10rem;
+  position: absolute;
+}
+.header .es .dev-work-icon {
+  margin-right: 230rem;
+}
+@media (min-width: 768px) {
+  .header .es .dev-work-icon {
+    margin-right: 255rem;
+  }
+}
+.header .en .dev-work-icon {
+  margin-right: 185rem;
+}
+@media (min-width: 768px) {
+  .header .en .dev-work-icon {
+    margin-right: 200rem;
+  }
+}
+@media (min-width: 768px) {
+  .header .dev-work-text {
+    font-size: 18rem;
+  }
+}
+
+.about-me {
+  background-color: red;
+  height: 100vh;
+}
+
+.projects {
+  background-color: greenyellow;
+  height: 100vh;
+}
+
+.testimonials {
+  background-color: pink;
+  height: 100vh;
+}
+
+.contact {
+  background-color: orange;
+  height: 100vh;
 }

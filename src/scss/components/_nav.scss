@@ -1,0 +1,56 @@
+@use 'general/variables' as vars;
+@use 'general/mixins' as mixins;
+
+/* Navegación flotante */
+.nav{
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  right: 1rem;
+  height: 100vh;
+  font-size: 20rem;
+
+  /* Mixins de la navegación */
+  @include mixins.tablet{
+    font-size: 25rem;
+    right: 40rem;
+  }
+
+  @include mixins.laptop{
+    right: 200rem;
+  }
+
+  /* Contenedor de iconos de navegación */
+  &__icons{
+    background-color: rgba(vars.$color-blue, 0.2);
+    border-radius: 6rem;
+  }
+
+  /* Cada icono de navegación */
+  &__icon{
+    padding: 10rem 5rem;
+    opacity: 0.8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & svg:hover{
+      cursor: pointer;
+      @include mixins.laptop{
+        color: vars.$color-yellow;
+      }
+    }
+  }
+
+  // Ícono de cambio de idioma
+  &__icon.nav__language{
+    color: lighten(vars.$color-bg-secondary, 30);
+  }
+
+  // Icono de navegación actualmente activo
+  &__icon.current{
+    color: vars.$color-white;
+  }
+}

@@ -5,6 +5,7 @@
 html{
   font-size: 6.25%;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 *, *:before, *:after {
@@ -33,6 +34,10 @@ p{
   margin: 0;
 }
 
+section{
+  margin-top: 50rem;
+}
+
 .App{
   display: flex;
   flex-direction: column;
@@ -42,5 +47,7 @@ p{
 .container{
   max-width: 98%;
   flex: 1 1;
+  display: flex;
+  justify-content: center;
   background-color: darken($color: vars.$color-bg-primary, $amount: 0);
 }

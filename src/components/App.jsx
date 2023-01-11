@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import { globalStrings, esStrings, enStrings } from '../js/variables';
 import Header from '../components/Header';
+import Nav from '../components/Nav';
+import Me from './Me';
+import Projects from './Projects';
+import Testimonials from './Testimonials';
+import Contact from './Contact';
 
 //Aplicación principal
 const App = function(){
@@ -27,11 +32,16 @@ const App = function(){
 
   return(
     <div className="App">
+      <Nav changeLanguage={changeLanguage} />
       <Header
+        language={language}
         globalStrings={globalStrings}
         strings={strings}
       />
-      <button onClick={changeLanguage}>Toggle Language</button>
+      <Me />
+      <Projects />
+      <Testimonials />
+      <Contact />
     </div>
   );
 }
