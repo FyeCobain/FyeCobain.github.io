@@ -24,6 +24,7 @@ function Header({ language, globalStrings, strings}){
           <SiCsharp className="dev-work-icon" />
           <p className="dev-work-text">{strings.devWork}</p>
         </div>
+        <p className="header__welcome">{strings.welcome}</p>
       </div>
     </div>
   );

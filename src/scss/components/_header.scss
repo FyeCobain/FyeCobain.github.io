@@ -7,7 +7,7 @@
   flex-direction: column;
   align-items: center;
   height: 100vh;
-  background-color: rgba(vars.$color-blue, 0.3);
+  //background-color: rgba(vars.$color-blue, 0.3);
 
   // Saludo
   &__hello{
@@ -22,9 +22,9 @@
   // h1 con el nombre
   &__dev-name{
     font-size: 58rem;
-    background: linear-gradient(to right, lighten(vars.$color-green, 2), vars.$color-green);
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    //background: linear-gradient(to right, lighten(vars.$color-green, 0), vars.$color-green);
+    //background-clip: text;
+    //-webkit-text-fill-color: transparent;
     margin: 10rem;
   }
 
@@ -185,6 +185,17 @@
   .dev-work-text{
     @include mixins.tablet{
       font-size: 18rem;
+    }
+  }
+
+  /* Texto de vienvenida (solo dispositivos pequeños) */
+  &__welcome{
+    text-align: center;
+    margin-top: 40rem;
+    font-size: 35rem;
+    animation: bubble 1s linear 0.3s 1;
+    @include mixins.tablet{
+      display: none;
     }
   }
 }

@@ -343,6 +343,7 @@ p {
 
 section {
   margin-top: 50rem;
+  opacity: 0;
 }
 
 .App {
@@ -382,7 +383,7 @@ section {
 }
 @media (min-width: 1024px) {
   .nav {
-    right: 200rem;
+    right: 140rem;
   }
 }
 .nav__icons {
@@ -416,12 +417,12 @@ section {
   flex-direction: column;
   align-items: center;
   height: 100vh;
-  background-color: rgba(25, 100, 126, 0.3);
   /* Contenedores de título universitario y profesión */
   /* Ícono de título universitario */
   /* Texto de título universitario */
   /* Ícono de profesión */
   /* Texto de profesión */
+  /* Texto de vienvenida (solo dispositivos pequeños) */
 }
 .header__hello {
   font-size: 25rem;
@@ -433,10 +434,6 @@ section {
 }
 .header__dev-name {
   font-size: 58rem;
-  background: linear-gradient(to right, #12afb7, #11a6ae);
-  -webkit-background-clip: text;
-          background-clip: text;
-  -webkit-text-fill-color: transparent;
   margin: 10rem;
 }
 .header__photo {
@@ -605,6 +602,18 @@ section {
 @media (min-width: 768px) {
   .header .dev-work-text {
     font-size: 18rem;
+  }
+}
+.header__welcome {
+  text-align: center;
+  margin-top: 40rem;
+  font-size: 35rem;
+  -webkit-animation: bubble 1s linear 0.3s 1;
+          animation: bubble 1s linear 0.3s 1;
+}
+@media (min-width: 768px) {
+  .header__welcome {
+    display: none;
   }
 }
 
