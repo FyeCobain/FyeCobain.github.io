@@ -1,7 +1,7 @@
-function Contact(){
+function Contact({ globalStrings, strings }){
   return(
     <section id="contact" className="contact">
-      <h3>Contact</h3>
+      <h2>{strings.contactMe}</h2>
     </section>
   );
 }

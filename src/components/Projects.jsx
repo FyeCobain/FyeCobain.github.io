@@ -1,7 +1,7 @@
-function Projects(){
+function Projects({ globalStrings, strings }){
   return(
     <section id="projects" className="projects">
-      <h3>Projects</h3>
+      <h2>{strings.projects}</h2>
     </section>
   );
 }

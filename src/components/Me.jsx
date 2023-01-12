@@ -1,7 +1,7 @@
-function Me(){
+function Me({ globalStrings, strings }){
   return(
     <section id="about-me" className="about-me">
-      <h3>Me</h3>
+      <h2>{strings.aboutMe}</h2>
     </section>
   );
 }

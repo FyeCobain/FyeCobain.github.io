@@ -29,7 +29,7 @@ const App = function(){
 
   //Hooks para el idioma del sitio web
   const [language, setLanguage] = useState('es');
-  const [strings, setStrings] = useState(language == 'es' ? esStrings : enStrings)
+  const [strings, setStrings] = useState(language === 'es' ? esStrings : enStrings)
 
   //Establecer el título y la descripción de la página web
   document.querySelector('meta[name="description"]').content = strings.pageTitle;
@@ -38,13 +38,13 @@ const App = function(){
   //Función para cambiar el idioma de la página web
   function changeLanguage(){
     switch(language){
-      case 'es':
-        setLanguage('en')
-        setStrings(enStrings);
-        break;
       case 'en':
         setLanguage('es')
         setStrings(esStrings);
+        break;
+      default:
+        setLanguage('en')
+        setStrings(enStrings);
     }
   }
 
@@ -56,10 +56,22 @@ const App = function(){
         globalStrings={globalStrings}
         strings={strings}
       />
-      <Me />
-      <Projects />
-      <Testimonials />
-      <Contact />
+      <Me
+        globalStrings={globalStrings}
+        strings={strings}
+      />
+      <Projects
+        globalStrings={globalStrings}
+        strings={strings}
+      />
+      <Testimonials
+        globalStrings={globalStrings}
+        strings={strings}
+      />
+      <Contact
+        globalStrings={globalStrings}
+        strings={strings}
+      />
     </div>
   );
 }

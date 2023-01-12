@@ -12,7 +12,12 @@ const esStrings = {
   devTitle: 'Ingeniero en Sistemas Computacionales',
   devWork: 'Desarrollador de software',
   photoAlt: 'Foto del desarrollador',
-  welcome: '¡Bienvenido(a) a mi página!'
+  welcome: '¡Bienvenido(a) a mi página!',
+  aboutMe: 'Sobre mí',
+  projects: 'Mis proyectos',
+  testimonials: 'Testimoniales',
+  contact: 'Contacto',
+  contactMe: 'Contáctame'
 }
 
 const enStrings = {
@@ -23,7 +28,12 @@ const enStrings = {
   devTitle: 'Computer Systems engineer',
   devWork: 'Software developer',
   photoAlt: 'Developer\'s photo',
-  welcome: 'Welcome to my webpage!'
+  welcome: 'Welcome to my webpage!',
+  aboutMe: 'About me',
+  projects: 'My projects',
+  testimonials: 'Testimonials',
+  contact: 'Contact',
+  contactMe: 'Contact me'
 }
 
 const header = {

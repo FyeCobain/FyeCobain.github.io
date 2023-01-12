@@ -1,7 +1,7 @@
-function Testimonials(){
+function Testimonials({ globalStrings, strings }){
   return(
     <section id="testimonials" className="testimonials">
-      <h3>Testimonials</h3>
+      <h2>{strings.testimonials}</h2>
     </section>
   );
 }
