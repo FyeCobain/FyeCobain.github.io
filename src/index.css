@@ -344,6 +344,7 @@ p {
 
 section {
   margin-top: 50rem;
+  min-height: 100vh;
   width: 50vw;
 }
 
@@ -426,7 +427,7 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   /* Contenedores de título universitario y profesión */
   /* Ícono de título universitario */
   /* Texto de título universitario */
@@ -629,20 +630,16 @@ section {
 
 .about-me {
   background-color: red;
-  height: 100vh;
 }
 
 .projects {
   background-color: greenyellow;
-  height: 100vh;
 }
 
 .testimonials {
   background-color: pink;
-  height: 100vh;
 }
 
 .contact {
   background-color: orange;
-  height: 100vh;
 }

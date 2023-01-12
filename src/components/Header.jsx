@@ -5,7 +5,7 @@ import { SiCsharp } from 'react-icons/si';
 function Header({ language, globalStrings, strings}){
   return(
     <div className="container">
-      <div id="header" className="header">
+      <header id="header" className="header">
         <p className="header__hello"><span>{strings.helloPart1}</span>{strings.helloPart2}</p>
         <h1 className="header__dev-name">{globalStrings.devName}</h1>
         <div className="header__photo">
@@ -25,7 +25,7 @@ function Header({ language, globalStrings, strings}){
           <p className="dev-work-text">{strings.devWork}</p>
         </div>
         <p className="header__welcome">{strings.welcome}</p>
-      </div>
+      </header>
     </div>
   );
 }
