@@ -6,6 +6,7 @@ html{
   font-size: 6.25%;
   box-sizing: border-box;
   scroll-behavior: smooth;
+  background-color: vars.$color-bg-primary;
 }
 
 *, *:before, *:after {
@@ -36,7 +37,7 @@ p{
 
 section{
   margin-top: 50rem;
-  opacity: 0;
+  width: 50vw;
 }
 
 .App{

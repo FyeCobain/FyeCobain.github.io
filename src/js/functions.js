@@ -1,10 +1,17 @@
-// Devuelve verdadero si un elemento está en el viewport
-function isInViewport(elementSelector){
-  let element = document.querySelector(elementSelector);
+// Devuelve verdadero si un elemento está en el viewport (en la parte superior)
+function isInViewport(element, marginTop=0){
   if(!element)
     return false;
   const clientRect = element.getBoundingClientRect();
-  return clientRect.y <= 225 && clientRect.y * -1 < clientRect.height;
+  return clientRect.y <= marginTop && clientRect.y * -1 < clientRect.height;
 }
 
-export { isInViewport };
+// Devuelve verdadero si un elemento está bajo el viewport
+function itsBellow(element, marginTop=0){
+  if(!element)
+    return false;
+  const clientRect = element.getBoundingClientRect();
+  return clientRect.height - clientRect.y < marginTop
+}
+
+export { isInViewport, itsBellow };

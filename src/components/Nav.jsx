@@ -3,32 +3,11 @@ import { AiOutlineHome, AiOutlineUser } from 'react-icons/ai';
 import { BsCardChecklist } from 'react-icons/bs';
 import { ImStarHalf } from 'react-icons/im';
 import { HiOutlineMail } from 'react-icons/hi';
-import { isInViewport } from '../js/functions';
-
+import { header, aboutMe, projects, testimonials, contact } from '../js/variables';
+import { isInViewport, itsBellow } from '../js/functions';
+ 
 // Variable para activar / desactivar la verificación de scroll
 let checkScrollState = true;
-
-// Elementos para vigilar el scroll
-const header = {
-  iconId: '#icon-home',
-  elementId: '#header'
-}
-const about_me = {
-  iconId: '#icon-user',
-  elementId: '#about-me'
-}
-const projects = {
-  iconId: '#icon-card',
-  elementId: '#projects'
-}
-const testimonials = {
-  iconId: '#icon-star',
-  elementId: '#testimonials'
-}  
-const contact = {
-  iconId: '#icon-email',
-  elementId: '#contact'
-}
 
 // Hacer scroll al presionar un botón de la navegación
 function scroll(elementObject){
@@ -56,23 +35,45 @@ function checkScroll(){
   //Si la verificación de scroll está desactivada, salir
   if(!checkScrollState)
     return;
+  
+  const aboutMeElement = document.querySelector(aboutMe.elementId);
+  const projectsElement = document.querySelector(projects.elementId);
+  const testimonialsElement = document.querySelector(testimonials.elementId);
+  const contactElement = document.querySelector(contact.elementId);
+
+  // Realizar efecto de aparición de las secciones
+  let marginTop = 50;
+  if(aboutMeElement)
+    if(aboutMeElement.classList.contains('hide') && !itsBellow(aboutMeElement, marginTop))
+      aboutMeElement.classList.add('unhide');
+  if(projectsElement)
+    if(projectsElement.classList.contains('hide') && !itsBellow(projectsElement, marginTop))
+      projectsElement.classList.add('unhide');
+  if(testimonialsElement)
+    if(testimonialsElement.classList.contains('hide') && !itsBellow(testimonialsElement, marginTop))
+      testimonialsElement.classList.add('unhide');
+  if(contactElement)
+    if(contactElement.classList.contains('hide') && !itsBellow(contactElement, marginTop))
+      contactElement.classList.add('unhide');
 
   const currentIcon = document.querySelector('.current');
   let newCurrentIcon = null;
 
-  //Verificar si una sección está dentro del viewport (de abajo hacia arriba)
-  if(isInViewport(contact.elementId))
-    newCurrentIcon = document.querySelector(contact.iconId)
-  else if(isInViewport(testimonials.elementId))
-    newCurrentIcon = document.querySelector(testimonials.iconId)
-  else if(isInViewport(projects.elementId))
-    newCurrentIcon = document.querySelector(projects.iconId)
-  else if(isInViewport(about_me.elementId))
-    newCurrentIcon = document.querySelector(about_me.iconId)
-  else if(isInViewport(header.elementId))
-    newCurrentIcon = document.querySelector(header.iconId)
+  // Verificar si una sección está dentro del viewport (de abajo hacia arriba)
+  // Para resaltar el ícono asociado
+  marginTop = 255;
+  if(isInViewport(contactElement, marginTop))
+    newCurrentIcon = document.querySelector(contact.iconId);
+  else if(isInViewport(testimonialsElement, marginTop))
+    newCurrentIcon = document.querySelector(testimonials.iconId);
+  else if(isInViewport(projectsElement, marginTop))
+    newCurrentIcon = document.querySelector(projects.iconId);
+  else if(isInViewport(aboutMeElement, marginTop))
+    newCurrentIcon = document.querySelector(aboutMe.iconId);
+  else if(isInViewport(document.querySelector(header.elementId), marginTop))
+    newCurrentIcon = document.querySelector(header.iconId);
 
-  if(currentIcon && currentIcon != newCurrentIcon)
+  if(currentIcon && currentIcon !== newCurrentIcon)
     currentIcon.classList.remove('current');
   if(newCurrentIcon)
     newCurrentIcon.classList.add('current');
@@ -89,7 +90,7 @@ function Nav({ changeLanguage }){
           <AiOutlineHome onClick={() => scroll(header)} />
         </div>
         <div id="icon-user" className="nav__icon">
-          <AiOutlineUser onClick={() => scroll(about_me)} />
+          <AiOutlineUser onClick={() => scroll(aboutMe)} />
         </div>
         <div id="icon-card" className="nav__icon">
           <BsCardChecklist onClick={() => scroll(projects)} />

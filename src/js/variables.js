@@ -26,4 +26,29 @@ const enStrings = {
     welcome: 'Welcome to my webpage!'
 }
 
-export { globalStrings, esStrings, enStrings };
+const header = {
+  iconId: '#icon-home',
+  elementId: '#header'
+}
+
+const aboutMe = {
+  iconId: '#icon-user',
+  elementId: '#about-me'
+}
+
+const projects = {
+  iconId: '#icon-card',
+  elementId: '#projects'
+}
+
+const testimonials = {
+  iconId: '#icon-star',
+  elementId: '#testimonials'
+}
+
+const contact = {
+  iconId: '#icon-email',
+  elementId: '#contact'
+}
+
+export { globalStrings, esStrings, enStrings, header, aboutMe, projects, testimonials, contact };

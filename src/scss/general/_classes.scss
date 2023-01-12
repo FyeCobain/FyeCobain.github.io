@@ -1,0 +1,8 @@
+.hide{
+  opacity: 0;
+}
+
+.unhide{
+  transition: opacity 1s ease-in-out;
+  opacity: 1;
+}

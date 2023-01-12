@@ -313,6 +313,7 @@ html {
   font-size: 6.25%;
   box-sizing: border-box;
   scroll-behavior: smooth;
+  background-color: #1F2041;
 }
 
 *, *:before, *:after {
@@ -343,7 +344,7 @@ p {
 
 section {
   margin-top: 50rem;
-  opacity: 0;
+  width: 50vw;
 }
 
 .App {
@@ -358,6 +359,15 @@ section {
   display: flex;
   justify-content: center;
   background-color: #1f2041;
+}
+
+.hide {
+  opacity: 0;
+}
+
+.unhide {
+  transition: opacity 1s ease-in-out;
+  opacity: 1;
 }
 
 /* Navegación flotante */
