@@ -17,6 +17,7 @@
     color: vars.$color-white;
     font-size: 18rem;
     padding: 15rem 0;
+    margin-top: 50rem;
     border-radius: 5%;
     
     &-container{
@@ -76,20 +77,63 @@
   }
 }
 
-/* Habilidades */
+/* Contenedor de habilidades */
 .abilities-container{
-  margin: 60rem;
+  margin: 60rem 0;
   
   h3{
     margin-bottom: 10rem;
-  } 
+  }
+
+  /* Establecer grid en tamaños grandes */
+  @include mixins.tablet{
+    .abilities-grid{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 40rem;
+    }
+  }
 }
 
+/* Habilidades */
 .abilities{
-  background-color: rgba(vars.$color-blue, 0.3);
-  padding: 20rem 10rem;
   margin: 20rem 0;
+  background-color: rgba(vars.$color-blue, 0.3);
+  border-radius: 8rem;
+
+  .heading{
+    background-color: rgba(vars.$color-blue, 0.3);
+    color: vars.$color-white;
+    border-radius: 8rem 8rem 75% 75%;
+    padding: 30rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40rem;
+    h4{
+      margin-right: 20rem;
+    }
+    .icon{
+      font-size: 35rem;
+    }
+  }
+
+  &.backend .heading{
+    .icon{
+      font-size: 42rem;
+    }
+  }
+
   ul{
     color: vars.$color-white;
+    font-size: 18rem;
+    li{
+      padding: 17rem 20rem;
+      display: flex;
+      align-items: center;
+    }
+    .icon{
+      margin-right: 5rem;
+    }
   }
 }

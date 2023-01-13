@@ -37,135 +37,139 @@ function Me({ language, strings }){
 
       <div className="abilities-container">
         <h3>{strings.myAbilities}</h3>
-
-        <div className="abilities general">
-          <div className="general__heading">
-            <h4>General</h4>
-            <VscFileBinary />
+        <div className="abilities-grid">
+          <div className="abilities general">
+            <div className="heading">
+              <h4>General</h4>
+              <VscFileBinary className="icon" />
+            </div>
+            <ul>
+              <li>
+                <BsCheck className="icon" />
+                Android (Java)
+              </li>
+              <li>
+                <BsCheck className="icon" />
+                Unity
+              </li>
+              <li>
+                <BsCheck className="icon" />
+                GameMaker: Studio
+              </li>
+              <li>
+                <BsCheck className="icon" />
+                {language === 'es' ? 'Automatización' : 'Automation'}
+              </li>
+              <li>
+                <BsCheck className="icon" />
+                Web Scraping
+              </li>
+            </ul>
           </div>
-          <ul>
-            <li>
-              <BsCheck />
-              Android (Java)
-            </li>
-            <li>
-              <BsCheck />
-              Unity
-            </li>
-            <li>
-              <BsCheck />
-              GameMaker: Studio
-            </li>
-            <li>
-              <BsCheck />
-              {language === 'es' ? 'Automatización' : 'Automation'}
-            </li>
-            <li>
-              <BsCheck />
-              Web Scraping
-            </li>
-          </ul>
-        </div>
 
-        <div className="abilities desktop">
-          <div className="desktop__heading">
-            <h4>Desktop</h4>
-            <AiOutlineLaptop />
+          <div className="abilities desktop">
+            <div className="heading">
+              <h4>Desktop</h4>
+              <AiOutlineLaptop className="icon" />
+            </div>
+            <ul>
+              <li>
+                <BsCheck className="icon" />
+                AutoHotkey
+              </li>
+              <li>
+                <BsCheck className="icon" />
+                Python
+              </li>
+              <li>
+                <BsCheck className="icon" />
+                Java
+              </li>
+              <li>
+                <BsCheck className="icon" />
+                Ruby
+              </li>
+              <li>
+                <BsCheck className="icon" />
+                C#
+              </li>
+            </ul>
           </div>
-          <ul>
-            <li>
-              <BsCheck />
-              AutoHotkey
-            </li>
-            <li>
-              <BsCheck />
-              Python
-            </li>
-            <li>
-              <BsCheck />
-              Java
-            </li>
-            <li>
-              <BsCheck />
-              C#
-            </li>
-          </ul>
-        </div>
 
-        <div className="abilities frontend">
-          <div className="desktop__frontend">
-            <h4>Frontend</h4>
-            <AiOutlineHtml5 />
+          <div className="abilities frontend">
+            <div className="heading">
+              <h4>Frontend</h4>
+              <AiOutlineHtml5 className="icon" />
+            </div>
+            <ul className="abilities__fontend">
+              <li>
+                <BsCheck className="icon" />
+                HTML5
+              </li>
+              <li>
+                <BsCheck className="icon" />
+                JavaScript &#8827; TypeScript
+              </li>
+              <li>
+                <BsCheck className="icon" />
+                CSS &#8827; SASS
+              </li>
+              <li>
+                <BsCheck className="icon" />
+                Gulp
+              </li>
+              <li>
+                <BsCheck className="icon" />
+                Angular
+              </li>
+              <li>
+                <BsCheck className="icon" />
+                React.js
+              </li>
+              <li>
+                <BsCheck className="icon" />
+                { language === 'es' ? 'Consumo de APIs / Endpoints' : 'API consumption'}
+              </li>
+            </ul>
           </div>
-          <ul className="abilities__fontend">
-            <li>
-              <BsCheck />
-              HTML 5
-            </li>
-            <li>
-              <BsCheck />
-              JavaScript &#8827; TypeScript
-            </li>
-            <li>
-              <BsCheck />
-              CSS &#8827; SASS
-            </li>
-            <li>
-              <BsCheck />
-              Gulp
-            </li>
-            <li>
-              <BsCheck />
-              Angular
-            </li>
-            <li>
-              <BsCheck />
-              React.js
-            </li>
-            <li>
-              <BsCheck />
-              { language === 'es' ? 'Consumo de APIs / Endpoints' : 'API consumption'}
-            </li>
-          </ul>
-        </div>
         
-        <div className="abilities backend">
-          <div className="desktop__backend">
-            <h4>Backend</h4>
-            <FaPhp />
+          <div className="abilities backend">
+            <div className="heading">
+              <h4>Backend</h4>
+              <FaPhp className="icon" />
+            </div>
+            <ul className="abilities__backend">
+              <li>
+                <BsCheck className="icon" />
+                PHP
+              </li>
+              <li>
+                <BsCheck className="icon" />
+                Django
+              </li>
+              <li>
+                <BsCheck className="icon" />
+                Node.js
+              </li>
+              <li>
+                <BsCheck className="icon" />
+                MySQL
+              </li>
+              <li>
+                <BsCheck className="icon" />
+                FireBase
+              </li>
+              <li>
+                <BsCheck className="icon" />
+                MVC
+              </li>
+              <li>
+                <BsCheck className="icon" />
+                APIs / Endpoints
+              </li>
+            </ul>
           </div>
-          <ul className="abilities__backend">
-            <li>
-              <BsCheck />
-              PHP
-            </li>
-            <li>
-              <BsCheck />
-              Django
-            </li>
-            <li>
-              <BsCheck />
-              Node.js
-            </li>
-            <li>
-              <BsCheck />
-              MySQL
-            </li>
-            <li>
-              <BsCheck />
-              FireBase
-            </li>
-            <li>
-              <BsCheck />
-              MVC
-            </li>
-            <li>
-              <BsCheck />
-              APIs / Endpoints
-            </li>
-          </ul>
         </div>
-        
       </div>
     </section>
   );
