@@ -56,9 +56,8 @@ ul{
 section{
   min-height: 100vh;
   max-width: 98%;
-  margin-bottom: 50rem;
-  &:last-of-type{
-    margin-bottom: 0;
+  &:not(:first-of-type){
+    margin-top: 40rem;
   }
 }
 

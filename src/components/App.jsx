@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Header from '../components/Header';
 import Nav from '../components/Nav';
-import Me from './Me';
+import AboutMe from './about-me/AboutMe';
 import Projects from './Projects';
 import Testimonials from './Testimonials';
 import Contact from './Contact';
@@ -56,7 +56,7 @@ const App = function(){
         globalStrings={globalStrings}
         strings={strings}
       />
-      <Me
+      <AboutMe
         language={language}
         globalStrings={globalStrings}
         strings={strings}
