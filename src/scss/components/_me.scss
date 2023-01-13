@@ -1,3 +1,95 @@
+@use 'general/variables' as vars;
+@use 'general/mixins' as mixins;
+
+/* Sección "Sobre mí */
 .about-me{
-  background-color: red;
+  //background-color: #ff000023;
+
+  &__photo{
+    width: 250rem;
+    height: 250rem;
+    border-radius: 15%;
+    border: 4rem solid vars.$color-green;
+  }
+
+  &__info{
+    background-color: rgba(vars.$color-blue, 0.3);
+    color: vars.$color-white;
+    font-size: 18rem;
+    padding: 15rem 0;
+    border-radius: 5%;
+    
+    &-container{
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 20rem;
+    }
+
+    span{
+      color: vars.$color-yellow;
+    }
+
+    a{
+      color: lighten(vars.$color-green, 10);
+      text-decoration: none;
+    }
+
+    p{
+      max-width: 85%;
+      @include mixins.tablet{
+        max-width: 100%;
+      }
+    }
+  }
+}
+
+// Ícono de experiencia
+.experience{
+  .icon{
+    font-size: 38rem;
+    margin-right: 8rem;
+  }
+}
+
+// Ícono de alma mater
+.alma-mater{
+  .icon{
+    font-size: 35rem;
+    margin-right: 15rem;
+  }
+}
+
+// Ícono de idiomas
+.languages{
+  .icon{
+    font-size: 25rem;
+    margin: 0 15rem 0 7rem;
+  }
+}
+
+// Ícono de #1
+.top-one{
+  .icon{
+    font-size: 35rem;
+    margin: 0 10rem 0 2rem;
+  }
+}
+
+/* Habilidades */
+.abilities-container{
+  margin: 60rem;
+  
+  h3{
+    margin-bottom: 10rem;
+  } 
+}
+
+.abilities{
+  background-color: rgba(vars.$color-blue, 0.3);
+  padding: 20rem 10rem;
+  margin: 20rem 0;
+  ul{
+    color: vars.$color-white;
+  }
 }

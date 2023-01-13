@@ -11,7 +11,7 @@ function itsBellow(element, marginTop=0){
   if(!element)
     return false;
   const clientRect = element.getBoundingClientRect();
-  return clientRect.height - clientRect.y < marginTop
+  return clientRect.y >= window.innerHeight - marginTop;
 }
 
 export { isInViewport, itsBellow };

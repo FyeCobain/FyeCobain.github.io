@@ -9,7 +9,7 @@ function Header({ language, globalStrings, strings}){
         <p className="header__hello"><span>{strings.helloPart1}</span>{strings.helloPart2}</p>
         <h1 className="header__dev-name">{globalStrings.devName}</h1>
         <div className="header__photo">
-          <img className="photo" src={foto} alt={strings.photoAlt} width="200" height="200" />
+          <img src={foto} alt={strings.photoAlt} className="photo" width="200" height="200" />
           <div className="bubble-container">
             <div className="bubble">
               <p>{strings.welcome}</p>

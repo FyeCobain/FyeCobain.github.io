@@ -342,13 +342,27 @@ h2 {
   font-size: 40rem;
 }
 
+h3 {
+  font-size: 30rem;
+}
+
 p {
   margin: 0;
 }
 
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
 section {
-  margin-top: 50rem;
   min-height: 100vh;
+  max-width: 98%;
+  margin-bottom: 50rem;
+}
+section:last-of-type {
+  margin-bottom: 0;
 }
 
 .App {
@@ -401,8 +415,13 @@ section {
   }
 }
 .nav__icons {
-  background-color: rgba(25, 100, 126, 0.2);
+  background-color: rgba(25, 100, 126, 0.5);
   border-radius: 6rem;
+}
+@media (min-width: 768px) {
+  .nav__icons {
+    background-color: rgba(25, 100, 126, 0.3);
+  }
 }
 .nav__icon {
   padding: 10rem 5rem;
@@ -410,6 +429,12 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #13bcc5;
+}
+@media (min-width: 768px) {
+  .nav__icon {
+    padding: 14rem 5rem;
+  }
 }
 .nav__icon svg:hover {
   cursor: pointer;
@@ -430,7 +455,7 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100vh;
+  height: 100vh;
   /* Contenedores de título universitario y profesión */
   /* Ícono de título universitario */
   /* Texto de título universitario */
@@ -461,7 +486,7 @@ section {
   width: 200rem;
   height: 200rem;
   border-radius: 50%;
-  border: 4px solid #11a6ae;
+  border: 4rem solid #11a6ae;
 }
 @-webkit-keyframes bubble {
   0% {
@@ -631,8 +656,77 @@ section {
   }
 }
 
-.about-me {
-  background-color: red;
+/* Sección "Sobre mí */
+.about-me__photo {
+  width: 250rem;
+  height: 250rem;
+  border-radius: 15%;
+  border: 4rem solid #11a6ae;
+}
+.about-me__info {
+  background-color: rgba(25, 100, 126, 0.3);
+  color: #FFFFFF;
+  font-size: 18rem;
+  padding: 15rem 0;
+  border-radius: 5%;
+}
+.about-me__info-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20rem;
+}
+.about-me__info span {
+  color: #FFC857;
+}
+.about-me__info a {
+  color: #16d2dc;
+  text-decoration: none;
+}
+.about-me__info p {
+  max-width: 85%;
+}
+@media (min-width: 768px) {
+  .about-me__info p {
+    max-width: 100%;
+  }
+}
+
+.experience .icon {
+  font-size: 38rem;
+  margin-right: 8rem;
+}
+
+.alma-mater .icon {
+  font-size: 35rem;
+  margin-right: 15rem;
+}
+
+.languages .icon {
+  font-size: 25rem;
+  margin: 0 15rem 0 7rem;
+}
+
+.top-one .icon {
+  font-size: 35rem;
+  margin: 0 10rem 0 2rem;
+}
+
+/* Habilidades */
+.abilities-container {
+  margin: 60rem;
+}
+.abilities-container h3 {
+  margin-bottom: 10rem;
+}
+
+.abilities {
+  background-color: rgba(25, 100, 126, 0.3);
+  padding: 20rem 10rem;
+  margin: 20rem 0;
+}
+.abilities ul {
+  color: #FFFFFF;
 }
 
 .projects {

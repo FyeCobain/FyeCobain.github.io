@@ -57,6 +57,7 @@ const App = function(){
         strings={strings}
       />
       <Me
+        language={language}
         globalStrings={globalStrings}
         strings={strings}
       />

@@ -25,17 +25,25 @@
 
   /* Contenedor de iconos de navegación */
   &__icons{
-    background-color: rgba(vars.$color-blue, 0.2);
+    background-color: rgba(vars.$color-blue, 0.5);
+    @include mixins.tablet{
+      background-color: rgba(vars.$color-blue, 0.3);
+    }
     border-radius: 6rem;
+    
   }
 
   /* Cada icono de navegación */
   &__icon{
     padding: 10rem 5rem;
+    @include mixins.tablet{
+      padding: 14rem 5rem;
+    }
     opacity: 0.8;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: lighten(vars.$color-green, 5);
     & svg:hover{
       cursor: pointer;
       @include mixins.laptop{

@@ -1,6 +1,6 @@
 import { MdOutlineLanguage } from 'react-icons/md';
 import { AiOutlineHome, AiOutlineUser } from 'react-icons/ai';
-import { BsCardChecklist } from 'react-icons/bs';
+import { VscFolder } from 'react-icons/vsc';
 import { ImStarHalf } from 'react-icons/im';
 import { HiOutlineMail } from 'react-icons/hi';
 import { header, aboutMe, projects, testimonials, contact } from '../js/variables';
@@ -42,7 +42,7 @@ function checkScroll(){
   const contactElement = document.querySelector(contact.elementId);
 
   // Realizar efecto de aparición de las secciones
-  let marginTop = 50;
+  let marginTop = 75;
   if(aboutMeElement)
     if(aboutMeElement.classList.contains('hide') && !itsBellow(aboutMeElement, marginTop))
       aboutMeElement.classList.add('unhide');
@@ -61,7 +61,7 @@ function checkScroll(){
 
   // Verificar si una sección está dentro del viewport (de abajo hacia arriba)
   // Para resaltar el ícono asociado
-  marginTop = 255;
+  marginTop = 300;
   if(isInViewport(contactElement, marginTop))
     newCurrentIcon = document.querySelector(contact.iconId);
   else if(isInViewport(testimonialsElement, marginTop))
@@ -93,7 +93,7 @@ function Nav({ changeLanguage }){
           <AiOutlineUser onClick={() => scroll(aboutMe)} />
         </div>
         <div id="icon-card" className="nav__icon">
-          <BsCardChecklist onClick={() => scroll(projects)} />
+          <VscFolder onClick={() => scroll(projects)} />
         </div>
         <div id="icon-star" className="nav__icon">
           <ImStarHalf onClick={() => scroll(testimonials)} />
