@@ -6,7 +6,7 @@ import Projects from './Projects';
 import Testimonials from './Testimonials';
 import Contact from './Contact';
 import { isInViewport, itsBellow } from '../js/functions';
-import { globalStrings, esStrings, enStrings, aboutMe, projects, testimonials, contact } from '../js/variables';
+import { globalValues, esStrings, enStrings, aboutMe, projects, testimonials, contact } from '../js/variables';
 
 // Aplicación principal
 const App = function(){
@@ -53,24 +53,24 @@ const App = function(){
       <Nav changeLanguage={changeLanguage} />
       <Header
         language={language}
-        globalStrings={globalStrings}
+        globalValues={globalValues}
         strings={strings}
       />
       <AboutMe
         language={language}
-        globalStrings={globalStrings}
+        globalValues={globalValues}
         strings={strings}
       />
       <Projects
-        globalStrings={globalStrings}
+        globalValues={globalValues}
         strings={strings}
       />
       <Testimonials
-        globalStrings={globalStrings}
+        globalValues={globalValues}
         strings={strings}
       />
       <Contact
-        globalStrings={globalStrings}
+        globalValues={globalValues}
         strings={strings}
       />
     </div>

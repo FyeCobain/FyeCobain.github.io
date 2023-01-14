@@ -1,12 +1,12 @@
-const globalStrings = {
+const globalValues = {
   devName: 'Fye Cobain',
   devEmail: 'hereisnirvana@hotmail.com',
-  devGitHub: 'https://github.com/FyeCobain'
+  devGitHub: 'https://github.com/FyeCobain',
 }
 
 const esStrings = {
-  pageTitle: `${globalStrings.devName} - Portafolio web`,
-  pageDescription: `${globalStrings.devName} - Portafolio web`,
+  pageTitle: `${globalValues.devName} - Portafolio web`,
+  pageDescription: `${globalValues.devName} - Portafolio web`,
   helloPart1: 'Hola',
   helloPart2: ', soy',
   devTitle: 'Ingeniero en Sistemas Computacionales',
@@ -14,16 +14,25 @@ const esStrings = {
   photoAlt: 'Foto del desarrollador',
   welcome: '¡Bienvenido(a) a mi página!',
   aboutMe: 'Sobre mí',
-  myAbilities: 'Habilidades',
+  domain: 'Dominio',
+  abilitiesResume: 'Resumen de habilidades',
+  abilitiesGraph: 'Gráfica estimada de habilidades',
+  programming: 'Programación',
+  troubleshooting: 'Solución de problemas',
+  creativity: 'Creatividad',
+  design: 'Diseño',
+  social: 'Social',
+  teamwork: 'Trabajo en equipo',
+  includingPrivate: 'incluyendo proyectos privados',
   projects: 'Mis proyectos',
-  testimonials: 'Testimoniales',
+  testimonials: 'Reseñas',
   contact: 'Contacto',
   contactMe: 'Contáctame'
 }
 
 const enStrings = {
-  pageTitle: `${globalStrings.devName} - Portfolio website`,
-  pageDescription: `${globalStrings.devName} - Portfolio`,
+  pageTitle: `${globalValues.devName} - Portfolio website`,
+  pageDescription: `${globalValues.devName} - Portfolio`,
   helloPart1: 'Hello',
   helloPart2: ', I\'m',
   devTitle: 'Computer Systems engineer',
@@ -31,7 +40,16 @@ const enStrings = {
   photoAlt: 'Developer\'s photo',
   welcome: 'Welcome to my webpage!',
   aboutMe: 'About me',
-  myAbilities: 'My knowledge',
+  domain: 'Domain',
+  abilitiesResume: 'Abilities resume',
+  abilitiesGraph: 'Estimated abilities chart',
+  programming: 'Programming',
+  troubleshooting: 'Troubleshooting',
+  creativity: 'Creativity',
+  design: 'Design',
+  social: 'Social',
+  teamwork: 'Teamwork',
+  includingPrivate: 'including private projects',
   projects: 'My projects',
   testimonials: 'Testimonials',
   contact: 'Contact',
@@ -63,4 +81,4 @@ const contact = {
   elementId: '#contact'
 }
 
-export { globalStrings, esStrings, enStrings, header, aboutMe, projects, testimonials, contact };
+export { globalValues, esStrings, enStrings, header, aboutMe, projects, testimonials, contact };

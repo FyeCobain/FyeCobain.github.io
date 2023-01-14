@@ -43,8 +43,14 @@ h4{
   font-size: 20rem;
 }
 
+a{
+  color: lighten(vars.$color-green, 10);
+  text-decoration: none;
+}
+
 p{
   margin: 0;
+  font-size: 18rem;
 }
 
 ul{

@@ -1,4 +1,4 @@
-function Contact({ globalStrings, strings }){
+function Contact({ strings }){
   return(
     <section id="contact" className="contact">
       <h2>{strings.contactMe}</h2>

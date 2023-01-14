@@ -2,12 +2,12 @@ import foto from '../img/endlc.jpg';
 import { GiDiploma } from 'react-icons/gi';
 import { SiCsharp } from 'react-icons/si';
 
-function Header({ language, globalStrings, strings}){
+function Header({ language, globalValues, strings }){
   return(
     <div className="container">
       <header id="header" className="header">
         <p className="header__hello"><span>{strings.helloPart1}</span>{strings.helloPart2}</p>
-        <h1 className="header__dev-name">{globalStrings.devName}</h1>
+        <h1 className="header__dev-name">{globalValues.devName}</h1>
         <div className="header__photo">
           <img src={foto} alt={strings.photoAlt} className="photo" width="200" height="200" />
           <div className="bubble-container">

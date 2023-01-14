@@ -1,4 +1,4 @@
-function Testimonials({ globalStrings, strings }){
+function Testimonials({ strings }){
   return(
     <section id="testimonials" className="testimonials">
       <h2>{strings.testimonials}</h2>

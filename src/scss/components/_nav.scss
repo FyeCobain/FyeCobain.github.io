@@ -30,14 +30,13 @@
       background-color: rgba(vars.$color-blue, 0.3);
     }
     border-radius: 6rem;
-    
   }
 
   /* Cada icono de navegación */
   &__icon{
-    padding: 10rem 5rem;
+    padding: 11rem 5rem;
     @include mixins.tablet{
-      padding: 14rem 5rem;
+      padding: 13rem 5rem;
     }
     opacity: 0.8;
     display: flex;

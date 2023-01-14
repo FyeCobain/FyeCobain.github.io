@@ -1,18 +1,23 @@
+import Abilities from './Abilities';
+import githubContributions from '../../img/github.png';
 import { BiMedal } from 'react-icons/bi';
 import { MdOutlineSchool } from 'react-icons/md';
 import { FaFlagUsa, FaPhp } from 'react-icons/fa';
 import { GiPodiumWinner } from 'react-icons/gi';
 import { VscFileBinary } from 'react-icons/vsc';
-import { AiOutlineLaptop, AiOutlineHtml5 } from 'react-icons/ai';
+import { AiOutlineLaptop, AiOutlineHtml5, AiOutlineGithub } from 'react-icons/ai';
 
-import Abilities from './Abilities';
-
-function Me({ language, strings }){
+function Me({ language, globalValues, strings }){
   let topOneAHKP = null;
-  if(language === 'es')
+  let ghContributionsP = null;
+  if(language === 'es'){
     topOneAHKP = <p>Programador <a href="https://www.freelancer.com/freelancers/mexico/autohotkey" target="_blank" rel="noopener noreferrer">#1</a> de <a href="https://www.autohotkey.com/" target="_blank" rel="noopener noreferrer">AutoHotkey</a> en América Latina</p>
-  else
+    ghContributionsP = <p>Contribuciones en <a href={globalValues.devGitHub} target="_blank" rel="noopener noreferrer">Github</a> ({strings.includingPrivate})</p>
+  }
+  else{
     topOneAHKP = <p><a href="https://www.freelancer.com/freelancers/mexico/autohotkey" target="_blank" rel="noopener noreferrer">#1</a> <a href="https://www.autohotkey.com/" target="_blank" rel="noopener noreferrer">AutoHotkey</a> programmer in Latin America</p>
+    ghContributionsP = <p><a href={globalValues.devGitHub} target="_blank" rel="noopener noreferrer">Github</a> Contributions ({strings.includingPrivate})</p>
+  }
 
   const generalAbilities = ['Android (Java)', 'Unity', 'GameMaker: Studio', language === 'es' ? 'Automatización' : 'Automation', 'Web Scraping', 'Git + GitHub']
   const desktopAbilities = ['Python', 'Java', 'Ruby', 'C#', 'AutoHotkey', 'AutoIt']
@@ -42,7 +47,7 @@ function Me({ language, strings }){
       </ul>
 
       <div className="abilities-container">
-        <h3>{strings.myAbilities}</h3>
+        <h3>{strings.domain}</h3>
         <div className="abilities-grid">
           <Abilities
             className="general"
@@ -73,6 +78,27 @@ function Me({ language, strings }){
           />
         </div>
       </div>
+
+    <div className="resume-container">
+
+      <h3>{strings.abilitiesResume}</h3>
+      <div className="abilities-chart">
+        <img src={require(`../../img/${language === 'es' ? 'habilidades' : 'abilities'}.png`)}></img>
+        <div className="footer">
+          <p>{strings.abilitiesGraph}</p>
+        </div>
+      </div>
+
+      <div className="github">
+        <img src={githubContributions} alt="" />
+        <div className="footer">
+          <a href={globalValues.devGitHub} target="_blank" rel="noopener noreferrer"><AiOutlineGithub /></a>
+          {ghContributionsP}
+        </div>
+      </div>
+
+    </div>
+
     </section>
   );
 }
