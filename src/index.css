@@ -801,11 +801,47 @@ section:not(:first-of-type) {
 .resume-container {
   margin-top: 60rem;
 }
-.resume-container .abilities-graph {
+.resume-container h3 {
+  margin-bottom: 35rem;
+}
+
+.abilities-chart {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20rem;
+}
+.abilities-chart img {
+  margin-bottom: 10rem;
+  max-width: 100%;
+  border-radius: 5%;
+}
+@media (min-width: 768px) {
+  .abilities-chart img {
+    max-width: 70%;
+  }
+}
+@media (min-width: 1024px) {
+  .abilities-chart img {
+    max-width: 60%;
+  }
+}
+
+.github-graph img {
+  border-radius: 4rem;
+}
+.github-graph p {
+  margin-top: 10rem;
+  text-align: center;
+}
+.github-graph p a {
+  text-decoration: underline;
+}
+@media (min-width: 1024px) {
+  .github-graph p {
+    text-align: left;
+  }
 }
 
 .projects {

@@ -5,7 +5,7 @@ import { MdOutlineSchool } from 'react-icons/md';
 import { FaFlagUsa, FaPhp } from 'react-icons/fa';
 import { GiPodiumWinner } from 'react-icons/gi';
 import { VscFileBinary } from 'react-icons/vsc';
-import { AiOutlineLaptop, AiOutlineHtml5, AiOutlineGithub } from 'react-icons/ai';
+import { AiOutlineLaptop, AiOutlineHtml5 } from 'react-icons/ai';
 
 function Me({ language, globalValues, strings }){
   let topOneAHKP = null;
@@ -22,7 +22,7 @@ function Me({ language, globalValues, strings }){
   const generalAbilities = ['Android (Java)', 'Unity', 'GameMaker: Studio', language === 'es' ? 'Automatización' : 'Automation', 'Web Scraping', 'Git + GitHub']
   const desktopAbilities = ['Python', 'Java', 'Ruby', 'C#', 'AutoHotkey', 'AutoIt']
   const frontendAbilities = ['HTML5', 'JavaScript > TypeScript', 'CSS > SASS', 'Node.js > Gulp', 'Angular', 'React', language==='es' ? 'Consumo de APIs / Endpoints' : 'API consumption']
-  const backendAbilities = ['PHP', 'Node.js', 'Django', 'MySQL', 'Firebase', 'MVC', 'APIs / Endpoints']
+  const backendAbilities = ['PHP > Composer', 'Node.js', 'Django', 'MySQL', 'Firebase', 'MVC', 'APIs / Endpoints']
 
   return(
     <section id="about-me" className="about-me">
@@ -80,21 +80,13 @@ function Me({ language, globalValues, strings }){
       </div>
 
     <div className="resume-container">
-
-      <h3>{strings.abilitiesResume}</h3>
       <div className="abilities-chart">
-        <img src={require(`../../img/${language === 'es' ? 'habilidades' : 'abilities'}.png`)}></img>
-        <div className="footer">
-          <p>{strings.abilitiesGraph}</p>
-        </div>
+        <h3>{strings.abilitiesResume}</h3>
+        <img src={require(`../../img/${language === 'es' ? 'habilidades' : 'abilities'}.png`)} alt={strings.abilitiesChartAlt}></img>
       </div>
-
-      <div className="github">
-        <img src={githubContributions} alt="" />
-        <div className="footer">
-          <a href={globalValues.devGitHub} target="_blank" rel="noopener noreferrer"><AiOutlineGithub /></a>
-          {ghContributionsP}
-        </div>
+      <div className="github-graph">
+        <img src={githubContributions} alt={strings.gitHubGraphAlt} />
+        {ghContributionsP}
       </div>
 
     </div>
