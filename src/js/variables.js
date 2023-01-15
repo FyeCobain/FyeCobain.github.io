@@ -1,5 +1,5 @@
 const globalValues = {
-  devName: 'Fye Cobain',
+  devName: 'Michel Bracamontes',
   devEmail: 'hereisnirvana@hotmail.com',
   devGitHub: 'https://github.com/FyeCobain',
 }

@@ -6,11 +6,18 @@ import { HiOutlineMail } from 'react-icons/hi';
 import { header, aboutMe, projects, testimonials, contact } from '../js/variables';
 import { isInViewport, itsBellow } from '../js/functions';
  
+// Variable par activar / desactivar el scroll
+let scrollState = false;
+
 // Variable para activar / desactivar la verificación de scroll
 let checkScrollState = true;
 
 // Hacer scroll al presionar un botón de la navegación
 function scroll(elementObject){
+  // Si el scroll está desactivado, retornar
+    if(!scrollState)
+      return;
+
   // Desactivar estado de checkScroll
   checkScrollState = false;
 
@@ -32,10 +39,12 @@ window.addEventListener('scroll', checkScroll);
 
 // Verificar si una sección está en el viewport para resaltar su icono
 function checkScroll(){
-  //Si la verificación de scroll está desactivada, salir
+  // Si la verificación de scroll está desactivada, retornar
   if(!checkScrollState)
     return;
   
+  const navElement = document.querySelector('.nav');
+  const headerElement = document.querySelector('.header');
   const aboutMeElement = document.querySelector(aboutMe.elementId);
   const projectsElement = document.querySelector(projects.elementId);
   const testimonialsElement = document.querySelector(testimonials.elementId);
@@ -43,6 +52,17 @@ function checkScroll(){
 
   // Realizar efecto de aparición de las secciones
   let marginTop = 75;
+  if(headerElement.getBoundingClientRect().y <= -80){ // Mostrar navegación
+    if(!navElement.classList.contains('transition-opacity-300ms'))
+      navElement.classList.add('transition-opacity-300ms')
+    navElement.classList.remove('opacity-0');
+    scrollState = true;
+  }
+  else{ // Ocultar navegación
+    navElement.classList.add('opacity-0');
+    scrollState = false;
+  }
+
   if(aboutMeElement)
     if(aboutMeElement.classList.contains('hide') && !itsBellow(aboutMeElement, marginTop))
       aboutMeElement.classList.add('unhide');
@@ -81,7 +101,7 @@ function checkScroll(){
 
 function Nav({ changeLanguage }){
   return(
-    <div className="nav">
+    <div className="nav opacity-0">
       <div className="nav__icons">
       <div className="nav__icon nav__language">
           <MdOutlineLanguage onClick={changeLanguage} />

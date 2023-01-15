@@ -14,11 +14,11 @@ function Me({ language, globalValues, strings, setOverlayImg }){
   let ghContributionsP = null;
   if(language === 'es'){
     topOneAHKP = <p>Programador <a href="https://www.freelancer.com/freelancers/mexico/autohotkey" target="_blank" rel="noopener noreferrer">#1</a> de <a href="https://www.autohotkey.com/" target="_blank" rel="noopener noreferrer">AutoHotkey</a> en América Latina</p>
-    ghContributionsP = <p>Contribuciones en <a href={globalValues.devGitHub} target="_blank" rel="noopener noreferrer">Github</a> ({strings.includingPrivate})</p>
+    ghContributionsP = <p>Contribuciones en <a href={globalValues.devGitHub} target="_blank" rel="noopener noreferrer">GitHub</a> ({strings.includingPrivate})</p>
   }
   else{
     topOneAHKP = <p><a href="https://www.freelancer.com/freelancers/mexico/autohotkey" target="_blank" rel="noopener noreferrer">#1</a> <a href="https://www.autohotkey.com/" target="_blank" rel="noopener noreferrer">AutoHotkey</a> programmer in Latin America</p>
-    ghContributionsP = <p><a href={globalValues.devGitHub} target="_blank" rel="noopener noreferrer">Github</a> contributions ({strings.includingPrivate})</p>
+    ghContributionsP = <p><a href={globalValues.devGitHub} target="_blank" rel="noopener noreferrer">GitHub</a> contributions ({strings.includingPrivate})</p>
   }
 
   const generalAbilities = ['Android (Java)', 'Unity', 'GameMaker: Studio', language === 'es' ? 'Automatización' : 'Automation', 'Web Scraping', 'Git + GitHub']

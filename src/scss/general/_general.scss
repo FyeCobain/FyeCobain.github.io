@@ -48,6 +48,9 @@ h4{
 a{
   color: lighten(vars.$color-green, 10);
   text-decoration: none;
+  &:hover{
+    cursor: pointer;
+  }
 }
 
 p{

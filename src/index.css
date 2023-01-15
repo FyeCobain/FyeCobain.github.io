@@ -356,6 +356,9 @@ a {
   color: #16d2dc;
   text-decoration: none;
 }
+a:hover {
+  cursor: pointer;
+}
 
 p {
   margin: 0;
@@ -389,13 +392,21 @@ section:not(:first-of-type) {
   justify-content: center;
 }
 
-.hide {
-  opacity: 0;
+.transition-opacity-300ms {
+  transition: 300ms !important;
+}
+
+.opacity-0, .hide {
+  opacity: 0 !important;
+}
+
+.opacity-1 {
+  opacity: 1 !important;
 }
 
 .unhide {
   transition: opacity 1s ease-in-out;
-  opacity: 1;
+  opacity: 1 !important;
 }
 
 .overlay {
@@ -418,11 +429,12 @@ section:not(:first-of-type) {
   border-radius: 5rem;
 }
 .overlay .close-button {
-  color: #11a6ae;
+  color: #16d2dc;
   font-size: 45rem;
   position: absolute;
   bottom: 25%;
   cursor: pointer;
+  border-radius: 5rem;
 }
 @media (min-width: 768px) {
   .overlay .close-button {
@@ -493,6 +505,9 @@ section:not(:first-of-type) {
     color: #FFC857;
   }
 }
+.nav.opacity-0 svg:hover {
+  cursor: default;
+}
 .nav__icon.nav__language {
   color: #978bbf;
 }
@@ -521,14 +536,14 @@ section:not(:first-of-type) {
   text-decoration: underline;
 }
 .header__dev-name {
-  font-size: 58rem;
+  font-size: 55rem;
   margin: 10rem;
 }
 .header__photo {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10rem;
+  margin-bottom: 15rem;
 }
 .header__photo .photo {
   margin-top: 16rem;

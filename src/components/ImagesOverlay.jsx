@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { AiOutlineClose } from 'react-icons/ai';
+import { AiOutlineCloseCircle } from 'react-icons/ai';
 
 function ImagesOverlay({ img, setOverlayImg }){
   // Agregar la imagen al overlay
@@ -30,7 +30,7 @@ function ImagesOverlay({ img, setOverlayImg }){
 
   return(
     <div className="overlay" onClick={close}>
-      <AiOutlineClose className="close-button" onClick={close} />
+      <AiOutlineCloseCircle className="close-button" onClick={close} />
     </div>
   );
 }

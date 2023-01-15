@@ -21,11 +21,12 @@
   }
 
   .close-button{
-    color: vars.$color-green;
+    color: lighten(vars.$color-green, 10);
     font-size: 45rem;
     position: absolute;
     bottom: 25%;
     cursor: pointer;
+    border-radius: 5rem;
     @include mixins.tablet{
       display: block;
     }
