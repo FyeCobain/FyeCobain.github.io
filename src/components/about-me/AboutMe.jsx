@@ -16,12 +16,12 @@ function Me({ language, globalValues, strings }){
   }
   else{
     topOneAHKP = <p><a href="https://www.freelancer.com/freelancers/mexico/autohotkey" target="_blank" rel="noopener noreferrer">#1</a> <a href="https://www.autohotkey.com/" target="_blank" rel="noopener noreferrer">AutoHotkey</a> programmer in Latin America</p>
-    ghContributionsP = <p><a href={globalValues.devGitHub} target="_blank" rel="noopener noreferrer">Github</a> Contributions ({strings.includingPrivate})</p>
+    ghContributionsP = <p><a href={globalValues.devGitHub} target="_blank" rel="noopener noreferrer">Github</a> contributions ({strings.includingPrivate})</p>
   }
 
   const generalAbilities = ['Android (Java)', 'Unity', 'GameMaker: Studio', language === 'es' ? 'Automatización' : 'Automation', 'Web Scraping', 'Git + GitHub']
   const desktopAbilities = ['Python', 'Java', 'Ruby', 'C#', 'AutoHotkey', 'AutoIt']
-  const frontendAbilities = ['HTML5', 'JavaScript > TypeScript', 'CSS > SASS', 'Node.js > Gulp', 'Angular', 'React', language==='es' ? 'Consumo de APIs / Endpoints' : 'API consumption']
+  const frontendAbilities = ['HTML5', 'JavaScript / TypeScript', 'CSS / SASS', 'Node.js > Gulp', 'Angular', 'React', language==='es' ? 'Consumo de APIs / Endpoints' : 'API consumption']
   const backendAbilities = ['PHP > Composer', 'Node.js', 'Django', 'MySQL', 'Firebase', 'MVC', 'APIs / Endpoints']
 
   return(
@@ -82,10 +82,10 @@ function Me({ language, globalValues, strings }){
     <div className="resume-container">
       <div className="abilities-chart">
         <h3>{strings.abilitiesResume}</h3>
-        <img src={require(`../../img/${language === 'es' ? 'habilidades' : 'abilities'}.png`)} alt={strings.abilitiesChartAlt}></img>
+        <img src={require(`../../img/${language === 'es' ? 'habilidades' : 'abilities'}.png`)} alt={strings.abilitiesChartAlt} width="500" height="400"></img>
       </div>
       <div className="github-graph">
-        <img src={githubContributions} alt={strings.gitHubGraphAlt} />
+        <img src={githubContributions} alt={strings.gitHubGraphAlt} width="664" height="238" />
         {ghContributionsP}
       </div>
 

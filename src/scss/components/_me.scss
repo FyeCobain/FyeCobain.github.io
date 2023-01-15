@@ -162,25 +162,42 @@
 
   // Gráfica de habilidades
   img{
+    width: auto;
+    height: auto;
     margin-bottom: 10rem;
     max-width: 100%;
     border-radius: 5%;
+    opacity: .9;
     @include mixins.tablet{
       max-width: 70%;
     }
     @include mixins.laptop{
-      max-width: 60%;
+      max-width: 55%;
     }
   }
 }
 
 // Gráfico de GitHub
 .github-graph{
-  img{
-    border-radius: 4rem;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
+  img{
+    width: auto;
+    height: auto;
+    opacity: 0.9;
+    border-radius: 4rem;
+    @include mixins.tablet{
+      max-width: 85%;
+    }
+    @include mixins.laptop{
+      max-width: 75%;
+    }
+  }
   p{
+    width: 100%;
     margin-top: 10rem;
     text-align: center;
     a{
@@ -188,6 +205,7 @@
     }
     @include mixins.laptop{
       text-align: left;
+      margin-left: 230rem;
     }
   }
 }
