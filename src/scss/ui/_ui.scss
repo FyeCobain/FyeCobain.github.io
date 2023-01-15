@@ -1,0 +1,38 @@
+@use 'general/variables' as vars;
+@use 'general/mixins' as mixins;
+
+// Overlay de la imagen
+.overlay{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba($color: #000000, $alpha: .9);
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img{
+    max-width: 98%;
+    height: fit-content;
+    border-radius: 5rem;
+  }
+
+  .close-button{
+    color: vars.$color-green;
+    font-size: 45rem;
+    position: absolute;
+    bottom: 25%;
+    cursor: pointer;
+    @include mixins.tablet{
+      display: block;
+    }
+    @include mixins.laptop{
+      bottom: unset;
+      top: 10%;
+      right: 15%;
+    }
+  }
+}

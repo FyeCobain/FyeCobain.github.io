@@ -398,6 +398,45 @@ section:not(:first-of-type) {
   opacity: 1;
 }
 
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.overlay img {
+  max-width: 98%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  border-radius: 5rem;
+}
+.overlay .close-button {
+  color: #11a6ae;
+  font-size: 45rem;
+  position: absolute;
+  bottom: 25%;
+  cursor: pointer;
+}
+@media (min-width: 768px) {
+  .overlay .close-button {
+    display: block;
+  }
+}
+@media (min-width: 1024px) {
+  .overlay .close-button {
+    bottom: unset;
+    top: 10%;
+    right: 15%;
+  }
+}
+
 /* Navegación flotante */
 .nav {
   position: fixed;
@@ -690,7 +729,7 @@ section:not(:first-of-type) {
   border: 4rem solid #11a6ae;
 }
 .about-me__info {
-  background-color: rgba(25, 100, 126, 0.3);
+  background-color: #1D3553;
   color: #FFFFFF;
   font-size: 18rem;
   padding: 15rem 0;
@@ -760,7 +799,7 @@ section:not(:first-of-type) {
 
 /* Habilidades */
 .abilities {
-  background-color: rgba(25, 100, 126, 0.3);
+  background-color: #1D3553;
   border-radius: 8rem;
 }
 .abilities .heading {
@@ -820,6 +859,7 @@ section:not(:first-of-type) {
   max-width: 100%;
   border-radius: 5%;
   opacity: 0.9;
+  cursor: pointer;
 }
 @media (min-width: 768px) {
   .abilities-chart img {
@@ -843,6 +883,7 @@ section:not(:first-of-type) {
   height: auto;
   opacity: 0.9;
   border-radius: 4rem;
+  cursor: pointer;
 }
 @media (min-width: 768px) {
   .github-graph img {

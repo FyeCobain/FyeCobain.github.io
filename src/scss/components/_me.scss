@@ -17,7 +17,7 @@
   }
 
   &__info{
-    background-color: rgba(vars.$color-blue, 0.3);
+    background-color: vars.$color-bg-blue-1;
     color: vars.$color-white;
     font-size: 18rem;
     padding: 15rem 0;
@@ -101,7 +101,8 @@
 /* Habilidades */
 .abilities{
   //margin: 20rem 0;
-  background-color: rgba(vars.$color-blue, 0.3);
+  //background-color: rgba(vars.$color-blue, 0.3);
+  background-color: vars.$color-bg-blue-1;
   border-radius: 8rem;
 
   .heading{
@@ -168,6 +169,7 @@
     max-width: 100%;
     border-radius: 5%;
     opacity: .9;
+    cursor: pointer;
     @include mixins.tablet{
       max-width: 70%;
     }
@@ -189,6 +191,7 @@
     height: auto;
     opacity: 0.9;
     border-radius: 4rem;
+    cursor: pointer;
     @include mixins.tablet{
       max-width: 85%;
     }

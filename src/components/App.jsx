@@ -5,11 +5,15 @@ import AboutMe from './about-me/AboutMe';
 import Projects from './Projects';
 import Testimonials from './Testimonials';
 import Contact from './Contact';
+import ImagesOverlay from './ImagesOverlay';
 import { isInViewport, itsBellow } from '../js/functions';
 import { globalValues, esStrings, enStrings, aboutMe, projects, testimonials, contact } from '../js/variables';
 
 // Aplicación principal
 const App = function(){
+  // Hook para mostrar una imagen en overlay
+  const [overlayImg, setOverlayImg] = useState(null);
+
   // Al iniciar la aplicación, ocultar secciones que estén bajo el viewport
   document.addEventListener('DOMContentLoaded', () => {
     const aboutMeElement = document.querySelector(aboutMe.elementId);
@@ -32,8 +36,8 @@ const App = function(){
   const [strings, setStrings] = useState(language === 'es' ? esStrings : enStrings)
 
   //Establecer el título y la descripción de la página web
-  document.querySelector('meta[name="description"]').content = strings.pageTitle;
-  document.querySelector('title').innerText = strings.pageDescription;
+  document.title = strings.pageTitle;
+  document.querySelector('meta[name="description"]').innerText = strings.pageDescription;
 
   //Función para cambiar el idioma de la página web
   function changeLanguage(){
@@ -50,6 +54,7 @@ const App = function(){
 
   return(
     <div className="App">
+      {overlayImg !== null ? <ImagesOverlay img={overlayImg} setOverlayImg = {setOverlayImg} /> : <></>}
       <Nav changeLanguage={changeLanguage} />
       <Header
         language={language}
@@ -60,6 +65,7 @@ const App = function(){
         language={language}
         globalValues={globalValues}
         strings={strings}
+        setOverlayImg={setOverlayImg}
       />
       <Projects
         globalValues={globalValues}

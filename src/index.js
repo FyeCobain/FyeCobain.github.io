@@ -5,7 +5,5 @@ import App from './components/App';
 
 //Renderizando el componente principal en el elemento raíz
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <App />
 );

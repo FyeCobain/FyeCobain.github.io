@@ -1,4 +1,6 @@
 import Abilities from './Abilities';
+import abilitiesChartEs from '../../img/habilidades.png';
+import abilitiesChartEn from '../../img/abilities.png';
 import githubContributions from '../../img/github.png';
 import { BiMedal } from 'react-icons/bi';
 import { MdOutlineSchool } from 'react-icons/md';
@@ -7,7 +9,7 @@ import { GiPodiumWinner } from 'react-icons/gi';
 import { VscFileBinary } from 'react-icons/vsc';
 import { AiOutlineLaptop, AiOutlineHtml5 } from 'react-icons/ai';
 
-function Me({ language, globalValues, strings }){
+function Me({ language, globalValues, strings, setOverlayImg }){
   let topOneAHKP = null;
   let ghContributionsP = null;
   if(language === 'es'){
@@ -82,10 +84,10 @@ function Me({ language, globalValues, strings }){
     <div className="resume-container">
       <div className="abilities-chart">
         <h3>{strings.abilitiesResume}</h3>
-        <img src={require(`../../img/${language === 'es' ? 'habilidades' : 'abilities'}.png`)} alt={strings.abilitiesChartAlt} width="500" height="400"></img>
+        <img src={language === 'es' ? abilitiesChartEs : abilitiesChartEn } alt={strings.abilitiesChartAlt} width="500" height="400" onClick={e => setOverlayImg(e.target)}></img>
       </div>
       <div className="github-graph">
-        <img src={githubContributions} alt={strings.gitHubGraphAlt} width="664" height="238" />
+        <img src={githubContributions} alt={strings.gitHubGraphAlt} width="664" height="238" onClick={e => setOverlayImg(e.target)} />
         {ghContributionsP}
       </div>
 
