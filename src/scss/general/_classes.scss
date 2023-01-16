@@ -4,15 +4,16 @@
 
 .opacity-0, .hide{
   opacity: 0 !important;
+  pointer-events: none !important;
 }
 
-.opacity-1{
+.opacity-1, .unhide{
   opacity: 1 !important;
+  pointer-events: unset !important;
 }
 
 .unhide{
   transition: opacity 1s ease-in-out !important;
-  opacity: 1 !important;
 }
 
 .display-none{

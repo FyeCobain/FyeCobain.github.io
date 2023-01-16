@@ -8,36 +8,42 @@ function Projects({ setOverlayImg, language, strings }){
       url: 'https://marketplace.visualstudio.com/items?itemName=FyeCobain.dracula-junior',
       image: 'dracula_junior.png',
       footer: language === 'es' ? 'Tema de Visual Studio Code' : 'Visual Studio Code theme',
+      language: null
     },
     {
       title: 'ITCH Binario',
       url: 'https://apkcombo.com/es/itch-binario/com.isc.itchbinario/',
       image: 'itch_binario.png',
-      footer: language === 'es' ? 'Videojuego para Android' : 'Android Videogame',
+      footer: language === 'es' ? 'Videojuego' : 'Game',
+      language: 'Android'
     },
     {
-      title: 'Rozen Maiden Info',
+      title: 'Rozen Maiden',
       url: '/',
       image: 'rozen_maiden.jpg',
-      footer: language === 'es' ? 'Página vanilla PHP con APIs' : 'Vanilla PHP APIs page',
+      footer: language === 'es' ? 'Página con APIs' : 'APIs page',
+      language: 'vanilla PHP'
     },
     {
-      title: language === 'es' ? 'Página de constructora' : 'Construction company',
+      title: language === 'es' ? 'Constructora' : 'Construction co.',
       url: '/',
       image: 'constr.png',
-      footer: language === 'es' ? 'Página con slider en vanilla JavaScript' : 'Slider vanilla JavaScript page',
+      footer: language === 'es' ? 'Página con slider' : 'Page with slider',
+      language: 'vanilla JS'
     },
     {
       title: 'AHKlicker',
       url: 'https://github.com/FyeCobain/AHKlicker',
       image: `ahklicker_${language}.png`,
-      footer: language === 'es' ? 'Auto clicker con AutoHotkey' : 'AutoHotkey autoclicker',
+      footer: 'Auto clicker',
+      language: 'AutoHotkey'
     },
     {
-      title: 'Battery Monitor',
-      url: 'https://github.com/FyeCobain/Battery-monitor',
-      image: 'battery_monitor.png',
-      footer: language === 'es' ? 'Monitor de batería para Windows (Python)' : 'Windows Battery monitor (Python)',
+      title: 'Scenes Getter',
+      url: '/',
+      image: 'scenes_getter.png',
+      footer: language === 'es' ? 'Extractor de escenas' : 'Scenes extractor',
+      language: 'Python'
     }
   ]
 

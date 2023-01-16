@@ -1,20 +1,16 @@
 @use 'general/variables' as vars;
+@use 'general/mixins' as mixins;
 
-/* Secciópn de projectos */
-//.projects{
-  //background-color: rgba($color: yellow, $alpha: .1);
-//}
-
-/* Contenedor de projectos */
-.projects-container{
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 10rem;
+/* Sección de proyectos */
+#projects{
+  min-height: auto;
 }
 
+/* Proyecto (general) */
 .project{
+  //margin-top: 40rem;
   padding: 10rem 0;
-  background-color: vars.$color-bg-blue-1;
+  background-color: rgba(vars.$color-bg-blue-1, .5);
   border: 1rem solid rgba(vars.$color-green, .5);
   border-radius: 5%;
   display: flex;
@@ -30,6 +26,11 @@
     
     a{
       font-size: 25rem;
+      @include mixins.laptop{
+        &:hover{
+          text-decoration: underline;
+        }
+      }
     }
     a:last-of-type{
       font-size: 25rem;
@@ -43,11 +44,52 @@
     max-width: 80%;
     border-radius: 5%;
     margin: 10rem 0;
+    
+    @include mixins.laptop{
+      border: 1rem solid transparent;
+      &:hover{
+        cursor: pointer;
+        border: 1rem solid lighten(vars.$color-green, 0);
+        filter: brightness(110%);
+      }
+    }
   }
 
   &__footer{
     text-align: center;
     font-size: 16rem;
     color: vars.$color-white;
+    span{
+      color: vars.$color-yellow;
+    }
+  }
+}
+
+/* Slider de projectos */
+.swiper{
+  margin-top: 40rem;
+  /* Proyeto (slider) */
+  .project{
+    &__footer{
+      margin-bottom: 40rem;
+    }
+  }
+}
+
+/* Contenedor de projectos */
+.projects-container{
+  max-width: 850rem;
+  margin-top: 40rem;
+  // Ocultar en tamaño de teléfono
+  display: none;
+
+  @include mixins.tablet{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40rem;
+  }
+
+  @include mixins.laptop{
+    grid-template-columns: repeat(3, 1fr);
   }
 }

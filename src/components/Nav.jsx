@@ -5,19 +5,12 @@ import { ImStarHalf } from 'react-icons/im';
 import { HiOutlineMail } from 'react-icons/hi';
 import { header, aboutMe, projects, testimonials, contact } from '../js/variables';
 import { isInViewport, itsBellow } from '../js/functions';
- 
-// Variable par activar / desactivar el scroll
-let scrollState = false;
 
 // Variable para activar / desactivar la verificación de scroll
 let checkScrollState = true;
 
 // Hacer scroll al presionar un botón de la navegación
 function scroll(elementObject){
-  // Si el scroll está desactivado, retornar
-    if(!scrollState)
-      return;
-
   // Desactivar estado de checkScroll
   checkScrollState = false;
 
@@ -52,16 +45,13 @@ function checkScroll(){
 
   // Realizar efecto de aparición de las secciones
   let marginTop = 75;
-  if(headerElement.getBoundingClientRect().y <= -10){ // Mostrar navegación
+  if(headerElement.getBoundingClientRect().y <= -5){ // Mostrar navegación
     if(!navElement.classList.contains('transition-opacity-300ms'))
       navElement.classList.add('transition-opacity-300ms')
     navElement.classList.remove('opacity-0');
-    scrollState = true;
   }
-  else{ // Ocultar navegación
+  else // Ocultar navegación
     navElement.classList.add('opacity-0');
-    scrollState = false;
-  }
 
   if(aboutMeElement)
     if(aboutMeElement.classList.contains('hide') && !itsBellow(aboutMeElement, marginTop))
