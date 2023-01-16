@@ -1,5 +1,53 @@
 @use 'general/variables' as vars;
 
-.projects{
-  background-color: greenyellow;
+/* Secciópn de projectos */
+//.projects{
+  //background-color: rgba($color: yellow, $alpha: .1);
+//}
+
+/* Contenedor de projectos */
+.projects-container{
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 10rem;
+}
+
+.project{
+  padding: 10rem 0;
+  background-color: vars.$color-bg-blue-1;
+  border: 1rem solid rgba(vars.$color-green, .5);
+  border-radius: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__header{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+    a{
+      font-size: 25rem;
+    }
+    a:last-of-type{
+      font-size: 25rem;
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+    }
+  }
+
+  &__image{
+    max-width: 80%;
+    border-radius: 5%;
+    margin: 10rem 0;
+  }
+
+  &__footer{
+    text-align: center;
+    font-size: 16rem;
+    color: vars.$color-white;
+  }
 }

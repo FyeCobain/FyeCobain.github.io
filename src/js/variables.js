@@ -26,7 +26,7 @@ const esStrings = {
   teamwork: 'Trabajo en equipo',
   gitHubGraphAlt:'Contribuciones en GitHub',
   includingPrivate: 'incluyendo proyectos privados',
-  projects: 'Mis proyectos',
+  myProjects: 'Mis proyectos',
   testimonials: 'Reseñas',
   contact: 'Contacto',
   contactMe: 'Contáctame'
@@ -54,7 +54,7 @@ const enStrings = {
   teamwork: 'Teamwork',
   gitHubGraphAlt:'GitHub contributions',
   includingPrivate: 'including private projects',
-  projects: 'My projects',
+  myProjects: 'My projects',
   testimonials: 'Testimonials',
   contact: 'Contact',
   contactMe: 'Contact me'

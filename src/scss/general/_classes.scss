@@ -11,6 +11,10 @@
 }
 
 .unhide{
-  transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out !important;
   opacity: 1 !important;
+}
+
+.display-none{
+  display: none !important;
 }

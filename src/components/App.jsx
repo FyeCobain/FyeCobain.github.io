@@ -2,10 +2,10 @@ import { useState } from 'react';
 import Header from '../components/Header';
 import Nav from '../components/Nav';
 import AboutMe from './about-me/AboutMe';
-import Projects from './Projects';
+import Projects from './projects/Projects';
 import Testimonials from './Testimonials';
 import Contact from './Contact';
-import ImagesOverlay from './ImagesOverlay';
+import ImagesOverlay from './ui/ImagesOverlay';
 import { isInViewport, itsBellow } from '../js/functions';
 import { globalValues, esStrings, enStrings, aboutMe, projects, testimonials, contact } from '../js/variables';
 
@@ -68,8 +68,10 @@ const App = function(){
         setOverlayImg={setOverlayImg}
       />
       <Projects
+        language={language}
         globalValues={globalValues}
         strings={strings}
+        setOverlayImg={setOverlayImg}
       />
       <Testimonials
         globalValues={globalValues}

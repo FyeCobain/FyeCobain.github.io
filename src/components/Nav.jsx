@@ -52,7 +52,7 @@ function checkScroll(){
 
   // Realizar efecto de aparición de las secciones
   let marginTop = 75;
-  if(headerElement.getBoundingClientRect().y <= -80){ // Mostrar navegación
+  if(headerElement.getBoundingClientRect().y <= -10){ // Mostrar navegación
     if(!navElement.classList.contains('transition-opacity-300ms'))
       navElement.classList.add('transition-opacity-300ms')
     navElement.classList.remove('opacity-0');

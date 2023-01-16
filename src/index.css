@@ -376,7 +376,7 @@ section {
   max-width: 98%;
 }
 section:not(:first-of-type) {
-  margin-top: 40rem;
+  margin-top: 60rem;
 }
 
 .App {
@@ -405,8 +405,12 @@ section:not(:first-of-type) {
 }
 
 .unhide {
-  transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out !important;
   opacity: 1 !important;
+}
+
+.display-none {
+  display: none !important;
 }
 
 .overlay {
@@ -416,7 +420,7 @@ section:not(:first-of-type) {
   bottom: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.9);
-  z-index: 2;
+  z-index: 3;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -432,7 +436,7 @@ section:not(:first-of-type) {
   color: #16d2dc;
   font-size: 45rem;
   position: absolute;
-  bottom: 25%;
+  bottom: 15%;
   cursor: pointer;
   border-radius: 5rem;
 }
@@ -449,6 +453,29 @@ section:not(:first-of-type) {
   }
 }
 
+.swiper {
+  width: 100%;
+  height: 100%;
+  margin: 100rem 0;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 /* Navegación flotante */
 .nav {
   position: fixed;
@@ -456,7 +483,7 @@ section:not(:first-of-type) {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 1;
+  z-index: 2;
   right: 1rem;
   height: 100vh;
   font-size: 20rem;
@@ -896,7 +923,6 @@ section:not(:first-of-type) {
 .github-graph img {
   width: auto;
   height: auto;
-  opacity: 0.9;
   border-radius: 4rem;
   cursor: pointer;
 }
@@ -925,8 +951,48 @@ section:not(:first-of-type) {
   }
 }
 
-.projects {
-  background-color: greenyellow;
+/* Secciópn de projectos */
+/* Contenedor de projectos */
+.projects-container {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 10rem;
+}
+
+.project {
+  padding: 10rem 0;
+  background-color: #1D3553;
+  border: 1rem solid rgba(17, 166, 174, 0.5);
+  border-radius: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.project__header {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.project__header a {
+  font-size: 25rem;
+}
+.project__header a:last-of-type {
+  font-size: 25rem;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+.project__image {
+  max-width: 80%;
+  border-radius: 5%;
+  margin: 10rem 0;
+}
+.project__footer {
+  text-align: center;
+  font-size: 16rem;
+  color: #FFFFFF;
 }
 
 .testimonials {
