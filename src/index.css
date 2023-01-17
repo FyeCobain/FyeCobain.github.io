@@ -532,10 +532,16 @@ section:not(:first-of-type) {
   /* Contenedor de iconos de navegación */
   /* Cada icono de navegación */
 }
+.nav #icon-chat {
+  font-size: 19rem;
+}
 @media (min-width: 768px) {
   .nav {
     font-size: 25rem;
     right: 40rem;
+  }
+  .nav #icon-chat {
+    font-size: 24rem;
   }
 }
 @media (min-width: 1024px) {

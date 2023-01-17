@@ -2,7 +2,7 @@ import { MdOutlineLanguage } from 'react-icons/md';
 import { AiOutlineHome, AiOutlineUser } from 'react-icons/ai';
 import { VscFolder } from 'react-icons/vsc';
 import { ImStarHalf } from 'react-icons/im';
-import { HiOutlineMail } from 'react-icons/hi';
+import { BsChatDots } from 'react-icons/bs';
 import { header, aboutMe, projects, reviews, contact } from '../js/variables';
 import { isInViewport, itsBellow } from '../js/functions';
 
@@ -109,8 +109,8 @@ function Nav({ changeLanguage }){
         <div id="icon-star" className="nav__icon">
           <ImStarHalf onClick={() => scroll(reviews)} />
         </div>
-        <div id="icon-email" className="nav__icon">
-          <HiOutlineMail onClick={() => scroll(contact)} />
+        <div id="icon-chat" className="nav__icon">
+          <BsChatDots onClick={() => scroll(contact)} />
         </div>
       </div>
     </div>

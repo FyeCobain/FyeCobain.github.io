@@ -13,10 +13,18 @@
   height: 100vh;
   font-size: 20rem;
 
+  // Hacer icono de chat mas pequeño
+  #icon-chat{
+    font-size: 19rem;
+  }
+
   /* Mixins de la navegación */
   @include mixins.tablet{
     font-size: 25rem;
     right: 40rem;
+    #icon-chat{
+      font-size: 24rem;
+    }
   }
 
   @include mixins.laptop{

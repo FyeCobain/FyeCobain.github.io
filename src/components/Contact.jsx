@@ -5,6 +5,15 @@ function Contact({ strings }){
       <h2>{strings.contactMe}</h2>
       <h2>{strings.contactMe}</h2>
       <h2>{strings.contactMe}</h2>
+      <h2>{strings.contactMe}</h2>
+      <h2>{strings.contactMe}</h2>
+      <h2>{strings.contactMe}</h2>
+      <h2>{strings.contactMe}</h2>
+      <h2>{strings.contactMe}</h2>
+      <h2>{strings.contactMe}</h2>S
+      <div className="contact__pages">
+
+      </div>
     </section>
   );
 }

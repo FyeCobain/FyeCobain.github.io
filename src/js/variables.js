@@ -81,7 +81,7 @@ const reviews = {
 }
 
 const contact = {
-  iconId: '#icon-email',
+  iconId: '#icon-chat',
   elementId: '#contact'
 }
 
