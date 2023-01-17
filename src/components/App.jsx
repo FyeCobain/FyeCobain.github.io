@@ -3,11 +3,11 @@ import Header from '../components/Header';
 import Nav from '../components/Nav';
 import AboutMe from './about-me/AboutMe';
 import Projects from './projects/Projects';
-import Testimonials from './Testimonials';
+import Reviews from './reviews/Reviews';
 import Contact from './Contact';
 import ImagesOverlay from './ui/ImagesOverlay';
 import { isInViewport, itsBellow } from '../js/functions';
-import { globalValues, esStrings, enStrings, aboutMe, projects, testimonials, contact } from '../js/variables';
+import { globalValues, esStrings, enStrings, aboutMe, projects, reviews, contact } from '../js/variables';
 
 // Aplicación principal
 const App = function(){
@@ -18,15 +18,15 @@ const App = function(){
   document.addEventListener('DOMContentLoaded', () => {
     const aboutMeElement = document.querySelector(aboutMe.elementId);
     const projectsElement = document.querySelector(projects.elementId);
-    const testimonialsElement = document.querySelector(testimonials.elementId);
+    const reviewsElement = document.querySelector(reviews.elementId);
     const contactElement = document.querySelector(contact.elementId);
 
     if(!isInViewport(aboutMeElement) && itsBellow(aboutMeElement))
       aboutMeElement.classList.add('hide');
     if(!isInViewport(projectsElement) && itsBellow(projectsElement))
       projectsElement.classList.add('hide');
-    if(!isInViewport(testimonialsElement) && itsBellow(testimonialsElement))
-      testimonialsElement.classList.add('hide');
+    if(!isInViewport(reviewsElement) && itsBellow(reviewsElement))
+      reviewsElement.classList.add('hide');
     if(!isInViewport(contactElement) && itsBellow(contactElement))
       contactElement.classList.add('hide');
   });
@@ -73,9 +73,11 @@ const App = function(){
         strings={strings}
         setOverlayImg={setOverlayImg}
       />
-      <Testimonials
+      <Reviews
+        language={language}
         globalValues={globalValues}
         strings={strings}
+        setOverlayImg={setOverlayImg}
       />
       <Contact
         globalValues={globalValues}

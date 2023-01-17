@@ -16,8 +16,8 @@ export default function Slider({ elements }) {
       navigation
       pagination={{ clickable: true }}
       scrollbar={{ draggable: true }}
-      onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log('slide change')}
+      //onSwiper={(swiper) => console.log(swiper)}
+      //onSlideChange={() => console.log('slide change')}
     >
       {
         elements.map((element, index) => <SwiperSlide key={index}>{element}</SwiperSlide>)

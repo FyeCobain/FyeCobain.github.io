@@ -1,9 +1,15 @@
 @use 'general/variables' as vars;
 @use 'general/mixins' as mixins;
 
-/* Sección de proyectos */
-#projects{
-  min-height: auto;
+/* Contenedor de proyectos */
+.projects{
+  // Ocultar slider en tamaño de tablet
+  .swiper{
+    margin-top: 40rem !important;
+    @include mixins.tablet{
+      display: none;
+    }
+  }
 }
 
 /* Proyecto (general) */
@@ -42,6 +48,7 @@
 
   &__image{
     max-width: 80%;
+    height: auto;
     border-radius: 5%;
     margin: 10rem 0;
     
@@ -49,7 +56,7 @@
       border: 1rem solid transparent;
       &:hover{
         cursor: pointer;
-        border: 1rem solid lighten(vars.$color-green, 0);
+        border: 1rem solid vars.$color-green;
         filter: brightness(110%);
       }
     }

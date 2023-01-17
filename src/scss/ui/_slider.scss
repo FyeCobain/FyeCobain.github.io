@@ -4,10 +4,7 @@
 .swiper{
   width: 85%;
   height: 100%;
-  // Ocultar en tamaño de tablet
-  @include mixins.tablet{
-    display: none;
-  }
+  margin-top: 0rem;
 }
 
 /*.swiper-slide {

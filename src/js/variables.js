@@ -27,7 +27,7 @@ const esStrings = {
   gitHubGraphAlt:'Contribuciones en GitHub',
   includingPrivate: 'incluyendo proyectos privados',
   myProjects: 'Proyectos',
-  testimonials: 'Reseñas',
+  reviews: 'Reseñas',
   contact: 'Contacto',
   contactMe: 'Contáctame'
 }
@@ -55,7 +55,7 @@ const enStrings = {
   gitHubGraphAlt:'GitHub contributions',
   includingPrivate: 'including private projects',
   myProjects: 'Projects',
-  testimonials: 'Testimonials',
+  reviews: 'Reviews',
   contact: 'Contact',
   contactMe: 'Contact me'
 }
@@ -75,9 +75,9 @@ const projects = {
   elementId: '#projects'
 }
 
-const testimonials = {
+const reviews = {
   iconId: '#icon-star',
-  elementId: '#testimonials'
+  elementId: '#reviews'
 }
 
 const contact = {
@@ -85,4 +85,4 @@ const contact = {
   elementId: '#contact'
 }
 
-export { globalValues, esStrings, enStrings, header, aboutMe, projects, testimonials, contact };
+export { globalValues, esStrings, enStrings, header, aboutMe, projects, reviews, contact };

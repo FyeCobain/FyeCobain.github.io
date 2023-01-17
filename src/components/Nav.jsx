@@ -3,7 +3,7 @@ import { AiOutlineHome, AiOutlineUser } from 'react-icons/ai';
 import { VscFolder } from 'react-icons/vsc';
 import { ImStarHalf } from 'react-icons/im';
 import { HiOutlineMail } from 'react-icons/hi';
-import { header, aboutMe, projects, testimonials, contact } from '../js/variables';
+import { header, aboutMe, projects, reviews, contact } from '../js/variables';
 import { isInViewport, itsBellow } from '../js/functions';
 
 // Variable para activar / desactivar la verificación de scroll
@@ -40,18 +40,19 @@ function checkScroll(){
   const headerElement = document.querySelector('.header');
   const aboutMeElement = document.querySelector(aboutMe.elementId);
   const projectsElement = document.querySelector(projects.elementId);
-  const testimonialsElement = document.querySelector(testimonials.elementId);
+  const reviewsElement = document.querySelector(reviews.elementId);
   const contactElement = document.querySelector(contact.elementId);
 
   // Realizar efecto de aparición de las secciones
   let marginTop = 75;
-  if(headerElement.getBoundingClientRect().y <= -5){ // Mostrar navegación
-    if(!navElement.classList.contains('transition-opacity-300ms'))
-      navElement.classList.add('transition-opacity-300ms')
-    navElement.classList.remove('opacity-0');
-  }
-  else // Ocultar navegación
-    navElement.classList.add('opacity-0');
+  if(headerElement)
+    if(headerElement.getBoundingClientRect().y <= -5){ // Mostrar navegación
+      if(!navElement.classList.contains('transition-opacity-300ms'))
+        navElement.classList.add('transition-opacity-300ms')
+      navElement.classList.remove('opacity-0');
+    }
+    else // Ocultar navegación
+      navElement.classList.add('opacity-0');
 
   if(aboutMeElement)
     if(aboutMeElement.classList.contains('hide') && !itsBellow(aboutMeElement, marginTop))
@@ -59,9 +60,9 @@ function checkScroll(){
   if(projectsElement)
     if(projectsElement.classList.contains('hide') && !itsBellow(projectsElement, marginTop))
       projectsElement.classList.add('unhide');
-  if(testimonialsElement)
-    if(testimonialsElement.classList.contains('hide') && !itsBellow(testimonialsElement, marginTop))
-      testimonialsElement.classList.add('unhide');
+  if(reviewsElement)
+    if(reviewsElement.classList.contains('hide') && !itsBellow(reviewsElement, marginTop))
+      reviewsElement.classList.add('unhide');
   if(contactElement)
     if(contactElement.classList.contains('hide') && !itsBellow(contactElement, marginTop))
       contactElement.classList.add('unhide');
@@ -74,8 +75,8 @@ function checkScroll(){
   marginTop = 300;
   if(isInViewport(contactElement, marginTop))
     newCurrentIcon = document.querySelector(contact.iconId);
-  else if(isInViewport(testimonialsElement, marginTop))
-    newCurrentIcon = document.querySelector(testimonials.iconId);
+  else if(isInViewport(reviewsElement, marginTop))
+    newCurrentIcon = document.querySelector(reviews.iconId);
   else if(isInViewport(projectsElement, marginTop))
     newCurrentIcon = document.querySelector(projects.iconId);
   else if(isInViewport(aboutMeElement, marginTop))
@@ -106,7 +107,7 @@ function Nav({ changeLanguage }){
           <VscFolder onClick={() => scroll(projects)} />
         </div>
         <div id="icon-star" className="nav__icon">
-          <ImStarHalf onClick={() => scroll(testimonials)} />
+          <ImStarHalf onClick={() => scroll(reviews)} />
         </div>
         <div id="icon-email" className="nav__icon">
           <HiOutlineMail onClick={() => scroll(contact)} />
