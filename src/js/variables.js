@@ -2,6 +2,9 @@ const globalValues = {
   devName: 'Michel Bracamontes',
   devEmail: 'hereisnirvana@hotmail.com',
   devGitHub: 'https://github.com/FyeCobain',
+  devGitHubUser: 'FyeCobain',
+  devFL: 'https://www.freelancer.com/u/RozenBracamontes',
+  devFLUser: 'RozenBracamontes',
 }
 
 const esStrings = {
@@ -29,7 +32,12 @@ const esStrings = {
   myProjects: 'Proyectos',
   reviews: 'Reseñas',
   contact: 'Contacto',
-  contactMe: 'Contáctame'
+  contactMe: 'Contáctame',
+  socialMedia: 'Mis redes',
+  emailSubject: `Hola Ing. ${globalValues.devName.substring(7)}`,
+  emailLink: 'Link email',
+  gitHubLink: 'Link GitHub',
+  freelancerLink: 'Link Freelancer'
 }
 
 const enStrings = {
@@ -57,7 +65,12 @@ const enStrings = {
   myProjects: 'Projects',
   reviews: 'Reviews',
   contact: 'Contact',
-  contactMe: 'Contact me'
+  contactMe: 'Contact me',
+  socialMedia: 'Social media',
+  emailSubject: `Hello Ing. ${globalValues.devName.substring(7)}`,
+  emailLink: 'Email link',
+  gitHubLink: 'GitHub link',
+  freelancerLink: 'Freelancer link'
 }
 
 const header = {

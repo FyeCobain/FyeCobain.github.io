@@ -75,7 +75,7 @@ function checkScroll(){
   marginTop = 300;
   if(isInViewport(contactElement, marginTop))
     newCurrentIcon = document.querySelector(contact.iconId);
-  else if(isInViewport(reviewsElement, marginTop))
+  else if(isInViewport(reviewsElement, marginTop + 35))
     newCurrentIcon = document.querySelector(reviews.iconId);
   else if(isInViewport(projectsElement, marginTop))
     newCurrentIcon = document.querySelector(projects.iconId);

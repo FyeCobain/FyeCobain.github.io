@@ -4,7 +4,7 @@ import Nav from '../components/Nav';
 import AboutMe from './about-me/AboutMe';
 import Projects from './projects/Projects';
 import Reviews from './reviews/Reviews';
-import Contact from './Contact';
+import Contact from './contact/Contact';
 import ImagesOverlay from './ui/ImagesOverlay';
 import { isInViewport, itsBellow } from '../js/functions';
 import { globalValues, esStrings, enStrings, aboutMe, projects, reviews, contact } from '../js/variables';

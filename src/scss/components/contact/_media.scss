@@ -1,0 +1,93 @@
+@use 'general/variables' as vars;
+@use 'general/mixins' as mixins;
+
+/* Contenedor de redes */
+.media-container{
+  margin-top: 30rem;
+  background-color: vars.$color-bg-blue-1;
+  padding: 25rem 25rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  place-items: center;
+  border-radius: 5rem;
+  width: 99%;
+  @include mixins.tablet{
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 5rem;
+    max-width: 830rem;
+  }
+}
+
+/* Red social (general) */
+.media{
+  background-color: vars.$color-bg-blue-2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10rem;
+  margin-bottom: 20rem;
+  border-radius: 5rem;
+  width: 90%;
+  &:last-of-type{
+    margin-bottom: 0;
+    @include mixins.tablet{
+      margin-bottom: 20rem;
+    }
+  }
+
+  a{
+    color: lighten(vars.$color-green, 10);
+  }
+
+  p{
+    color: lighten(vars.$color-green, 5);
+  }
+
+  &__header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .email__header{
+    font-size: 38rem;
+  }
+
+  .github__header{
+    font-size: 40rem;
+  }
+
+  .freelancer__header{
+    font-size: 41rem;
+  }
+
+  &__icon-link{
+    font-size: 18rem;
+    margin: 0 0 15rem 5rem;
+  }
+
+  &__text{
+    margin-top: 16rem;
+    font-size: 16rem;
+  }
+
+  &__text--copy{
+    @extend .media__text;
+    cursor: pointer;
+    @include mixins.laptop{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  &__icon-copy{
+    font-size: 20rem;
+    margin-left: 10rem;
+    display: none;
+    @include mixins.laptop{
+      display: inline-block;
+    }
+  }
+}
