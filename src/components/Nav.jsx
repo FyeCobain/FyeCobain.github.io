@@ -14,8 +14,14 @@ function scroll(elementObject){
   // Desactivar estado de checkScroll
   checkScrollState = false;
 
+  // Obtener el elemento
+  const element = document.querySelector(elementObject.elementId);
+
   // Realizar scroll
-  document.querySelector(elementObject.elementId).scrollIntoView();
+  if(element === document.querySelector('.header'))
+    window.scrollTo(0, 20)
+  else
+    element.scrollIntoView();
 
   //Reactivar scroll con un timer
   setTimeout(() => {
@@ -73,7 +79,7 @@ function checkScroll(){
   // Verificar si una sección está dentro del viewport (de abajo hacia arriba)
   // Para resaltar el ícono asociado
   marginTop = 300;
-  if(isInViewport(contactElement, marginTop))
+  if(isInViewport(contactElement, marginTop - 10))
     newCurrentIcon = document.querySelector(contact.iconId);
   else if(isInViewport(reviewsElement, marginTop + 35))
     newCurrentIcon = document.querySelector(reviews.iconId);

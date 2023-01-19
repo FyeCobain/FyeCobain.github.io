@@ -1,0 +1,17 @@
+@use 'general/variables' as vars;
+@use 'general/mixins' as mixins;
+
+.button{
+  color: vars.$color-white;
+  padding: 8rem 15rem;
+  background-color: vars.$color-bg-blue-1;
+  border: 1rem solid vars.$color-green;
+  border-radius: 5rem;
+  font-size: 17rem;
+  font-weight: normal;
+  &:hover{
+    cursor: pointer;
+    border: 1rem solid lighten(vars.$color-green, 10);
+    background-color: vars.$color-bg-blue-2;
+  }
+}

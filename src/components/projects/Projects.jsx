@@ -8,42 +8,42 @@ function Projects({ setOverlayImg, language, strings }){
       url: 'https://marketplace.visualstudio.com/items?itemName=FyeCobain.dracula-junior',
       image: 'dracula_junior.png',
       footer: language === 'es' ? 'Tema de Visual Studio Code' : 'Visual Studio Code theme',
-      language: null
+      programmingLanguage: null
     },
     {
       title: 'ITCH Binario',
       url: 'https://apkcombo.com/es/itch-binario/com.isc.itchbinario/',
       image: 'itch_binario.png',
       footer: language === 'es' ? 'Videojuego' : 'Game',
-      language: 'Android'
+      programmingLanguage: 'Android'
     },
     {
       title: 'Rozen Maiden',
-      url: '/',
+      url: null,
       image: 'rozen_maiden.jpg',
       footer: language === 'es' ? 'Página con APIs' : 'APIs page',
-      language: 'vanilla PHP'
+      programmingLanguage: 'vanilla PHP'
     },
     {
       title: language === 'es' ? 'Constructora' : 'Construction co.',
-      url: '/',
+      url: null,
       image: 'constr.png',
       footer: language === 'es' ? 'Página con slider' : 'Page with slider',
-      language: 'vanilla JS'
+      programmingLanguage: 'vanilla JS'
     },
     {
       title: 'AHKlicker',
       url: 'https://github.com/FyeCobain/AHKlicker',
       image: `ahklicker_${language}.png`,
       footer: 'Auto clicker',
-      language: 'AutoHotkey'
+      programmingLanguage: 'AutoHotkey'
     },
     {
       title: 'Scenes Getter',
-      url: '/',
+      url: null,
       image: 'scenes_getter.png',
       footer: language === 'es' ? 'Extractor de escenas' : 'Scenes extractor',
-      language: 'Python'
+      programmingLanguage: 'Python'
     }
   ]
 
@@ -53,13 +53,13 @@ function Projects({ setOverlayImg, language, strings }){
 
       <Slider elements=
       {
-        projects.map((project, index) => <div className="project" key={index}><Project setOverlayImg={setOverlayImg} language={language} projectData={project} /></div>)
+        projects.map(({ title, url, image, footer, programmingLanguage }, index) => <div className="project" key={index}><Project setOverlayImg={setOverlayImg} language={language} title={title} url={url} image={image} footer={footer} programmingLanguage={programmingLanguage} /></div>)
       } 
       />
 
       <ul className="projects-container">
       {
-        projects.map((project, index) => <li className="project" key={index}><Project setOverlayImg={setOverlayImg} language={language} projectData={project} /></li>)
+        projects.map(({ title, url, image, footer, programmingLanguage }, index) => <li className="project" key={index}><Project setOverlayImg={setOverlayImg} language={language} title={title} url={url} image={image} footer={footer} programmingLanguage={programmingLanguage} /></li>)
       }
       </ul>
 

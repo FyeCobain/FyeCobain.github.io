@@ -24,6 +24,7 @@
   justify-content: center;
   align-items: center;
 
+  /* Cabecera con enlaces del proyecto */
   &__header{
     width: 100%;
     display: flex;
@@ -38,11 +39,24 @@
         }
       }
     }
+
     a:last-of-type{
       font-size: 25rem;
       height: 100%;
       display: flex;
       align-items: flex-end;
+    }
+
+    /* Estilos de la cabecera cuando el proyecto no tiene un link */
+    &--no-link{
+      @extend .project__header;
+      a:hover{
+        text-decoration: none;
+        cursor: auto;
+      }
+      a:last-of-type{
+        display: none;
+      }
     }
   }
 

@@ -48,6 +48,10 @@
     border-radius: 15%;
     text-align: center !important;
   }
+  display: none !important;
+  @include mixins.laptop{
+    display: flex !important;
+  }
 }
 
 .swiper-button-disabled{

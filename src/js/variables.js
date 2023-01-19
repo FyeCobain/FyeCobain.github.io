@@ -34,8 +34,13 @@ const esStrings = {
   contact: 'Contacto',
   contactMe: 'Contáctame',
   socialMedia: 'Mis redes',
+  messageMe: 'Envía un mensaje',
+  yourEmail: 'Tu dirección de correo',
+  emailSubjectPlaceholder: 'Asunto',
   emailSubject: `Hola Ing. ${globalValues.devName.substring(7)}`,
   emailLink: 'Link email',
+  yourMessage: 'Tu mensaje',
+  send: 'Enviar',
   gitHubLink: 'Link GitHub',
   freelancerLink: 'Link Freelancer'
 }
@@ -65,10 +70,15 @@ const enStrings = {
   myProjects: 'Projects',
   reviews: 'Reviews',
   contact: 'Contact',
-  contactMe: 'Contact me',
   socialMedia: 'Social media',
+  contactMe: 'Contact me',
+  messageMe: 'Email me',
+  yourEmail: 'Your email address',
+  emailSubjectPlaceholder: 'Subject',
   emailSubject: `Hello Ing. ${globalValues.devName.substring(7)}`,
   emailLink: 'Email link',
+  yourMessage: 'Your message',
+  send: 'Send',
   gitHubLink: 'GitHub link',
   freelancerLink: 'Freelancer link'
 }
