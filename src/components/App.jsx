@@ -6,6 +6,7 @@ import Projects from './projects/Projects';
 import Reviews from './reviews/Reviews';
 import Contact from './contact/Contact';
 import ImagesOverlay from './ui/ImagesOverlay';
+import Footer from './Footer';
 import { isInViewport, itsBellow } from '../js/functions';
 import { globalValues, esStrings, enStrings, aboutMe, projects, reviews, contact } from '../js/variables';
 
@@ -83,6 +84,7 @@ const App = function(){
         globalValues={globalValues}
         strings={strings}
       />
+      <Footer strings={strings} />
     </div>
   );
 }

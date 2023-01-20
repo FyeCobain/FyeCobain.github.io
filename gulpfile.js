@@ -42,7 +42,7 @@ function css(){
     .pipe(plumber(errorHandler))
     //.pipe(sourcemaps.init())
     .pipe(sass({outputStyle: 'expanded'}))
-    .pipe(postcss([autoprefixer()/*, cssnano()*/]))
+    .pipe(postcss([autoprefixer(), cssnano()]))
     //.pipe(sourcemaps.write())
     .pipe(dest(paths.cssOutDir));
 }

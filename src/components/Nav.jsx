@@ -22,6 +22,8 @@ function scroll(elementObject){
     window.scrollTo(0, 20)
   else if(element === document.querySelector('#reviews'))
     window.scrollTo(0, window.scrollY - element.getBoundingClientRect().y * -1 - 50)
+  else if(element === document.querySelector('#contact'))
+    window.scrollTo(0, window.scrollY - document.querySelector('footer').getBoundingClientRect().y * -1)
   else
     window.scrollTo(0, window.scrollY - element.getBoundingClientRect().y * -1 - 30)
 
@@ -81,7 +83,7 @@ function checkScroll(){
   // Verificar si una sección está dentro del viewport (de abajo hacia arriba)
   // Para resaltar el ícono asociado
   marginTop = 300;
-  if(isInViewport(contactElement, marginTop - 10))
+  if(isInViewport(contactElement, marginTop + 10))
     newCurrentIcon = document.querySelector(contact.iconId);
   else if(isInViewport(reviewsElement, marginTop + 35))
     newCurrentIcon = document.querySelector(reviews.iconId);

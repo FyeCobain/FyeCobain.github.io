@@ -45,7 +45,8 @@ const esStrings = {
   messageTooShort: 'El mensaje es demasiado corto',
   sended: '¡Gracias por tu mensaje!',
   gitHubLink: 'Link GitHub',
-  freelancerLink: 'Link Freelancer'
+  freelancerLink: 'Link Freelancer',
+  rights: 'Todos los derechos reservados'
 }
 
 const enStrings = {
@@ -86,7 +87,8 @@ const enStrings = {
   messageTooShort:'The message is too short',
   sended: 'Thanks for your message!',
   gitHubLink: 'GitHub link',
-  freelancerLink: 'Freelancer link'
+  freelancerLink: 'Freelancer link',
+  rights: 'All rights reserved'
 }
 
 const header = {
