@@ -41,6 +41,9 @@ const esStrings = {
   emailLink: 'Link email',
   yourMessage: 'Tu mensaje',
   send: 'Enviar',
+  fieldRequired: 'El campo es obligatorio',
+  messageTooShort: 'El mensaje es demasiado corto',
+  sended: '¡Gracias por tu mensaje!',
   gitHubLink: 'Link GitHub',
   freelancerLink: 'Link Freelancer'
 }
@@ -79,6 +82,9 @@ const enStrings = {
   emailLink: 'Email link',
   yourMessage: 'Your message',
   send: 'Send',
+  fieldRequired: 'The field is required',
+  messageTooShort:'The message is too short',
+  sended: 'Thanks for your message!',
   gitHubLink: 'GitHub link',
   freelancerLink: 'Freelancer link'
 }

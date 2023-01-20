@@ -8,7 +8,7 @@ function Project({ setOverlayImg, language, title, url, image, footer, programmi
       <a href={url} target="_blank" rel="noopener noreferrer"><span className="display-none">{language === 'es' ? 'URL del projecto' : 'Project URL'}</span><BiLinkExternal /></a>
     </div>
     <img className="project__image" src={require(`../../img/${image}`)} alt={language === 'es' ? 'Imagen ' + title : title + ' image'} height="200" onClick = {e => setOverlayImg(e.target)} />
-    <p className="project__footer">{footer}{language !== null ? <> - <span>{programmingLanguage}</span></> : <></>}</p>
+    <p className="project__footer">{footer}{programmingLanguage !== null ? <span> - <span>{programmingLanguage}</span></span> : <></>}</p>
     </>
   );
 }

@@ -20,8 +20,10 @@ function scroll(elementObject){
   // Realizar scroll
   if(element === document.querySelector('.header'))
     window.scrollTo(0, 20)
+  else if(element === document.querySelector('#reviews'))
+    window.scrollTo(0, window.scrollY - element.getBoundingClientRect().y * -1 - 50)
   else
-    element.scrollIntoView();
+    window.scrollTo(0, window.scrollY - element.getBoundingClientRect().y * -1 - 30)
 
   //Reactivar scroll con un timer
   setTimeout(() => {
