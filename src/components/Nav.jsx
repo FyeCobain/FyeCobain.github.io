@@ -23,7 +23,7 @@ function scroll(elementObject){
   else if(element === document.querySelector('#reviews'))
     window.scrollTo(0, window.scrollY - element.getBoundingClientRect().y * -1 - 50)
   else if(element === document.querySelector('#contact'))
-    window.scrollTo(0, window.scrollY - document.querySelector('footer').getBoundingClientRect().y * -1)
+    window.scrollTo(0, window.scrollY - element.getBoundingClientRect().y * -1)
   else
     window.scrollTo(0, window.scrollY - element.getBoundingClientRect().y * -1 - 30)
 

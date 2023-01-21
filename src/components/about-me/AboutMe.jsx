@@ -22,13 +22,14 @@ function Me({ language, globalValues, strings, setOverlayImg }){
   }
 
   const generalAbilities = ['Android (Java)', 'Unity', 'GameMaker: Studio', language === 'es' ? 'Automatización + web scraping' : 'Automation + web scraping', 'Heroku', 'Git + GitHub']
-  const desktopAbilities = ['Python', 'Java', 'Ruby', 'C#', 'AutoHotkey', 'AutoIt']
+  const desktopAbilities = ['Python', 'Java', 'C#', 'Prolog', 'AutoHotkey', 'AutoIt']
   const frontendAbilities = ['HTML5', 'JavaScript / TypeScript', 'CSS / SASS', 'Node.js > Gulp', 'Angular', 'React', language==='es' ? 'Consumo de APIs / Endpoints' : 'API consumption']
   const backendAbilities = ['PHP > Composer', 'Node.js', 'Django', 'MySQL', 'Firebase', 'MVC', 'APIs / Endpoints']
 
   return(
     <section id="about-me" className="about-me">
       <h2>{strings.aboutMe}</h2>
+
       <ul className="about-me__info">
         <li className="about-me__info-container experience">
           <BiMedal className="icon" />
@@ -47,6 +48,10 @@ function Me({ language, globalValues, strings, setOverlayImg }){
           {topOneAHKP}
         </li>
       </ul>
+
+      <div className="cv">
+        <a href={require(`../../docs/CV_Michel${ language === 'es' ? '' : '_' + language }.pdf`)} className="button" download>{strings.downloadMy}&nbsp;<span>CV</span></a>
+      </div>
 
       <div className="abilities-container">
         <h3>{strings.domain}</h3>

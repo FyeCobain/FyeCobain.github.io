@@ -35,7 +35,7 @@ export default function ContactForm({ strings} ){
     // Enviar mensaje y resetear el formulario
     emailjs.sendForm('service_a3x9cea', 'template_nak6c74', form.current, 'IwA1l1tFp_LeGHs0a');
     e.target.reset();
-    window.scrollTo(0, window.scrollY - document.getElementById("contact").getBoundingClientRect().y * -1 - 50)
+    //window.scrollTo(0, window.scrollY - document.querySelector(".footer").getBoundingClientRect().y * -1 - 50)
     alert(strings.sended);
   }
 

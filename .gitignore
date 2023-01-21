@@ -5,8 +5,10 @@
 /build
 asset-manifest.json
 *.map
+*.LICENSE.txt
 
 # misc
 /src/img/*
 /src/rawImg/*
+/src/docs/*
 /private

@@ -8,7 +8,8 @@
   border: 1rem solid vars.$color-green;
   border-radius: 5rem;
   font-size: 17rem;
-  font-weight: normal;
+  font-weight: bold;
+  text-transform: uppercase;
   &:hover{
     cursor: pointer;
     border: 1rem solid lighten(vars.$color-green, 10);

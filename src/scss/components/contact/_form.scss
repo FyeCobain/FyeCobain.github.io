@@ -35,7 +35,7 @@
     color: vars.$color-white;
     outline: none;
     &:focus{
-      border-color: rgba(vars.$color-yellow, 0.8);
+      border-color: rgba(vars.$color-yellow, 0.6);
     }
 
     &::placeholder{
