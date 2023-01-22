@@ -11,7 +11,7 @@ import { isInViewport, itsBellow } from '../js/functions';
 import { globalValues, esStrings, enStrings, aboutMe, projects, reviews, contact } from '../js/variables';
 
 // Aplicación principal
-const App = function(){
+const App = function({ initialLanguage }){
   // Hook para mostrar una imagen en overlay
   const [overlayImg, setOverlayImg] = useState(null);
 
@@ -33,14 +33,14 @@ const App = function(){
   });
 
   // Verificando el idioma de inicio en función de la ruta
-  let initialLanguage;
+  /*let initialLanguage;
   switch (document.location.pathname.trim().toLowerCase().replaceAll('/', '')){
     case 'en':
       initialLanguage = 'en';
       break;
     default:
       initialLanguage = 'es';
-  }
+  }*/
 
   //Hooks para el idioma del sitio web
   const [language, setLanguage] = useState(initialLanguage);

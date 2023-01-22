@@ -66,7 +66,8 @@
 
   // Ícono de cambio de idioma
   &__icon.nav__language{
-    color: lighten(vars.$color-bg-secondary, 30);
+    font-size: 25rem;
+    color: lighten(vars.$color-bg-primary, 60);
   }
 
   // Icono de navegación actualmente activo

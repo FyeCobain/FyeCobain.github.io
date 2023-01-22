@@ -1,4 +1,4 @@
-import { MdOutlineLanguage } from 'react-icons/md';
+import { HiLanguage } from 'react-icons/hi2'; //import { MdOutlineLanguage } from 'react-icons/md';
 import { AiOutlineHome, AiOutlineUser } from 'react-icons/ai';
 import { VscFolder } from 'react-icons/vsc';
 import { ImStarHalf } from 'react-icons/im';
@@ -105,7 +105,7 @@ function Nav({ changeLanguage }){
     <div className="nav opacity-0">
       <div className="nav__icons">
       <div className="nav__icon nav__language">
-          <MdOutlineLanguage onClick={changeLanguage} />
+          <HiLanguage onClick={changeLanguage} />
         </div>
         <div id="icon-home" className="nav__icon">
           <AiOutlineHome onClick={() => scroll(header)} />
