@@ -32,8 +32,18 @@ const App = function(){
       contactElement.classList.add('hide');
   });
 
+  // Verificando el idioma de inicio en función de la ruta
+  let initialLanguage;
+  switch (document.location.pathname.trim().toLowerCase().replaceAll('/', '')){
+    case 'en':
+      initialLanguage = 'en';
+      break;
+    default:
+      initialLanguage = 'es';
+  }
+
   //Hooks para el idioma del sitio web
-  const [language, setLanguage] = useState('es');
+  const [language, setLanguage] = useState(initialLanguage);
   const [strings, setStrings] = useState(language === 'es' ? esStrings : enStrings)
 
   //Establecer el título y la descripción de la página web

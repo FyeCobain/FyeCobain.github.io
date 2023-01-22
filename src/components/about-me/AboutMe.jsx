@@ -21,7 +21,7 @@ function Me({ language, globalValues, strings, setOverlayImg }){
     ghContributionsP = <p><a href={globalValues.devGitHub} target="_blank" rel="noopener noreferrer">GitHub</a> contributions ({strings.includingPrivate})</p>
   }
 
-  const generalAbilities = ['Android (Java)', 'Unity', 'GameMaker: Studio', language === 'es' ? 'Regex + Automatización' : 'Regex + Automation', 'Heroku', 'Git + GitHub']
+  const generalAbilities = ['Android (Java)', 'Unity', 'GameMaker: Studio', language === 'es' ? 'Regex + Automatización' : 'Regex + Automation', 'Git + GitHub', 'Heroku + Heroku CLI']
   const desktopAbilities = ['Python', 'Java', 'C#', 'Prolog', 'AutoHotkey', 'AutoIt']
   const frontendAbilities = ['HTML5', 'JavaScript / TypeScript', 'CSS / SASS', 'Node.js > Gulp', 'Angular', 'React', language==='es' ? 'Consumo de APIs / Endpoints' : 'API consumption']
   const backendAbilities = ['PHP > Composer', 'Node.js', 'Django', 'MySQL', 'Firebase', 'MVC', 'APIs / Endpoints']
