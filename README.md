@@ -1,5 +1,5 @@
 # Fye Cobain - Portfolio
-> v1.4.0
+> v1.4.1
 
 ### URL
 [GitHub Pages](https://fyecobain.github.io/)
