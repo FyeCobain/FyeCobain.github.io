@@ -11,25 +11,25 @@ function Projects({ setOverlayImg, language, strings }){
       programmingLanguage: null
     },
     {
-      title: 'ITCH Binario',
-      url: 'https://apkcombo.com/es/itch-binario/com.isc.itchbinario/',
-      image: 'itch_binario.png',
-      footer: language === 'es' ? 'Videojuego' : 'Game',
-      programmingLanguage: 'Android'
-    },
-    {
       title: 'Rozen Maiden',
       url: null,
       image: 'rozen_maiden.jpg',
-      footer: language === 'es' ? 'Página con APIs' : 'APIs page',
-      programmingLanguage: 'vanilla PHP'
+      footer: language === 'es' ? 'Página con APIs' : 'Page with API',
+      programmingLanguage: 'Vanilla PHP'
     },
     {
-      title: language === 'es' ? 'Constructora' : 'Construction co.',
-      url: null,
-      image: 'constr.png',
-      footer: language === 'es' ? 'Página con slider' : 'Page with slider',
-      programmingLanguage: 'vanilla JS'
+      title: 'ITCH Binario',
+      url: 'https://apkcombo.com/es/itch-binario/com.isc.itchbinario/',
+      image: 'itch_binario.png',
+      footer: language === 'es' ? 'Videojuego' : 'Videogame',
+      programmingLanguage: 'Android'
+    },
+    {
+      title: language === 'es' ? 'Club Amaliche' : 'Amaliche Club',
+      url: `https://play.google.com/store/apps/details?id=club.amaliche&hl=${language}`,
+      image: `amaliche_${language}.png`,
+      footer: language === 'es' ? 'App de chat' : 'Chatting App',
+      programmingLanguage: 'Android'
     },
     {
       title: 'AHKlicker',
