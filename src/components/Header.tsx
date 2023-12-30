@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { GiDiploma } from 'react-icons/gi'
 import { SiCsharp } from 'react-icons/si'
-import { NAME } from '../consts'
+import { NAME } from '@app/consts'
 import photo from '/img/endlc.jpg'
 
 export default function Header() {
