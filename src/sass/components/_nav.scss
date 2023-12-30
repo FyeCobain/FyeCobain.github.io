@@ -1,0 +1,78 @@
+@use './../general/variables' as vars;
+@use './../general/mixins' as mixins;
+
+// Nav container
+.nav {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  right: 10rem;
+  bottom: 0;
+  transition: right vars.$duration-short;
+
+  @include mixins.tablet {
+    right: 4rem;
+  }
+  
+  @include mixins.laptop {
+    right: 11rem;
+  }
+}
+
+// Icons container
+.nav__icons {
+  transition: font-size vars.$duration-short;
+  font-size: 2rem;
+
+  #icon-lang {
+    font-size: 2.1rem;
+  }
+
+  #icon-chat {
+    font-size: 1.9rem;
+  }
+
+  @include mixins.tablet {
+    font-size: 2.5rem;
+  
+    #icon-lang {
+      font-size: 2.6rem;
+    }
+  
+    #icon-chat {
+      font-size: 2.4rem;
+    }
+  }
+
+  background-color: rgba(vars.$color-blue, 0.5);
+
+  @include mixins.tablet {
+    background-color: rgba(vars.$color-blue, 0.3);
+  }
+
+  border-radius: .6rem;
+}
+
+// Each icon
+.nav__icon {
+  padding: 1.1rem .5rem;
+
+  @include mixins.tablet {
+    padding: 1.3rem .5rem;
+  }
+  
+  opacity: 0.8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: lighten(vars.$color-greene, 5);
+
+  & svg:hover {
+    cursor: pointer;
+
+    @include mixins.laptop{
+      color: vars.$color-yellow;
+    }
+  }
+}
