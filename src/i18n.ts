@@ -20,6 +20,9 @@ export default i18n
             im: "I'm",
             welcome: 'Welcome to my webpage!',
           },
+          alts: {
+            photo: 'my photo',
+          },
         },
       },
       es: {
@@ -32,6 +35,9 @@ export default i18n
             hello: 'Hola',
             im: 'yo soy',
             welcome: '¡Bienvenido(a) a mi página!',
+          },
+          alts: {
+            photo: 'mi foto',
           },
         },
       },

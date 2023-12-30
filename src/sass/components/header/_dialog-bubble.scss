@@ -1,0 +1,59 @@
+@use './../../general/variables' as vars;
+@use './../../general/mixins' as mixins;
+
+@keyframes dialog-bubble {
+  0% {rotate: 0deg;}
+  25% {rotate: 5deg;}
+  75% {rotate: -5deg;}
+  100% {rotate: 0deg;}
+}
+
+.dialog-bubble {
+  position: absolute;
+  top: 3%;
+  right: -95%;
+  width: 18rem;
+  height: 13rem;
+  border: .3rem solid vars.$color-white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: dialog-bubble 1s linear 2;
+  
+  &:hover {
+    cursor: cell;
+    animation-iteration-count: infinite;
+    box-shadow: 0px 0px 2rem 0px vars.$color-gray;
+
+    p {
+      color: lighten(vars.$color-greene, 7);
+    }
+  }
+
+  p {
+    font-size: 2.4rem;
+    padding: .6rem;
+    user-select: none;
+  }
+
+  p:before {
+    content: '';
+    position: absolute;
+    top: 11.2rem;
+    left: 0.8rem;
+    border: 2.5rem solid;
+    border-color: vars.$color-white transparent transparent vars.$color-white;
+    rotate: 22deg;
+  }
+
+  p:after {
+    content: '';
+    top: 11.1rem;
+    left: 1.4rem;
+    position: absolute;
+    border: 2.1rem solid;
+    border-color: vars.$color-bg-primary transparent transparent vars.$color-bg-primary;
+    rotate: 22deg;
+  }
+}
