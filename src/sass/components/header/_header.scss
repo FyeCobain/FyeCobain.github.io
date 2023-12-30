@@ -1,0 +1,41 @@
+@use './../../general/variables' as vars;
+@use './../../general/mixins' as mixins;
+
+// Header with photo and dialog bubble
+.header {
+  height: 100vh;
+  padding-top: 1vh;
+
+  @include mixins.desktop {
+    padding-top: 9vh;
+  }
+
+  // Hello paragraph
+  &__hello {
+    font-size: 2.6rem;
+    padding: 3rem 0 .5rem 0;
+
+    span {
+      font-weight: bold;
+      text-decoration: underline;
+    }
+  }
+
+  // Name
+  h1 {
+    margin: 1rem 0;
+  }
+
+  // Photo (and dialog bubble) container
+  &__photo {
+    position: relative;
+    padding-top: 1.6rem;
+    
+    img {
+      width: 20rem;
+      height: 20rem;
+      border-radius: 50%;
+      border: .4rem solid vars.$color-greene;
+    }
+  }
+}
