@@ -1,6 +1,11 @@
 @use './../../general/variables' as vars;
 @use './../../general/mixins' as mixins;
 
+// Name
+h1 {
+  margin: 1rem 0;
+}
+
 // Header with photo and dialog bubble
 .header {
   height: 100vh;
@@ -19,11 +24,6 @@
       font-weight: bold;
       text-decoration: underline;
     }
-  }
-
-  // Name
-  h1 {
-    margin: 1rem 0;
   }
 
   // Photo (and dialog bubble) container
