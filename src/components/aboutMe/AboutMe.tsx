@@ -7,7 +7,6 @@ export default function AboutMe() {
   return (
     <div className="about-me content-center">
       <h2>{ t('aboutMe.value') }</h2>
-
       <Info />
     </div>
   )

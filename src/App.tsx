@@ -1,5 +1,5 @@
 import Nav from './components/Nav'
-import Header from './components/Header'
+import Header from './components/header/Header'
 import AboutMe from './components/aboutMe/AboutMe'
 
 function App() {

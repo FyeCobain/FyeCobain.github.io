@@ -1,5 +1,5 @@
-@use './../../general/variables' as vars;
-@use './../../general/mixins';
+@use './../../variables' as vars;
+@use './../../mixins';
 
 // Name
 h1 {
@@ -11,7 +11,7 @@ h1 {
   height: 100vh;
   padding-top: 1vh;
 
-  //background-color: rgba(cyan, 0.2); TODO
+  //background-color: rgba(cyan, 0.2); // TODO
 
   @include mixins.desktop {
     padding-top: 5vh;
@@ -40,11 +40,6 @@ h1 {
     height: 20rem;
     border-radius: 50%;
     border: .4rem solid vars.$color-greene;
-    transition: border-color 150ms;
-
-    &:hover {
-      cursor: pointer;
-      border-color: lighten(vars.$color-greene, 10);
-    }
+    @include mixins.hover-glow(vars.$duration-short, 1.5rem, vars.$color-white, vars.$color-greene-light, vars.$color-gray);
   }
 }
