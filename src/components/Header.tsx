@@ -14,7 +14,7 @@ export default function Header() {
       <h1 className="text-center">{ NAME }</h1>
 
       <div className="header__photo content-center">
-        <img src={ photo } alt={ t('alts.photo') } />
+        <img src={ photo } width="200" height="200" alt={ t('alts.photo') } />
         <div className="dialog-bubble">
           <p className="text-center">{ t('header.welcome') }</p>
         </div>
