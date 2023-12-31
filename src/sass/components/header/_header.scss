@@ -30,12 +30,19 @@ h1 {
   &__photo {
     position: relative;
     padding-top: 1.6rem;
-    
-    img {
-      width: 20rem;
-      height: 20rem;
-      border-radius: 50%;
-      border: .4rem solid vars.$color-greene;
+  }
+
+  // Photo
+  img {
+    width: 20rem;
+    height: 20rem;
+    border-radius: 50%;
+    border: .4rem solid vars.$color-greene;
+    transition: border-color 150ms;
+
+    &:hover {
+      cursor: pointer;
+      border-color: lighten(vars.$color-greene, 10);
     }
   }
 }
