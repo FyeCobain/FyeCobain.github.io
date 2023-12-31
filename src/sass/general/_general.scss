@@ -1,5 +1,5 @@
-@use 'variables' as vars;
-@use 'mixins';
+@use './../variables' as vars;
+@use './../mixins';
 
 html {
   font-size: 62.5%;

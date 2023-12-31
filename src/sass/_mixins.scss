@@ -1,0 +1,30 @@
+@mixin tablet {
+  @media(min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media(min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: 1367px) {
+    @content;
+  }
+}
+
+@mixin hover-glow($transition-time, $shadow-size, $color, $border-color, $shadow-color, $cursor: pointer) {
+  transition: border-color, box-shadow, $transition-time;
+  &:hover {
+    cursor: $cursor;
+    border-color: $border-color;
+    box-shadow: 0px 0px $shadow-size 0px $shadow-color;
+  }
+
+  &:hover, &:hover p {
+    color: $color;
+  }
+}

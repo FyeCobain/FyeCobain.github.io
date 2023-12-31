@@ -1,6 +1,6 @@
-@use './../../general/variables' as vars;
-@use './../../general/mixins';
-@use './../../general/keyframes';
+@use './../../variables' as vars;
+@use './../../mixins';
+@use './../../keyframes';
 
 .dialog-bubble {
   position: absolute;
@@ -10,7 +10,7 @@
   height: 13rem;
   border: .3rem solid vars.$color-white;
   border-radius: 50%;
-  animation: swing 1s linear 2;
+  animation: swing vars.$duration-long linear 2;
   justify-content: center;
   align-items: center;
   display: none;
@@ -18,11 +18,11 @@
   @include mixins.tablet {
     display: flex;
   }
+
+  @include mixins.hover-glow(vars.$duration-short, 1.6rem, vars.$color-greene-light, vars.$color-white, vars.$color-gray, cell);
   
   &:hover {
-    cursor: cell;
     animation-iteration-count: infinite;
-    box-shadow: 0px 0px 2rem 0px vars.$color-gray;
 
     p {
       color: lighten(vars.$color-greene, 7);
