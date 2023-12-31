@@ -1,25 +1,23 @@
 @use './../../general/variables' as vars;
-@use './../../general/mixins' as mixins;
-
-@keyframes dialog-bubble {
-  0% {rotate: 0deg;}
-  25% {rotate: 5deg;}
-  75% {rotate: -5deg;}
-  100% {rotate: 0deg;}
-}
+@use './../../general/mixins';
+@use './../../general/keyframes';
 
 .dialog-bubble {
   position: absolute;
-  top: 3%;
-  right: -95%;
+  top: 0.8rem;
+  right: -19rem;
   width: 18rem;
   height: 13rem;
   border: .3rem solid vars.$color-white;
   border-radius: 50%;
-  display: flex;
+  animation: swing 1s linear 2;
   justify-content: center;
   align-items: center;
-  animation: dialog-bubble 1s linear 2;
+  display: none;
+
+  @include mixins.tablet {
+    display: flex;
+  }
   
   &:hover {
     cursor: cell;

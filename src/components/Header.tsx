@@ -32,6 +32,10 @@ export default function Header() {
         </div>
       </div>
 
+      <div className="dialog">
+        <p className="text-center">{ t('header.welcome') }</p>
+      </div>
+
     </header>
   )
 }
