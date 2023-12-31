@@ -33,7 +33,7 @@ export default i18n
           },
           header: {
             hello: 'Hola',
-            im: 'mi nombre es',
+            im: 'soy',
             welcome: '¡Bienvenido(a) a mi página!',
           },
           alts: {
