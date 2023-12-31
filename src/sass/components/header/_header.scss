@@ -11,8 +11,10 @@ h1 {
   height: 100vh;
   padding-top: 1vh;
 
+  //background-color: rgba(cyan, 0.2); TODO
+
   @include mixins.desktop {
-    padding-top: 9vh;
+    padding-top: 5vh;
   }
 
   // Hello paragraph
