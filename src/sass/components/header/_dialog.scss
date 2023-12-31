@@ -1,0 +1,15 @@
+@use './../../general/mixins';
+@use './../../general/keyframes';
+
+.dialog {
+  animation: swing 1s linear 2;
+  margin-top: 4rem;
+
+  p {
+    font-size: 3.5rem;
+  }
+
+  @include mixins.tablet {
+    display: none;
+  }
+}
