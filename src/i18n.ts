@@ -12,6 +12,7 @@ export default i18n
       en: {
         translation: {
           aboutMe: {
+            value: 'About me',
             degree: 'Computer Systems Engineer',
             job: 'Software Developer',
           },
@@ -23,11 +24,18 @@ export default i18n
           alts: {
             photo: 'my photo',
           },
+          info: {
+            yearsOfExperience: 'Years of experience as a software developer',
+            graduatedFrom: 'Graduated from',
+            englishLevel: 'B2 English',
+            top1: '#1 AutoHotkey programmer in Latin America',
+          },
         },
       },
       es: {
         translation: {
           aboutMe: {
+            value: 'Sobre mí',
             degree: 'Ingeniero en Sistemas Computacionales',
             job: 'Desarrollador de Software',
           },
@@ -38,6 +46,12 @@ export default i18n
           },
           alts: {
             photo: 'mi foto',
+          },
+          info: {
+            yearsOfExperience: 'Años de experiencia como desarrollador de software',
+            graduatedFrom: 'Egresado del',
+            englishLevel: 'Inglés Intermedio-Alto (B2)',
+            top1: 'Programador #1 de AutoHotkey en América Latina',
           },
         },
       },

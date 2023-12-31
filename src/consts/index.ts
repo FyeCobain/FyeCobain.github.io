@@ -1,1 +1,2 @@
-export const NAME: string = 'Michel Bracamontes'
+export const NAME = 'Michel Bracamontes'
+export const UNI = 'Tecnológico Nacional de México'
