@@ -12,12 +12,12 @@ export default function Info() {
     <ul className="about-me__info">
       <li className="about-me__info-container experience">
         <FaMedal />
-        <p>+{ `${yearsOfExperience} ${t('info.yearsOfExperience')}` }</p>
+        <p>+{ `${ yearsOfExperience } ${ t('info.yearsOfExperience') }` }</p>
       </li>
 
       <li className="about-me__info-container alma-mater">
         <IoSchoolOutline />
-        <p>{ `${t('info.graduatedFrom')}` } <span>{ UNI }</span></p>
+        <p>{ `${ t('info.graduatedFrom') }` } <span>{ UNI }</span></p>
       </li>
 
       <li className="about-me__info-container english">
