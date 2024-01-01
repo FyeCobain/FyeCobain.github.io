@@ -1,15 +1,9 @@
 @use './../../variables' as vars;
 @use './../../mixins';
 
-// Name
-h1 {
-  margin: 1rem 0;
-}
-
 // Header with photo and dialog bubble
 .header {
   height: 100vh;
-  padding-top: 1vh;
 
   //background-color: rgba(cyan, 0.2); // TODO
 
@@ -20,12 +14,22 @@ h1 {
   // Hello paragraph
   &__hello {
     font-size: 2.6rem;
-    padding: 3rem 0 .5rem 0;
+    padding: 1rem 0 .5rem 0;
+
+    @include mixins.tablet {
+      padding-top: 3rem;
+    }
 
     span {
       font-weight: bold;
       text-decoration: underline;
     }
+  }
+
+  // Name
+  h1 {
+    margin: 2.5rem 0 1.8rem 0;
+    line-height: 1;
   }
 
   // Photo (and dialog bubble) container

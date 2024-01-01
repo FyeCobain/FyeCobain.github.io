@@ -34,6 +34,7 @@ module.exports = {
         ],
         "react/react-in-jsx-scope": "off",
         "import/no-absolute-path": "off",
+        "template-curly-spacing": ["error", "always"],
         "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/no-confusing-void-expression": "off",
         "@typescript-eslint/space-before-function-paren": ["error", "never"],
