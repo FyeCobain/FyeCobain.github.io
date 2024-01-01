@@ -45,12 +45,7 @@
     }
   }
 
-  background-color: rgba(vars.$color-blue, 0.5);
-
-  @include mixins.tablet {
-    background-color: rgba(vars.$color-blue, 0.3);
-  }
-
+  background-color: rgba(vars.$color-blue, 0.4);
   border-radius: .6rem;
 }
 
@@ -59,20 +54,17 @@
   padding: 1.1rem .5rem;
 
   @include mixins.tablet {
-    padding: 1.3rem .5rem;
+    padding: 1rem .5rem;
   }
-  
+
   opacity: 0.8;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   color: lighten(vars.$color-greene, 5);
 
   & svg:hover {
     cursor: pointer;
 
-    @include mixins.laptop{
-      color: vars.$color-yellow;
+    @include mixins.laptop {
+      color: lighten(vars.$color-greene, 45);
     }
   }
 }
