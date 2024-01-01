@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { NAME } from '@app/consts'
 import Photo from './Photo'
 import Info from './Info'
-import CVButton from './CVButton'
+import CVButton from './../CVButton'
 
 export default function Header() {
   const { t } = useTranslation()
@@ -22,7 +22,7 @@ export default function Header() {
         <p className="text-center">{ t('header.welcome') }</p>
       </div>
 
-      <CVButton />
+      <CVButton className = "cv-button--header" />
 
     </header>
   )

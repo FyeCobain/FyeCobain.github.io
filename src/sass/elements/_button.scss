@@ -8,10 +8,15 @@ button {
   background-color: vars.$color-bg-blue-1;
   border: 1px solid vars.$color-greene;
   border-radius: .6rem;
-  padding: 1.2rem 0.5rem;
+  $padding-y: 1.2rem;
+  padding: $padding-y 0.7em;
+
+  @include mixins.phone {
+    padding: $padding-y 2rem;
+  }
 
   @include mixins.tablet {
-    padding: 1.2rem 2rem;
+    padding: $padding-y 2rem;
   }
 
   @include mixins.hover-glow(150ms, 1rem, vars.$color-white, vars.$color-greene-light, vars.$color-gray);

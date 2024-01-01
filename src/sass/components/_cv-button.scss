@@ -1,0 +1,31 @@
+@use './../variables' as vars;
+@use './../mixins';
+
+.cv-button, .cv-button--header, .cv-button--about-me {
+  margin-top: 2.0rem;
+  width: 100%;
+  justify-content: center;
+  display: flex;
+
+  @include mixins.tablet {
+    margin-top: 3rem;
+    justify-content: end;
+  }
+
+  span {
+    font-weight: bold;
+  }
+}
+
+.cv-button--header {
+  display: none;
+  @include mixins.tablet {
+    display: flex;
+  }
+}
+
+.cv-button--about-me {
+  @include mixins.tablet {
+    display: none;
+  }
+}
