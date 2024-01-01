@@ -1,14 +1,14 @@
 @use './../../mixins';
 
 .cv-button {
-  margin-top: 3rem;
+  margin-top: 2.0rem;
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: start;
 
   @include mixins.tablet {
-    justify-content: end;
     margin-top: 3rem;
+    justify-content: end;
   }
 
   svg {
