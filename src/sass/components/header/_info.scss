@@ -16,3 +16,9 @@
     }
   }
 }
+
+@media (min-width: 454px) {
+  .header-info__degree-text {
+    flex-direction: row;
+  }
+}

@@ -13,7 +13,8 @@ export default i18n
         translation: {
           aboutMe: {
             value: 'About me',
-            degree: 'Computer Systems Engineer',
+            degreePart1: 'Computer Systems',
+            degreePart2: 'Engineer',
             job: 'Software Developer',
           },
           header: {
@@ -37,7 +38,8 @@ export default i18n
         translation: {
           aboutMe: {
             value: 'Sobre mí',
-            degree: 'Ingeniero en Sistemas Computacionales',
+            degreePart1: 'Ingeniero en Sistemas',
+            degreePart2: 'Computacionales',
             job: 'Desarrollador de Software',
           },
           header: {

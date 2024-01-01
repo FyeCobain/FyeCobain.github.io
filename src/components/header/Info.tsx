@@ -9,7 +9,10 @@ export default function Info() {
     <div className="header-info">
       <div className="header-info__degree">
         <GiDiploma className="icon-degree" />
-        <p>{ t('aboutMe.degree') }</p>
+        <div className="header-info__degree-text content-center">
+          <p>{ `${ t('aboutMe.degreePart1') }` }&nbsp;</p>
+          <p>{ t('aboutMe.degreePart2') }</p>
+        </div>
       </div>
 
       <div className="header-info__job">
