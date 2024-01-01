@@ -1,19 +1,26 @@
+@use './../../variables' as vars;
 @use './../../mixins';
 
 .cv-button {
   margin-top: 2.0rem;
   width: 100%;
   display: flex;
-  justify-content: start;
+  justify-content: center;
+
+  button {
+    @include mixins.tablet-max {
+      border: none;
+      background-color: transparent;
+      text-decoration: underline;
+      color: vars.$color-greene-light;
+      font-size: 1.9rem;
+      box-shadow: none;
+    }
+  }
 
   @include mixins.tablet {
     margin-top: 3rem;
     justify-content: end;
-  }
-
-  svg {
-    font-size: 2.0rem;
-    margin-left: 1rem;
   }
 
   span {
