@@ -14,25 +14,25 @@ export default function Nav() {
 
   return (
     <div className="nav">
-      <div className="nav__icons">
+      <div className="nav__icons text-center">
 
-        <div id="icon-lang" className="nav__icon">
-          <IoLanguageOutline onClick = { () => toggleLanguage()} />
+        <div id="icon-language" className="nav__icon" onClick = { () => toggleLanguage()}>
+          <IoLanguageOutline />
         </div>
 
-        <div className="nav__icon">
+        <div id="icon-home" className="nav__icon">
           <AiOutlineHome />
         </div>
 
-        <div className="nav__icon">
+        <div id="icon-user" className="nav__icon">
           <AiOutlineUser />
         </div>
 
-        <div className="nav__icon">
+        <div id="icon-folder" className="nav__icon">
           <VscFolder />
         </div>
 
-        <div className="nav__icon">
+        <div id="icon-star" className="nav__icon">
           <IoStarHalf />
         </div>
 

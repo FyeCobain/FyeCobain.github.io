@@ -5,7 +5,9 @@ import { GiPodiumWinner } from 'react-icons/gi'
 import { UNI } from '@app/consts'
 
 export default function Info() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const languageLevel: string = t('info.english')
+
   const yearsOfExperience: number = new Date().getFullYear() - 2017
 
   return (
@@ -22,7 +24,11 @@ export default function Info() {
 
       <li className="about-me__info-container english">
         <FaFlagUsa />
-        <p>{ t('info.englishLevel') }</p>
+        {
+          i18n.language === 'en'
+            ? <p><span>B2</span> { languageLevel }</p>
+            : <p>{ languageLevel } (<span>B2</span>)</p>
+        }
       </li>
 
       <li className="about-me__info-container top-1">
