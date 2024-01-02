@@ -3,6 +3,7 @@ import { IoSchoolOutline } from 'react-icons/io5'
 import { useTranslation } from 'react-i18next'
 import { GiPodiumWinner } from 'react-icons/gi'
 import { ALMA_MATER, ALMA_MATER_URL } from '@app/consts'
+import { isEnglish } from '@app/functions'
 
 export default function Info() {
   const { t, i18n } = useTranslation()
@@ -28,7 +29,7 @@ export default function Info() {
         <FaFlagUsa />
         <p>
         {
-          i18n.language === 'en' ? <>B2 { LANGUAGE_LEVEL }</> : <>{ LANGUAGE_LEVEL } (B2)</>
+          isEnglish(i18n.language) ? <>B2 { LANGUAGE_LEVEL }</> : <>{ LANGUAGE_LEVEL } (B2)</>
         }
         </p>
       </li>
@@ -37,7 +38,7 @@ export default function Info() {
         <GiPodiumWinner />
         <p>
         {
-          i18n.language === 'en'
+          isEnglish(i18n.language)
             ? <>#1 { AHK_ANCHOR } programmer in { FREELANCER_TOP_ANCHOR }</>
             : <>Programador #1 de { AHK_ANCHOR } en { FREELANCER_TOP_ANCHOR }</>
         }

@@ -19,7 +19,7 @@
 .experience {
   svg {
     font-size: 4rem;
-    margin: 0 1.9rem 0 .3rem;
+    margin: 0 1.9rem 0 .2rem;
 
     @include mixins.phone {
       font-size: 2.7rem;
@@ -31,7 +31,7 @@
 .alma-mater {
   svg {
     font-size: 4rem;
-    margin-right: 2.0rem;
+    margin-right: 2rem;
 
     @include mixins.phone {
       font-size: 3.3rem;
