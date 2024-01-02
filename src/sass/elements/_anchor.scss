@@ -1,0 +1,11 @@
+@use './../variables' as vars;
+
+a {
+  color: lighten(vars.$color-greene, 5);
+  text-decoration: underline;
+  
+  &:hover {
+    cursor: pointer;
+    color: lighten(vars.$color-greene, 15);
+  }
+}
