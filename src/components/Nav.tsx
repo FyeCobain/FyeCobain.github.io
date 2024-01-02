@@ -3,13 +3,15 @@ import { IoLanguageOutline, IoStarHalf } from 'react-icons/io5'
 import { AiOutlineHome, AiOutlineUser } from 'react-icons/ai'
 import { VscFolder } from 'react-icons/vsc'
 import { BsChatDots } from 'react-icons/bs'
+import { ENGLISH_US, SPANISH_MX } from '@app/consts'
+import { isEnglish } from '@app/functions'
 
 export default function Nav() {
   const { i18n } = useTranslation()
 
   // English / spanish
   function toggleLanguage() {
-    void i18n.changeLanguage(i18n.language === 'en' ? 'es' : 'en')
+    void i18n.changeLanguage(isEnglish(i18n.language) ? SPANISH_MX : ENGLISH_US)
   }
 
   return (

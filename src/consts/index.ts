@@ -1,3 +1,4 @@
-export const NAME = 'Michel Bracamontes'
-export const ALMA_MATER = 'Tecnológico Nacional de México'
-export const ALMA_MATER_URL = 'http://chilpancingo.tecnm.mx'
+import { NAME, ALMA_MATER, ALMA_MATER_URL } from './my.info'
+import { ENGLISH, ENGLISH_US, SPANISH, SPANISH_MX } from './langs'
+
+export { NAME, ALMA_MATER, ALMA_MATER_URL, ENGLISH, ENGLISH_US, SPANISH, SPANISH_MX }
