@@ -5,7 +5,7 @@
   color: vars.$color-white;
   background-color: vars.$color-bg-blue-1;
   padding: 1.5rem 0;
-  margin-top: 3rem;
+  margin-top: vars.$margin-base;
   border-radius: 5%;
 
   &-container {
