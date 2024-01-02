@@ -28,7 +28,7 @@ export default i18n
           info: {
             yearsOfExperience: 'Years of experience as a software developer',
             graduatedFrom: 'Graduated from',
-            englishLevel: 'B2 English',
+            english: 'English',
             top1: '#1 AutoHotkey programmer in Latin America',
             getMy: 'Download my',
           },
@@ -53,7 +53,7 @@ export default i18n
           info: {
             yearsOfExperience: 'Años de experiencia como desarrollador de software',
             graduatedFrom: 'Egresado del',
-            englishLevel: 'Inglés Intermedio-Alto (B2)',
+            english: 'Inglés Intermedio-Alto',
             top1: 'Programador #1 de AutoHotkey en América Latina',
             getMy: 'Descarga mi',
           },

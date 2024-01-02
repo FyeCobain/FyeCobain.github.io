@@ -25,7 +25,7 @@
   transition: font-size vars.$duration-short;
   font-size: 2rem;
 
-  #icon-lang {
+  #icon-language {
     font-size: 2.1rem;
   }
 
@@ -36,7 +36,7 @@
   @include mixins.tablet {
     font-size: 2.5rem;
   
-    #icon-lang {
+    #icon-language {
       font-size: 2.6rem;
     }
   
@@ -60,11 +60,8 @@
   opacity: 0.8;
   color: lighten(vars.$color-greene, 5);
 
-  & svg:hover {
+  &:hover {
     cursor: pointer;
-
-    @include mixins.laptop {
-      color: lighten(vars.$color-greene, 45);
-    }
+    color: lighten(vars.$color-greene, 45);
   }
 }
