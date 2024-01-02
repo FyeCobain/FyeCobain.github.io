@@ -2,13 +2,13 @@
 @use './../mixins';
 
 .cv-button, .cv-button--header, .cv-button--about-me {
-  margin-top: 2.0rem;
+  margin-top: 2rem;
   width: 100%;
   justify-content: center;
   display: flex;
 
   @include mixins.tablet {
-    margin-top: 3rem;
+    margin-top: 1rem;
     justify-content: end;
   }
 
@@ -18,7 +18,14 @@
 }
 
 .cv-button--header {
+  margin-left: 2rem;
   display: none;
+
+  button {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
   @include mixins.tablet {
     display: flex;
   }

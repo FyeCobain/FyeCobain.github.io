@@ -2,8 +2,9 @@
 @use './../../mixins';
 
 .dialog {
-  animation: swing vars.$duration-long linear 2;
-  margin-top: 3.5rem;
+  animation: swing-2 vars.$duration-long linear;
+
+  margin-top: 2rem;
 
   p {
     font-size: 3.5rem;
