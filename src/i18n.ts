@@ -34,7 +34,7 @@ export default i18n
           },
           skills: {
             value: 'Skills',
-            softSkills: 'Soft Skills',
+            softSkills: 'Soft skills',
             advancedRegex: 'Advanced Regex',
             teamwork: 'Good teamwork',
             creative: 'Creative',
@@ -72,7 +72,7 @@ export default i18n
           },
           skills: {
             value: 'Habilidades',
-            softSkills: 'Habilidades blandas',
+            softSkills: 'Habilidades suaves',
             advancedRegex: 'Regex avanzado',
             teamwork: 'Buen trabajo en equipo',
             creative: 'Creatividad',
@@ -80,8 +80,8 @@ export default i18n
             organized: 'Organización',
             critical: 'Pensamiento crítico',
             logical: 'Pensamiento logico-matemático',
-            time: 'Gestión de tiempo',
-            troubleshooting: 'Facilidad para la resolución de problemas',
+            time: 'Gestión del tiempo',
+            troubleshooting: 'Resolución de problemas',
           },
         },
       },
