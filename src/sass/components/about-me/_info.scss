@@ -3,12 +3,13 @@
 
 .about-me__info {
   color: vars.$color-white;
-  background-color: vars.$color-bg-blue-1;
   padding: 1.5rem 0;
   margin-top: vars.$margin-base;
   border-radius: 5%;
   width: vars.$width-short;
   max-width: 100%;
+
+  @include mixins.comic-background-2(vars.$color-bg-blue-1);
   
   &-container {
     padding: 2rem;
