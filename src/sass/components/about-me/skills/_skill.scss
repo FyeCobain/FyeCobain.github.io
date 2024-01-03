@@ -2,7 +2,8 @@
 @use './../../../mixins';
 
 .skills-container {
-  background-color: vars.$color-bg-blue-1;
+  @include mixins.comic-background-2(vars.$color-bg-blue-1);
+
   border-radius: .8rem;
 
   &__header {
