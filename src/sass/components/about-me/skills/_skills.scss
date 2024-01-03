@@ -1,0 +1,23 @@
+@use './../../../variables' as vars;
+@use './../../../mixins';
+
+// Skills section (including the h4)
+.skills {
+  margin-top: vars.$margin-base;
+  width: vars.$width-base;
+  max-width: 100%;
+}
+
+// Skills parent grid
+.skills-parent-container {
+  margin-top: vars.$margin-short;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3.5rem;
+  color: vars.$color-white;
+  width: 100%;  
+
+  @include mixins.tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

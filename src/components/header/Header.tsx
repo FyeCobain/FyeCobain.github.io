@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next'
-
 import { NAME } from '@app/consts'
 import Photo from './Photo'
 import Info from './Info'
