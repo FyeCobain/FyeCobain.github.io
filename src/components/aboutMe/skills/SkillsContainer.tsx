@@ -56,7 +56,7 @@ export default function SkillsContainer() {
       <div className="skills-parent-container">
         <Skill title="Frontend" icon={ <GrHtml5 /> } skillsArray={ skills[0] } />
         <Skill title="Backend" icon={ <FaNodeJs /> } skillsArray={ skills[1] } />
-        <Skill title="Genereal" icon={ <VscFileBinary /> } skillsArray={ skills[2] } />
+        <Skill title="General" icon={ <VscFileBinary /> } skillsArray={ skills[2] } />
         <Skill title={ t('skills.softSkills') } skillsArray={ skills[3] } />
       </div>
     </div>
