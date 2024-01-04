@@ -29,6 +29,10 @@
   #icon-language {
     font-size: 2.3rem;
     color: lighten(vars.$color-bg-primary, 55);
+
+    &:hover {
+      color: lighten(vars.$color-bg-primary, 65);
+    }
   }
 
   #icon-chat {
