@@ -18,7 +18,9 @@ export default function ImageOverlay() {
   if (imageState.image === null) return <></>
 
   return (
-    <div className="image-overlay" onClick={ (e: MouseEvent) => removeImage(imageState, e.target as Element) }>
+    <div
+      className="image-overlay"
+      onClick={ (e: MouseEvent) => removeImage(imageState, e.target as Element) } >
 
       <div className="image-overlay__container">
         <img src={ imageState.image }></img>
