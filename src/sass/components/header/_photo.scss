@@ -1,0 +1,38 @@
+@use './../../variables' as vars;
+@use './../../mixins';
+  
+  // Photo (and dialog bubble) container
+  .header__photo {
+    position: relative;
+    padding-top: 1rem;
+
+    &-container {
+      position: relative;
+      font-size: 0;
+    }
+
+    $border-size: .4rem;
+
+    &-container--overlay {
+      position: absolute;
+      top: $border-size;
+      right: $border-size;
+      bottom: $border-size;
+      left: $border-size;
+      border-radius: 50%;
+      pointer-events: none;
+
+      @include mixins.comic-background-2(transparent);
+    }
+
+    // Photo
+    img {
+      position: relative;
+      width: 20rem;
+      height: 20rem;
+      border-radius: 50%;
+      border: $border-size solid vars.$color-greene;
+
+      @include mixins.hover-glow(vars.$duration-short, 1.5rem, vars.$color-white, vars.$color-greene-light, vars.$color-gray);
+    }
+  }
