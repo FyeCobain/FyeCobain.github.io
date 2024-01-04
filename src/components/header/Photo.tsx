@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next'
-import photo from '/img/endlc.jpg'
 import { useContext } from 'react'
 import { type ImageContextValueInterface } from '@app/types-interfaces'
 import { ImageContext } from '@app/contexts'
+import photo from '/img/endlc.jpg'
 
 export default function Photo() {
   const { t } = useTranslation()

@@ -4,10 +4,10 @@ import Header from './components/header/Header'
 import AboutMe from './components/aboutMe/AboutMe'
 import { ImageContext } from './contexts'
 import { useState } from 'react'
-import { type ImageContextValueInterface } from './types-interfaces'
+import { type stringNullable, type ImageContextValueInterface } from './types-interfaces'
 
 function App() {
-  const [ image, setImage ] = useState<string | null>(null)
+  const [ image, setImage ] = useState<stringNullable>(null)
   const imageState: ImageContextValueInterface = {
     image,
     setImage,
