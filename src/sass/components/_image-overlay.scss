@@ -1,3 +1,6 @@
+@use './../variables' as vars;
+@use './../mixins';
+
 .image-overlay {
   cursor: pointer;
   background-color: rgba(black, 0.4);
@@ -14,9 +17,29 @@
     overflow-y: auto;
 
     img {
+      cursor: default;
       max-width: 98%;
       margin: auto;
       padding: 3.2rem 0;
     }
-  } 
+  }
+
+  &__close-button {
+    $size: 4.5rem;
+    font-size: $size;
+    position: fixed;
+    bottom: 10rem;
+    left: calc(50% - $size / 2);
+    display: flex;
+    color: lighten(vars.$color-greene, 30);
+    background-color: rgba(vars.$color-bg-primary, .3);
+    border-radius: 50%;
+
+    @include mixins.laptop {
+      top: 10rem;
+      bottom: unset;
+      right: 25rem;
+      left: unset;
+    }
+  }
 }
