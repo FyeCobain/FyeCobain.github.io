@@ -15,12 +15,12 @@
     height: 100%;
     display: flex;
     overflow-y: auto;
-
+    padding: 3.2rem 0;
+    
     img {
       cursor: default;
       max-width: 98%;
       margin: auto;
-      padding: 3.2rem 0;
     }
   }
 
