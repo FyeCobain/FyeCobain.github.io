@@ -13,6 +13,7 @@ interface ScrollCheckInterface {
   activeOffsetPercentage: number
 }
 
+let scrollCheckObjects: ScrollCheckInterface[]
 let scrollCallback: () => void
 
 // Inits the scroll listener
@@ -30,7 +31,7 @@ const setScrollListenerInterval = setInterval(() => {
     }
 
     // Creating the scroll check objects
-    const SCROLL_CHECK_OBJECTS: ScrollCheckInterface[] = [
+    scrollCheckObjects = [
       {
         section: HEADER,
         icon: HOME_ICON,
@@ -44,17 +45,17 @@ const setScrollListenerInterval = setInterval(() => {
     ]
 
     // Adding the 'hide' to sections below
-    SCROLL_CHECK_OBJECTS.slice(1).forEach((scrollCheckObject: ScrollCheckInterface) => {
+    scrollCheckObjects.slice(1).forEach((scrollCheckObject: ScrollCheckInterface) => {
       if (isBelow(scrollCheckObject.section)) scrollCheckObject.section.classList.add('hide')
     })
 
     // Checking current active class
-    checkCurrentActiveSection(SCROLL_CHECK_OBJECTS)
+    checkCurrentActiveSection()
 
     // Setting and adding the scroll callback
     scrollCallback = () => {
-      checkShowableSections(SCROLL_CHECK_OBJECTS)
-      checkCurrentActiveSection(SCROLL_CHECK_OBJECTS)
+      checkShowableSections()
+      checkCurrentActiveSection()
     }
     document.addEventListener('scroll', scrollCallback)
     clearInterval(setScrollListenerInterval)
@@ -88,12 +89,12 @@ function toggleActive(icon: HTMLElement | null) {
 }
 
 // Checks if the sections must have the 'unhide' class (the fade-in effect)
-function checkShowableSections(scrollCheckObjects: ScrollCheckInterface[]) {
+function checkShowableSections() {
   const HIDDEN_SECTIONS: HTMLElement[] = Array.from(document.querySelectorAll('.hide:not(.unhide)'))
 
   if (HIDDEN_SECTIONS.length === 0) {
     document.removeEventListener('scroll', scrollCallback)
-    document.addEventListener('scroll', () => checkCurrentActiveSection(scrollCheckObjects))
+    document.addEventListener('scroll', checkCurrentActiveSection)
     return
   }
 
@@ -110,7 +111,7 @@ function checkShowableSections(scrollCheckObjects: ScrollCheckInterface[]) {
 }
 
 // Checks for the new active icon (from bottom to top)
-function checkCurrentActiveSection(scrollCheckObjects: ScrollCheckInterface[]) {
+function checkCurrentActiveSection() {
   let currentActiveIndex = -1
   for (let i = scrollCheckObjects.length - 1; i >= 0; i--) {
     if (isVisible(scrollCheckObjects[i].section, scrollCheckObjects[i].activeOffsetPercentage)) {
@@ -135,6 +136,11 @@ function checkCurrentActiveSection(scrollCheckObjects: ScrollCheckInterface[]) {
   }
 }
 
+function scrollTo(elementId: string) {
+  scrollCheckObjects.find((value: ScrollCheckInterface) =>
+    value.section.id === elementId)?.section.scrollIntoView()
+}
+
 function toggleLanguage(i18n: i18n) {
   void i18n.changeLanguage(isEnglish(i18n.language) ? SPANISH_MX : ENGLISH_US)
 }
@@ -150,11 +156,11 @@ export default function Nav() {
           <IoLanguageOutline />
         </div>
 
-        <div id="icon-home" className="nav__icon">
+        <div id="icon-home" className="nav__icon" onClick={ () => scrollTo('header') }>
           <AiOutlineHome />
         </div>
 
-        <div id="icon-user" className="nav__icon">
+        <div id="icon-user" className="nav__icon" onClick={ () => scrollTo('about-me') }>
           <AiOutlineUser />
         </div>
 
