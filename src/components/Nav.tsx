@@ -43,7 +43,12 @@ const setScrollListenerInterval = setInterval(() => {
       },
     ]
 
-    checkHideableSections(SCROLL_CHECK_OBJECTS)
+    // Adding the 'hide' to sections below
+    SCROLL_CHECK_OBJECTS.slice(1).forEach((scrollCheckObject: ScrollCheckInterface) => {
+      if (isBelow(scrollCheckObject.section)) scrollCheckObject.section.classList.add('hide')
+    })
+
+    // Checking current active class
     checkCurrentActiveSection(SCROLL_CHECK_OBJECTS)
 
     // Setting and adding the scroll callback
@@ -82,13 +87,6 @@ function toggleActive(icon: HTMLElement | null) {
   }
 }
 
-// Checks if the sections must have the 'hide' class
-function checkHideableSections(scrollCheckObjects: ScrollCheckInterface[]) {
-  scrollCheckObjects.slice(1).forEach((scrollCheckObject: ScrollCheckInterface) => {
-    if (isBelow(scrollCheckObject.section)) scrollCheckObject.section.classList.add('hide')
-  })
-}
-
 // Checks if the sections must have the 'unhide' class (the fade-in effect)
 function checkShowableSections(scrollCheckObjects: ScrollCheckInterface[]) {
   const HIDDEN_SECTIONS: HTMLElement[] = Array.from(document.querySelectorAll('.hide:not(.unhide)'))
@@ -101,7 +99,7 @@ function checkShowableSections(scrollCheckObjects: ScrollCheckInterface[]) {
 
   // Unhide sections
   HIDDEN_SECTIONS.forEach((section: HTMLElement) => {
-    if (isVisible(section, 0)) {
+    if (isVisible(section, 10)) {
       section.classList.add('unhide')
       setTimeout(() => {
         section.classList.remove('hide')
