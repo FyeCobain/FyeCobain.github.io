@@ -7,7 +7,7 @@ export default function AboutMe() {
   const { t } = useTranslation()
 
   return (
-    <main className="about-me content-center">
+    <main id="about-me" className="about-me content-center">
       <h2>{ t('aboutMe.value') }</h2>
       <CVButton className="cv-button--about-me" />
       <Info />

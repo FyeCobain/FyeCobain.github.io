@@ -8,7 +8,7 @@ export default function Header() {
   const { t } = useTranslation()
 
   return (
-    <header className="header content-center">
+    <header id="header" className="header content-center">
       <p className="header__hello text-center"><span>{ t('header.hello') }</span>, { t('header.im') }</p>
 
       <h1 className="text-center">{ NAME }</h1>

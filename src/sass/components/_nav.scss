@@ -59,7 +59,7 @@
 }
 
 // Each icon
-.nav__icon {
+.nav__icon, .nav__icon--active {
   padding: .9rem .7rem;
 
   @include mixins.tablet {
@@ -71,6 +71,15 @@
 
   &:hover {
     cursor: pointer;
+  }
+}
+
+.nav__icon {
+  &:hover {
     color: lighten(vars.$color-greene, 45);
   }
+}
+
+.nav__icon--active {
+  color: vars.$color-white;
 }
