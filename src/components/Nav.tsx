@@ -10,8 +10,10 @@ import { isEnglish } from '@app/functions'
 interface ScrollCheckInterface {
   section: HTMLElement
   icon: HTMLElement
-  offsetPercentage: number
+  activeOffsetPercentage: number
 }
+
+let scrollCallback: () => void
 
 // Inits the scroll listener
 const setScrollListenerInterval = setInterval(() => {
@@ -21,7 +23,7 @@ const setScrollListenerInterval = setInterval(() => {
     const ABOUT_ME = document.getElementById('about-me')
     const USER_ICON = document.getElementById('icon-user')
 
-    // If some element ins null, do nothing
+    // If some element is null, do nothing
     if (HEADER === null || HOME_ICON === null || ABOUT_ME === null || USER_ICON === null) {
       clearInterval(setScrollListenerInterval)
       return
@@ -32,17 +34,24 @@ const setScrollListenerInterval = setInterval(() => {
       {
         section: HEADER,
         icon: HOME_ICON,
-        offsetPercentage: 0,
+        activeOffsetPercentage: 0,
       },
       {
         section: ABOUT_ME,
         icon: USER_ICON,
-        offsetPercentage: 40,
+        activeOffsetPercentage: 40,
       },
     ]
 
-    document.addEventListener('scroll', () => checkActiveSection(SCROLL_CHECK_OBJECTS))
-    checkActiveSection(SCROLL_CHECK_OBJECTS)
+    checkHideableSections(SCROLL_CHECK_OBJECTS)
+    checkCurrentActiveSection(SCROLL_CHECK_OBJECTS)
+
+    // Setting and adding the scroll callback
+    scrollCallback = () => {
+      checkShowableSections(SCROLL_CHECK_OBJECTS)
+      checkCurrentActiveSection(SCROLL_CHECK_OBJECTS)
+    }
+    document.addEventListener('scroll', scrollCallback)
     clearInterval(setScrollListenerInterval)
   }
 }, 0)
@@ -52,6 +61,12 @@ function isVisible(element: HTMLElement, offsetPercentage: number): boolean {
   const clientHeight: number = (100 - offsetPercentage) * window.innerHeight / 100
   const elementRect: DOMRect = element.getBoundingClientRect()
   return elementRect.top < clientHeight && elementRect.top + elementRect.height > 0
+}
+
+// Returns true if the element is below in the screen
+function isBelow(element: HTMLElement): boolean {
+  const elementRect: DOMRect = element.getBoundingClientRect()
+  return elementRect.top >= window.innerHeight
 }
 
 // Toggles the active state of an icon
@@ -67,11 +82,40 @@ function toggleActive(icon: HTMLElement | null) {
   }
 }
 
+// Checks if the sections must have the 'hide' class
+function checkHideableSections(scrollCheckObjects: ScrollCheckInterface[]) {
+  scrollCheckObjects.slice(1).forEach((scrollCheckObject: ScrollCheckInterface) => {
+    if (isBelow(scrollCheckObject.section)) scrollCheckObject.section.classList.add('hide')
+  })
+}
+
+// Checks if the sections must have the 'unhide' class (the fade-in effect)
+function checkShowableSections(scrollCheckObjects: ScrollCheckInterface[]) {
+  const HIDDEN_SECTIONS: HTMLElement[] = Array.from(document.querySelectorAll('.hide:not(.unhide)'))
+
+  if (HIDDEN_SECTIONS.length === 0) {
+    document.removeEventListener('scroll', scrollCallback)
+    document.addEventListener('scroll', () => checkCurrentActiveSection(scrollCheckObjects))
+    return
+  }
+
+  // Unhide sections
+  HIDDEN_SECTIONS.forEach((section: HTMLElement) => {
+    if (isVisible(section, 0)) {
+      section.classList.add('unhide')
+      setTimeout(() => {
+        section.classList.remove('hide')
+        section.classList.remove('unhide')
+      }, 1000)
+    }
+  })
+}
+
 // Checks for the new active icon (from bottom to top)
-function checkActiveSection(scrollCheckObjects: ScrollCheckInterface[]) {
+function checkCurrentActiveSection(scrollCheckObjects: ScrollCheckInterface[]) {
   let currentActiveIndex = -1
   for (let i = scrollCheckObjects.length - 1; i >= 0; i--) {
-    if (isVisible(scrollCheckObjects[i].section, scrollCheckObjects[i].offsetPercentage)) {
+    if (isVisible(scrollCheckObjects[i].section, scrollCheckObjects[i].activeOffsetPercentage)) {
       currentActiveIndex = i
       break
     }

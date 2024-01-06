@@ -1,3 +1,5 @@
+@use './variables' as vars;
+
 .text-center {
   text-align: center;
 }
@@ -14,4 +16,13 @@
 
 .overflow-hidden {
   overflow: hidden;
+}
+
+.hide {
+  opacity: 0;
+}
+
+.unhide {
+  transition: opacity vars.$duration-normal ease-in-out;
+  opacity: 1;
 }
