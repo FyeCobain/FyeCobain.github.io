@@ -1,8 +1,10 @@
 import { GrHtml5 } from 'react-icons/gr'
 import { FaNodeJs } from 'react-icons/fa'
 import { VscFileBinary } from 'react-icons/vsc'
+import { IoExtensionPuzzleOutline } from 'react-icons/io5'
 import { useTranslation } from 'react-i18next'
 import Skill from './Skills'
+import Hobbies from './Hobbies'
 
 export default function SkillsContainer() {
   const { t } = useTranslation()
@@ -29,12 +31,12 @@ export default function SkillsContainer() {
       'Amazon Web Services',
     ],
     [ // General
-      'C#',
+      'Docker',
       'AutoHotkey',
+      'C#',
       'Python',
       'Java Core',
-      'Android Studio (Java)',
-      'GameMaker: Studio',
+      'Android Studio',
       'Unity',
       t('skills.advancedRegex'),
     ],
@@ -57,7 +59,8 @@ export default function SkillsContainer() {
         <Skill title="Frontend" icon={ <GrHtml5 /> } skillsArray={ skills[0] } />
         <Skill title="Backend" icon={ <FaNodeJs /> } skillsArray={ skills[1] } />
         <Skill title="General" icon={ <VscFileBinary /> } skillsArray={ skills[2] } />
-        <Skill title={ t('skills.softSkills') } skillsArray={ skills[3] } />
+        <Skill title={ t('skills.softSkills') } icon={ <IoExtensionPuzzleOutline /> } skillsArray={ skills[3] } />
+        <Hobbies />
       </div>
     </div>
   )
