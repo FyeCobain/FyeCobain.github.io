@@ -1,3 +1,4 @@
+import { type MutableRefObject, useRef } from 'react'
 import { type i18n } from 'i18next'
 import { useTranslation } from 'react-i18next'
 import { IoLanguageOutline, IoStarHalf } from 'react-icons/io5'
@@ -97,7 +98,7 @@ function toggleActive(icon: HTMLElement | null) {
   }
 }
 
-// TODO Checks if the nav bar must be shrinked
+// Checks if the nav bar must be shrinked
 function checkNavBarShrink() {
   if (window.scrollY === 0) {
     navBar.classList.add('nav--shrinked')
@@ -159,9 +160,14 @@ function checkCurrentActiveSection() {
   }
 }
 
-function scrollTo(elementId: string) {
-  scrollCheckObjects.find((value: ScrollCheckInterface) =>
-    value.section.id === elementId)?.section.scrollIntoView()
+function scrollTo(sectionId: string, navRef: HTMLElement | null, offsetTop = 0) {
+  if (navRef === null || navRef.classList.contains('nav--shrinked'))
+    return
+
+  const section: HTMLElement | undefined = scrollCheckObjects.find((value: ScrollCheckInterface) => value.section.id === sectionId)?.section
+  if (section === undefined) return
+
+  window.scrollTo(0, window.scrollY + section.getBoundingClientRect().y + offsetTop)
 }
 
 function toggleLanguage(i18n: i18n) {
@@ -169,21 +175,22 @@ function toggleLanguage(i18n: i18n) {
 }
 
 export default function Nav() {
+  const navRef: MutableRefObject<null> = useRef(null)
   const { i18n } = useTranslation()
 
   return (
-    <div id = "nav" className="nav">
+    <div ref = { navRef } id = "nav" className="nav--shrinked">
       <div className="nav__icons text-center">
 
         <div id="icon-language" className="nav__icon" onClick = { () => toggleLanguage(i18n)}>
           <IoLanguageOutline />
         </div>
 
-        <div id="icon-home" className="nav__icon" onClick={ () => scrollTo('header') }>
+        <div id="icon-home" className="nav__icon" onClick={ () => scrollTo('header', navRef.current, 1) }>
           <AiOutlineHome />
         </div>
 
-        <div id="icon-user" className="nav__icon" onClick={ () => scrollTo('about-me') }>
+        <div id="icon-user" className="nav__icon" onClick={ () => scrollTo('about-me', navRef.current) }>
           <AiOutlineUser />
         </div>
 
