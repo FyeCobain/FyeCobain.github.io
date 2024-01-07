@@ -63,7 +63,9 @@ module.exports = {
         ],
         // also each PROPERTY must be in a NEW LINE
         "object-property-newline": ["error", { "allowAllPropertiesOnSameLine": false }],
-
+        
+        "curly": ["error", "multi"],
+        "@typescript-eslint/brace-style": ["error", "stroustrup", { "allowSingleLine": false }],    
         "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/no-confusing-void-expression": "off",
         "@typescript-eslint/space-before-function-paren": ["error", "never"],

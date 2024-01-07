@@ -60,6 +60,11 @@
 
   @include mixins.tablet {
     justify-content: start;
+
+    li:last-of-type svg {
+      font-size: 2.55rem;
+      margin-right: .9rem;
+    }
   }
 
   li svg {
@@ -69,10 +74,5 @@
 
   li:nth-child(2) svg {
     transform: scaleX(-1);
-  }
-
-  li:last-of-type svg {
-    font-size: 2.6rem;
-    margin-right: .8rem;
   }
 }

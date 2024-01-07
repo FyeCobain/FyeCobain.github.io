@@ -47,8 +47,8 @@ export default i18n
           },
           hobbies: {
             myHobbies: 'My hobbies',
-            books: 'Read and write books',
-            learn: 'Learn (anything)',
+            books: 'Read and write',
+            learn: 'Learn (about anything)',
             nature: 'Nature',
             games: 'Videogames',
           },
@@ -92,8 +92,8 @@ export default i18n
           },
           hobbies: {
             myHobbies: 'Mis pasatiempos',
-            books: 'Leer y escribir libros',
-            learn: 'Aprender (cualquier cosa)',
+            books: 'Leer y escribir',
+            learn: 'Aprender (de todo)',
             nature: 'Naturaleza',
             games: 'Videojuegos',
           },

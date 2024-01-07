@@ -13,12 +13,20 @@ interface ScrollCheckInterface {
   activeOffsetPercentage: number
 }
 
+let navBar: HTMLElement
 let scrollCheckObjects: ScrollCheckInterface[]
 let scrollCallback: () => void
 
 // Inits the scroll listener
 const setScrollListenerInterval = setInterval(() => {
   if (document.readyState !== 'loading') {
+    // Getting nav bar
+    const NAV_BAR = document.getElementById('nav')
+    if (NAV_BAR === null) return
+    navBar = NAV_BAR
+    checkNavBarShrink()
+
+    // Getting sections and them nav-bar icons
     const HEADER = document.getElementById('header')
     const HOME_ICON = document.getElementById('icon-home')
     const ABOUT_ME = document.getElementById('about-me')
@@ -44,7 +52,7 @@ const setScrollListenerInterval = setInterval(() => {
       },
     ]
 
-    // Adding the 'hide' to sections below
+    // Adding the 'hide' class to sections below
     scrollCheckObjects.slice(1).forEach((scrollCheckObject: ScrollCheckInterface) => {
       if (isBelow(scrollCheckObject.section)) scrollCheckObject.section.classList.add('hide')
     })
@@ -54,6 +62,7 @@ const setScrollListenerInterval = setInterval(() => {
     // Setting and adding the scroll callback
     scrollCallback = () => {
       checkShowableSections()
+      checkNavBarShrink()
       checkCurrentActiveSection()
     }
     document.addEventListener('scroll', scrollCallback)
@@ -81,9 +90,22 @@ function toggleActive(icon: HTMLElement | null) {
   if (icon.classList.contains('nav__icon--active')) {
     icon.classList.add('nav__icon')
     icon.classList.remove('nav__icon--active')
-  } else {
+  }
+  else {
     icon.classList.add('nav__icon--active')
     icon.classList.remove('nav__icon')
+  }
+}
+
+// TODO Checks if the nav bar must be shrinked
+function checkNavBarShrink() {
+  if (window.scrollY === 0) {
+    navBar.classList.add('nav--shrinked')
+    navBar.classList.remove('nav')
+  }
+  else if (navBar.classList.contains('nav--shrinked')) {
+    navBar.classList.add('nav')
+    navBar.classList.remove('nav--shrinked')
   }
 }
 
@@ -93,7 +115,10 @@ function checkShowableSections() {
 
   if (HIDDEN_SECTIONS.length === 0) {
     document.removeEventListener('scroll', scrollCallback)
-    document.addEventListener('scroll', checkCurrentActiveSection)
+    document.addEventListener('scroll', () => {
+      checkNavBarShrink()
+      checkCurrentActiveSection()
+    })
     return
   }
 
@@ -112,12 +137,11 @@ function checkShowableSections() {
 // Checks for the new active icon (from bottom to top)
 function checkCurrentActiveSection() {
   let currentActiveIndex = -1
-  for (let i = scrollCheckObjects.length - 1; i >= 0; i--) {
+  for (let i = scrollCheckObjects.length - 1; i >= 0; i--)
     if (isVisible(scrollCheckObjects[i].section, scrollCheckObjects[i].activeOffsetPercentage)) {
       currentActiveIndex = i
       break
     }
-  }
 
   // Getting current active icon
   const CURRENT_ACTIVE_ICON: HTMLElement | null = document.querySelector('.nav__icon--active')
@@ -148,7 +172,7 @@ export default function Nav() {
   const { i18n } = useTranslation()
 
   return (
-    <div className="nav">
+    <div id = "nav" className="nav">
       <div className="nav__icons text-center">
 
         <div id="icon-language" className="nav__icon" onClick = { () => toggleLanguage(i18n)}>
