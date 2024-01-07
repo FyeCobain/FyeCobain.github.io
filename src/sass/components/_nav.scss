@@ -1,6 +1,8 @@
 @use './../variables' as vars;
 @use './../mixins';
 
+$icon-radio: .6rem;
+
 // Nav container
 .nav, .nav--shrinked {
   display: flex;
@@ -10,6 +12,7 @@
   transition: right vars.$duration-short;
   right: .3rem;
   padding-top: 7rem;
+  z-index: 1;
 
   @include mixins.tablet {
     right: 4rem;
@@ -18,6 +21,105 @@
   
   @include mixins.laptop {
     right: 10rem;
+  }
+}
+
+// Nav not shrinked
+.nav {
+  #icon-home {
+    transition: opacity 25ms ease-out;
+  }
+  
+  #icon-user {
+    transition: opacity 50ms ease-out;
+  }
+  
+  #icon-folder {
+    transition: opacity 100ms ease-out;
+  }
+  
+  #icon-star {
+    transition: opacity 150ms ease-out;
+  }
+  
+  #icon-chat {
+    transition: opacity 200ms ease-out;
+  }
+
+  @include mixins.tablet {
+    #icon-home {
+      transition: opacity 50ms ease-out;
+    }
+
+    #icon-user {
+      transition: opacity 150ms ease-out;
+    }
+    
+    #icon-folder {
+      transition: opacity 200ms ease-out;
+    }
+    
+    #icon-star {
+      transition: opacity 350ms ease-out;
+    }
+    
+    #icon-chat {
+      transition: opacity 400ms ease-out;
+    }
+  }
+}
+
+// Nav shrinked
+.nav--shrinked {
+  .nav__icon:first-of-type {
+    border-radius: $icon-radio;
+  }
+
+  .nav__icon:not(:first-of-type), .nav__icon--active:not(:first-of-type) {
+    opacity: 0.0;
+    cursor: default;
+  }
+
+  #icon-home {
+    transition: opacity 200ms ease-out;
+  }
+  
+  #icon-user {
+    transition: opacity 150ms ease-out;
+  }
+  
+  #icon-folder {
+    transition: opacity 100ms ease-out;
+  }
+  
+  #icon-star {
+    transition: opacity 50ms ease-out;
+  }
+  
+  #icon-chat {
+    transition: opacity 25ms ease-out;
+  }
+
+  @include mixins.tablet {
+    #icon-home {
+      transition: opacity 400ms ease-out;
+    }
+    
+    #icon-user {
+      transition: opacity 350ms ease-out;
+    }
+    
+    #icon-folder {
+      transition: opacity 200ms ease-out;
+    }
+    
+    #icon-star {
+      transition: opacity 150ms ease-out;
+    }
+
+    #icon-chat {
+      transition: opacity 50ms ease-out;
+    }
   }
 }
 
@@ -50,19 +152,16 @@
       font-size: 2.4rem;
     }
   }
-
-  border-radius: .6rem;
-  background-color: rgba(vars.$color-blue, 0.5);
-  @include mixins.tablet {
-    background-color: rgba(vars.$color-blue, 0.4);
-  }
 }
 
 // Each icon
 .nav__icon, .nav__icon--active {
   padding: .9rem .7rem;
 
+  background-color: rgba(vars.$color-blue, 0.6);
+  
   @include mixins.tablet {
+    background-color: rgba(vars.$color-blue, 0.5);
     padding: 1rem .5rem;
   }
 
@@ -71,6 +170,14 @@
 
   &:hover {
     cursor: pointer;
+  }
+
+  &:first-of-type {
+    border-radius: $icon-radio $icon-radio 0 0;
+  }
+
+  &:last-of-type {
+    border-radius: 0 0 $icon-radio $icon-radio;
   }
 }
 
