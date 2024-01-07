@@ -1,7 +1,7 @@
 @use './../../../variables' as vars;
 @use './../../../mixins';
 
-.skills-container {
+.skills-container, .hobbies-container {
   @include mixins.comic-background-2(vars.$color-bg-blue-1);
 
   border-radius: .8rem;
@@ -21,35 +21,58 @@
   }
 }
 
-.skills-container__list li{
-    font-size: 1.8rem;
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    $padding-X: 2rem;
-    padding: 1rem $padding-X;
+.skills-container__list li, .hobbies-container__list li {
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  $padding-X: 2rem;
+  padding: 1rem $padding-X;
+
+  &:last-of-type {
+    padding-bottom: 1.4rem;
+  }
+
+  @include mixins.tablet {
+    padding: 1.25rem $padding-X;
 
     &:last-of-type {
-      padding-bottom: 1.4rem;
+      padding-bottom: 1.5rem;
     }
+  }
 
-    @include mixins.tablet {
-      padding: 1.25rem $padding-X;
+  @include mixins.laptop {
+    padding: 1.5rem $padding-X;
 
-      &:last-of-type {
-        padding-bottom: 1.5rem;
-      }
+    &:last-of-type {
+      padding-bottom: 1.8rem;
     }
+  }
 
-    @include mixins.laptop {
-      padding: 1.5rem $padding-X;
+  svg {
+    font-size: 1.9rem;
+  }
+}
 
-      &:last-of-type {
-        padding-bottom: 1.8rem;
-      }
-    }
+.hobbies-container__list {
+  display: flex;
+  justify-content: center;
 
-    svg {
-      font-size: 1.9rem;
-    }
+  @include mixins.tablet {
+    justify-content: start;
+  }
+
+  li svg {
+    font-size: 2.5rem;
+    margin-right: 1rem;
+  }
+
+  li:nth-child(2) svg {
+    transform: scaleX(-1);
+  }
+
+  li:last-of-type svg {
+    font-size: 2.6rem;
+    margin-right: .8rem;
+  }
 }

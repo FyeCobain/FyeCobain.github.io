@@ -49,7 +49,6 @@ const setScrollListenerInterval = setInterval(() => {
       if (isBelow(scrollCheckObject.section)) scrollCheckObject.section.classList.add('hide')
     })
 
-    // Checking current active class
     checkCurrentActiveSection()
 
     // Setting and adding the scroll callback
