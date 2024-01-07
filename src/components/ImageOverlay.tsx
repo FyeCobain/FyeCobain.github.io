@@ -11,8 +11,10 @@ export default function ImageOverlay() {
   const imageState: ImageContextValueInterface = useContext(ImageContext)
 
   useEffect(() => {
-    if (imageState.image !== null) document.body.classList.add('overflow-hidden')
-    else document.body.classList.remove('overflow-hidden')
+    if (imageState.image !== null)
+      document.body.classList.add('overflow-hidden')
+    else
+      document.body.classList.remove('overflow-hidden')
   })
 
   if (imageState.image === null) return <></>

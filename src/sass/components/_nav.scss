@@ -2,7 +2,7 @@
 @use './../mixins';
 
 // Nav container
-.nav {
+.nav, .nav--shrinked {
   display: flex;
   align-items: center;
   position: fixed;
