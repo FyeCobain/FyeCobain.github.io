@@ -26,7 +26,7 @@ const setScrollListenerInterval = setInterval(() => {
     const NAV_BAR = document.getElementById('nav')
     if (NAV_BAR === null) return
     navBar = NAV_BAR
-    checkNavBarShrink()
+    checkNavBarShrink(true)
 
     // Getting sections and them nav-bar icons
     const HEADER = document.getElementById('header')
@@ -100,11 +100,14 @@ function toggleActive(icon: HTMLElement | null) {
 }
 
 // Checks if the nav bar must be shrinked
-function checkNavBarShrink() {
+function checkNavBarShrink(firstCheck = false) {
   if (window.scrollY === 0)
-    navBar.classList.add('nav--shrinked')
+    navBar.classList.add('auto-shrinked')
   else
-    navBar.classList.remove('nav--shrinked')
+    navBar.classList.remove('auto-shrinked')
+
+  if (!firstCheck && !navBar.classList.contains('auto-shrink-smooth'))
+    navBar.classList.add('auto-shrink-smooth')
 }
 
 // Checks if the sections must have the 'unhide' class (the fade-in effect)
@@ -157,14 +160,10 @@ function checkCurrentActiveSection() {
   }
 }
 
-function scrollTo(sectionId: string, navRef: HTMLElement | null, offsetTop = 0) {
-  if (navRef === null || navRef.classList.contains('nav--shrinked'))
-    return
-
+function scrollTo(sectionId: string, offsetTop = 0) {
   const section: HTMLElement | undefined = scrollCheckObjects.find((value: ScrollCheckInterface) => value.section.id === sectionId)?.section
-  if (section === undefined) return
-
-  window.scrollTo(0, window.scrollY + section.getBoundingClientRect().y + offsetTop)
+  if (section !== undefined)
+    window.scrollTo(0, window.scrollY + section.getBoundingClientRect().y + offsetTop)
 }
 
 function toggleLanguage(i18n: i18n) {
@@ -180,24 +179,24 @@ export default function Nav() {
     const NAV: HTMLElement = navRef.current
 
     if (shrinked)
-      NAV.classList.add('nav--manually-shrinked')
+      NAV.classList.add('manually-shrinked')
     else
-      NAV.classList.remove('nav--manually-shrinked')
+      NAV.classList.remove('manually-shrinked')
   }
 
   return (
-    <div ref = { navRef } id="nav" className="nav nav--manually-shrinked">
+    <div ref = { navRef } id="nav" className="nav auto-shrinked manually-shrinked">
       <div className="nav__icons text-center">
 
         <div id="icon-language" className="nav__icon" onClick = { () => toggleLanguage(i18n)}>
           <IoLanguageOutline />
         </div>
 
-        <div id="icon-home" className="nav__icon" onClick={ () => scrollTo('header', navRef.current, 1) }>
+        <div id="icon-home" className="nav__icon" onClick={ () => scrollTo('header', 1) }>
           <AiOutlineHome />
         </div>
 
-        <div id="icon-user" className="nav__icon" onClick={ () => scrollTo('about-me', navRef.current) }>
+        <div id="icon-user" className="nav__icon" onClick={ () => scrollTo('about-me') }>
           <AiOutlineUser />
         </div>
 

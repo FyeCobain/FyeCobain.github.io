@@ -22,6 +22,168 @@ $icon-radio: .6rem;
   @include mixins.laptop {
     right: 10rem;
   }
+
+  @include mixins.tablet-max {
+    #icon-home {
+      transition: opacity 25ms ease-out;
+    }
+    
+    #icon-user {
+      transition: opacity 50ms ease-out;
+    }
+    
+    #icon-folder {
+      transition: opacity 100ms ease-out;
+    }
+    
+    #icon-star {
+      transition: opacity 150ms ease-out;
+    }
+    
+    #icon-chat {
+      transition: opacity 200ms ease-out;
+    }
+  }
+
+  #icon-open-nav, #icon-close-nav {
+    margin-top: .75rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  
+  #icon-open-nav {
+    display: none;
+    font-size: 2.5rem;
+  }
+  
+  #icon-close-nav {
+    font-size: 2.4rem;
+    @include mixins.laptop {
+      display: none;
+    }
+  }
+}
+
+// Manually shrinked
+.manually-shrinked {
+  @include mixins.tablet-max {
+    .nav__icon--active {
+      color: lighten(vars.$color-greene, 5);
+    }
+
+    .nav__icon:not(:first-of-type), .nav__icon--active:not(:first-of-type) {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    #icon-language {
+      border-radius: $icon-radio;
+      order: 0;
+    }
+
+    #icon-home {
+      transition: opacity 200ms ease-out;
+    }
+    
+    #icon-user {
+      transition: opacity 150ms ease-out;
+    }
+    
+    #icon-folder {
+      transition: opacity 100ms ease-out;
+    }
+    
+    #icon-star {
+      transition: opacity 50ms ease-out;
+    }
+    
+    #icon-chat {
+      transition: opacity 25ms ease-out;
+    }
+
+    #icon-home, #icon-user, #icon-folder, #icon-star, #icon-chat {
+      order: 2;
+    }
+  
+    #icon-open-nav {
+      display: block;
+      order: 1;
+    }
+
+    #icon-close-nav {
+      display: none;
+    }
+  }
+}
+
+// Auto shrink smooth
+.auto-shrink-smooth.auto-shrinked {
+  @include mixins.laptop {
+    #icon-home {
+      transition: opacity 400ms ease-out;
+    }
+    
+    #icon-user {
+      transition: opacity 350ms ease-out;
+    }
+    
+    #icon-folder {
+      transition: opacity 250ms ease-out;
+    }
+    
+    #icon-star {
+      transition: opacity 150ms ease-out;
+    }
+
+    #icon-chat {
+      transition: opacity 50ms ease-out;
+    }
+  }
+}
+
+// Auto un-shrink smooth
+.auto-shrink-smooth:not(.auto-shrinked) {
+  @include mixins.laptop {
+    #icon-home {
+      transition: opacity 250ms ease-out;
+    }
+
+    #icon-user {
+      transition: opacity 375ms ease-out;
+    }
+    
+    #icon-folder {
+      transition: opacity 500ms ease-out;
+    }
+    
+    #icon-star {
+      transition: opacity 625ms ease-out;
+    }
+    
+    #icon-chat {
+      transition: opacity 750ms ease-out;
+    }
+  }
+}
+
+// Shrinked by scroll
+.auto-shrinked {
+  @include mixins.laptop {
+    .nav__icon--active {
+      color: lighten(vars.$color-greene, 5);
+    }
+
+    .nav__icon:not(:first-of-type), .nav__icon--active:not(:first-of-type) {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    #icon-language {
+      border-radius: $icon-radio;
+    }
+  }
 }
 
 // Icons container
@@ -53,15 +215,6 @@ $icon-radio: .6rem;
   
     #icon-chat {
       font-size: 2.4rem;
-    }
-  }
-
-  #icon-open-nav, #icon-close-nav {
-    margin-top: .75rem;
-    font-size: 2.5rem;
-
-    @include mixins.laptop {
-      display: none;
     }
   }
 }

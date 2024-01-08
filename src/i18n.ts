@@ -91,7 +91,7 @@ export default i18n
             troubleshooting: 'Resolución de problemas',
           },
           hobbies: {
-            myHobbies: 'Mis pasatiempos',
+            myHobbies: 'Mis aficiones',
             books: 'Leer y escribir',
             learn: 'Aprender (de todo)',
             nature: 'Naturaleza',

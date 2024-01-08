@@ -23,6 +23,6 @@
 }
 
 .unhide {
-  transition: opacity vars.$duration-normal ease-in-out;
+  transition: opacity .75s ease-in-out;
   opacity: 1;
 }
