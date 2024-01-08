@@ -22,6 +22,9 @@ let scrollCallback: () => void
 // Inits the scroll listener
 const setScrollListenerInterval = setInterval(() => {
   if (document.readyState !== 'loading') {
+    // Adding background green to the html
+    document.documentElement.classList.add('bg-greene')
+
     // Getting nav bar
     const NAV_BAR = document.getElementById('nav')
     if (NAV_BAR === null) return
