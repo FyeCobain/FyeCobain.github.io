@@ -4,7 +4,7 @@
 $icon-radio: .6rem;
 
 // Nav container
-.nav, .nav--shrinked {
+.nav{
   display: flex;
   align-items: center;
   position: fixed;
@@ -24,109 +24,12 @@ $icon-radio: .6rem;
   }
 }
 
-// Nav not shrinked
-.nav {
-  #icon-home {
-    transition: opacity 25ms ease-out;
-  }
-  
-  #icon-user {
-    transition: opacity 50ms ease-out;
-  }
-  
-  #icon-folder {
-    transition: opacity 100ms ease-out;
-  }
-  
-  #icon-star {
-    transition: opacity 150ms ease-out;
-  }
-  
-  #icon-chat {
-    transition: opacity 200ms ease-out;
-  }
-
-  @include mixins.tablet {
-    #icon-home {
-      transition: opacity 50ms ease-out;
-    }
-
-    #icon-user {
-      transition: opacity 150ms ease-out;
-    }
-    
-    #icon-folder {
-      transition: opacity 200ms ease-out;
-    }
-    
-    #icon-star {
-      transition: opacity 350ms ease-out;
-    }
-    
-    #icon-chat {
-      transition: opacity 400ms ease-out;
-    }
-  }
-}
-
-// Nav shrinked
-.nav--shrinked {
-  .nav__icon:first-of-type {
-    border-radius: $icon-radio;
-  }
-
-  .nav__icon:not(:first-of-type), .nav__icon--active:not(:first-of-type) {
-    opacity: 0.0;
-    cursor: default;
-  }
-
-  #icon-home {
-    transition: opacity 200ms ease-out;
-  }
-  
-  #icon-user {
-    transition: opacity 150ms ease-out;
-  }
-  
-  #icon-folder {
-    transition: opacity 100ms ease-out;
-  }
-  
-  #icon-star {
-    transition: opacity 50ms ease-out;
-  }
-  
-  #icon-chat {
-    transition: opacity 25ms ease-out;
-  }
-
-  @include mixins.tablet {
-    #icon-home {
-      transition: opacity 400ms ease-out;
-    }
-    
-    #icon-user {
-      transition: opacity 350ms ease-out;
-    }
-    
-    #icon-folder {
-      transition: opacity 200ms ease-out;
-    }
-    
-    #icon-star {
-      transition: opacity 150ms ease-out;
-    }
-
-    #icon-chat {
-      transition: opacity 50ms ease-out;
-    }
-  }
-}
-
 // Icons container
 .nav__icons {
   transition: font-size vars.$duration-short;
   font-size: 2rem;
+  display: flex;
+  flex-direction: column;
 
   #icon-language {
     font-size: 2.3rem;
@@ -150,6 +53,15 @@ $icon-radio: .6rem;
   
     #icon-chat {
       font-size: 2.4rem;
+    }
+  }
+
+  #icon-open-nav, #icon-close-nav {
+    margin-top: .75rem;
+    font-size: 2.5rem;
+
+    @include mixins.laptop {
+      display: none;
     }
   }
 }
@@ -176,7 +88,7 @@ $icon-radio: .6rem;
     border-radius: $icon-radio $icon-radio 0 0;
   }
 
-  &:last-of-type {
+  &:nth-child(6) {
     border-radius: 0 0 $icon-radio $icon-radio;
   }
 }
@@ -187,6 +99,7 @@ $icon-radio: .6rem;
   }
 }
 
+// The current active icon
 .nav__icon--active {
   color: vars.$color-white;
 }
