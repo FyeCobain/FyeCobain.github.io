@@ -4,9 +4,10 @@ import { useTranslation } from 'react-i18next'
 import { IoLanguageOutline, IoStarHalf } from 'react-icons/io5'
 import { AiOutlineHome, AiOutlineUser } from 'react-icons/ai'
 import { VscFolder } from 'react-icons/vsc'
-import { BsChatDots } from 'react-icons/bs'
-import { ENGLISH_US, SPANISH_MX } from '@app/consts'
+import { BsChatDots, BsMenuDown } from 'react-icons/bs'
+import { GrClose } from 'react-icons/gr'
 import { isEnglish } from '@app/functions'
+import { ENGLISH_US, SPANISH_MX } from '@app/consts'
 
 interface ScrollCheckInterface {
   section: HTMLElement
@@ -100,14 +101,10 @@ function toggleActive(icon: HTMLElement | null) {
 
 // Checks if the nav bar must be shrinked
 function checkNavBarShrink() {
-  if (window.scrollY === 0) {
+  if (window.scrollY === 0)
     navBar.classList.add('nav--shrinked')
-    navBar.classList.remove('nav')
-  }
-  else if (navBar.classList.contains('nav--shrinked')) {
-    navBar.classList.add('nav')
+  else
     navBar.classList.remove('nav--shrinked')
-  }
 }
 
 // Checks if the sections must have the 'unhide' class (the fade-in effect)
@@ -178,8 +175,18 @@ export default function Nav() {
   const navRef: MutableRefObject<null> = useRef(null)
   const { i18n } = useTranslation()
 
+  function shrink(shrinked: boolean) {
+    if (navRef.current === null) return
+    const NAV: HTMLElement = navRef.current
+
+    if (shrinked)
+      NAV.classList.add('nav--manually-shrinked')
+    else
+      NAV.classList.remove('nav--manually-shrinked')
+  }
+
   return (
-    <div ref = { navRef } id = "nav" className="nav--shrinked">
+    <div ref = { navRef } id="nav" className="nav nav--manually-shrinked">
       <div className="nav__icons text-center">
 
         <div id="icon-language" className="nav__icon" onClick = { () => toggleLanguage(i18n)}>
@@ -204,6 +211,14 @@ export default function Nav() {
 
         <div id="icon-chat" className="nav__icon">
           <BsChatDots />
+        </div>
+
+        <div id="icon-open-nav" onClick={ () => shrink(false) }>
+          <BsMenuDown />
+        </div>
+
+        <div id="icon-close-nav" onClick={ () => shrink(true) }>
+          <GrClose />
         </div>
 
       </div>
