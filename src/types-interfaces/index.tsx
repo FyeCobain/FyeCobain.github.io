@@ -1,4 +1,3 @@
-import { type stringNullable } from './types'
-import { type ImageContextValueInterface } from './interfaces'
+import { type ImagesContextValueInterface } from './interfaces'
 
-export type { stringNullable, ImageContextValueInterface }
+export type { ImagesContextValueInterface }
