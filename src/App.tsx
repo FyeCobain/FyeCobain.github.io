@@ -1,22 +1,22 @@
 import { useState } from 'react'
-import ImageOverlay from './components/ImageOverlay'
+import ImagesOverlay from './components/ImagesOverlay'
 import Nav from './components/Nav'
 import Header from './components/header/Header'
 import AboutMe from './components/aboutMe/AboutMe'
 import { ImageContext } from './contexts'
-import { type stringNullable, type ImageContextValueInterface } from './types-interfaces'
+import { type ImagesContextValueInterface } from './types-interfaces'
 
 function App() {
   // Image state context for the image oberlay
-  const [ image, setImage ] = useState<stringNullable>(null)
-  const imageState: ImageContextValueInterface = {
-    image,
-    setImage,
+  const [ images, setImages ] = useState<string[]>([])
+  const imageState: ImagesContextValueInterface = {
+    images,
+    setImages,
   }
 
   return (
     <ImageContext.Provider value={ imageState }>
-      <ImageOverlay />
+      <ImagesOverlay />
       <Nav />
       <Header />
       <AboutMe />
