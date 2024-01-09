@@ -12,23 +12,26 @@
   left: 0;
   
   &__slider {
-    width: 100vw;
-    height: 100%;
-    display: flex;
+    position: relative;
+    height: 100vh;
     overflow-x: hidden;
     overflow-y: auto;
-    padding: 3.2rem 0;
-    position: relative;
-    
+
     // Image (current by default)
     img {
       cursor: default;
       max-width: 98%;
-      margin: 0 auto;
+      margin: auto;
       position: absolute;
-      left: 0;
+      top: 50%;
       right: 0;
+      bottom: 50%;
+      left: 0;
       transition: left .5s, opacity .5s;
+      
+      @include mixins.phone-max {
+        top: 40%;
+      }
     }
 
     // Image hidden in the left
