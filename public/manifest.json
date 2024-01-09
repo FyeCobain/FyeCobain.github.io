@@ -1,6 +1,8 @@
 {
   "name": "Michel Bracamontes portfolio",
   "short_name": "Michel Bracam",
+  "theme_color": "#19647E",
+  "background_color": "#1F2041",
   "icons": [
     {
       "src": "./icon-192x192.png",
