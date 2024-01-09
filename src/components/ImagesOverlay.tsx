@@ -1,6 +1,6 @@
 import { type MouseEvent, useContext, useEffect } from 'react'
 import { type ImagesContextValueInterface } from '@app/types-interfaces'
-import { ImageContext } from '@app/contexts'
+import { ImagesContext } from '@app/contexts'
 import { IoMdCloseCircleOutline } from 'react-icons/io'
 
 // Removes images if any element but the current image is clicked
@@ -10,28 +10,28 @@ function removeImages(imageState: ImagesContextValueInterface, targetElement: El
 }
 
 export default function ImagesOverlay() {
-  const imageState: ImagesContextValueInterface = useContext(ImageContext)
+  const imagesState: ImagesContextValueInterface = useContext(ImagesContext)
 
   useEffect(() => {
-    if (imageState.images.length > 0)
+    if (imagesState.images.length > 0)
       document.body.classList.add('overflow-hidden')
     else
       document.body.classList.remove('overflow-hidden')
   })
 
-  if (imageState.images.length === 0)
+  if (imagesState.images.length === 0)
     return <></>
 
   return (
     <div
-      className="image-overlay"
-      onClick={ (e: MouseEvent) => removeImages(imageState, e.target as Element) } >
+      className="images-overlay"
+      onClick={ (e: MouseEvent) => removeImages(imagesState, e.target as Element) } >
 
-      <div className="image-overlay__container">
-        <img src={ imageState.images[0] }></img>
+      <div className="images-overlay__container">
+        <img src={ imagesState.images[0] }></img>
       </div>
 
-      <div className="image-overlay__close-button">
+      <div className="images-overlay__close-button">
         <IoMdCloseCircleOutline className />
       </div>
 
