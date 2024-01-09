@@ -1,9 +1,9 @@
 import { createContext } from 'react'
 import { type ImagesContextValueInterface } from '@app/types-interfaces'
 
-const defaultImageContextValue: ImagesContextValueInterface = {
+const defaultImagesContextValue: ImagesContextValueInterface = {
   images: [],
   setImages: (_images: string[]) => {},
 }
 
-export const ImageContext = createContext<ImagesContextValueInterface>(defaultImageContextValue)
+export const ImagesContext = createContext<ImagesContextValueInterface>(defaultImagesContextValue)

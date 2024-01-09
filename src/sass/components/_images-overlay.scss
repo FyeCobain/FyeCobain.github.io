@@ -1,7 +1,7 @@
 @use './../variables' as vars;
 @use './../mixins';
 
-.image-overlay {
+.images-overlay {
   cursor: pointer;
   background-color: rgba(black, 0.5);
   z-index: 2;
