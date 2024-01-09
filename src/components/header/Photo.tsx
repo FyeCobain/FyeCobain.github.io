@@ -8,11 +8,15 @@ export default function Photo() {
   const { t } = useTranslation()
   const imagesState: ImagesContextValueInterface = useContext(ImagesContext)
 
+  function setImage() {
+    imagesState.setImages([ photo ])
+  }
+
   return (
     <div className="header__photo content-center">
 
       <div className="header__photo-container">
-        <img width="200" height="200" alt={ t('alts.photo') } src={ photo } onClick={ () => imagesState.setImages([ photo ]) } />
+        <img width="200" height="200" alt={ t('alts.photo') } src={ photo } onClick={ setImage } />
         <div className="header__photo-container--overlay"></div>
       </div>
 
