@@ -16,10 +16,10 @@ function onKeyDown(event: KeyboardEvent, imagesState: ImagesContextValueInterfac
       removeImages(imagesState, null)
       break
     case 'ArrowLeft':
-      previous(sliderDiv)
+      previousImg(sliderDiv)
       break
     case 'ArrowRight':
-      next(sliderDiv)
+      nextImg(sliderDiv)
       break
   }
 }
@@ -30,16 +30,16 @@ function getImgs(sliderDiv: DivNullable): HTMLImageElement[] {
   return Array.from(sliderDiv.querySelectorAll('img'))
 }
 
-// Returns the current's image index
-function getCurrentImageIndex(imgs: HTMLImageElement[]): number {
+// Returns the current's img index
+function getCurrentImgIndex(imgs: HTMLImageElement[]): number {
   return imgs.findIndex((img: HTMLImageElement) => !img.classList.contains('prev') && !img.classList.contains('next'))
 }
 
 // Show previous image
-function previous(sliderDiv: DivNullable) {
+function previousImg(sliderDiv: DivNullable) {
   const imgs: HTMLImageElement[] = getImgs(sliderDiv)
   if (imgs.length <= 1) return
-  const currentImgIndex = getCurrentImageIndex(imgs)
+  const currentImgIndex = getCurrentImgIndex(imgs)
   if (currentImgIndex === 0) return
 
   imgs[currentImgIndex].classList.add('next')
@@ -47,10 +47,10 @@ function previous(sliderDiv: DivNullable) {
 }
 
 // show next image
-function next(sliderDiv: DivNullable) {
+function nextImg(sliderDiv: DivNullable) {
   const imgs: HTMLImageElement[] = getImgs(sliderDiv)
   if (imgs.length <= 1) return
-  const currentImgIndex = getCurrentImageIndex(imgs)
+  const currentImgIndex = getCurrentImgIndex(imgs)
   if (currentImgIndex === imgs.length - 1) return
 
   imgs[currentImgIndex].classList.add('prev')
