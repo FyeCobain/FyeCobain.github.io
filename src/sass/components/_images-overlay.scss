@@ -10,7 +10,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  
+
   &__slider {
     position: relative;
     height: 100vh;
@@ -27,22 +27,26 @@
       right: 0;
       bottom: 50%;
       left: 0;
-      transition: left .5s, opacity .5s;
+      transition: left vars.$duration-normal, opacity vars.$duration-short;
       
       @include mixins.phone-max {
         top: 40%;
       }
     }
 
+    // Previous and next images
+    img.prev, img.next {
+      transition: left vars.$duration-normal, opacity vars.$duration-normal;
+      opacity: 0;
+    }
+
     // Image hidden in the left
     img.prev {
-      opacity: 0;
       left: -147%;
     }
 
     // Image hidden in the right
     img.next {
-      opacity: 0;
       left: 100%;
     }
   }
