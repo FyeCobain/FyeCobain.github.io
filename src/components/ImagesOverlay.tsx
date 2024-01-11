@@ -1,8 +1,9 @@
-import { type MouseEvent, useContext, useEffect, useRef, type MutableRefObject, useCallback } from 'react'
-import { type DivNullable, type ImagesContextValueInterface } from '@app/types-interfaces'
+import { useContext, useEffect, useRef, useCallback, useState, type MutableRefObject } from 'react'
+import type { DragCallbacksInterface, DivNullable, ImagesContextValueInterface } from '@app/types-interfaces'
 import { IoMdCloseCircleOutline } from 'react-icons/io'
 import { GrPrevious } from 'react-icons/gr'
 import { ImagesContext } from '@app/contexts'
+import { onDrag } from '@app/functions'
 
 // Removes all the images from the slider
 function removeImages(imagesState: ImagesContextValueInterface, targetElement: Element | null = null) {
@@ -70,6 +71,9 @@ export default function ImagesOverlay() {
   const imagesState: ImagesContextValueInterface = useContext(ImagesContext)
   const sliderRef: MutableRefObject<DivNullable> = useRef(null)
   const listenerAddedRef: MutableRefObject<boolean> = useRef(false)
+  const [ mouseDownEvent, setMouseDownEvent ] = useState<React.MouseEvent>()
+  const [ touchStartEvent, setTouchStartEvent ] = useState<React.TouchEvent>()
+  const [ touchEndEvent, setTouchEndEvent ] = useState<React.TouchEvent>()
 
   // Creating the keydown callback
   const onKeyDownCallback = useCallback((event: KeyboardEvent) => {
@@ -119,14 +123,60 @@ export default function ImagesOverlay() {
   if (imagesState.images.length === 0)
     return <></>
 
+  const dragCallbakks: DragCallbacksInterface = {
+    onUpDrag: null,
+    onRightDrag: () => previousImg(imagesState, sliderRef.current),
+    onDownDrag: null,
+    onLeftDrag: () => nextImg(imagesState, sliderRef.current),
+  }
+
   return (
     <div
       className="images-overlay"
-      onClick={ (e: MouseEvent) => removeImages(imagesState, e.target as Element) } >
+      onClick={ (e: React.MouseEvent) => removeImages(imagesState, e.target as Element) }
+    >
 
       <div ref={ sliderRef } className="images-overlay__slider">
       {
-        imagesState.images.map((image: string, index: number) => <img key={ index } src={ image }></img>)
+        imagesState.images.map((image: string, index: number) =>
+          <img
+            key={ index }
+            src={ image }
+
+            onTouchStart={ (event: React.TouchEvent) => {
+              event.preventDefault()
+              setTouchStartEvent(event)
+            } }
+
+            onTouchMove={(event: React.TouchEvent) => {
+              event.preventDefault()
+              setTouchEndEvent(event)
+            } }
+
+            onTouchEnd={ () => {
+              if (touchStartEvent === undefined || touchEndEvent === undefined) return
+              onDrag(touchStartEvent.touches[0].clientX, touchStartEvent.touches[0].clientY, touchEndEvent.touches[0].clientX, touchEndEvent.touches[0].clientY, dragCallbakks, 90, 40)
+            } }
+
+            onMouseDown={ (event: React.MouseEvent) => {
+              event.preventDefault()
+              if (imagesState.images.length > 1) {
+                const target = event.target as Element
+                target.classList.add('cursor-grab')
+              }
+              setMouseDownEvent(event)
+            } }
+
+            onMouseUp={ (event: React.MouseEvent) => {
+              if (imagesState.images.length > 1) {
+                const target = event.target as Element
+                target.classList.remove('cursor-grab')
+              }
+              if (mouseDownEvent === undefined) return
+              onDrag(mouseDownEvent.clientX, mouseDownEvent.clientY, event.clientX, event.clientY, dragCallbakks, 70, 50)
+            } }
+          >
+          </img>)
       }
       </div>
 
@@ -140,7 +190,8 @@ export default function ImagesOverlay() {
 
       <div
         className={'images-overlay__prev-button content-center' + (imagesState.images.length <= 1 ? ' display-none' : '')}
-        onClick={ () => previousImg(imagesState, sliderRef.current) } >
+        onClick={ () => previousImg(imagesState, sliderRef.current) }
+      >
         <GrPrevious />
       </div>
 
