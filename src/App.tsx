@@ -7,11 +7,14 @@ import { ImagesContext } from './contexts'
 import { type ImagesContextValueInterface } from './types-interfaces'
 
 function App() {
-  // Image state context for the image oberlay
+  // Image state context for the image overlay
   const [ images, setImages ] = useState<string[]>([])
+  const [ currentImageIndex, setCurrentImageIndex ] = useState<number>(0)
   const imagesState: ImagesContextValueInterface = {
     images,
+    currentImageIndex,
     setImages,
+    setCurrentImageIndex,
   }
 
   return (
