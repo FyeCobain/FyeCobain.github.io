@@ -30,14 +30,14 @@ function checkButtons(imagesState: ImagesContextValueInterface, currentImageInde
   if (prevButton === null || nextButton === null) return
 
   if (currentImageIndex === 0)
-    prevButton.classList.add('display-none')
+    prevButton.classList.add('hide')
   else
-    prevButton.classList.remove('display-none')
+    prevButton.classList.remove('hide')
 
   if (currentImageIndex === imagesState.images.length - 1)
-    nextButton.classList.add('display-none')
+    nextButton.classList.add('hide')
   else
-    nextButton.classList.remove('display-none')
+    nextButton.classList.remove('hide')
 }
 
 // Show previous image

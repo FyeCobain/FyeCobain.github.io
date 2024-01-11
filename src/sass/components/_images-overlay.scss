@@ -2,7 +2,6 @@
 @use './../mixins';
 
 .images-overlay {
-  cursor: pointer;
   background-color: rgba(black, 0.5);
   z-index: 2;
   position: fixed;
@@ -10,9 +9,14 @@
   right: 0;
   bottom: 0;
   left: 0;
+  cursor: no-drop;
 
   svg {
     pointer-events: none;
+  }
+
+  &__close-button, &__prev-button, &__next-button {
+    cursor: pointer;
   }
 
   &__slider {
@@ -66,6 +70,7 @@
     left: calc(50% - $size / 2);
     display: flex;
     color: $color;
+
     svg {
       background-color: rgba(black, 0.2);
       border-radius: 50%;
@@ -89,7 +94,7 @@
     text-shadow: 1px 1px 2px black;
 
     p {
-      color: $color;
+      color: vars.$color-white;
       font-size: 1.7rem;
       font-weight: bold;
     }
