@@ -29,23 +29,41 @@
     img {
       cursor: default;
       max-width: 98%;
-      margin: auto;
+      max-height: 1000%;
+      margin: 0 auto;
       position: absolute;
-      top: 50%;
       right: 0;
-      bottom: 50%;
       left: 0;
-      transition: left vars.$duration-normal, opacity vars.$duration-short;
+      top: 21%;
+      transition: left vars.$duration-normal, opacity 0s, max-height vars.$duration-normal;
       
-      @include mixins.phone-max {
-        top: 40%;
+      @include mixins.tablet {
+        transition: left vars.$duration-normal, opacity vars.$duration-short, max-height vars.$duration-normal;
+        top: 10%;
+      }
+
+      @include mixins.laptop {
+        max-width: 100%;
+      }
+
+      @include mixins.desktop {
+        top: 5%;
       }
     }
 
     // Previous and next images
     img.prev, img.next {
-      transition: left vars.$duration-normal, opacity vars.$duration-normal;
+      transition: left vars.$duration-normal, opacity vars.$duration-normal, max-height vars.$duration-short;
       opacity: 0;
+      max-height: calc(100vh - 21%);
+
+      @include mixins.tablet {
+        max-height: calc(100vh - 10%);
+      }
+
+      @include mixins.desktop {
+        max-height: calc(100vh - 5%);
+      }
     }
 
     // Image hidden in the left
@@ -79,7 +97,7 @@
     @include mixins.laptop {
       top: 10rem;
       bottom: unset;
-      right: 33rem;
+      right: 17rem;
       left: unset;
     }
   }
@@ -111,7 +129,7 @@
     }
 
     @include mixins.desktop {
-      right: 8%
+      right: 4%
     }
   }
 
