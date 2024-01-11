@@ -133,14 +133,13 @@ export default function ImagesOverlay() {
   return (
     <div
       className="images-overlay"
-      onClick={ (e: React.MouseEvent) => removeImages(imagesState, e.target as Element) }
-    >
-
-      <div ref={ sliderRef } className="images-overlay__slider">
+      onClick={ (event: React.MouseEvent) => removeImages(imagesState, event.target as Element) }
+    ><div ref={ sliderRef } className="images-overlay__slider">
       {
         imagesState.images.map((image: string, index: number) =>
           <img
             key={ index }
+
             src={ image }
 
             onTouchStart={ (event: React.TouchEvent) => {
@@ -155,28 +154,27 @@ export default function ImagesOverlay() {
 
             onTouchEnd={ () => {
               if (touchStartEvent === undefined || touchEndEvent === undefined) return
-              onDrag(touchStartEvent.touches[0].clientX, touchStartEvent.touches[0].clientY, touchEndEvent.touches[0].clientX, touchEndEvent.touches[0].clientY, dragCallbakks, 90, 40)
+              onDrag(touchStartEvent.touches[0].clientX, touchStartEvent.touches[0].clientY, touchEndEvent.touches[0].clientX, touchEndEvent.touches[0].clientY, dragCallbakks, 65, 40)
             } }
 
             onMouseDown={ (event: React.MouseEvent) => {
+              if (imagesState.images.length <= 1) return
+
               event.preventDefault()
-              if (imagesState.images.length > 1) {
-                const target = event.target as Element
-                target.classList.add('cursor-grab')
-              }
+              if (event.target instanceof HTMLImageElement)
+                event.target.classList.add('cursor-grab')
               setMouseDownEvent(event)
             } }
 
             onMouseUp={ (event: React.MouseEvent) => {
-              if (imagesState.images.length > 1) {
-                const target = event.target as Element
-                target.classList.remove('cursor-grab')
-              }
+              if (imagesState.images.length <= 1) return
+
+              if (event.target instanceof HTMLImageElement)
+                event.target.classList.remove('cursor-grab')
               if (mouseDownEvent === undefined) return
               onDrag(mouseDownEvent.clientX, mouseDownEvent.clientY, event.clientX, event.clientY, dragCallbakks, 70, 50)
             } }
-          >
-          </img>)
+          ></img>)
       }
       </div>
 
@@ -191,14 +189,13 @@ export default function ImagesOverlay() {
       <div
         className={'images-overlay__prev-button content-center' + (imagesState.images.length <= 1 ? ' display-none' : '')}
         onClick={ () => previousImg(imagesState, sliderRef.current) }
-      >
-        <GrPrevious />
+      ><GrPrevious />
       </div>
 
       <div
         className={'images-overlay__next-button content-center' + (imagesState.images.length <= 1 ? ' display-none' : '')}
-        onClick={ () => nextImg(imagesState, sliderRef.current) } >
-        <GrPrevious />
+        onClick={ () => nextImg(imagesState, sliderRef.current) }
+      ><GrPrevious />
       </div>
 
     </div>

@@ -95,6 +95,7 @@
     }
 
     @include mixins.laptop {
+      font-size: calc($size - .5rem);
       top: 10rem;
       bottom: unset;
       right: 17rem;
@@ -114,7 +115,6 @@
     p {
       color: vars.$color-white;
       font-size: 1.7rem;
-      font-weight: bold;
     }
 
     @include mixins.tablet {
@@ -124,7 +124,7 @@
     }
 
     @include mixins.laptop {
-      top: 11rem;
+      top: 10.7rem;
       right: 1%;
     }
 
@@ -166,7 +166,6 @@
   }
 
   &__next-button {
-
     transform: scaleX(-1);
     right: 0;
 
