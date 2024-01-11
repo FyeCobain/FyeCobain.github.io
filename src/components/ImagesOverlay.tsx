@@ -77,17 +77,12 @@ export default function ImagesOverlay() {
       case 'Escape':
         removeImages(imagesState)
         break
-      case 'ArrowUp':
-        previousImg(imagesState, sliderRef.current)
-        break
       case 'ArrowLeft':
         previousImg(imagesState, sliderRef.current)
         break
       case 'ArrowRight':
         nextImg(imagesState, sliderRef.current)
         break
-      case 'ArrowDown':
-        nextImg(imagesState, sliderRef.current)
     }
   }, [ imagesState.images ])
 
