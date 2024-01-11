@@ -1,3 +1,4 @@
 import { isEnglish } from './lang'
+import { onDrag } from './callbacks'
 
-export { isEnglish }
+export { isEnglish, onDrag }
