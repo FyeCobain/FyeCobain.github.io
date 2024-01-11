@@ -19,6 +19,9 @@ export default defineConfig({
   build: {
     outDir: 'docs',
   },
+  esbuild: {
+    legalComments: 'none',
+  },
   base: '/vite-deploy-test/',
   resolve: {
     alias: {
