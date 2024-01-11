@@ -11,6 +11,10 @@
   bottom: 0;
   left: 0;
 
+  svg {
+    pointer-events: none;
+  }
+
   &__slider {
     position: relative;
     height: 100vh;
@@ -51,22 +55,104 @@
     }
   }
 
+  // Slider UI components
+  $size: 4.5rem;
+  $color: lighten(vars.$color-greene, 30);
+
   &__close-button {
-    $size: 4.5rem;
     font-size: $size;
     position: fixed;
     bottom: 10rem;
     left: calc(50% - $size / 2);
     display: flex;
-    color: lighten(vars.$color-greene, 30);
-    background-color: rgba(vars.$color-bg-primary, .3);
-    border-radius: 50%;
+    color: $color;
+    svg {
+      background-color: rgba(black, 0.2);
+      border-radius: 50%;
+    }
 
     @include mixins.laptop {
       top: 10rem;
       bottom: unset;
       right: 33rem;
       left: unset;
+    }
+  }
+
+  &__current-info {
+    display: flex;
+    height: $size;
+    position: fixed;
+    bottom: 12.5rem;
+    right: 2%;
+    pointer-events: none;
+    text-shadow: 1px 1px 2px black;
+
+    p {
+      color: $color;
+      font-size: 1.7rem;
+      font-weight: bold;
+    }
+
+    @include mixins.tablet {
+      p {
+        font-size: 2.5rem;
+      }
+    }
+
+    @include mixins.laptop {
+      top: 11rem;
+      right: 1%;
+    }
+
+    @include mixins.desktop {
+      right: 8%
+    }
+  }
+
+  &__prev-button, &__next-button {
+    color: vars.$color-greene-light;
+    font-size: 4rem;
+    
+    border-radius: .5rem;
+    padding: 1.5rem .3rem;
+    position: fixed;
+    top: 50%;
+
+    @include mixins.tablet {
+      font-size: 6rem;
+    }
+
+    @include mixins.laptop {
+      &:hover {
+        color: $color;
+      }
+    }
+  }
+
+  &__prev-button {
+    left: 0;
+
+    @include mixins.tablet {
+      left: 1%;
+    }
+
+    @include mixins.laptop {
+      left: 7%;
+    }
+  }
+
+  &__next-button {
+
+    transform: scaleX(-1);
+    right: 0;
+
+    @include mixins.tablet {
+      right: 1%;
+    }
+
+    @include mixins.laptop {
+      right: 7%;
     }
   }
 }
