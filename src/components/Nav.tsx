@@ -12,6 +12,7 @@ import { ENGLISH_US, SPANISH_MX } from '@app/consts'
 interface ScrollCheckInterface {
   section: HTMLElement
   icon: HTMLElement
+  unhideOffsetPercentage: number
   activeOffsetPercentage: number
 }
 
@@ -36,9 +37,11 @@ const setScrollListenerInterval = setInterval(() => {
     const HOME_ICON = document.getElementById('icon-home')
     const ABOUT_ME = document.getElementById('about-me')
     const USER_ICON = document.getElementById('icon-user')
+    const PROJECTS = document.getElementById('projects')
+    const FOLDER_ICON = document.getElementById('icon-folder')
 
     // If some element is null, do nothing
-    if (HEADER === null || HOME_ICON === null || ABOUT_ME === null || USER_ICON === null) {
+    if (HEADER === null || HOME_ICON === null || ABOUT_ME === null || USER_ICON === null || PROJECTS === null || FOLDER_ICON === null) {
       clearInterval(setScrollListenerInterval)
       return
     }
@@ -48,16 +51,24 @@ const setScrollListenerInterval = setInterval(() => {
       {
         section: HEADER,
         icon: HOME_ICON,
+        unhideOffsetPercentage: 0,
         activeOffsetPercentage: 0,
       },
       {
         section: ABOUT_ME,
         icon: USER_ICON,
+        unhideOffsetPercentage: 12,
         activeOffsetPercentage: 40,
+      },
+      {
+        section: PROJECTS,
+        icon: FOLDER_ICON,
+        unhideOffsetPercentage: 6,
+        activeOffsetPercentage: 6,
       },
     ]
 
-    // Adding the 'hide' class to sections below
+    // Adding the 'hide' class to the sections below
     scrollCheckObjects.slice(1).forEach((scrollCheckObject: ScrollCheckInterface) => {
       if (isBelow(scrollCheckObject.section)) scrollCheckObject.section.classList.add('hide')
     })
@@ -115,8 +126,11 @@ function checkNavBarShrink(firstCheck = false) {
 
 // Checks if the sections must have the 'unhide' class (the fade-in effect)
 function checkShowableSections() {
-  const HIDDEN_SECTIONS: HTMLElement[] = Array.from(document.querySelectorAll('.hide:not(.unhide)'))
+  // Getting hidden sections
+  const HIDDEN_SECTIONS: ScrollCheckInterface[] = scrollCheckObjects.slice(1).filter((scrollCheckObject: ScrollCheckInterface) =>
+    scrollCheckObject.section.classList.contains('hide') && !scrollCheckObject.section.classList.contains('unhide'))
 
+  // If there aren't hidden sections, remove this function from the scroll callback...
   if (HIDDEN_SECTIONS.length === 0) {
     document.removeEventListener('scroll', scrollCallback)
     document.addEventListener('scroll', () => {
@@ -127,18 +141,18 @@ function checkShowableSections() {
   }
 
   // Unhide sections
-  HIDDEN_SECTIONS.forEach((section: HTMLElement) => {
-    if (isVisible(section, 10)) {
-      section.classList.add('unhide')
+  HIDDEN_SECTIONS.forEach((scrollCheckObject: ScrollCheckInterface) => {
+    if (isVisible(scrollCheckObject.section, scrollCheckObject.unhideOffsetPercentage)) {
+      scrollCheckObject.section.classList.add('unhide')
       setTimeout(() => {
-        section.classList.remove('hide')
-        section.classList.remove('unhide')
+        scrollCheckObject.section.classList.remove('hide')
+        scrollCheckObject.section.classList.remove('unhide')
       }, 1000)
     }
   })
 }
 
-// Checks for the new active icon (from bottom to top)
+// Searchs for the new active icon (from bottom to top)
 function checkCurrentActiveSection() {
   let currentActiveIndex = -1
   for (let i = scrollCheckObjects.length - 1; i >= 0; i--)
@@ -203,7 +217,7 @@ export default function Nav() {
           <AiOutlineUser />
         </div>
 
-        <div id="icon-folder" className="nav__icon">
+        <div id="icon-folder" className="nav__icon" onClick={ () => scrollTo('projects') }>
           <VscFolder />
         </div>
 
