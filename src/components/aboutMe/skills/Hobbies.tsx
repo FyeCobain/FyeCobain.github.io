@@ -8,7 +8,7 @@ export default function Hobbies() {
 
   return (
     <div className="hobbies-container">
-      <div className="hobbies-container__header">
+      <div className="hobbies-container__heading">
         <h4>{ t('hobbies.myHobbies') }</h4>
       </div>
       <div className="hobbies-container__list">

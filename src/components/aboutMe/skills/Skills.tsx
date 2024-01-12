@@ -9,7 +9,7 @@ interface SkillProps {
 export default function Skills({ title, skillsArray, icon }: SkillProps) {
   return (
     <div className="skills-container">
-      <div className="skills-container__header">
+      <div className="skills-container__heading">
         <h4>{ title }</h4>
         { icon }
       </div>

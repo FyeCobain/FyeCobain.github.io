@@ -1,5 +1,11 @@
 @use './../../variables' as vars;
+@use './../../mixins';
 
 .projects {
   margin-top: vars.$margin-base;
+  max-width: vars.$width-normal;
+
+  @include mixins.laptop {
+    max-width: 100%;
+  }
 }
