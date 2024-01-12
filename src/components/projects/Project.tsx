@@ -19,7 +19,7 @@ export default function Project({ project }: { project: ProjectInterface }) {
           : <><a target="_blank" rel="noreferrer" href={ project.link }>{ project.title } <LiaExternalLinkSquareAltSolid /></a></>
         }
       </div>
-      <img src={ project.images[0] } alt={ project.title } onClick={ setImages } />
+      <img width="250" height="280" src={ project.images[0] } alt={ project.title } onClick={ setImages } />
       <div className="project__footer">
         <p className="description">{ project.description }</p>
       </div>
