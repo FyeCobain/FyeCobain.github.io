@@ -63,8 +63,8 @@ const setScrollListenerInterval = setInterval(() => {
       {
         section: PROJECTS,
         icon: FOLDER_ICON,
-        unhideOffsetPercentage: 6,
-        activeOffsetPercentage: 6,
+        unhideOffsetPercentage: 10,
+        activeOffsetPercentage: 53.5,
       },
     ]
 

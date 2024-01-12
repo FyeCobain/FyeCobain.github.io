@@ -52,6 +52,10 @@ export default i18n
             nature: 'Nature',
             games: 'Videogames',
           },
+          projects: {
+            myProjects: 'My projects',
+            vscTheme: 'Visual Studio Code theme',
+          },
         },
       },
       es: {
@@ -96,6 +100,10 @@ export default i18n
             learn: 'Aprender (de todo)',
             nature: 'Naturaleza',
             games: 'Videojuegos',
+          },
+          projects: {
+            myProjects: 'Mis proyectos',
+            vscTheme: 'Tema de Visual Studio Code',
           },
         },
       },

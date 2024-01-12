@@ -11,3 +11,10 @@ export interface DragCallbacksInterface {
   onDownDrag: (() => void) | null
   onLeftDrag: (() => void) | null
 }
+
+export interface ProjectInterface {
+  title: string
+  link: string | null
+  images: string[]
+  description: string
+}
