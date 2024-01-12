@@ -3,7 +3,7 @@ import { FaNodeJs } from 'react-icons/fa'
 import { VscFileBinary } from 'react-icons/vsc'
 import { IoExtensionPuzzleOutline } from 'react-icons/io5'
 import { useTranslation } from 'react-i18next'
-import Skill from './Skills'
+import Skills from './Skills'
 import Hobbies from './Hobbies'
 
 export default function SkillsContainer() {
@@ -56,10 +56,10 @@ export default function SkillsContainer() {
     <div className="skills content-center">
       <h3>{ t('skills.value') }</h3>
       <div className="skills-parent-container">
-        <Skill title="Frontend" icon={ <GrHtml5 /> } skillsArray={ skills[0] } />
-        <Skill title="Backend" icon={ <FaNodeJs /> } skillsArray={ skills[1] } />
-        <Skill title="Desktop / General" icon={ <VscFileBinary /> } skillsArray={ skills[2] } />
-        <Skill title={ t('skills.softSkills') } icon={ <IoExtensionPuzzleOutline /> } skillsArray={ skills[3] } />
+        <Skills title="Frontend" icon={ <GrHtml5 /> } skillsArray={ skills[0] } />
+        <Skills title="Backend" icon={ <FaNodeJs /> } skillsArray={ skills[1] } />
+        <Skills title="Desktop / General" icon={ <VscFileBinary /> } skillsArray={ skills[2] } />
+        <Skills title={ t('skills.softSkills') } icon={ <IoExtensionPuzzleOutline /> } skillsArray={ skills[3] } />
         <Hobbies />
       </div>
     </div>
