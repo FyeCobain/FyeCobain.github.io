@@ -2,7 +2,7 @@
 @use './../mixins';
 
 .images-overlay {
-  background-color: rgba(black, 0.5);
+  background-color: rgba(black, 0.65);
   z-index: 2;
   position: fixed;
   top: 0;
@@ -24,56 +24,45 @@
     height: 100vh;
     overflow-x: hidden;
     overflow-y: auto;
+  }
 
-    // Image (current by default)
-    img {
-      cursor: default;
-      max-width: 98%;
-      max-height: 1000%;
-      margin: 0 auto;
-      position: absolute;
-      right: 0;
-      left: 0;
-      top: 21%;
-      transition: left vars.$duration-normal, opacity 0s, max-height vars.$duration-normal;
-      
-      @include mixins.tablet {
-        transition: left vars.$duration-normal, opacity vars.$duration-short, max-height vars.$duration-normal;
-        top: 10%;
-      }
+  // Image DIV container
+  &__image {
+    pointer-events: none;
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    transition: left vars.$duration-normal, opacity 0s, max-height vars.$duration-normal;
 
-      @include mixins.laptop {
-        max-width: 100%;
-      }
-
-      @include mixins.desktop {
-        top: 5%;
-      }
+    @include mixins.tablet {
+      transition: left vars.$duration-normal, opacity vars.$duration-short, max-height vars.$duration-normal;
     }
 
-    // Previous and next images
-    img.prev, img.next {
+    &.prev, &.next {
       transition: left vars.$duration-normal, opacity vars.$duration-normal, max-height vars.$duration-short;
       opacity: 0;
-      max-height: calc(100vh - 21%);
-
-      @include mixins.tablet {
-        max-height: calc(100vh - 10%);
-      }
-
-      @include mixins.desktop {
-        max-height: calc(100vh - 5%);
-      }
     }
 
-    // Image hidden in the left
-    img.prev {
-      left: -147%;
+    &.prev {
+      left: -100%;
     }
 
-    // Image hidden in the right
-    img.next {
+    &.next {
       left: 100%;
+    }
+    
+    img {
+      pointer-events: all;
+      max-width: 98%;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 
@@ -82,9 +71,10 @@
   $color: lighten(vars.$color-greene, 30);
 
   &__close-button {
+    z-index: 2;
     font-size: $size;
     position: fixed;
-    bottom: 10rem;
+    bottom: 6%;
     left: calc(50% - $size / 2);
     display: flex;
     color: $color;
@@ -104,6 +94,7 @@
   }
 
   &__current-info {
+    z-index: 2;
     display: flex;
     height: $size;
     position: fixed;
@@ -134,6 +125,7 @@
   }
 
   &__prev-button, &__next-button {
+    z-index: 2;
     color: vars.$color-greene-light;
     font-size: 4rem;
     
