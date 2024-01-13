@@ -2,6 +2,7 @@
 @use './../../mixins';
 
 .projects {
+  width: 100%;
   margin-top: vars.$margin-base;
   max-width: vars.$width-normal;
 

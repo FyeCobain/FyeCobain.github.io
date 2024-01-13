@@ -11,8 +11,8 @@
   }
 
   @include mixins.laptop {
-    width: 96rem;
     grid-template-columns: repeat(3, 1fr);
     gap: 4rem;
+    width: 60%;
   }
 }
