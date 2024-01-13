@@ -115,8 +115,8 @@ export default function ImagesOverlay() {
     checkButtons(imagesState, imagesState.currentImageIndex)
 
     // Adding the 'next' class to the images starting from the second one
-    sliderRef?.current?.querySelectorAll('.images-overlay__image:not(:first-of-type)').forEach((img: Element) => {
-      img.classList.add('next')
+    sliderRef?.current?.querySelectorAll('.images-overlay__image:not(:first-of-type)').forEach((imgContainer: Element) => {
+      imgContainer.classList.add('next')
     })
   }, [ imagesState.images ])
 
@@ -141,6 +141,8 @@ export default function ImagesOverlay() {
         <div key={ index } className="images-overlay__image">
           <img
             src={ image }
+
+            className={ imagesState.images.length <= 1 ? '' : 'cursor-pointer' }
 
             onTouchStart={ (event: React.TouchEvent) => {
               event.preventDefault()
