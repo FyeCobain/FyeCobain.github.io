@@ -96,9 +96,9 @@
 
     @include mixins.laptop {
       font-size: calc($size - .5rem);
-      top: 10rem;
+      top: 5%;
+      right: 4.4%;
       bottom: unset;
-      right: 17rem;
       left: unset;
     }
   }
