@@ -1,12 +1,24 @@
 @use './variables' as vars;
+@use './mixins';
 
 .section-heading {
   display: flex;
   align-items: center;
+  text-align: center;
     
   svg {
     margin-left: 1.4rem;
-    font-size: 4.2rem;
+    font-size: 4.1rem;
+  }
+
+  @include mixins.phone {
+    h2 {
+      font-size: 4rem;
+    }
+
+    svg {
+      font-size: 4.2rem;
+    }
   }
 }
 
