@@ -2,13 +2,16 @@
 @use './../../mixins';
 
 .project {
-  padding: 0 2rem;
+  
   @include mixins.comic-background-2(darken(vars.$color-bg-blue-1, 1));
   border-radius: 1rem;
   border: 1px solid lighten(vars.$color-bg-blue-2, 10);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   &:hover {
-    border-color: lighten(vars.$color-bg-blue-2, 18);
+    border-color: lighten(vars.$color-bg-blue-2, 25);
     color: vars.$color-greene-light;
 
     a, svg {
@@ -20,16 +23,16 @@
     p {
       text-align: center;
       font-size: 2.5rem;
-      padding: 1.3rem;
+      padding: 1.3rem 0;
     }
   }
 
   a {
     font-size: 2.5rem;
-    padding: 1rem;
+    padding: 1rem 0;
     width: 100%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     text-decoration: none;
 
@@ -39,11 +42,15 @@
   }
 
   svg {
-    font-size: 3.5rem;
+    font-size: 3.2rem;
+    margin-left: 2rem;
   }
 
   img {
+    margin: 0 2rem;
     border-radius: 1rem;
+    width: auto;
+    height: auto;
     max-width: 100%;
 
     &:hover {
@@ -53,7 +60,7 @@
 
   &__footer {
     color: vars.$color-white;
-    padding: 1rem;
+    padding: 1rem 0;
     text-align: center;
   }
 }

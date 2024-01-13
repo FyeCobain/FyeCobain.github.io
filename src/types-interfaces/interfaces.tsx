@@ -15,6 +15,7 @@ export interface DragCallbacksInterface {
 export interface ProjectInterface {
   title: string
   link: string | null
-  images: string[]
   description: string
+  image: string
+  slider_images: string[]
 }

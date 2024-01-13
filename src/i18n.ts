@@ -55,6 +55,9 @@ export default i18n
           projects: {
             myProjects: 'My projects',
             vscTheme: 'Visual Studio Code theme',
+            game: 'Videogame',
+            chatApp: 'Chat application',
+            scenesGetter: 'Scenes extractor',
           },
         },
       },
@@ -104,6 +107,9 @@ export default i18n
           projects: {
             myProjects: 'Mis proyectos',
             vscTheme: 'Tema de Visual Studio Code',
+            game: 'Videojuego',
+            chatApp: 'Aplicación de chat',
+            scenesGetter: 'Extractor de escenas',
           },
         },
       },

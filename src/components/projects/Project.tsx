@@ -7,7 +7,7 @@ export default function Project({ project }: { project: ProjectInterface }) {
   const imagesState: ImagesContextValueInterface = useContext(ImagesContext)
 
   function setImages() {
-    imagesState.setImages(project.images)
+    imagesState.setImages(project.slider_images)
   }
 
   return (
@@ -19,7 +19,7 @@ export default function Project({ project }: { project: ProjectInterface }) {
           : <><a target="_blank" rel="noreferrer" href={ project.link }>{ project.title } <LiaExternalLinkSquareAltSolid /></a></>
         }
       </div>
-      <img width="250" height="280" src={ project.images[0] } alt={ project.title } onClick={ setImages } />
+      <img width="290" height="310" src={ project.image } alt={ project.title } onClick={ setImages } />
       <div className="project__footer">
         <p className="description">{ project.description }</p>
       </div>
