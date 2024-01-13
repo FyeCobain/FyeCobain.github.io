@@ -13,15 +13,15 @@ function removeImages(imagesState: ImagesContextValueInterface, targetElement: E
   }
 }
 
-// Returns an array of the slider's img elments
-function getImgs(sliderDiv: DivNullable): HTMLImageElement[] {
+// Returns an array of the slider's img containers
+function getImgsContainers(sliderDiv: DivNullable): HTMLDivElement[] {
   if (sliderDiv === null) return []
-  return Array.from(sliderDiv.querySelectorAll('img'))
+  return Array.from(sliderDiv.querySelectorAll('div'))
 }
 
 // Returns the current's img index
-function getCurrentImgIndex(imgs: HTMLImageElement[]): number {
-  return imgs.findIndex((img: HTMLImageElement) => !img.classList.contains('prev') && !img.classList.contains('next'))
+function getCurrentImgIndex(imgsContainers: HTMLDivElement[]): number {
+  return imgsContainers.findIndex((imgContainer: HTMLDivElement) => !imgContainer.classList.contains('prev') && !imgContainer.classList.contains('next'))
 }
 
 // Checks if the 'previous' or the 'next' button must be disabled
@@ -43,26 +43,26 @@ function checkButtons(imagesState: ImagesContextValueInterface, currentImageInde
 
 // Show previous image
 function previousImg(imagesState: ImagesContextValueInterface, sliderDiv: DivNullable) {
-  const imgs: HTMLImageElement[] = getImgs(sliderDiv)
-  if (imgs.length <= 1) return
-  const currentImageIndex = getCurrentImgIndex(imgs)
+  const imgsContainers: HTMLDivElement[] = getImgsContainers(sliderDiv)
+  if (imgsContainers.length <= 1) return
+  const currentImageIndex = getCurrentImgIndex(imgsContainers)
   if (currentImageIndex === 0) return
 
-  imgs[currentImageIndex].classList.add('next')
-  imgs[currentImageIndex - 1].classList.remove('prev')
+  imgsContainers[currentImageIndex].classList.add('next')
+  imgsContainers[currentImageIndex - 1].classList.remove('prev')
   imagesState.setCurrentImageIndex(currentImageIndex - 1)
   checkButtons(imagesState, currentImageIndex - 1)
 }
 
 // show next image
 function nextImg(imagesState: ImagesContextValueInterface, sliderDiv: DivNullable) {
-  const imgs: HTMLImageElement[] = getImgs(sliderDiv)
-  if (imgs.length <= 1) return
-  const currentImageIndex = getCurrentImgIndex(imgs)
-  if (currentImageIndex === imgs.length - 1) return
+  const imgsContainers: HTMLDivElement[] = getImgsContainers(sliderDiv)
+  if (imgsContainers.length <= 1) return
+  const currentImageIndex = getCurrentImgIndex(imgsContainers)
+  if (currentImageIndex === imgsContainers.length - 1) return
 
-  imgs[currentImageIndex].classList.add('prev')
-  imgs[currentImageIndex + 1].classList.remove('next')
+  imgsContainers[currentImageIndex].classList.add('prev')
+  imgsContainers[currentImageIndex + 1].classList.remove('next')
   imagesState.setCurrentImageIndex(currentImageIndex + 1)
   checkButtons(imagesState, currentImageIndex + 1)
 }
@@ -115,7 +115,7 @@ export default function ImagesOverlay() {
     checkButtons(imagesState, imagesState.currentImageIndex)
 
     // Adding the 'next' class to the images starting from the second one
-    sliderRef?.current?.querySelectorAll('img:not(:first-of-type)').forEach((img: Element) => {
+    sliderRef?.current?.querySelectorAll('.images-overlay__image:not(:first-of-type)').forEach((img: Element) => {
       img.classList.add('next')
     })
   }, [ imagesState.images ])
@@ -134,12 +134,12 @@ export default function ImagesOverlay() {
     <div
       className="images-overlay"
       onClick={ (event: React.MouseEvent) => removeImages(imagesState, event.target as Element) }
-    ><div ref={ sliderRef } className="images-overlay__slider">
+    >
+    <div ref={ sliderRef } className="images-overlay__slider">
       {
         imagesState.images.map((image: string, index: number) =>
+        <div key={ index } className="images-overlay__image">
           <img
-            key={ index }
-
             src={ image }
 
             onTouchStart={ (event: React.TouchEvent) => {
@@ -174,7 +174,9 @@ export default function ImagesOverlay() {
               if (mouseDownEvent === undefined) return
               onDrag(mouseDownEvent.clientX, mouseDownEvent.clientY, event.clientX, event.clientY, dragCallbakks, 70, 50)
             } }
-          ></img>)
+          ></img>
+        </div>,
+        )
       }
       </div>
 
