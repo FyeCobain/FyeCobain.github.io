@@ -114,7 +114,7 @@ export default function ImagesOverlay() {
     // Checking if buttons must be enabled or disabled
     checkButtons(imagesState, imagesState.currentImageIndex)
 
-    // Adding the 'next' class to the images starting from the second one
+    // Adding the 'next' class to the image containers starting from the second one
     sliderRef?.current?.querySelectorAll('.images-overlay__image:not(:first-of-type)').forEach((imgContainer: Element) => {
       imgContainer.classList.add('next')
     })

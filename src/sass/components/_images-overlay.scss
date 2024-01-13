@@ -71,20 +71,25 @@
     z-index: 2;
     font-size: $size;
     position: fixed;
-    bottom: 6%;
-    left: calc(50% - $size / 2);
+    top: 21%;
+    right: 0;
     display: flex;
     color: $color;
 
     svg {
-      background-color: rgba(black, 0.2);
+      background-color: rgba(black, 0.025);
       border-radius: 50%;
+    }
+
+    @include mixins.tablet {
+      top: 13%;
+      right: 3%;
     }
 
     @include mixins.laptop {
       font-size: calc($size - .5rem);
-      top: 5%;
-      right: 4.4%;
+      top: 8%;
+      right: 4%;
       bottom: unset;
       left: unset;
     }
@@ -95,8 +100,8 @@
     display: flex;
     height: $size;
     position: fixed;
-    bottom: 12.5rem;
-    right: 2%;
+    top: 18%;
+    right: 1.5%;
     pointer-events: none;
     text-shadow: 1px 1px 2px black;
 
@@ -106,18 +111,17 @@
     }
 
     @include mixins.tablet {
+      top: 10%;
+      right: 3%;
+
       p {
         font-size: 2.5rem;
       }
     }
 
     @include mixins.laptop {
-      top: 10.7rem;
-      right: 1%;
-    }
-
-    @include mixins.desktop {
-      right: 4%
+      top: 4%;
+      right: 3.7%;
     }
   }
 
