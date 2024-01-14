@@ -67,6 +67,20 @@ function nextImg(imagesState: ImagesContextValueInterface, sliderDiv: DivNullabl
   checkButtons(imagesState, currentImageIndex + 1)
 }
 
+// Returns the 'clientX' value of the mouse click or single touch event
+function getClientX(event: React.MouseEvent | React.TouchEvent) {
+  if ('clientX' in event)
+    return event.clientX
+  else
+    return event.touches[0].clientX
+}
+
+// Performs the drag movement
+function dragImg(event: React.MouseEvent | React.TouchEvent, startEvent: React.MouseEvent | React.TouchEvent) {
+  const imgContainer: HTMLDivElement = (event.target as HTMLImageElement).parentNode as HTMLDivElement
+  imgContainer.style.left = `${ getClientX(event) - getClientX(startEvent) }px`
+}
+
 // Adds or removes the 'cursor-grab' and 'no-transitions' classes
 function addDragClasses(image: HTMLImageElement, add: boolean) {
   add ? image.classList.add('cursor-grab') : image.classList.remove('cursor-grab')
@@ -74,14 +88,8 @@ function addDragClasses(image: HTMLImageElement, add: boolean) {
   add ? container.classList.add('no-transitions') : container.classList.remove('no-transitions')
 }
 
-// Drag effect
-function dragImg(event: React.MouseEvent, mouseDownEvent: React.MouseEvent) {
-  const imgContainer: HTMLDivElement = (mouseDownEvent.target as HTMLImageElement).parentNode as HTMLDivElement
-  imgContainer.style.left = `${ event.clientX - mouseDownEvent.clientX }px`
-}
-
 // Restores the image original position
-function restoreImgPosition(mouseDownEvent: React.MouseEvent | undefined) {
+function restoreImgPosition(mouseDownEvent: React.TouchEvent | React.MouseEvent | undefined) {
   if (mouseDownEvent !== undefined)
     ((mouseDownEvent.target as HTMLImageElement).parentNode as HTMLDivElement).style.left = ''
 }
@@ -101,8 +109,22 @@ export default function ImagesOverlay() {
       case 'Escape':
         removeImages(imagesState)
         break
+      case 'ArrowUp':
+        sliderRef.current?.scrollTo({
+          left: sliderRef.current.scrollLeft,
+          top: sliderRef.current.scrollTop - 105,
+          behavior: 'smooth',
+        })
+        break
       case 'ArrowLeft':
         previousImg(imagesState, sliderRef.current)
+        break
+      case 'ArrowDown':
+        sliderRef.current?.scrollTo({
+          left: sliderRef.current.scrollLeft,
+          top: sliderRef.current.scrollTop + 105,
+          behavior: 'smooth',
+        })
         break
       case 'ArrowRight':
         nextImg(imagesState, sliderRef.current)
@@ -145,6 +167,18 @@ export default function ImagesOverlay() {
     return imagesState.images.length <= 1
   }
 
+  // If the touch event was cancelled or has finished
+  function touchEndedHandler(event: React.TouchEvent) {
+    if (singleImage()) return
+
+    if (touchStartEvent === undefined || touchEndEvent === undefined) return
+
+    addDragClasses(event.target as HTMLImageElement, false)
+    restoreImgPosition(touchStartEvent)
+
+    onDrag(touchStartEvent.touches[0].clientX, touchStartEvent.touches[0].clientY, touchEndEvent.touches[0].clientX, touchEndEvent.touches[0].clientY, dragCallbakks, 60, 40)
+  }
+
   if (imagesState.images.length === 0)
     return <></>
 
@@ -175,24 +209,31 @@ export default function ImagesOverlay() {
 
           className={ imagesState.images.length <= 1 ? '' : 'cursor-pointer' }
 
+          // When the TOUCH event starts inside the element
           onTouchStart={ (event: React.TouchEvent) => {
-            event.preventDefault()
+            if (singleImage()) return
+
+            addDragClasses(event.target as HTMLImageElement, true)
             setTouchStartEvent(event)
           } }
 
+          // When a drag TOUCH occurs inside the element
           onTouchMove={(event: React.TouchEvent) => {
-            event.preventDefault()
+            if (singleImage() || event.touches.length > 1) return
+
             setTouchEndEvent(event)
+            if (touchStartEvent === undefined) return
+            dragImg(event, touchStartEvent)
           } }
 
-          onTouchEnd={ () => {
-            if (touchStartEvent === undefined || touchEndEvent === undefined) return
-            onDrag(touchStartEvent.touches[0].clientX, touchStartEvent.touches[0].clientY, touchEndEvent.touches[0].clientX, touchEndEvent.touches[0].clientY, dragCallbakks, 65, 40)
-          } }
+          // When the TOUCH is cancelled or finished
+          onTouchCancel={ touchEndedHandler }
+
+          onTouchEnd={ touchEndedHandler }
 
           // When the MOUSE button is pressed inside the element
           onMouseDown={ (event: React.MouseEvent) => {
-            if (singleImage()) return
+            if (singleImage() || event.button !== 0) return
 
             event.preventDefault()
             addDragClasses(event.target as HTMLImageElement, true)
