@@ -57,6 +57,10 @@
   display: none !important;
 }
 
+.no-transition {
+  transition: all 0s !important;
+}
+
 .hide {
   opacity: 0;
   cursor: default !important;
