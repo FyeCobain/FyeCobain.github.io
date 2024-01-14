@@ -53,12 +53,12 @@
   cursor: grab !important;
 }
 
-.display-none {
-  display: none !important;
+.no-transitions {
+  transition: all 0s !important;
 }
 
-.no-transition {
-  transition: all 0s !important;
+.display-none {
+  display: none !important;
 }
 
 .hide {
