@@ -93,7 +93,7 @@ export default function ImagesOverlay() {
   const [ mouseDownEvent, setMouseDownEvent ] = useState<React.MouseEvent>()
   const [ touchStartEvent, setTouchStartEvent ] = useState<React.TouchEvent>()
   const [ touchEndEvent, setTouchEndEvent ] = useState<React.TouchEvent>()
-  const [ currentlyDown, setCurrentlyDown ] = useState<boolean>(false)
+  const [ dragInProgress, setDragInProgress ] = useState<boolean>(false)
 
   // Creating the keydown callback
   const onKeyDownCallback = useCallback((event: KeyboardEvent) => {
@@ -140,7 +140,7 @@ export default function ImagesOverlay() {
     })
   }, [ imagesState.images ])
 
-  // Returns true if theere
+  // Returns true if there is only one image (or less)
   function singleImage(): boolean {
     return imagesState.images.length <= 1
   }
@@ -160,10 +160,10 @@ export default function ImagesOverlay() {
       className="images-overlay"
 
       onClick={ (event: React.MouseEvent) => {
-        if (!currentlyDown)
+        if (!dragInProgress)
           removeImages(imagesState, event.target as Element)
         else
-          setCurrentlyDown(false)
+          setDragInProgress(false)
       } }
     >
     <div ref={ sliderRef } className="images-overlay__slider">
@@ -197,14 +197,14 @@ export default function ImagesOverlay() {
             event.preventDefault()
             addDragClasses(event.target as HTMLImageElement, true)
             setMouseDownEvent(event)
-            setCurrentlyDown(true)
+            setDragInProgress(true)
           } }
 
           // When moving the MOUSE inside the element
           onMouseMove={ (event: React.MouseEvent) => {
             if (singleImage()) return
 
-            if (currentlyDown && mouseDownEvent !== undefined)
+            if (dragInProgress && mouseDownEvent !== undefined)
               dragImg(event, mouseDownEvent)
           } }
 
@@ -212,7 +212,7 @@ export default function ImagesOverlay() {
           onMouseLeave={ (event: React.MouseEvent) => {
             if (singleImage()) return
 
-            if (currentlyDown) {
+            if (dragInProgress) {
               addDragClasses(event.target as HTMLImageElement, false)
               restoreImgPosition(mouseDownEvent)
               setMouseDownEvent(undefined)
@@ -225,7 +225,7 @@ export default function ImagesOverlay() {
 
             addDragClasses(event.target as HTMLImageElement, false)
             restoreImgPosition(mouseDownEvent)
-            setCurrentlyDown(false)
+            setDragInProgress(false)
 
             if (mouseDownEvent === undefined) return
             onDrag(mouseDownEvent.clientX, mouseDownEvent.clientY, event.clientX, event.clientY, dragCallbakks, 70, 50)
