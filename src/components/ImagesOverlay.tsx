@@ -183,7 +183,7 @@ export default function ImagesOverlay() {
             if (event.target instanceof HTMLImageElement) {
               event.target.classList.add('cursor-grab')
               const container: HTMLDivElement = event.target.parentNode as HTMLDivElement
-              container.classList.add('no-transition')
+              container.classList.add('no-transitions')
             }
             setMouseDownEvent(event)
             setDownEventInProgress(true)
@@ -197,8 +197,9 @@ export default function ImagesOverlay() {
           onMouseLeave={ (event: React.MouseEvent) => {
             if (downEventInProgress) {
               if (event.target instanceof HTMLImageElement) {
+                event.target.classList.remove('cursor-grab')
                 const container: HTMLDivElement = event.target.parentNode as HTMLDivElement
-                container.classList.remove('no-transition')
+                container.classList.remove('no-transitions')
               }
               if (mouseDownEvent !== undefined)
                 restoreImg(mouseDownEvent)
@@ -211,7 +212,7 @@ export default function ImagesOverlay() {
             if (event.target instanceof HTMLImageElement) {
               event.target.classList.remove('cursor-grab')
               const container: HTMLDivElement = event.target.parentNode as HTMLDivElement
-              container.classList.remove('no-transition')
+              container.classList.remove('no-transitions')
             }
 
             if (mouseDownEvent === undefined) return
