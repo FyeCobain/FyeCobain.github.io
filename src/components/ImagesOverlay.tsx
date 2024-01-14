@@ -67,6 +67,13 @@ function nextImg(imagesState: ImagesContextValueInterface, sliderDiv: DivNullabl
   checkButtons(imagesState, currentImageIndex + 1)
 }
 
+// Adds or removes the 'cursor-grab' and 'no-transitions' classes
+function addDragClasses(image: HTMLImageElement, add: boolean) {
+  add ? image.classList.add('cursor-grab') : image.classList.remove('cursor-grab')
+  const container: HTMLDivElement = image.parentNode as HTMLDivElement
+  add ? container.classList.add('no-transitions') : container.classList.remove('no-transitions')
+}
+
 // Drag effect
 function dragImg(event: React.MouseEvent, mouseDownEvent: React.MouseEvent) {
   const imgContainer: HTMLDivElement = (mouseDownEvent.target as HTMLImageElement).parentNode as HTMLDivElement
@@ -74,8 +81,9 @@ function dragImg(event: React.MouseEvent, mouseDownEvent: React.MouseEvent) {
 }
 
 // Restores the image original position
-function restoreImg(mouseDownEvent: React.MouseEvent) {
-  ((mouseDownEvent.target as HTMLImageElement).parentNode as HTMLDivElement).style.left = ''
+function restoreImgPosition(mouseDownEvent: React.MouseEvent | undefined) {
+  if (mouseDownEvent !== undefined)
+    ((mouseDownEvent.target as HTMLImageElement).parentNode as HTMLDivElement).style.left = ''
 }
 
 export default function ImagesOverlay() {
@@ -85,7 +93,7 @@ export default function ImagesOverlay() {
   const [ mouseDownEvent, setMouseDownEvent ] = useState<React.MouseEvent>()
   const [ touchStartEvent, setTouchStartEvent ] = useState<React.TouchEvent>()
   const [ touchEndEvent, setTouchEndEvent ] = useState<React.TouchEvent>()
-  const [ downEventInProgress, setDownEventInProgress ] = useState<boolean>(false)
+  const [ currentlyDown, setCurrentlyDown ] = useState<boolean>(false)
 
   // Creating the keydown callback
   const onKeyDownCallback = useCallback((event: KeyboardEvent) => {
@@ -132,6 +140,11 @@ export default function ImagesOverlay() {
     })
   }, [ imagesState.images ])
 
+  // Returns true if theere
+  function singleImage(): boolean {
+    return imagesState.images.length <= 1
+  }
+
   if (imagesState.images.length === 0)
     return <></>
 
@@ -145,11 +158,12 @@ export default function ImagesOverlay() {
   return (
     <div
       className="images-overlay"
+
       onClick={ (event: React.MouseEvent) => {
-        if (!downEventInProgress)
+        if (!currentlyDown)
           removeImages(imagesState, event.target as Element)
         else
-          setDownEventInProgress(false)
+          setCurrentlyDown(false)
       } }
     >
     <div ref={ sliderRef } className="images-overlay__slider">
@@ -176,50 +190,45 @@ export default function ImagesOverlay() {
             onDrag(touchStartEvent.touches[0].clientX, touchStartEvent.touches[0].clientY, touchEndEvent.touches[0].clientX, touchEndEvent.touches[0].clientY, dragCallbakks, 65, 40)
           } }
 
+          // When the MOUSE button is pressed inside the element
           onMouseDown={ (event: React.MouseEvent) => {
-            if (imagesState.images.length <= 1) return
+            if (singleImage()) return
 
             event.preventDefault()
-            if (event.target instanceof HTMLImageElement) {
-              event.target.classList.add('cursor-grab')
-              const container: HTMLDivElement = event.target.parentNode as HTMLDivElement
-              container.classList.add('no-transitions')
-            }
+            addDragClasses(event.target as HTMLImageElement, true)
             setMouseDownEvent(event)
-            setDownEventInProgress(true)
+            setCurrentlyDown(true)
           } }
 
+          // When moving the MOUSE inside the element
           onMouseMove={ (event: React.MouseEvent) => {
-            if (downEventInProgress && mouseDownEvent !== undefined)
+            if (singleImage()) return
+
+            if (currentlyDown && mouseDownEvent !== undefined)
               dragImg(event, mouseDownEvent)
           } }
 
+          // When the MOUSE leaves the element
           onMouseLeave={ (event: React.MouseEvent) => {
-            if (downEventInProgress) {
-              if (event.target instanceof HTMLImageElement) {
-                event.target.classList.remove('cursor-grab')
-                const container: HTMLDivElement = event.target.parentNode as HTMLDivElement
-                container.classList.remove('no-transitions')
-              }
-              if (mouseDownEvent !== undefined)
-                restoreImg(mouseDownEvent)
+            if (singleImage()) return
+
+            if (currentlyDown) {
+              addDragClasses(event.target as HTMLImageElement, false)
+              restoreImgPosition(mouseDownEvent)
+              setMouseDownEvent(undefined)
             }
           } }
 
+          // When the MOUSE button is released inside the element
           onMouseUp={ (event: React.MouseEvent) => {
-            if (imagesState.images.length <= 1) return
+            if (singleImage()) return
 
-            if (event.target instanceof HTMLImageElement) {
-              event.target.classList.remove('cursor-grab')
-              const container: HTMLDivElement = event.target.parentNode as HTMLDivElement
-              container.classList.remove('no-transitions')
-            }
+            addDragClasses(event.target as HTMLImageElement, false)
+            restoreImgPosition(mouseDownEvent)
+            setCurrentlyDown(false)
 
             if (mouseDownEvent === undefined) return
             onDrag(mouseDownEvent.clientX, mouseDownEvent.clientY, event.clientX, event.clientY, dragCallbakks, 70, 50)
-
-            setDownEventInProgress(false)
-            restoreImg(mouseDownEvent)
           } }
         ></img>
       </div>,
@@ -231,18 +240,18 @@ export default function ImagesOverlay() {
         <IoMdCloseCircleOutline className />
       </div>
 
-      <div className={'images-overlay__current-info' + (imagesState.images.length <= 1 ? ' display-none' : '')} >
+      <div className={'images-overlay__current-info' + (singleImage() ? ' display-none' : '')} >
         <p>{ `${ imagesState.currentImageIndex + 1 } / ${ imagesState.images.length }` }</p>
       </div>
 
       <div
-        className={'images-overlay__prev-button content-center' + (imagesState.images.length <= 1 ? ' display-none' : '')}
+        className={'images-overlay__prev-button content-center' + (singleImage() ? ' display-none' : '')}
         onClick={ () => previousImg(imagesState, sliderRef.current) }
       ><GrPrevious />
       </div>
 
       <div
-        className={'images-overlay__next-button content-center' + (imagesState.images.length <= 1 ? ' display-none' : '')}
+        className={'images-overlay__next-button content-center' + (singleImage() ? ' display-none' : '')}
         onClick={ () => nextImg(imagesState, sliderRef.current) }
       ><GrPrevious />
       </div>
