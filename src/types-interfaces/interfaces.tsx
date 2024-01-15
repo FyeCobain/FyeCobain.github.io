@@ -18,4 +18,5 @@ export interface ProjectInterface {
   description: string
   image: string
   slider_images: string[]
+  languages: string[]
 }

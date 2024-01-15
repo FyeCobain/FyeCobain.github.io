@@ -67,7 +67,7 @@ function nextImg(imagesState: ImagesContextValueInterface, sliderDiv: DivNullabl
   checkButtons(imagesState, currentImageIndex + 1)
 }
 
-// Returns the 'clientX' value of the mouse click or single touch event
+// Returns the 'clientX' value of the mouse or touch event
 function getClientX(event: React.MouseEvent | React.TouchEvent) {
   if ('clientX' in event)
     return event.clientX
