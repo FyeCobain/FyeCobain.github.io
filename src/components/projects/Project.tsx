@@ -25,9 +25,7 @@ export default function Project({ project }: { project: ProjectInterface }) {
           </a>
       }
       </div>
-      <img
-        width="290" height="310" src={ project.image } alt={ project.title } onClick={ setImages }
-      />
+      <img width="290" height="310" src={ project.image } alt={ project.title } onClick={ setImages } />
       <div className="project__footer">
         <p className="description">{ project.description }{ project.languages.length === 0 ? <></> : <> - <span>{ project.languages.join(' / ') }</span></> }</p>
       </div>

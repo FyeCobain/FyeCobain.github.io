@@ -10,6 +10,7 @@ export default function Photo() {
 
   function setImage() {
     imagesState.setImages([ photo ])
+    imagesState.setMaxHeight(true)
   }
 
   return (
