@@ -10,6 +10,7 @@ function removeImages(imagesState: ImagesContextValueInterface, targetElement: E
   if (targetElement === null || targetElement.classList.contains('images-overlay__slider') || targetElement.classList.contains('images-overlay__close-button')) {
     imagesState.setImages([])
     imagesState.setCurrentImageIndex(0)
+    imagesState.setMaxHeight(false)
   }
 }
 
@@ -207,7 +208,7 @@ export default function ImagesOverlay() {
         <img
           src={ image }
 
-          className={ imagesState.images.length <= 1 ? '' : 'cursor-pointer' }
+          className={ ((imagesState.images.length <= 1 ? '' : 'cursor-pointer') + (!imagesState.maxHeight ? '' : ' max-height-100vh')).trim() }
 
           // When the TOUCH event starts inside the element
           onTouchStart={ (event: React.TouchEvent) => {

@@ -11,11 +11,15 @@ function App() {
   // Image state context for the image overlay
   const [ images, setImages ] = useState<string[]>([])
   const [ currentImageIndex, setCurrentImageIndex ] = useState<number>(0)
+  const [ maxHeight, setMaxHeight ] = useState<boolean>(false)
+
   const imagesState: ImagesContextValueInterface = {
     images,
     currentImageIndex,
     setImages,
     setCurrentImageIndex,
+    maxHeight,
+    setMaxHeight,
   }
 
   return (

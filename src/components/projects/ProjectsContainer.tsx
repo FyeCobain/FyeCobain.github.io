@@ -31,6 +31,7 @@ export default function ProjectsContainer() {
       description: t('projects.vscTheme'),
       image: dracula_junior,
       slider_images: [ dracula_junior ],
+      maxHeight: true,
       languages: [],
     },
     {
@@ -39,6 +40,7 @@ export default function ProjectsContainer() {
       description: 'Fansite',
       image: rozen_maiden,
       slider_images: [ rozen_maiden ],
+      maxHeight: false,
       languages: [
         'Angular',
         'Laravel',
@@ -58,6 +60,7 @@ export default function ProjectsContainer() {
         ib_6,
         ib_7,
       ],
+      maxHeight: true,
       languages: [ 'Android' ],
     },
     {
@@ -69,6 +72,7 @@ export default function ProjectsContainer() {
         amaliche_1,
         amaliche_2,
       ],
+      maxHeight: true,
       languages: [
         'Android',
         'Java',
@@ -80,6 +84,7 @@ export default function ProjectsContainer() {
       description: t('projects.scenesGetter'),
       image: scenes_getter,
       slider_images: [ scenes_getter ],
+      maxHeight: true,
       languages: [ 'Phyton' ],
     },
     {
@@ -88,6 +93,7 @@ export default function ProjectsContainer() {
       description: 'Auto clicker',
       image: ahklickerImage,
       slider_images: [ ahklickerImage ],
+      maxHeight: true,
       languages: [ 'AutoHotkey' ],
     },
   ]
@@ -95,7 +101,8 @@ export default function ProjectsContainer() {
   return (
     <div className="projects-container">
     {
-      projects.map((project: ProjectInterface, index: number) => <Project key={ index } project={ project } />)
+      projects.map((project: ProjectInterface, index: number) =>
+        <Project key={ index } project={ project } />)
     }
     </div>
   )

@@ -1,8 +1,10 @@
 export interface ImagesContextValueInterface {
   images: string[]
   currentImageIndex: number
+  maxHeight: boolean
   setCurrentImageIndex: (index: number) => void
   setImages: (images: string[]) => void
+  setMaxHeight: (maxHeight: boolean) => void
 }
 
 export interface DragCallbacksInterface {
@@ -18,5 +20,6 @@ export interface ProjectInterface {
   description: string
   image: string
   slider_images: string[]
+  maxHeight: boolean
   languages: string[]
 }
