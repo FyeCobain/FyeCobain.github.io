@@ -38,7 +38,9 @@
 }
 
 .bg-greene {
-  background-color: vars.$color-greene;
+  @include mixins.laptop {
+    background-color: vars.$color-greene;
+  }
 }
 
 .overflow-hidden {

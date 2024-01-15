@@ -15,9 +15,9 @@ import ib_7 from '/img/projects/itch_binario_7.png'
 import amaliche from '/img/projects/amaliche.png'
 import amaliche_1 from '/img/projects/amaliche_1.png'
 import amaliche_2 from '/img/projects/amaliche_2.png'
+import scenes_getter from '/img/projects/scenes_getter.png'
 import ahklicker_en from '/img/projects/ahklicker_en.png'
 import ahklicker_es from '/img/projects/ahklicker_es.png'
-import scenes_getter from '/img/projects/scenes_getter.png'
 
 export default function ProjectsContainer() {
   const { t, i18n } = useTranslation()
@@ -31,6 +31,7 @@ export default function ProjectsContainer() {
       description: t('projects.vscTheme'),
       image: dracula_junior,
       slider_images: [ dracula_junior ],
+      languages: [],
     },
     {
       title: 'Rozen Maiden',
@@ -38,10 +39,14 @@ export default function ProjectsContainer() {
       description: 'Fansite',
       image: rozen_maiden,
       slider_images: [ rozen_maiden ],
+      languages: [
+        'Angular',
+        'Laravel',
+      ],
     },
     {
       title: 'ITCH Binario',
-      link: 'https://apkcombo.com/es/itch-binario/com.isc.itchbinario',
+      link: `${ location.pathname }files/ITCH Binario_v2.0.0.apk`,
       description: t('projects.game'),
       image: ib,
       slider_images: [
@@ -53,9 +58,10 @@ export default function ProjectsContainer() {
         ib_6,
         ib_7,
       ],
+      languages: [ 'Android' ],
     },
     {
-      title: 'Amaliche',
+      title: 'Amaliche Club',
       link: 'https://play.google.com/store/apps/details?id=club.amaliche&hl=en',
       description: t('projects.chatApp'),
       image: amaliche,
@@ -63,13 +69,10 @@ export default function ProjectsContainer() {
         amaliche_1,
         amaliche_2,
       ],
-    },
-    {
-      title: 'AHKlicker',
-      link: 'https://github.com/FyeCobain/AHKlicker',
-      description: 'Auto clicker',
-      image: ahklickerImage,
-      slider_images: [ ahklickerImage ],
+      languages: [
+        'Android',
+        'Java',
+      ],
     },
     {
       title: 'Scenes Getter',
@@ -77,6 +80,15 @@ export default function ProjectsContainer() {
       description: t('projects.scenesGetter'),
       image: scenes_getter,
       slider_images: [ scenes_getter ],
+      languages: [ 'Phyton' ],
+    },
+    {
+      title: 'AHKlicker',
+      link: 'https://github.com/FyeCobain/AHKlicker',
+      description: 'Auto clicker',
+      image: ahklickerImage,
+      slider_images: [ ahklickerImage ],
+      languages: [ 'AutoHotkey' ],
     },
   ]
 
