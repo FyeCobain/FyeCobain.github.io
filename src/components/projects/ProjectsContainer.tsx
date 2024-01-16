@@ -101,7 +101,7 @@ export default function ProjectsContainer() {
   ]
 
   return (
-    <ContentSlider className="projects-container">
+    <ContentSlider className="projects-container" phoneCols={ 0 } tabletCols={ 2 } laptopCols={ 3 }>
     {
       projects.map((project: ProjectInterface, index: number) =>
       <Project key={ index } project={ project } />)
