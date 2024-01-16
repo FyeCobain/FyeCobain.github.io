@@ -1,6 +1,7 @@
 import type { ProjectInterface } from '@app/types-interfaces'
 import { useTranslation } from 'react-i18next'
 import { isEnglish } from '@app/functions'
+import { PATH_NAME } from '@app/consts'
 import ContentSlider from '@components/ContentSlider'
 import Project from './Project'
 import dracula_junior from '/img/projects/dracula_junior.png'
@@ -49,7 +50,7 @@ export default function ProjectsContainer() {
     },
     {
       title: 'ITCH Binario',
-      link: `${ location.pathname }files/ITCH Binario_v2.0.0.apk`,
+      link: `${ PATH_NAME }/files/ITCH Binario_v2.0.0.apk`,
       description: t('projects.game'),
       image: ib,
       slider_images: [
