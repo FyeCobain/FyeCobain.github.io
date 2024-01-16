@@ -1,8 +1,9 @@
 import { useContext } from 'react'
+import type { ProjectInterface, ImagesContextValueInterface } from '@app/types-interfaces'
 import { ImagesContext } from '@app/contexts'
+import { isURL } from '@app/functions'
 import { LiaExternalLinkSquareAltSolid } from 'react-icons/lia'
 import { IoMdDownload } from 'react-icons/io'
-import type { ProjectInterface, ImagesContextValueInterface } from '@app/types-interfaces'
 
 export default function Project({ project }: { project: ProjectInterface }) {
   const imagesState: ImagesContextValueInterface = useContext(ImagesContext)
@@ -20,8 +21,8 @@ export default function Project({ project }: { project: ProjectInterface }) {
         ? <p>{ project.title }</p>
         : <a
             rel="noreferrer"
-            target={ project.link.toLowerCase().trim().startsWith('http') ? '_blank' : '' }
-            href={ project.link }>{ project.title } { project.link.toLowerCase().trim().startsWith('http') ? <LiaExternalLinkSquareAltSolid /> : <IoMdDownload /> }
+            target={ isURL(project.link) ? '_blank' : '' }
+            href={ project.link }>{ project.title } { isURL(project.link) ? <LiaExternalLinkSquareAltSolid /> : <IoMdDownload /> }
           </a>
       }
       </div>
