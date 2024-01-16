@@ -26,5 +26,8 @@ export interface ProjectInterface {
 
 export interface ContentSliderPropsInterface {
   className: string
+  phoneCols: number
+  tabletCols: number
+  laptopCols: number
   children: React.ReactNode
 }
