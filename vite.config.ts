@@ -25,7 +25,8 @@ export default defineConfig({
   base: '/vite-deploy-test/',
   resolve: {
     alias: {
-      "@app": path.resolve(__dirname, './src')
+      "@app": path.resolve(__dirname, './src'),
+      "@components": path.resolve(__dirname, './src/components'),
     }
   }
 })

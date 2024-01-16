@@ -23,3 +23,8 @@ export interface ProjectInterface {
   maxHeight: boolean
   languages: string[]
 }
+
+export interface ContentSliderPropsInterface {
+  className: string
+  children: React.ReactNode
+}
