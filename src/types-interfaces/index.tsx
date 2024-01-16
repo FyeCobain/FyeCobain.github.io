@@ -1,4 +1,4 @@
-import type { ImagesContextValueInterface, DragCallbacksInterface, ProjectInterface } from './interfaces'
+import type { ImagesContextValueInterface, DragCallbacksInterface, ProjectInterface, ContentSliderPropsInterface } from './interfaces'
 import { type DivNullable } from './types'
 
-export type { ImagesContextValueInterface, DragCallbacksInterface, ProjectInterface, DivNullable }
+export type { ImagesContextValueInterface, DragCallbacksInterface, ProjectInterface, DivNullable, ContentSliderPropsInterface }

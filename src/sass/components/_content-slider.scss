@@ -1,0 +1,44 @@
+@use './../mixins';
+
+.content-slider {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+
+  @include mixins.tablet {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+  }
+
+  @include mixins.laptop {
+    width: 82%;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
+  }
+
+  @include mixins.desktop {
+    width: 60%;
+  }
+}
+
+.content-slider__element {
+  width: 100%;
+
+  @include mixins.phone-max {
+    grid-column: 1;
+    grid-row: 1;
+    position: relative;
+    left: 0%;
+  }
+
+  @include mixins.tablet {
+    height: 100%;
+
+    > *:first-child {
+      height: 100%;
+    }
+  }
+}

@@ -20,6 +20,10 @@ $icon-radio: .6rem;
   }
   
   @include mixins.laptop {
+    right: 4rem;
+  }
+
+  @include mixins.desktop {
     right: 10rem;
   }
 

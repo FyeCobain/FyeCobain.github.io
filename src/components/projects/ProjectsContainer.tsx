@@ -1,6 +1,7 @@
 import type { ProjectInterface } from '@app/types-interfaces'
 import { useTranslation } from 'react-i18next'
 import { isEnglish } from '@app/functions'
+import ContentSlider from '@components/ContentSlider'
 import Project from './Project'
 import dracula_junior from '/img/projects/dracula_junior.png'
 import rozen_maiden from '/img/projects/rozen_maiden.jpg'
@@ -31,7 +32,7 @@ export default function ProjectsContainer() {
       description: t('projects.vscTheme'),
       image: dracula_junior,
       slider_images: [ dracula_junior ],
-      maxHeight: true,
+      maxHeight: false,
       languages: [],
     },
     {
@@ -99,11 +100,11 @@ export default function ProjectsContainer() {
   ]
 
   return (
-    <div className="projects-container">
+    <ContentSlider className="projects-container">
     {
       projects.map((project: ProjectInterface, index: number) =>
-        <Project key={ index } project={ project } />)
+      <Project key={ index } project={ project } />)
     }
-    </div>
+    </ContentSlider>
   )
 }

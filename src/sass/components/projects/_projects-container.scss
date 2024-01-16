@@ -3,16 +3,4 @@
 
 .projects-container {
   margin-top: vars.$margin-base;
-  display: grid;
-  gap: 2rem;
-
-  @include mixins.tablet {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @include mixins.laptop {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 4rem;
-    width: 60%;
-  }
 }
