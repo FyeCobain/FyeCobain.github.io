@@ -14,13 +14,13 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
   if (props.laptopCols !== undefined)
     laptopCols = props.laptopCols.toString()
 
-  const classes = (`content-slider--phone-${ phoneCols } content-slider--tablet-${ tabletCols } content-slider--laptop-${ laptopCols } ${ props.className }`).trim()
-
   return (
-    <div className={ classes }>
+    <div className={ (`content-slider--phone-${ phoneCols } content-slider--tablet-${ tabletCols } content-slider--laptop-${ laptopCols } ${ props.className }`).trim() }>
       {
         React.Children.map(props.children, (child: React.ReactNode) =>
-        <div className="content-slider__element">
+        <div
+          className="content-slider__element"
+        >
         { child }
         </div>)
       }
