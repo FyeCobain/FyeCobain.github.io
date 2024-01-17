@@ -1,14 +1,23 @@
-import React, { useState } from 'react'
-import type { ContentSliderContextValueInterface, ContentSliderPropsInterface, ElementOnClick } from '@app/types-interfaces'
+import React, { type MutableRefObject, useRef, useState, useEffect } from 'react'
+import type { ContentSliderContextValueInterface, ContentSliderPropsInterface, DivNullable, ElementOnClick } from '@app/types-interfaces'
 import { ContentSliderContext } from '@app/contexts'
+
+// Returns the index of the onClick element
+function findOnClickElement(currentOnClicks: ElementOnClick[], element: HTMLElement | null) {
+  return currentOnClicks.findIndex((currentOnClick: ElementOnClick) => currentOnClick.element === element)
+}
 
 export default function ContentSlider(props: ContentSliderPropsInterface) {
   // Context for the slider onClick callbacks
   const [ onClicks, setOnClicks ] = useState<ElementOnClick[]>([])
-  const contentSliderContext: ContentSliderContextValueInterface = {
-    onClicks,
-    addOnClick,
-  }
+  const [ sliderElements, setSliderElements ] = useState<HTMLDivElement[]>([])
+  const sliderRef: MutableRefObject<DivNullable> = useRef(null)
+
+  useEffect(() => {
+    if (sliderRef.current === null) return
+
+    setSliderElements(Array.from(sliderRef.current.querySelectorAll(':scope > DIV')).map((element: Node) => element as HTMLDivElement))
+  }, [])
 
   // Adding new onClick callbacks to the context
   function addOnClick(newElement: ElementOnClick) {
@@ -17,13 +26,10 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
     })
   }
 
-  // Returns the index of the onClick element
-  function findOnClickElement(currentOnClicks: ElementOnClick[], element: HTMLElement | null) {
-    return currentOnClicks.findIndex((currentOnClick: ElementOnClick) => currentOnClick.element === element)
-  }
-
   // Handles the single click event
   function handleOnClick(event: React.MouseEvent) {
+    console.log(sliderElements)
+
     const index: number = findOnClickElement(onClicks, event.target as HTMLElement)
     if (index === -1) return
 
@@ -45,9 +51,18 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
   if (props.laptopCols !== undefined)
     laptopCols = props.laptopCols.toString()
 
+  const contentSliderContext: ContentSliderContextValueInterface = {
+    onClicks,
+    addOnClick,
+  }
+
   return (
     <ContentSliderContext.Provider value={ contentSliderContext }>
-      <div onClick={ handleOnClick } className={ (`content-slider--phone-${ phoneCols } content-slider--tablet-${ tabletCols } content-slider--laptop-${ laptopCols } ${ props.className }`).trim() }>
+      <div
+        ref={ sliderRef }
+        className={ (`content-slider--phone-${ phoneCols } content-slider--tablet-${ tabletCols } content-slider--laptop-${ laptopCols } ${ props.className }`).trim() }
+        onClick={ handleOnClick }
+      >
         {
           React.Children.map(props.children, (child: React.ReactNode) =>
           <div
