@@ -16,6 +16,12 @@
   }
 }
 
+@mixin tablet-only {
+  @media(768px <= width <= 1023px) {
+    @content;
+  }
+}
+
 @mixin tablet-max {
   @media(max-width: 1023px) {
     @content;
@@ -24,6 +30,12 @@
 
 @mixin laptop {
   @media(min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin laptop-only {
+  @media(1024px <= width <= 1366px) {
     @content;
   }
 }
