@@ -1,3 +1,4 @@
+@use './../variables' as vars;
 @use './../mixins';
 
 // Phone classes are always present at the beginning
@@ -167,5 +168,17 @@
 @include mixins.desktop {
   .content-slider--laptop-3 {
     @include cols-3(60%, 4rem);
+  }
+}
+
+.content-slider__element {
+  transition: left vars.$duration-normal;
+
+  &.prev {
+    left: -99%;
+  }
+
+  &.next {
+    left: 99%;
   }
 }
