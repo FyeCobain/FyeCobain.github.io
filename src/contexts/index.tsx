@@ -1,6 +1,7 @@
 import { createContext } from 'react'
-import { type ImagesContextValueInterface } from '@app/types-interfaces'
+import type { ImagesContextValueInterface, ContentSliderContextValueInterface, ElementOnClick } from '@app/types-interfaces'
 
+// Images overlay context
 const defaultImagesContextValue: ImagesContextValueInterface = {
   images: [],
   currentImageIndex: 0,
@@ -9,5 +10,11 @@ const defaultImagesContextValue: ImagesContextValueInterface = {
   setImages: (_images: string[]) => {},
   setMaxHeight: (_maxHeight: boolean) => {},
 }
-
 export const ImagesContext = createContext<ImagesContextValueInterface>(defaultImagesContextValue)
+
+// Content slider context
+const defaultContentSliderContextValue: ContentSliderContextValueInterface = {
+  onClicks: [],
+  addOnClick: (_newOnClick: ElementOnClick) => {},
+}
+export const ContentSliderContext = createContext<ContentSliderContextValueInterface>(defaultContentSliderContextValue)

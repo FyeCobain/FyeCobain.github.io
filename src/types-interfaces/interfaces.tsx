@@ -1,3 +1,5 @@
+import { type ElementOnClick } from '.'
+
 export interface ImagesContextValueInterface {
   images: string[]
   currentImageIndex: number
@@ -5,6 +7,11 @@ export interface ImagesContextValueInterface {
   setCurrentImageIndex: (index: number) => void
   setImages: (images: string[]) => void
   setMaxHeight: (maxHeight: boolean) => void
+}
+
+export interface ContentSliderContextValueInterface {
+  onClicks: ElementOnClick[]
+  addOnClick: (newOnClick: ElementOnClick) => void
 }
 
 export interface DragCallbacksInterface {
