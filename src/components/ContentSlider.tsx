@@ -17,7 +17,7 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
     })
   }
 
-  // Return the index of the onClick element
+  // Returns the index of the onClick element
   function findOnClickElement(currentOnClicks: ElementOnClick[], element: HTMLElement | null) {
     return currentOnClicks.findIndex((currentOnClick: ElementOnClick) => currentOnClick.element === element)
   }
@@ -26,10 +26,10 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
   function handleOnClick(event: React.MouseEvent) {
     const index: number = findOnClickElement(onClicks, event.target as HTMLElement)
     if (index === -1) return
+
     event.preventDefault()
     const onClick = onClicks[index].onClick
-    if (onClick !== null)
-      onClick(event)
+    if (onClick !== null) onClick(event)
   }
 
   // Grid columns
