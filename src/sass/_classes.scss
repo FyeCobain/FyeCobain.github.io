@@ -56,11 +56,15 @@
 }
 
 .cursor-grab {
-  cursor: grab !important;
+  &, *:not(a) {
+    cursor: grab !important;
+  }
 }
 
 .no-transitions {
-  transition: all 0s !important;
+  &, * {
+    transition: all 0s !important;
+  }
 }
 
 .display-none {

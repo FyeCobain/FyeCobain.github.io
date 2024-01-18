@@ -3,22 +3,38 @@ import type { ContentSliderContextValueInterface, ContentSliderPropsInterface, D
 import { ContentSliderContext } from '@app/contexts'
 import { getClientX } from '@app/functions'
 
+interface SliderElement {
+  htmlElement: HTMLDivElement
+  initialLeftPercentage: number
+  currentLeftPixels: number
+}
+
 // Returns the index of the onClick element
 function findOnClickElement(currentOnClicks: ElementOnClick[], element: HTMLElement | null) {
   return currentOnClicks.findIndex((currentOnClick: ElementOnClick) => currentOnClick.element === element)
 }
 
-// Setting up the intial elements styles
-function setInitialStyles(sliderElements: HTMLDivElement[]) {
-  sliderElements.forEach((sliderElement: HTMLDivElement, index: number) => {
-    sliderElement.style.left = `${ index * 110 }%`
+// Sets and returns the intial elements values
+function initialStyleValues(slider: HTMLDivElement, elements: HTMLDivElement[]): SliderElement[] {
+  const sliderElements: SliderElement[] = []
+
+  elements.forEach((htmlElement: HTMLDivElement, index: number) => {
+    const leftPercentage = index * 110
+    sliderElements.push({
+      htmlElement,
+      initialLeftPercentage: leftPercentage,
+      currentLeftPixels: leftPercentage * slider.clientWidth / 100,
+    })
+    htmlElement.style.left = `${ sliderElements[sliderElements.length - 1].currentLeftPixels }px`
   })
 
   setTimeout(() => {
-    sliderElements.forEach((sliderElement: HTMLDivElement) => {
+    elements.forEach((sliderElement: HTMLDivElement) => {
       sliderElement.classList.remove('no-transitions')
     })
   }, 0)
+
+  return sliderElements
 }
 
 // Adds or removes the 'no-transitions' and 'pointer-grab' classes
@@ -34,15 +50,15 @@ function setGrabClasses(element: HTMLDivElement, on: boolean) {
 }
 
 // Drags the elemet
-function dragElement(element: HTMLDivElement, currentLeft: number, event: React.MouseEvent | React.TouchEvent, startEvent: React.MouseEvent | React.TouchEvent) {
-  element.style.left = `${ currentLeft + getClientX(event) - getClientX(startEvent) }px`
+function dragElements(elements: SliderElement[], event: React.MouseEvent | React.TouchEvent, startEvent: React.MouseEvent | React.TouchEvent) {
+  elements.forEach((element: SliderElement) => {
+    element.htmlElement.style.left = `${ element.currentLeftPixels + getClientX(event) - getClientX(startEvent) }px`
+  })
 }
 
 export default function ContentSlider(props: ContentSliderPropsInterface) {
+  const [ elementsValues, setElementsValues ] = useState<SliderElement[]>([])
   const [ onClicks, setOnClicks ] = useState<ElementOnClick[]>([])
-  const [ sliderElements, setSliderElements ] = useState<HTMLDivElement[]>([])
-  const [ currentSliderElement, setCurrentSliderElement ] = useState<DivNullable>(null)
-  const [ currentLeft, setCurrentLeft ] = useState<number>(0)
   const [ dragInProgress, setDragInProgress ] = useState<boolean>(false)
   const [ mouseDownEvent, setMouseDownEvent ] = useState<React.MouseEvent | null>(null)
   const sliderRef: MutableRefObject<DivNullable> = useRef(null)
@@ -54,8 +70,7 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
     const elems: HTMLDivElement[] = Array.from(sliderRef.current.querySelectorAll(':scope > DIV'))
       .map((element: Node) => element as HTMLDivElement)
 
-    setSliderElements(elems)
-    setInitialStyles(elems)
+    setElementsValues(initialStyleValues(sliderRef.current, elems))
   }, [])
 
   // Adds a new onClick callbacks to the context
@@ -67,10 +82,16 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
     })
   }
 
-  // Returns the index of the element
-  function findContainerIndex(targetElement: HTMLElement) {
-    return sliderElements.findIndex(sliderElement =>
-      sliderElement === targetElement || sliderElement.contains(targetElement))
+  // Returns the container index of the targeted element
+  /* function findContainerIndex(targetElement: HTMLElement) {
+    return elementsValues.findIndex(sliderElement =>
+      sliderElement.htmlElement === targetElement || sliderElement.htmlElement.contains(targetElement))
+  } */
+
+  function updateLeftValues() {
+    elementsValues.forEach((elementValue: SliderElement) => {
+      elementValue.currentLeftPixels = Number(elementValue.htmlElement.style.left.replace('px', ''))
+    })
   }
 
   // TODO Handles the single click event
@@ -86,38 +107,40 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
   } */
 
   function handleOnMouseDown(event: React.MouseEvent) {
-    if (event.button !== 0) return
-    const element: HTMLDivElement | undefined = sliderElements[findContainerIndex(event.target as HTMLElement)]
-    if (element === undefined) return
+    if (event.button !== 0 || sliderRef.current === null) return
+
+    const clickClientX = getClientX(event)
+    if (
+      clickClientX < elementsValues[0].htmlElement.offsetLeft ||
+      clickClientX > elementsValues[elementsValues.length - 1].htmlElement.offsetLeft + elementsValues[elementsValues.length - 1].htmlElement.clientWidth
+    ) return
 
     event.preventDefault()
     setDragInProgress(true)
     setMouseDownEvent(event)
-    setCurrentSliderElement(element)
-    if (element.style.left !== '')
-      setCurrentLeft(Number(element.style.left.replace('px', '')))
-    setGrabClasses(element, true)
+    setGrabClasses(sliderRef.current, true)
   }
 
   function handleOnMouseMove(event: React.MouseEvent) {
-    if (!dragInProgress || mouseDownEvent === null || currentSliderElement === null) return
-    // event.preventDefault()
+    if (!dragInProgress || mouseDownEvent === null) return
 
-    dragElement(currentSliderElement, currentLeft, event, mouseDownEvent)
+    dragElements(elementsValues, event, mouseDownEvent)
   }
 
-  function handleOnMouseLeave(event: React.MouseEvent) {
-    if (!dragInProgress) return
+  function handleOnMouseLeave(_event: React.MouseEvent) {
+    if (!dragInProgress || sliderRef.current === null) return
 
+    updateLeftValues()
     setDragInProgress(false)
-    console.log(event.target)
+    setGrabClasses(sliderRef.current, false)
   }
 
-  function handleOnMouseUp(event: React.MouseEvent) {
-    if (!dragInProgress) return
+  function handleOnMouseUp(_event: React.MouseEvent) {
+    if (!dragInProgress || sliderRef.current === null) return
 
+    updateLeftValues()
     setDragInProgress(false)
-    console.log(event.target)
+    setGrabClasses(sliderRef.current, false)
   }
 
   // Grid columns
