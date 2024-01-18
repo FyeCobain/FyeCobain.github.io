@@ -1,12 +1,13 @@
 import React, { type MutableRefObject, useRef, useState, useEffect } from 'react'
-import type { ContentSliderContextValueInterface, ContentSliderPropsInterface, DivNullable, ElementOnClick } from '@app/types-interfaces'
+import type { ContentSliderContextValueInterface, ContentSliderPropsInterface, SliderElement, DivNullable, ElementOnClick } from '@app/types-interfaces'
 import { ContentSliderContext } from '@app/contexts'
-import { getClientX } from '@app/functions'
+import { getClientX, isPhoneSize, isTabletSize, isLaptopSize, isDesktopSize } from '@app/functions'
 
-interface SliderElement {
-  htmlElement: HTMLDivElement
-  initialLeftPercentage: number
-  currentLeftPixels: number
+// Returns true if the slider should work
+function sliderOn(slider: HTMLDivElement): boolean {
+  return (isPhoneSize() && slider.classList.contains('content-slider--phone-0')) ||
+  (isTabletSize() && slider.classList.contains('content-slider--tablet-0')) ||
+  ((isLaptopSize() || isDesktopSize()) && slider.classList.contains('content-slider--laptop-0'))
 }
 
 // Returns the index of the onClick element
@@ -39,21 +40,27 @@ function initialStyleValues(slider: HTMLDivElement, elements: HTMLDivElement[]):
 
 // Adds or removes the 'no-transitions' and 'pointer-grab' classes
 function setGrabClasses(element: HTMLDivElement, on: boolean) {
-  if (on) {
+  if (on && !element.classList.contains('cursor-grab')) {
     element.classList.add('no-transitions')
     element.classList.add('cursor-grab')
   }
-  else {
+  else if (!on && element.classList.contains('cursor-grab')) {
     element.classList.remove('no-transitions')
     element.classList.remove('cursor-grab')
   }
 }
 
 // Drags the elemet
-function dragElements(elements: SliderElement[], event: React.MouseEvent | React.TouchEvent, startEvent: React.MouseEvent | React.TouchEvent) {
+function dragElements(elements: SliderElement[], event: React.MouseEvent | React.TouchEvent, startEvent: React.MouseEvent | React.TouchEvent): boolean {
+  let dragged = false
   elements.forEach((element: SliderElement) => {
-    element.htmlElement.style.left = `${ element.currentLeftPixels + getClientX(event) - getClientX(startEvent) }px`
+    const xDifference = getClientX(event) - getClientX(startEvent)
+    if (Math.abs(xDifference) > 3) {
+      dragged = true
+      element.htmlElement.style.left = `${ element.currentLeftPixels + xDifference }px`
+    }
   })
+  return dragged
 }
 
 export default function ContentSlider(props: ContentSliderPropsInterface) {
@@ -94,7 +101,7 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
     })
   }
 
-  // TODO Handles the single click event
+  // Handles the single click event
   /* function handleOnClick(event: React.MouseEvent) {
     console.log(sliderElements)
 
@@ -107,7 +114,7 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
   } */
 
   function handleOnMouseDown(event: React.MouseEvent) {
-    if (event.button !== 0 || sliderRef.current === null) return
+    if (event.button !== 0 || sliderRef.current === null || !sliderOn(sliderRef.current)) return
 
     const clickClientX = getClientX(event)
     if (
@@ -118,13 +125,14 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
     event.preventDefault()
     setDragInProgress(true)
     setMouseDownEvent(event)
-    setGrabClasses(sliderRef.current, true)
   }
 
   function handleOnMouseMove(event: React.MouseEvent) {
-    if (!dragInProgress || mouseDownEvent === null) return
+    if (!dragInProgress || mouseDownEvent === null || sliderRef.current === null) return
 
-    dragElements(elementsValues, event, mouseDownEvent)
+    const dragged = dragElements(elementsValues, event, mouseDownEvent)
+    if (dragged)
+      setGrabClasses(sliderRef.current, true)
   }
 
   function handleOnMouseLeave(_event: React.MouseEvent) {

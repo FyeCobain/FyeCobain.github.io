@@ -14,6 +14,14 @@ export interface ContentSliderContextValueInterface {
   addOnClick: (newOnClick: ElementOnClick) => void
 }
 
+export interface ContentSliderPropsInterface {
+  className: string
+  children: React.ReactNode
+  phoneCols?: number
+  tabletCols?: number
+  laptopCols?: number
+}
+
 export interface DragCallbacksInterface {
   onUpDrag: (() => void) | null
   onRightDrag: (() => void) | null
@@ -31,10 +39,8 @@ export interface ProjectInterface {
   languages: string[]
 }
 
-export interface ContentSliderPropsInterface {
-  className: string
-  children: React.ReactNode
-  phoneCols?: number
-  tabletCols?: number
-  laptopCols?: number
+export interface SliderElement {
+  htmlElement: HTMLDivElement
+  initialLeftPercentage: number
+  currentLeftPixels: number
 }
