@@ -158,9 +158,10 @@ export default function ImagesOverlay() {
     checkButtons(imagesState, imagesState.currentImageIndex)
 
     // Adding the 'next' class to the image containers starting from the second one
-    sliderRef?.current?.querySelectorAll('.images-overlay__image:not(:first-of-type)').forEach((imgContainer: Element) => {
-      imgContainer.classList.add('next')
-    })
+    sliderRef?.current?.querySelectorAll('.images-overlay__image:not(:first-of-type)')
+      .forEach((imgContainer: Element) => {
+        imgContainer.classList.add('next')
+      })
   }, [ imagesState.images ])
 
   // Returns true if there is only one image (or less)

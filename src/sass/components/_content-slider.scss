@@ -175,10 +175,10 @@
   transition: left vars.$duration-normal;
 
   &.prev {
-    left: -99%;
+    left: -100%;
   }
 
   &.next {
-    left: 99%;
+    left: 100%;
   }
 }
