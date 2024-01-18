@@ -10,6 +10,18 @@ export function getClientX(event: React.MouseEvent | React.TouchEvent) {
     return event.touches[0].clientX
 }
 
+// Adds or removes the 'no-transitions' and 'pointer-grab' classes
+export function setGrabClasses(element: HTMLElement, on: boolean) {
+  if (on && !element.classList.contains('cursor-grab')) {
+    element.classList.add('no-transitions')
+    element.classList.add('cursor-grab')
+  }
+  else if (!on && element.classList.contains('cursor-grab')) {
+    element.classList.remove('no-transitions')
+    element.classList.remove('cursor-grab')
+  }
+}
+
 export function isPhoneSize(): boolean {
   return window.innerWidth <= 767
 }
