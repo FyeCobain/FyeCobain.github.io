@@ -1,5 +1,5 @@
 import { isEnglish } from './lang'
 import { onDrag } from './callbacks'
-import { isURL, getClientX } from './general'
+import { isURL, getClientX, isPhoneSize, isTabletSize, isLaptopSize, isDesktopSize } from './general'
 
-export { isEnglish, onDrag, isURL, getClientX }
+export { isEnglish, onDrag, isURL, getClientX, isPhoneSize, isTabletSize, isLaptopSize, isDesktopSize }
