@@ -273,7 +273,7 @@ export default function ImagesOverlay() {
             onDrag(mouseDownEvent.clientX, mouseDownEvent.clientY, event.clientX, event.clientY, dragCallbakks, 70, 50)
           } }
         ></img>
-      </div>,
+      </div>
       )
     }
     </div>

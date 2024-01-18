@@ -63,13 +63,21 @@ module.exports = {
         ],
         // also each PROPERTY must be in a NEW LINE
         "object-property-newline": ["error", { "allowAllPropertiesOnSameLine": false }],
+
+        // Trailing commas
+        "@typescript-eslint/comma-dangle": ["error", {
+            "arrays": "always-multiline",
+            "objects": "always-multiline",
+            "imports": "always-multiline",
+            "exports": "always-multiline",
+            "functions": "never",
+        }],
         
         "curly": ["error", "multi"],
         "@typescript-eslint/brace-style": ["error", "stroustrup", { "allowSingleLine": false }],    
         "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/no-confusing-void-expression": "off",
         "@typescript-eslint/space-before-function-paren": ["error", "never"],
-        "@typescript-eslint/comma-dangle": ["error", "always-multiline"],
         "@typescript-eslint/no-unused-vars": "warn",
     }
 }
