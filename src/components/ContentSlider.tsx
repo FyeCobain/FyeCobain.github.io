@@ -10,8 +10,8 @@ function findOnClickElement(currentOnClicks: ElementOnClick[], element: HTMLElem
 
 // Setting up the intial elements styles
 function setInitialStyles(sliderElements: HTMLDivElement[]) {
-  sliderElements.slice(1).forEach((sliderElement: HTMLDivElement, index: number) => {
-    sliderElement.style.left = `${ (index + 1) * 110 }%`
+  sliderElements.forEach((sliderElement: HTMLDivElement, index: number) => {
+    sliderElement.style.left = `${ index * 110 }%`
   })
 
   setTimeout(() => {
