@@ -7,6 +7,16 @@ function findOnClickElement(currentOnClicks: ElementOnClick[], element: HTMLElem
   return currentOnClicks.findIndex((currentOnClick: ElementOnClick) => currentOnClick.element === element)
 }
 
+// Removes the unnecessary classes from the slider element containers
+function addClasses(sliderElements: HTMLDivElement[]) {
+  sliderElements[0].classList.remove('next')
+  setTimeout(() => {
+    sliderElements.forEach((sliderElement: HTMLDivElement) => {
+      sliderElement.classList.remove('no-transitions')
+    })
+  }, 0)
+}
+
 export default function ContentSlider(props: ContentSliderPropsInterface) {
   // Context for the slider onClick callbacks
   const [ onClicks, setOnClicks ] = useState<ElementOnClick[]>([])
@@ -16,16 +26,19 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
   useEffect(() => {
     if (sliderRef.current === null) return
 
-    setSliderElements(
-      Array.from(sliderRef.current.querySelectorAll(':scope > DIV'))
-        .map((element: Node) => element as HTMLDivElement)
-    )
+    const elems: HTMLDivElement[] = Array.from(sliderRef.current.querySelectorAll(':scope > DIV'))
+      .map((element: Node) => element as HTMLDivElement)
+
+    setSliderElements(elems)
+    addClasses(elems)
   }, [])
 
-  // Adding new onClick callbacks to the context
+  // Adds a new onClick callbacks to the context
   function addOnClick(newElement: ElementOnClick) {
     setOnClicks((currentOnClicks: ElementOnClick[]) => {
-      return findOnClickElement(currentOnClicks, newElement.element) === -1 ? currentOnClicks.concat([ newElement ]) : currentOnClicks
+      return findOnClickElement(currentOnClicks, newElement.element) === -1
+        ? currentOnClicks.concat([ newElement ])
+        : currentOnClicks
     })
   }
 
@@ -69,7 +82,7 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
         {
           React.Children.map(props.children, (child: React.ReactNode) =>
           <div
-            className="content-slider__element"
+            className="content-slider__element no-transitions next"
           >
           { child }
           </div>)
