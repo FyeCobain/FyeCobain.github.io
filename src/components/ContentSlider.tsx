@@ -43,7 +43,7 @@ function dragElements(elements: SliderElement[], event: React.MouseEvent | React
   let dragged = false
   elements.forEach((element: SliderElement) => {
     const xDifference = getClientX(event) - getClientX(startEvent)
-    if (Math.abs(xDifference) > 3) {
+    if (Math.abs(xDifference) > 1) {
       dragged = true
       element.htmlElement.style.left = `${ element.currentLeftPixels + xDifference }px`
     }
@@ -51,10 +51,18 @@ function dragElements(elements: SliderElement[], event: React.MouseEvent | React
   return dragged
 }
 
+// Selects the current element based in the positions
+function selectCurrentElement(slider: HTMLDivElement, elementsValues: SliderElement[]) {
+  // TODO
+  console.log(slider)
+  console.log(elementsValues)
+}
+
 export default function ContentSlider(props: ContentSliderPropsInterface) {
   const [ elementsValues, setElementsValues ] = useState<SliderElement[]>([])
   const [ onClicks, setOnClicks ] = useState<ElementOnClick[]>([])
   const [ dragInProgress, setDragInProgress ] = useState<boolean>(false)
+  const [ dragPerformed, setDragPerformed ] = useState<boolean>(false)
   const [ mouseDownEvent, setMouseDownEvent ] = useState<React.MouseEvent | null>(null)
   const sliderRef: MutableRefObject<DivNullable> = useRef(null)
 
@@ -77,12 +85,6 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
     })
   }
 
-  // Returns the container index of the targeted element
-  /* function findContainerIndex(targetElement: HTMLElement) {
-    return elementsValues.findIndex(sliderElement =>
-      sliderElement.htmlElement === targetElement || sliderElement.htmlElement.contains(targetElement))
-  } */
-
   function updateLeftValues() {
     elementsValues.forEach((elementValue: SliderElement) => {
       elementValue.currentLeftPixels = Number(elementValue.htmlElement.style.left.replace('px', ''))
@@ -90,16 +92,14 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
   }
 
   // Handles the single click event
-  /* function handleOnClick(event: React.MouseEvent) {
-    console.log(sliderElements)
-
+  function handleOnClick(event: React.MouseEvent) {
     const index: number = findOnClickElement(onClicks, event.target as HTMLElement)
     if (index === -1) return
 
-    event.preventDefault()
     const onClick = onClicks[index].onClick
-    if (onClick !== null) onClick(event)
-  } */
+    if (onClick !== null)
+      onClick(event)
+  }
 
   function handleOnMouseDown(event: React.MouseEvent) {
     if (event.button !== 0 || sliderRef.current === null || !sliderIsActive(sliderRef.current)) return
@@ -120,23 +120,22 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
 
     const dragged = dragElements(elementsValues, event, mouseDownEvent)
     if (dragged)
-      setGrabClasses(sliderRef.current, true)
+      setGrabClasses(sliderRef.current, dragged)
+    setDragPerformed(dragged)
   }
 
-  function handleOnMouseLeave(_event: React.MouseEvent) {
+  function handleOnDragEnd(event: React.MouseEvent) {
     if (!dragInProgress || sliderRef.current === null) return
 
     updateLeftValues()
     setDragInProgress(false)
     setGrabClasses(sliderRef.current, false)
-  }
+    if (dragPerformed)
+      setDragPerformed(false)
+    else
+      handleOnClick(event)
 
-  function handleOnMouseUp(_event: React.MouseEvent) {
-    if (!dragInProgress || sliderRef.current === null) return
-
-    updateLeftValues()
-    setDragInProgress(false)
-    setGrabClasses(sliderRef.current, false)
+    selectCurrentElement(sliderRef.current, elementsValues)
   }
 
   // Grid columns
@@ -164,8 +163,8 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
         className={ (`content-slider--phone-${ phoneCols } content-slider--tablet-${ tabletCols } content-slider--laptop-${ laptopCols } ${ props.className }`).trim() }
         onMouseDown={ handleOnMouseDown }
         onMouseMove={ handleOnMouseMove }
-        onMouseLeave={ handleOnMouseLeave }
-        onMouseUp={ handleOnMouseUp }
+        onMouseLeave={ handleOnDragEnd }
+        onMouseUp={ handleOnDragEnd }
       >
         {
           React.Children.map(props.children, (child: React.ReactNode) =>
