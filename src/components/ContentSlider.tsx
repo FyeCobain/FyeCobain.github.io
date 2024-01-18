@@ -1,10 +1,10 @@
 import React, { type MutableRefObject, useRef, useState, useEffect } from 'react'
 import type { ContentSliderContextValueInterface, ContentSliderPropsInterface, SliderElement, DivNullable, ElementOnClick } from '@app/types-interfaces'
 import { ContentSliderContext } from '@app/contexts'
-import { getClientX, isPhoneSize, isTabletSize, isLaptopSize, isDesktopSize } from '@app/functions'
+import { getClientX, setGrabClasses, isPhoneSize, isTabletSize, isLaptopSize, isDesktopSize } from '@app/functions'
 
-// Returns true if the slider should work
-function sliderOn(slider: HTMLDivElement): boolean {
+// Returns true if the slider should be active
+function sliderIsActive(slider: HTMLDivElement): boolean {
   return (isPhoneSize() && slider.classList.contains('content-slider--phone-0')) ||
   (isTabletSize() && slider.classList.contains('content-slider--tablet-0')) ||
   ((isLaptopSize() || isDesktopSize()) && slider.classList.contains('content-slider--laptop-0'))
@@ -38,19 +38,7 @@ function initialStyleValues(slider: HTMLDivElement, elements: HTMLDivElement[]):
   return sliderElements
 }
 
-// Adds or removes the 'no-transitions' and 'pointer-grab' classes
-function setGrabClasses(element: HTMLDivElement, on: boolean) {
-  if (on && !element.classList.contains('cursor-grab')) {
-    element.classList.add('no-transitions')
-    element.classList.add('cursor-grab')
-  }
-  else if (!on && element.classList.contains('cursor-grab')) {
-    element.classList.remove('no-transitions')
-    element.classList.remove('cursor-grab')
-  }
-}
-
-// Drags the elemet
+// Drags the elemets
 function dragElements(elements: SliderElement[], event: React.MouseEvent | React.TouchEvent, startEvent: React.MouseEvent | React.TouchEvent): boolean {
   let dragged = false
   elements.forEach((element: SliderElement) => {
@@ -114,7 +102,7 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
   } */
 
   function handleOnMouseDown(event: React.MouseEvent) {
-    if (event.button !== 0 || sliderRef.current === null || !sliderOn(sliderRef.current)) return
+    if (event.button !== 0 || sliderRef.current === null || !sliderIsActive(sliderRef.current)) return
 
     const clickClientX = getClientX(event)
     if (
