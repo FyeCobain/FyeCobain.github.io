@@ -8,9 +8,12 @@ function findOnClickElement(currentOnClicks: ElementOnClick[], element: HTMLElem
   return currentOnClicks.findIndex((currentOnClick: ElementOnClick) => currentOnClick.element === element)
 }
 
-// Removes the unnecessary classes from the slider element containers
-function removeInitialClasses(sliderElements: HTMLDivElement[]) {
-  sliderElements[0].classList.remove('next')
+// Setting up the intial elements styles
+function setInitialStyles(sliderElements: HTMLDivElement[]) {
+  sliderElements.slice(1).forEach((sliderElement: HTMLDivElement, index: number) => {
+    sliderElement.style.left = `${ (index + 1) * 110 }%`
+  })
+
   setTimeout(() => {
     sliderElements.forEach((sliderElement: HTMLDivElement) => {
       sliderElement.classList.remove('no-transitions')
@@ -44,7 +47,7 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
   const [ mouseDownEvent, setMouseDownEvent ] = useState<React.MouseEvent | null>(null)
   const sliderRef: MutableRefObject<DivNullable> = useRef(null)
 
-  // Getting al the slider elements and setting up them initil styles
+  // Getting al the slider elements and setting up them initial styles
   useEffect(() => {
     if (sliderRef.current === null) return
 
@@ -52,7 +55,7 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
       .map((element: Node) => element as HTMLDivElement)
 
     setSliderElements(elems)
-    removeInitialClasses(elems)
+    setInitialStyles(elems)
   }, [])
 
   // Adds a new onClick callbacks to the context
@@ -84,11 +87,12 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
 
   function handleOnMouseDown(event: React.MouseEvent) {
     if (event.button !== 0) return
+    const element: HTMLDivElement | undefined = sliderElements[findContainerIndex(event.target as HTMLElement)]
+    if (element === undefined) return
 
     event.preventDefault()
     setDragInProgress(true)
     setMouseDownEvent(event)
-    const element: HTMLDivElement = sliderElements[findContainerIndex(event.target as HTMLElement)]
     setCurrentSliderElement(element)
     if (element.style.left !== '')
       setCurrentLeft(Number(element.style.left.replace('px', '')))
@@ -147,7 +151,7 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
         {
           React.Children.map(props.children, (child: React.ReactNode) =>
           <div
-            className="content-slider__element no-transitions next"
+            className="content-slider__element no-transitions"
           >
           { child }
           </div>)

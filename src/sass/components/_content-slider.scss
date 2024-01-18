@@ -173,12 +173,4 @@
 
 .content-slider__element {
   transition: left vars.$duration-normal;
-
-  &.prev {
-    left: -100%;
-  }
-
-  &.next {
-    left: 100%;
-  }
 }
