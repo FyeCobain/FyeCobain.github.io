@@ -16,7 +16,10 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
   useEffect(() => {
     if (sliderRef.current === null) return
 
-    setSliderElements(Array.from(sliderRef.current.querySelectorAll(':scope > DIV')).map((element: Node) => element as HTMLDivElement))
+    setSliderElements(
+      Array.from(sliderRef.current.querySelectorAll(':scope > DIV'))
+        .map((element: Node) => element as HTMLDivElement)
+    )
   }, [])
 
   // Adding new onClick callbacks to the context
