@@ -3,7 +3,7 @@ import type { DragCallbacksInterface, DivNullable, ImagesContextValueInterface }
 import { IoMdCloseCircleOutline } from 'react-icons/io'
 import { GrPrevious } from 'react-icons/gr'
 import { ImagesContext } from '@app/contexts'
-import { onDrag } from '@app/functions'
+import { onDrag, getClientX } from '@app/functions'
 
 // Removes all the images from the slider
 function removeImages(imagesState: ImagesContextValueInterface, targetElement: Element | null = null) {
@@ -66,14 +66,6 @@ function nextImg(imagesState: ImagesContextValueInterface, sliderDiv: DivNullabl
   imgsContainers[currentImageIndex + 1].classList.remove('next')
   imagesState.setCurrentImageIndex(currentImageIndex + 1)
   checkButtons(imagesState, currentImageIndex + 1)
-}
-
-// Returns the 'clientX' value of the mouse or touch event
-function getClientX(event: React.MouseEvent | React.TouchEvent) {
-  if ('clientX' in event)
-    return event.clientX
-  else
-    return event.touches[0].clientX
 }
 
 // Performs the drag movement
