@@ -51,11 +51,18 @@ function dragElements(elements: SliderElement[], event: React.MouseEvent | React
   return dragged
 }
 
-// Selects the current element based in the positions
-function selectCurrentElement(slider: HTMLDivElement, elementsValues: SliderElement[]) {
-  // TODO
-  console.log(slider)
-  console.log(elementsValues)
+// Selects the current element based on the positions
+function getCurrentElementIndex(slider: HTMLDivElement, elementsValues: SliderElement[]): number {
+  let minorIndex = 0
+  let minorDistance = Math.abs(slider.clientWidth / 2 - (elementsValues[minorIndex].currentLeftPixels + elementsValues[minorIndex].htmlElement.clientWidth / 2))
+  elementsValues.slice(1).forEach((elementValue: SliderElement, index: number) => {
+    const distance = Math.abs(slider.clientWidth / 2 - (elementValue.currentLeftPixels + elementValue.htmlElement.clientWidth / 2))
+    if (distance < minorDistance) {
+      minorDistance = distance
+      minorIndex = index + 1
+    }
+  })
+  return minorIndex
 }
 
 export default function ContentSlider(props: ContentSliderPropsInterface) {
@@ -135,7 +142,9 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
     else
       handleOnClick(event)
 
-    selectCurrentElement(sliderRef.current, elementsValues)
+    const currentElementIndex = getCurrentElementIndex(sliderRef.current, elementsValues)
+    // TODO
+    console.log(currentElementIndex)
   }
 
   // Grid columns
