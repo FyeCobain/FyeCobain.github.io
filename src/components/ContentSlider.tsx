@@ -65,6 +65,14 @@ function getCurrentElementIndex(slider: HTMLDivElement, elementsValues: SliderEl
   return minorIndex
 }
 
+// Sets the new elements positions
+function setElementsPositions(currentElementIndex: number, sliderElements: SliderElement[], slider: HTMLDivElement) {
+  const offsetPercentage = sliderElements[currentElementIndex].initialLeftPercentage
+  sliderElements.forEach((sliderElement: SliderElement) => {
+    sliderElement.htmlElement.style.left = `${ (sliderElement.initialLeftPercentage - offsetPercentage) * slider.clientWidth / 100 }px`
+  })
+}
+
 export default function ContentSlider(props: ContentSliderPropsInterface) {
   const [ elementsValues, setElementsValues ] = useState<SliderElement[]>([])
   const [ onClicks, setOnClicks ] = useState<ElementOnClick[]>([])
@@ -143,8 +151,8 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
       handleOnClick(event)
 
     const currentElementIndex = getCurrentElementIndex(sliderRef.current, elementsValues)
-    // TODO
-    console.log(currentElementIndex)
+    setElementsPositions(currentElementIndex, elementsValues, sliderRef.current)
+    updateLeftValues()
   }
 
   // Grid columns
