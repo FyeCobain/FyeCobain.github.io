@@ -51,6 +51,10 @@
   overflow: hidden;
 }
 
+.overscroll-none {
+  overscroll-behavior: none;
+}
+
 .cursor-pointer {
   cursor: pointer !important;
 }

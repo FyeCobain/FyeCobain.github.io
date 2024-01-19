@@ -139,10 +139,13 @@ export default function ImagesOverlay() {
 
   useEffect(() => {
     // Adding the 'overflow-hidden' class to the body
-    if (imagesState.images.length > 0)
-      document.body.classList.add('overflow-hidden')
+    if (imagesState.images.length > 0) {
+      document.documentElement.classList.add('overflow-hidden')
+      document.documentElement.classList.add('overscroll-none')
+    }
     else {
-      document.body.classList.remove('overflow-hidden')
+      document.documentElement.classList.remove('overflow-hidden')
+      document.documentElement.classList.remove('overscroll-none')
       return
     }
 
