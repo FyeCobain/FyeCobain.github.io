@@ -52,11 +52,16 @@ function dragElements(elements: SliderElement[], event: React.MouseEvent | React
 }
 
 // Selects the current element based on the positions
-function getCurrentElementIndex(slider: HTMLDivElement, elementsValues: SliderElement[]): number {
+function getCurrentElementIndex(dragToLeft: boolean, slider: HTMLDivElement, elementsValues: SliderElement[]): number {
+  const elementPortion = 6
   let minorIndex = 0
-  let minorDistance = Math.abs(slider.clientWidth / 2 - (elementsValues[minorIndex].currentLeftPixels + elementsValues[minorIndex].htmlElement.clientWidth / 2))
+  let minorDistance = dragToLeft
+    ? Math.abs(slider.clientWidth / 2 - (elementsValues[minorIndex].currentLeftPixels + elementsValues[minorIndex].htmlElement.clientWidth / elementPortion))
+    : Math.abs(slider.clientWidth / 2 - (elementsValues[minorIndex].currentLeftPixels + elementsValues[minorIndex].htmlElement.clientWidth - (elementsValues[minorIndex].htmlElement.clientWidth / elementPortion)))
   elementsValues.slice(1).forEach((elementValue: SliderElement, index: number) => {
-    const distance = Math.abs(slider.clientWidth / 2 - (elementValue.currentLeftPixels + elementValue.htmlElement.clientWidth / 2))
+    const distance = dragToLeft
+      ? Math.abs(slider.clientWidth / 2 - (elementValue.currentLeftPixels + elementValue.htmlElement.clientWidth / elementPortion))
+      : Math.abs(slider.clientWidth / 2 - (elementValue.currentLeftPixels + elementValue.htmlElement.clientWidth - (elementValue.htmlElement.clientWidth / elementPortion)))
     if (distance < minorDistance) {
       minorDistance = distance
       minorIndex = index + 1
@@ -108,7 +113,7 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
   }
 
   // Handles the single click event
-  function performElementMouseClick(event: React.MouseEvent | React.TouchEvent) {
+  function performClick(event: React.MouseEvent | React.TouchEvent) {
     const index: number = findOnClickElement(onClicks, event.target as HTMLElement)
     if (index === -1) return
 
@@ -151,10 +156,10 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
     if (!dragInProgress || sliderRef.current === null || startEvent === null || lastMoveEvent === null) return
 
     // In touch screens event.touches.length is 0
-    let currentEvent: React.MouseEvent | React.TouchEvent = event
-    if ('touches' in currentEvent && currentEvent.touches.length === 0)
-      currentEvent = lastMoveEvent
-    if ('touches' in currentEvent && currentEvent.touches.length > 1)
+    let endEvent: React.MouseEvent | React.TouchEvent = event
+    if ('touches' in endEvent && endEvent.touches.length === 0)
+      endEvent = lastMoveEvent
+    if ('touches' in endEvent && endEvent.touches.length > 1)
       return
 
     updateLeftValues()
@@ -162,10 +167,10 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
     setGrabClasses(sliderRef.current, false)
     if (dragPerformed)
       setDragPerformed(false)
-    else if (Math.abs(getClientY(startEvent) - getClientY(currentEvent)) <= 0)
-      performElementMouseClick(currentEvent)
+    else if (Math.abs(getClientY(startEvent) - getClientY(endEvent)) <= 3)
+      performClick(endEvent)
 
-    const currentElementIndex = getCurrentElementIndex(sliderRef.current, elementsValues)
+    const currentElementIndex: number = getCurrentElementIndex(getClientX(startEvent) - getClientX(endEvent) > 0, sliderRef.current, elementsValues)
     setElementsPositions(currentElementIndex, elementsValues, sliderRef.current)
     updateLeftValues()
   }
