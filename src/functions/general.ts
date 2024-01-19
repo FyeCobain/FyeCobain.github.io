@@ -19,7 +19,7 @@ export function isURL(str: string): boolean {
 }
 
 // Returns the 'clientX' value of the mouse or touch event
-export function getClientX(event: React.MouseEvent | React.TouchEvent) {
+export function getClientX(event: React.MouseEvent | React.TouchEvent): number {
   if ('clientX' in event)
     return event.clientX
   else
@@ -27,7 +27,7 @@ export function getClientX(event: React.MouseEvent | React.TouchEvent) {
 }
 
 // Returns the 'clientY' value of the mouse or touch event
-export function getClientY(event: React.MouseEvent | React.TouchEvent) {
+export function getClientY(event: React.MouseEvent | React.TouchEvent): number {
   if ('clientY' in event)
     return event.clientY
   else
