@@ -1,7 +1,7 @@
 import React, { type MutableRefObject, useRef, useState, useEffect } from 'react'
 import type { ContentSliderContextValueInterface, ContentSliderPropsInterface, SliderElement, DivNullable, ElementOnClick } from '@app/types-interfaces'
 import { ContentSliderContext } from '@app/contexts'
-import { getClientX, setGrabClasses, isPhoneSize, isTabletSize, isLaptopSize, isDesktopSize } from '@app/functions'
+import { getClientX, getClientY, setGrabClasses, isPhoneSize, isTabletSize, isLaptopSize, isDesktopSize } from '@app/functions'
 
 // Returns true if the slider should be active
 function sliderIsActive(slider: HTMLDivElement): boolean {
@@ -43,7 +43,7 @@ function dragElements(elements: SliderElement[], event: React.MouseEvent | React
   let dragged = false
   elements.forEach((element: SliderElement) => {
     const xDifference = getClientX(event) - getClientX(startEvent)
-    if (Math.abs(xDifference) > 1) {
+    if (Math.abs(xDifference) >= 25) {
       dragged = true
       element.htmlElement.style.left = `${ element.currentLeftPixels + xDifference }px`
     }
@@ -78,7 +78,7 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
   const [ onClicks, setOnClicks ] = useState<ElementOnClick[]>([])
   const [ dragInProgress, setDragInProgress ] = useState<boolean>(false)
   const [ dragPerformed, setDragPerformed ] = useState<boolean>(false)
-  const [ mouseDownEvent, setMouseDownEvent ] = useState<React.MouseEvent | null>(null)
+  const [ startEvent, setStartEvent ] = useState<React.MouseEvent | React.TouchEvent | null>(null)
   const sliderRef: MutableRefObject<DivNullable> = useRef(null)
 
   // Getting al the slider elements and setting up them initial styles
@@ -107,7 +107,7 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
   }
 
   // Handles the single click event
-  function handleOnClick(event: React.MouseEvent) {
+  function handleOnClick(event: React.MouseEvent | React.TouchEvent) {
     const index: number = findOnClickElement(onClicks, event.target as HTMLElement)
     if (index === -1) return
 
@@ -116,8 +116,9 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
       onClick(event)
   }
 
-  function handleOnMouseDown(event: React.MouseEvent) {
-    if (event.button !== 0 || sliderRef.current === null || !sliderIsActive(sliderRef.current)) return
+  function handleOnMouseDown(event: React.MouseEvent | React.TouchEvent) {
+    if (sliderRef.current === null || !sliderIsActive(sliderRef.current)) return
+    if ('clientX' in event && event.button !== 0) return
 
     const clickClientX = getClientX(event)
     if (
@@ -127,27 +128,28 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
 
     event.preventDefault()
     setDragInProgress(true)
-    setMouseDownEvent(event)
+    setStartEvent(event)
   }
 
-  function handleOnMouseMove(event: React.MouseEvent) {
-    if (!dragInProgress || mouseDownEvent === null || sliderRef.current === null) return
+  function handleOnMouseMove(event: React.MouseEvent | React.TouchEvent) {
+    if (!dragInProgress || startEvent === null || sliderRef.current === null) return
 
-    const dragged = dragElements(elementsValues, event, mouseDownEvent)
+    event.preventDefault()
+    const dragged = dragElements(elementsValues, event, startEvent)
     if (dragged)
       setGrabClasses(sliderRef.current, dragged)
     setDragPerformed(dragged)
   }
 
-  function handleOnDragEnd(event: React.MouseEvent) {
-    if (!dragInProgress || sliderRef.current === null) return
+  function handleOnDragEnd(event: React.MouseEvent | React.TouchEvent) {
+    if (!dragInProgress || sliderRef.current === null || startEvent === null) return
 
     updateLeftValues()
     setDragInProgress(false)
     setGrabClasses(sliderRef.current, false)
     if (dragPerformed)
       setDragPerformed(false)
-    else
+    else if (Math.abs(getClientY(startEvent) - getClientY(event)) <= 5)
       handleOnClick(event)
 
     const currentElementIndex = getCurrentElementIndex(sliderRef.current, elementsValues)
@@ -182,6 +184,10 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
         onMouseMove={ handleOnMouseMove }
         onMouseLeave={ handleOnDragEnd }
         onMouseUp={ handleOnDragEnd }
+        onTouchStart={ handleOnMouseDown }
+        onTouchMove={ handleOnMouseMove }
+        onTouchCancel={ handleOnDragEnd }
+        onTouchEnd={ handleOnDragEnd }
       >
         {
           React.Children.map(props.children, (child: React.ReactNode) =>

@@ -10,15 +10,25 @@ export function getClientX(event: React.MouseEvent | React.TouchEvent) {
     return event.touches[0].clientX
 }
 
+// Returns the 'clientY' value of the mouse or touch event
+export function getClientY(event: React.MouseEvent | React.TouchEvent) {
+  if ('clientY' in event)
+    return event.clientY
+  else
+    return event.touches[0].clientY
+}
+
 // Adds or removes the 'no-transitions' and 'pointer-grab' classes
 export function setGrabClasses(element: HTMLElement, on: boolean) {
   if (on && !element.classList.contains('cursor-grab')) {
     element.classList.add('no-transitions')
     element.classList.add('cursor-grab')
+    document.body.classList.add('overflow-hidden')
   }
   else if (!on && element.classList.contains('cursor-grab')) {
     element.classList.remove('no-transitions')
     element.classList.remove('cursor-grab')
+    document.body.classList.remove('overflow-hidden')
   }
 }
 
