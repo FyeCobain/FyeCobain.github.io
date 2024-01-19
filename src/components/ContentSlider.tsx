@@ -4,7 +4,8 @@ import { ContentSliderContext } from '@app/contexts'
 import { getClientX, getClientY, setGrabClasses, isPhoneSize, isTabletSize, isLaptopSize, isDesktopSize } from '@app/functions'
 
 // Returns true if the slider should be active
-function sliderIsActive(slider: HTMLDivElement): boolean {
+function sliderIsActive(slider: HTMLDivElement | null): boolean {
+  if (slider === null) return false
   return (isPhoneSize() && slider.classList.contains('content-slider--phone-0')) ||
   (isTabletSize() && slider.classList.contains('content-slider--tablet-0')) ||
   ((isLaptopSize() || isDesktopSize()) && slider.classList.contains('content-slider--laptop-0'))
@@ -123,7 +124,12 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
   }
 
   function handleOnMouseOrTouchDown(event: React.MouseEvent | React.TouchEvent) {
-    if (sliderRef.current === null || !sliderIsActive(sliderRef.current)) return
+    if (!sliderIsActive(sliderRef.current)) {
+      performClick(event)
+      return
+    }
+
+    if ((event.target as HTMLElement).tagName === 'A') return
     if ('clientX' in event && event.button !== 0) return
     else if ('touches' in event && event.touches.length > 1) return
 
@@ -198,7 +204,7 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
       <div
         ref={ sliderRef }
         className={ (`content-slider--phone-${ phoneCols } content-slider--tablet-${ tabletCols } content-slider--laptop-${ laptopCols } ${ props.className }`).trim() }
-        onClick={ (event: React.MouseEvent) => event.preventDefault() }
+        onClick={ (event: React.MouseEvent) => ((event.target as HTMLElement).tagName === 'A') ? '' : event.preventDefault() }
 
         onMouseDown={ handleOnMouseOrTouchDown }
         onMouseMove={ handleOnMouseOrTouchMove }
