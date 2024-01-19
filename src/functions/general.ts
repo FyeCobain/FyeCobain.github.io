@@ -1,3 +1,19 @@
+export function isPhoneSize(): boolean {
+  return window.innerWidth <= 767
+}
+
+export function isTabletSize(): boolean {
+  return window.innerWidth >= 768 && window.innerWidth <= 1023
+}
+
+export function isLaptopSize(): boolean {
+  return window.innerWidth >= 1024 && window.innerWidth <= 1366
+}
+
+export function isDesktopSize(): boolean {
+  return window.innerWidth >= 1367
+}
+
 export function isURL(str: string): boolean {
   return str.trim().toLowerCase().startsWith('http')
 }
@@ -23,27 +39,15 @@ export function setGrabClasses(element: HTMLElement, on: boolean) {
   if (on && !element.classList.contains('cursor-grab')) {
     element.classList.add('no-transitions')
     element.classList.add('cursor-grab')
-    document.body.classList.add('overflow-hidden')
+    if (isPhoneSize() || isTabletSize()) {
+      document.documentElement.classList.add('overflow-hidden')
+      document.documentElement.classList.add('overscroll-none')
+    }
   }
   else if (!on && element.classList.contains('cursor-grab')) {
     element.classList.remove('no-transitions')
     element.classList.remove('cursor-grab')
-    document.body.classList.remove('overflow-hidden')
+    document.documentElement.classList.remove('overflow-hidden')
+    document.documentElement.classList.remove('overscroll-none')
   }
-}
-
-export function isPhoneSize(): boolean {
-  return window.innerWidth <= 767
-}
-
-export function isTabletSize(): boolean {
-  return window.innerWidth >= 768 && window.innerWidth <= 1023
-}
-
-export function isLaptopSize(): boolean {
-  return window.innerWidth >= 1024 && window.innerWidth <= 1366
-}
-
-export function isDesktopSize(): boolean {
-  return window.innerWidth >= 1367
 }
