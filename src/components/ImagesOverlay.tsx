@@ -25,7 +25,7 @@ function getCurrentImgIndex(imgsContainers: HTMLDivElement[]): number {
   return imgsContainers.findIndex((imgContainer: HTMLDivElement) => !imgContainer.classList.contains('prev') && !imgContainer.classList.contains('next'))
 }
 
-// Checks if the 'previous' or the 'next' button must be disabled
+// Checks if the 'previous' and the 'next' buttons must be visible
 function checkButtons(imagesState: ImagesContextValueInterface, currentImageIndex: number) {
   const prevButton: HTMLElement | null = document.querySelector('[class*="images-overlay__prev-button"]')
   const nextButton: HTMLElement | null = document.querySelector('[class*="images-overlay__next-button"]')
@@ -157,6 +157,12 @@ export default function ImagesOverlay() {
       .forEach((imgContainer: Element) => {
         imgContainer.classList.add('next')
       })
+
+    // Removing the initial styles
+    sliderRef?.current?.querySelectorAll('.images-overlay__image')
+      .forEach((imgContainer: Element) => {
+        (imgContainer as HTMLElement).removeAttribute('style')
+      })
   }, [ imagesState.images ])
 
   // Returns true if there is only one image (or less)
@@ -200,7 +206,7 @@ export default function ImagesOverlay() {
     <div ref={ sliderRef } className="images-overlay__slider">
     {
       imagesState.images.map((image: string, index: number) =>
-      <div key={ index } className="images-overlay__image">
+      <div key={ index } className="images-overlay__image" style={ { left: index === 0 ? '0%' : '100%' } }>
         <img
           src={ image }
 
@@ -283,7 +289,7 @@ export default function ImagesOverlay() {
       </div>
 
       <div
-        className={'images-overlay__prev-button content-center' + (singleImage() ? ' display-none' : '')}
+        className={'images-overlay__prev-button content-center hide' + (singleImage() ? ' display-none' : '')}
         onClick={ () => previousImg(imagesState, sliderRef.current) }
       ><GrPrevious />
       </div>
