@@ -173,8 +173,10 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
     setGrabClasses(sliderRef.current, false)
     if (dragPerformed)
       setDragPerformed(false)
-    else if (Math.abs(getClientY(startEvent) - getClientY(endEvent)) <= 3)
+    else if (Math.abs(getClientY(startEvent) - getClientY(endEvent)) <= 3) {
+      event.preventDefault()
       performClick(endEvent)
+    }
 
     const currentElementIndex: number = getCurrentElementIndex(getClientX(startEvent) - getClientX(endEvent) > 0, sliderRef.current, elementsValues)
     setElementsPositions(currentElementIndex, elementsValues, sliderRef.current)
