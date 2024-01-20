@@ -15,18 +15,18 @@ function removeImages(imagesState: ImagesContextValueInterface, targetElement: E
 }
 
 // Returns an array of the slider's img containers
-function getImgsContainers(sliderDiv: DivNullable): HTMLDivElement[] {
-  if (sliderDiv === null) return []
-  return Array.from(sliderDiv.querySelectorAll('div'))
+function getImgsContainers(): HTMLDivElement[] {
+  return Array.from(document.querySelectorAll('.images-overlay__slider > DIV'))
 }
 
 // Returns the current's img index
 function getCurrentImgIndex(imgsContainers: HTMLDivElement[]): number {
-  return imgsContainers.findIndex((imgContainer: HTMLDivElement) => !imgContainer.classList.contains('prev') && !imgContainer.classList.contains('next'))
+  return imgsContainers.findIndex((imgContainer: HTMLDivElement) =>
+    !imgContainer.classList.contains('prev') && !imgContainer.classList.contains('next'))
 }
 
 // Checks if the 'previous' and the 'next' buttons must be visible
-function checkButtons(imagesState: ImagesContextValueInterface, currentImageIndex: number) {
+function checkButtons(currentImageIndex: number, imagesCount: number) {
   const prevButton: HTMLElement | null = document.querySelector('[class*="images-overlay__prev-button"]')
   const nextButton: HTMLElement | null = document.querySelector('[class*="images-overlay__next-button"]')
   if (prevButton === null || nextButton === null) return
@@ -36,15 +36,15 @@ function checkButtons(imagesState: ImagesContextValueInterface, currentImageInde
   else
     prevButton.classList.remove('hide')
 
-  if (currentImageIndex === imagesState.images.length - 1)
+  if (currentImageIndex === imagesCount - 1)
     nextButton.classList.add('hide')
   else
     nextButton.classList.remove('hide')
 }
 
 // Show previous image
-function previousImg(imagesState: ImagesContextValueInterface, sliderDiv: DivNullable) {
-  const imgsContainers: HTMLDivElement[] = getImgsContainers(sliderDiv)
+function previousImg(imagesState: ImagesContextValueInterface) {
+  const imgsContainers: HTMLDivElement[] = getImgsContainers()
   if (imgsContainers.length <= 1) return
   const currentImageIndex = getCurrentImgIndex(imgsContainers)
   if (currentImageIndex === 0) return
@@ -52,12 +52,12 @@ function previousImg(imagesState: ImagesContextValueInterface, sliderDiv: DivNul
   imgsContainers[currentImageIndex].classList.add('next')
   imgsContainers[currentImageIndex - 1].classList.remove('prev')
   imagesState.setCurrentImageIndex(currentImageIndex - 1)
-  checkButtons(imagesState, currentImageIndex - 1)
+  checkButtons(currentImageIndex - 1, imgsContainers.length)
 }
 
 // show next image
-function nextImg(imagesState: ImagesContextValueInterface, sliderDiv: DivNullable) {
-  const imgsContainers: HTMLDivElement[] = getImgsContainers(sliderDiv)
+function nextImg(imagesState: ImagesContextValueInterface) {
+  const imgsContainers: HTMLDivElement[] = getImgsContainers()
   if (imgsContainers.length <= 1) return
   const currentImageIndex = getCurrentImgIndex(imgsContainers)
   if (currentImageIndex === imgsContainers.length - 1) return
@@ -65,7 +65,7 @@ function nextImg(imagesState: ImagesContextValueInterface, sliderDiv: DivNullabl
   imgsContainers[currentImageIndex].classList.add('prev')
   imgsContainers[currentImageIndex + 1].classList.remove('next')
   imagesState.setCurrentImageIndex(currentImageIndex + 1)
-  checkButtons(imagesState, currentImageIndex + 1)
+  checkButtons(currentImageIndex + 1, imgsContainers.length)
 }
 
 // Performs the drag movement
@@ -110,7 +110,7 @@ export default function ImagesOverlay() {
         })
         break
       case 'ArrowLeft':
-        previousImg(imagesState, sliderRef.current)
+        previousImg(imagesState)
         break
       case 'ArrowDown':
         sliderRef.current?.scrollTo({
@@ -120,7 +120,7 @@ export default function ImagesOverlay() {
         })
         break
       case 'ArrowRight':
-        nextImg(imagesState, sliderRef.current)
+        nextImg(imagesState)
         break
     }
   }, [ imagesState.images ])
@@ -149,16 +149,13 @@ export default function ImagesOverlay() {
       return
     }
 
-    // Checking if buttons must be enabled or disabled
-    checkButtons(imagesState, imagesState.currentImageIndex)
-
     // Adding the 'next' class to the image containers starting from the second one
     sliderRef?.current?.querySelectorAll('.images-overlay__image:not(:first-of-type)')
       .forEach((imgContainer: Element) => {
         imgContainer.classList.add('next')
       })
 
-    // Removing the initial styles
+    // Removing the style attribute
     sliderRef?.current?.querySelectorAll('.images-overlay__image')
       .forEach((imgContainer: Element) => {
         (imgContainer as HTMLElement).removeAttribute('style')
@@ -187,9 +184,9 @@ export default function ImagesOverlay() {
 
   const dragCallbakks: DragCallbacksInterface = {
     onUpDrag: null,
-    onRightDrag: () => previousImg(imagesState, sliderRef.current),
+    onRightDrag: () => previousImg(imagesState),
     onDownDrag: null,
-    onLeftDrag: () => nextImg(imagesState, sliderRef.current),
+    onLeftDrag: () => nextImg(imagesState),
   }
 
   return (
@@ -290,13 +287,13 @@ export default function ImagesOverlay() {
 
       <div
         className={'images-overlay__prev-button content-center hide' + (singleImage() ? ' display-none' : '')}
-        onClick={ () => previousImg(imagesState, sliderRef.current) }
+        onClick={ () => previousImg(imagesState) }
       ><GrPrevious />
       </div>
 
       <div
         className={'images-overlay__next-button content-center' + (singleImage() ? ' display-none' : '')}
-        onClick={ () => nextImg(imagesState, sliderRef.current) }
+        onClick={ () => nextImg(imagesState) }
       ><GrPrevious />
       </div>
 
