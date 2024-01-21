@@ -1,4 +1,5 @@
 import React, { type MutableRefObject, useRef, useState, useEffect } from 'react'
+import { GoDotFill } from 'react-icons/go'
 import type { ContentSliderContextValueInterface, ContentSliderPropsInterface, SliderElement, DivNullable, ElementOnClick } from '@app/types-interfaces'
 import { ContentSliderContext } from '@app/contexts'
 import { getClientX, getClientY, setGrabClasses, isPhoneSize, isTabletSize, isLaptopSize, isDesktopSize } from '@app/functions'
@@ -86,13 +87,14 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
   const [ dragPerformed, setDragPerformed ] = useState<boolean>(false)
   const [ startEvent, setStartEvent ] = useState<React.MouseEvent | React.TouchEvent | null>(null)
   const [ lastMoveEvent, setLastMoveEvent ] = useState<React.MouseEvent | React.TouchEvent | null>(null)
+  const [ currentElementIndex, setCurrentElementIndex ] = useState<number>(0)
   const sliderRef: MutableRefObject<DivNullable> = useRef(null)
 
   // Getting al the slider elements and setting up them initial styles
   useEffect(() => {
     if (sliderRef.current === null) return
 
-    const elems: HTMLDivElement[] = Array.from(sliderRef.current.querySelectorAll(':scope > DIV'))
+    const elems: HTMLDivElement[] = Array.from(sliderRef.current.querySelectorAll(':scope > .content-slider__element'))
       .map((element: Node) => element as HTMLDivElement)
 
     setElementsValues(initialStyleValues(sliderRef.current, elems))
@@ -178,8 +180,9 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
       performClick(endEvent)
     }
 
-    const currentElementIndex: number = getCurrentElementIndex(getClientX(startEvent) - getClientX(endEvent) > 0, sliderRef.current, elementsValues)
-    setElementsPositions(currentElementIndex, elementsValues, sliderRef.current)
+    const index: number = getCurrentElementIndex(getClientX(startEvent) - getClientX(endEvent) > 0, sliderRef.current, elementsValues)
+    setCurrentElementIndex(index)
+    setElementsPositions(index, elementsValues, sliderRef.current)
     updateLeftValues()
   }
 
@@ -226,6 +229,12 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
           { child }
           </div>)
         }
+        <div className="content-slider-nav display-none">
+        {
+          Array.from((Array(elementsValues.length).keys()))
+            .map((index: number) => <GoDotFill key={ index } className={ index !== currentElementIndex ? '' : 'current'} />)
+        }
+        </div>
       </div>
     </ContentSliderContext.Provider>
   )
