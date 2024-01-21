@@ -50,7 +50,7 @@ export default i18n
             books: 'Read and write',
             learn: 'Learn (about anything)',
             nature: 'Nature',
-            games: 'Videogames',
+            games: 'Games',
           },
           projects: {
             myProjects: 'My projects',
