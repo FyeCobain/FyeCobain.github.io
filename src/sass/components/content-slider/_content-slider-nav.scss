@@ -1,0 +1,17 @@
+@use './../../variables' as vars;
+
+.content-slider-nav {
+	justify-content: center;
+	position: relative;
+	bottom: .2rem;
+	font-size: 1.8rem;
+
+  svg {
+    opacity: 0.25;
+  }
+
+	& svg.current {
+    opacity: 1;
+		color: vars.$color-greene-light;
+	}
+}

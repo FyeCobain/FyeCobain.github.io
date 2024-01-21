@@ -1,5 +1,5 @@
-@use './../variables' as vars;
-@use './../mixins';
+@use './../../variables' as vars;
+@use './../../mixins';
 
 // Phone classes are always present at the beginning
 *[class^="content-slider--phone"] {
@@ -10,6 +10,13 @@
 }
 
 /* MIXINS FOR SETTING THE SLIDER STYLES */
+
+// Show navigation
+@mixin show-nav {
+  .content-slider-nav {
+    display: flex !important;
+  }
+}
 
 // Each elements must take 100% of height
 @mixin height-100 {
@@ -47,6 +54,8 @@
   @include col-row(1, 1);
 
   @include relative;
+
+  @include show-nav;
 
   @if $height-100 {
     @include height-100;
