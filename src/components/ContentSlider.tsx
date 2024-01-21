@@ -88,6 +88,8 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
   const [ startEvent, setStartEvent ] = useState<React.MouseEvent | React.TouchEvent | null>(null)
   const [ lastMoveEvent, setLastMoveEvent ] = useState<React.MouseEvent | React.TouchEvent | null>(null)
   const [ currentElementIndex, setCurrentElementIndex ] = useState<number>(0)
+  const [ mouseDownScrollY, setMouseDownScrollY ] = useState<number>(0)
+  const [ dragStartScrollY, setDragStartScrollY ] = useState<number>(-1)
   const sliderRef: MutableRefObject<DivNullable> = useRef(null)
 
   // Getting al the slider elements and setting up them initial styles
@@ -146,6 +148,7 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
     setDragInProgress(true)
     setStartEvent(event)
     setLastMoveEvent(event)
+    setMouseDownScrollY(window.scrollY)
   }
 
   function handleOnMouseOrTouchMove(event: React.MouseEvent | React.TouchEvent) {
@@ -154,13 +157,23 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
 
     event.preventDefault()
     const dragged = dragElements(elementsValues, event, startEvent)
-    if (dragged)
+    if (dragged) {
       setGrabClasses(sliderRef.current, dragged)
+      if (dragStartScrollY === -1)
+        setDragStartScrollY(window.scrollY)
+      else
+        window.scrollTo(window.scrollX, dragStartScrollY)
+    }
+    else if (dragStartScrollY === -1 && Math.abs(getClientY(event) - getClientY(startEvent)) < 5)
+      setDragStartScrollY(mouseDownScrollY)
+
     setDragPerformed(dragged)
     setLastMoveEvent(event)
   }
 
   function handleOnMouseOrTouchDragEnd(event: React.MouseEvent | React.TouchEvent) {
+    setDragStartScrollY(-1)
+
     if (!dragInProgress || sliderRef.current === null || startEvent === null || lastMoveEvent === null) return
 
     // In touch screens event.touches.length is 0
