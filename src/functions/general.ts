@@ -39,15 +39,11 @@ export function setGrabClasses(element: HTMLElement, on: boolean) {
   if (on && !element.classList.contains('cursor-grab')) {
     element.classList.add('no-transitions')
     element.classList.add('cursor-grab')
-    if (isPhoneSize() || isTabletSize()) {
-      document.documentElement.classList.add('overflow-hidden')
-      document.documentElement.classList.add('overscroll-none')
-    }
+    document.documentElement.classList.add('overscroll-none')
   }
   else if (!on && element.classList.contains('cursor-grab')) {
     element.classList.remove('no-transitions')
     element.classList.remove('cursor-grab')
-    document.documentElement.classList.remove('overflow-hidden')
     document.documentElement.classList.remove('overscroll-none')
   }
 }
