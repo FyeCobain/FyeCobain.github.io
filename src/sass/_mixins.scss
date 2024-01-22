@@ -48,7 +48,7 @@
   }
 }
 
-@mixin soft-border($border-size) {
+@mixin border-soft($border-size) {
   border: 1px solid lighten(vars.$color-bg-blue-2, 10);
   border-radius: $border-size;
 }

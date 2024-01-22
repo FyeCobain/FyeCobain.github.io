@@ -2,7 +2,7 @@ import React, { type MutableRefObject, useRef, useState, useEffect } from 'react
 import { GoDotFill } from 'react-icons/go'
 import type { ContentSliderContextValueInterface, ContentSliderPropsInterface, SliderElement, DivNullable, ElementOnClick } from '@app/types-interfaces'
 import { ContentSliderContext } from '@app/contexts'
-import { getClientX, getClientY, setGrabClasses, isPhoneSize, isTabletSize, isLaptopSize, isDesktopSize } from '@app/functions'
+import { getClientX, getClientY, setGrabClasses, isPhoneSize, isTabletSize, isLaptopSize, isDesktopSize, isAnAnchor } from '@app/functions'
 
 // Returns true if the slider should be active
 function sliderIsActive(slider: HTMLDivElement | null): boolean {
@@ -133,7 +133,7 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
       return
     }
 
-    if ((event.target as HTMLElement).tagName === 'A') return
+    if (isAnAnchor(event.target as HTMLElement)) return
     if ('clientX' in event && event.button !== 0) return
     else if ('touches' in event && event.touches.length > 1) return
 
@@ -222,7 +222,7 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
       <div
         ref={ sliderRef }
         className={ (`content-slider--phone-${ phoneCols } content-slider--tablet-${ tabletCols } content-slider--laptop-${ laptopCols } ${ props.className }`).trim() }
-        onClick={ (event: React.MouseEvent) => ((event.target as HTMLElement).tagName === 'A') ? '' : event.preventDefault() }
+        onClick={ (event: React.MouseEvent) => isAnAnchor(event.target as HTMLElement) ? '' : event.preventDefault() }
 
         onMouseDown={ handleOnMouseOrTouchDown }
         onMouseMove={ handleOnMouseOrTouchMove }

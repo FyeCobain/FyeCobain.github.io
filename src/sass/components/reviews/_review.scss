@@ -7,7 +7,7 @@
   max-width: 90%;
   gap: .5rem;
   padding: 2rem 2.45rem 2rem 2rem;
-  @include mixins.soft-border(.5rem);
+  @include mixins.border-soft(.5rem);
   @include mixins.comic-background-2(darken(vars.$color-bg-blue-1, 1));
 }
 
