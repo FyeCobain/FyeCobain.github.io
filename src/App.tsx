@@ -2,10 +2,11 @@ import { useState } from 'react'
 import { ImagesContext } from './contexts'
 import { type ImagesContextValueInterface } from './types-interfaces'
 import ImagesOverlay from './components/ImagesOverlay'
-import Nav from './components/Nav'
-import Header from './components/header/Header'
-import AboutMe from './components/aboutMe/AboutMe'
-import Projects from './components/projects/Projects'
+import Nav from '@components/Nav'
+import Header from '@components/header/Header'
+import AboutMe from '@components/aboutMe/AboutMe'
+import Projects from '@components/projects/Projects'
+import Reviews from '@components/reviews/Reviews'
 
 function App() {
   // Image state context for the image overlay
@@ -29,6 +30,7 @@ function App() {
       <Header />
       <AboutMe />
       <Projects />
+      <Reviews />
     </ImagesContext.Provider>
   )
 }

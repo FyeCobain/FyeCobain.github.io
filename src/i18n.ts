@@ -60,6 +60,9 @@ export default i18n
             scenesGetter: 'Scenes extractor',
             contributions: 'contributions',
           },
+          reviews: {
+            value: 'Reviews',
+          },
         },
       },
       es: {
@@ -112,6 +115,9 @@ export default i18n
             chatApp: 'App de chat',
             scenesGetter: 'Extractor de escenas',
             contributions: 'Contribuciones en',
+          },
+          reviews: {
+            value: 'Reseñas',
           },
         },
       },

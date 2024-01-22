@@ -1,0 +1,10 @@
+@use './../../variables' as vars;
+
+.reviews {
+  margin-top: vars.$margin-base;
+
+  .section-heading svg {
+    font-size: 4rem;
+    margin-left: 1.3rem;
+  }
+}
