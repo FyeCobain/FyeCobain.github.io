@@ -1,7 +1,7 @@
 import { VscFolder } from 'react-icons/vsc'
 import { useTranslation } from 'react-i18next'
 import ProjectsContainer from './ProjectsContainer'
-import GitHub from './GitHub'
+import GitHubInfo from './GitHubInfo'
 
 export default function Projects() {
   const { t } = useTranslation()
@@ -13,7 +13,7 @@ export default function Projects() {
         <VscFolder />
       </div>
       <ProjectsContainer />
-      <GitHub />
+      <GitHubInfo />
     </section>
   )
 }
