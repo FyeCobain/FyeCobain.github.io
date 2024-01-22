@@ -35,7 +35,7 @@
     user-select: none;
   }
 
-  p:before {
+  p::before {
     content: '';
     position: absolute;
     top: 11.2rem;
@@ -45,7 +45,7 @@
     rotate: 22deg;
   }
 
-  p:after {
+  p::after {
     content: '';
     top: 11.1rem;
     left: 1.4rem;

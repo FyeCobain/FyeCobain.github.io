@@ -6,12 +6,16 @@
   grid-template-columns: 1fr;
   max-width: 90%;
   gap: .5rem;
+  border-radius: .75rem;
+  padding: 2rem;
+  @include mixins.comic-background-2(darken(vars.$color-bg-blue-1, 1));
 }
 
 .review__user {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
 
   img {
     max-width: 13.25rem;
@@ -21,20 +25,23 @@
     border: 2px solid darken(vars.$color-greene, 5);
     @include mixins.hover-glow(vars.$duration-short, .75rem, unset, vars.$color-greene, vars.$color-gray)
   }
+}
 
-  p {
-    font-weight: bold;
+p.review__user--info {
+  display: flex;
+
+  span {
     color: vars.$color-white;
   }
 
-  span:first-of-type {
+  span:nth-child(2) {
     font-size: 1.7rem;
-    margin: 0 .5rem;
-  }
-
-  span:first-of-type {
-    font-weight: normal;
     color: lighten(vars.$color-gray, 20);
+  }
+  
+  span:nth-child(3) {
+    font-weight: bold;
+    color: lighten(vars.$color-yellow, 10);
   }
 }
 
@@ -44,13 +51,14 @@
   align-items: center;
   justify-content: space-around;
 
-  h3 { // max-width: 40rem;
+  h3 {
     text-align: center;
     font-size: 1.85rem;
     margin: .75rem 0;
   }
 
   blockquote {
+    position: relative;
     max-width: 36rem;
     font-size: 2rem;
     font-style: italic;
@@ -58,9 +66,19 @@
     margin: 0 0 1rem 0;
     text-align: justify;
 
-    &:first-letter {
+    &::first-letter {
       font-weight: 600;
       font-size: 2.5rem;
+    }
+    
+    &::before {
+      content: '';
+      width: 2.3rem;
+      height: 2.3rem;
+      position: absolute;
+      top: -6%;
+      left: -5%;
+      background-image: url("data:image/svg+xml,%3Csvg clip-rule='evenodd' fill='%2311A6AE' fill-rule='evenodd' stroke-linejoin='round' stroke-miterlimit='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m20.622 4c.76 0 1.378.608 1.378 1.355 0 .531-.315 1.018-.843 1.302-1.212.645-2.614 2.735-2.983 4.286 2.38.538 3.8 2.394 3.8 4.564 0 2.169-1.859 4.493-4.627 4.493-3.501 0-5.096-2.882-5.096-5.561 0-5.742 6.32-10.439 8.371-10.439zm-10.251 0c.76 0 1.378.608 1.378 1.355 0 .531-.315 1.018-.843 1.302-1.212.645-2.614 2.735-2.983 4.286 2.38.538 3.8 2.394 3.8 4.564 0 2.169-1.859 4.493-4.627 4.493-3.501 0-5.096-2.882-5.096-5.561 0-5.742 6.32-10.439 8.371-10.439zm6.21 8.428c-.112-3 1.984-5.754 3.649-6.966-1.911.782-6.479 4.857-6.479 8.977 0 1.869.942 4.051 3.596 4.051 1.871 0 3.127-1.542 3.127-2.983 0-1.453-.862-3.166-3.893-3.079zm-10.251 0c-.112-3 1.984-5.754 3.649-6.966-1.911.782-6.479 4.857-6.479 8.977 0 1.869.942 4.051 3.596 4.051 1.871 0 3.127-1.542 3.127-2.983 0-1.453-.862-3.166-3.893-3.079z' fill-rule='nonzero'/%3E%3C/svg%3E");
     }
   }
 
@@ -68,6 +86,44 @@
     font-size: 2rem;
     display: flex;
     gap: 1.1rem;
-    color: vars.$color-yellow;
+    color: darken(vars.$color-yellow, 5);
+  }
+}
+
+@include mixins.tablet {
+  .review {
+    grid-template-columns: repeat(3, 1fr);
+
+    .review__user {
+      padding-top: vars.$margin-short;
+    }
+  }
+
+  p.review__user--info {
+    flex-direction: column;
+    gap: .5rem;
+
+    span:nth-child(2) {
+      display: none;
+    }
+  }
+
+  .review__details {
+    grid-column: 2 / 4;
+
+    h3 {
+      max-width: 40rem;
+    }
+
+    blockquote {
+      text-align: start;
+    }
+
+    blockquote::before {
+      width: 2.55rem;
+      height: 2.55rem;
+      top: -8%;
+      left: -6%;
+    }
   }
 }
