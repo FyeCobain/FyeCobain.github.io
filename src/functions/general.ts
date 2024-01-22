@@ -1,3 +1,16 @@
+// Returns true if the element or some ancestor is an anchor element
+export function isAnAnchor(element: HTMLElement): boolean {
+  if (element.tagName === 'A') return true
+
+  let parentNode: HTMLElement | null = element.parentNode as HTMLElement
+  while (parentNode !== null) {
+    if (parentNode.tagName === 'A')
+      return true
+    parentNode = parentNode.parentNode as HTMLElement
+  }
+  return false
+}
+
 export function isPhoneSize(): boolean {
   return window.innerWidth <= 767
 }

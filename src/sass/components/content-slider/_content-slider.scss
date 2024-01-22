@@ -182,4 +182,6 @@
 
 .content-slider__element {
   transition: left vars.$duration-normal;
+  display: flex;
+  justify-content: center;
 }

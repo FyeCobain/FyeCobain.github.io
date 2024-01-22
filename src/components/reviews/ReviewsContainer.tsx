@@ -2,6 +2,7 @@ import type { ReviewInterface } from '@app/types-interfaces'
 import { useTranslation } from 'react-i18next'
 import { isEnglish } from '@app/functions'
 import { NAME } from '@app/consts'
+import ContentSlider from '@components/ContentSlider'
 import Review from './Review'
 import reviewer1 from '/img/reviewers/1.webp'
 import reviewer2 from '/img/reviewers/2.webp'
@@ -69,10 +70,10 @@ export default function ReviewsContainer() {
   ]
 
   return (
-    <div className="reviews-container content-center">
-    {
+    <ContentSlider className="reviews-container content-center" phoneCols={ 0 } tabletCols={ 0 } laptopCols={ 0 }>
+      {
       reviews.map((review: ReviewInterface, index: number) => <Review key={ index } review={ review } />)
     }
-    </div>
+    </ContentSlider>
   )
 }
