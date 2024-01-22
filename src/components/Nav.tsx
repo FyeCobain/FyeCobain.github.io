@@ -39,9 +39,11 @@ const setScrollListenerInterval = setInterval(() => {
     const USER_ICON = document.getElementById('icon-user')
     const PROJECTS = document.getElementById('projects')
     const FOLDER_ICON = document.getElementById('icon-folder')
+    const REVIEWS = document.getElementById('reviews')
+    const STAR_ICON = document.getElementById('icon-star')
 
     // If some element is null, do nothing
-    if (HEADER === null || HOME_ICON === null || ABOUT_ME === null || USER_ICON === null || PROJECTS === null || FOLDER_ICON === null) {
+    if (HEADER === null || HOME_ICON === null || ABOUT_ME === null || USER_ICON === null || PROJECTS === null || FOLDER_ICON === null || REVIEWS === null || STAR_ICON === null) {
       clearInterval(setScrollListenerInterval)
       return
     }
@@ -65,6 +67,12 @@ const setScrollListenerInterval = setInterval(() => {
         icon: FOLDER_ICON,
         unhideOffsetPercentage: 10,
         activeOffsetPercentage: 53.5,
+      },
+      {
+        section: REVIEWS,
+        icon: STAR_ICON,
+        unhideOffsetPercentage: 3,
+        activeOffsetPercentage: 3,
       },
     ]
 
@@ -221,7 +229,7 @@ export default function Nav() {
           <VscFolder />
         </div>
 
-        <div id="icon-star" className="nav__icon">
+        <div id="icon-star" className="nav__icon" onClick={ () => scrollTo('reviews') }>
           <IoStarHalf />
         </div>
 
