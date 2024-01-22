@@ -6,7 +6,7 @@ import { useContext } from 'react'
 import { ImagesContext } from '@app/contexts'
 import contributions from '/img/projects/github.png'
 
-export default function GitHub() {
+export default function GitHubInfo() {
   const imagesState: ImagesContextValueInterface = useContext(ImagesContext)
 
   const { t, i18n } = useTranslation()

@@ -39,6 +39,16 @@ export interface ProjectInterface {
   languages: string[]
 }
 
+export interface ReviewInterface {
+  id: number
+  reviewerPhoto: string | null
+  reviewerName: string
+  reviewerCountry: string
+  projectTitle: string
+  reviewText: string
+  starsQuantity: number
+}
+
 export interface SliderElement {
   htmlElement: HTMLDivElement
   initialLeftPercentage: number

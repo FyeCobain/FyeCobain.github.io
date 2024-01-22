@@ -71,8 +71,8 @@ const setScrollListenerInterval = setInterval(() => {
       {
         section: REVIEWS,
         icon: STAR_ICON,
-        unhideOffsetPercentage: 3,
-        activeOffsetPercentage: 3,
+        unhideOffsetPercentage: 15,
+        activeOffsetPercentage: 53.5,
       },
     ]
 
