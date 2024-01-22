@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { NAME } from '@app/consts'
+import { NAME, LAST_NAME } from '@app/consts'
 import Photo from './Photo'
 import Info from './Info'
 import CVButton from './../CVButton'
@@ -11,7 +11,7 @@ export default function Header() {
     <header id="header" className="header content-center">
       <p className="header__hello text-center"><span>{ t('header.hello') }</span>, { t('header.im') }</p>
 
-      <h1 className="text-center">{ NAME }</h1>
+      <h1 className="text-center">{ NAME + ' ' + LAST_NAME }</h1>
 
       <Photo />
 

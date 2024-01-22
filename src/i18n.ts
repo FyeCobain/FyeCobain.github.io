@@ -62,7 +62,6 @@ export default i18n
           },
           reviews: {
             value: 'Reviews',
-            from: 'from',
           },
         },
       },
@@ -119,7 +118,6 @@ export default i18n
           },
           reviews: {
             value: 'Reseñas',
-            from: 'de',
           },
         },
       },
