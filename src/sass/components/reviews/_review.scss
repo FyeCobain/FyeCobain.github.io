@@ -6,8 +6,8 @@
   grid-template-columns: 1fr;
   max-width: 90%;
   gap: .5rem;
-  border-radius: .75rem;
-  padding: 2rem;
+  padding: 2rem 2.45rem 2rem 2rem;
+  @include mixins.soft-border(.5rem);
   @include mixins.comic-background-2(darken(vars.$color-bg-blue-1, 1));
 }
 
@@ -18,8 +18,8 @@
   text-align: center;
 
   img {
-    max-width: 13.25rem;
-    max-height: 13.25rem;
+    max-width: 11rem;
+    max-height: 11rem;
     margin-bottom: 1rem;
     border-radius: 50%;
     border: 2px solid darken(vars.$color-greene, 5);
@@ -29,6 +29,7 @@
 
 p.review__user--info {
   display: flex;
+  font-size: 1.75rem;
 
   span {
     color: vars.$color-white;
@@ -54,7 +55,7 @@ p.review__user--info {
   h3 {
     text-align: center;
     font-size: 1.85rem;
-    margin: .75rem 0;
+    margin: 1rem 0;
   }
 
   blockquote {
@@ -67,8 +68,8 @@ p.review__user--info {
     text-align: justify;
 
     &::first-letter {
-      font-weight: 600;
-      font-size: 2.5rem;
+      font-weight: bold;
+      font-size: 2.2rem;
     }
     
     &::before {
@@ -77,7 +78,7 @@ p.review__user--info {
       height: 2.3rem;
       position: absolute;
       top: -6%;
-      left: -5%;
+      left: -6%;
       background-image: url("data:image/svg+xml,%3Csvg clip-rule='evenodd' fill='%2311A6AE' fill-rule='evenodd' stroke-linejoin='round' stroke-miterlimit='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m20.622 4c.76 0 1.378.608 1.378 1.355 0 .531-.315 1.018-.843 1.302-1.212.645-2.614 2.735-2.983 4.286 2.38.538 3.8 2.394 3.8 4.564 0 2.169-1.859 4.493-4.627 4.493-3.501 0-5.096-2.882-5.096-5.561 0-5.742 6.32-10.439 8.371-10.439zm-10.251 0c.76 0 1.378.608 1.378 1.355 0 .531-.315 1.018-.843 1.302-1.212.645-2.614 2.735-2.983 4.286 2.38.538 3.8 2.394 3.8 4.564 0 2.169-1.859 4.493-4.627 4.493-3.501 0-5.096-2.882-5.096-5.561 0-5.742 6.32-10.439 8.371-10.439zm6.21 8.428c-.112-3 1.984-5.754 3.649-6.966-1.911.782-6.479 4.857-6.479 8.977 0 1.869.942 4.051 3.596 4.051 1.871 0 3.127-1.542 3.127-2.983 0-1.453-.862-3.166-3.893-3.079zm-10.251 0c-.112-3 1.984-5.754 3.649-6.966-1.911.782-6.479 4.857-6.479 8.977 0 1.869.942 4.051 3.596 4.051 1.871 0 3.127-1.542 3.127-2.983 0-1.453-.862-3.166-3.893-3.079z' fill-rule='nonzero'/%3E%3C/svg%3E");
     }
   }
@@ -85,14 +86,21 @@ p.review__user--info {
   .review__stars {
     font-size: 2rem;
     display: flex;
-    gap: 1.1rem;
+    gap: 1.3rem;
     color: darken(vars.$color-yellow, 5);
+    
+    svg {
+      background-color: lighten(vars.$color-bg-blue-1, 0.25);
+      border-radius: 50%;
+    }
   }
 }
 
 @include mixins.tablet {
   .review {
+    padding: 2rem;
     grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
 
     .review__user {
       padding-top: vars.$margin-short;
@@ -113,6 +121,7 @@ p.review__user--info {
 
     h3 {
       max-width: 40rem;
+      margin: 1.7rem 0;
     }
 
     blockquote {
@@ -123,7 +132,13 @@ p.review__user--info {
       width: 2.55rem;
       height: 2.55rem;
       top: -8%;
-      left: -6%;
+      left: -6.5%;
+    }
+
+    .review__stars {
+      width: 100%;
+      gap: 1.1rem;
+      justify-content: end;
     }
   }
 }
