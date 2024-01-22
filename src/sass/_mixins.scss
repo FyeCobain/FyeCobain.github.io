@@ -1,3 +1,5 @@
+@use './variables' as vars;
+
 @mixin phone {
   @media(min-width: 454px) {
     @content;
@@ -44,6 +46,11 @@
   @media (min-width: 1367px) {
     @content;
   }
+}
+
+@mixin soft-border($border-size) {
+  border: 1px solid lighten(vars.$color-bg-blue-2, 10);
+  border-radius: $border-size;
 }
 
 @mixin hover-glow($transition-time, $shadow-size, $color, $border-color, $shadow-color, $cursor: pointer) {

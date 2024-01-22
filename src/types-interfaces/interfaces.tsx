@@ -41,10 +41,10 @@ export interface ProjectInterface {
 
 export interface ReviewInterface {
   id: number
+  projectTitle: string
   reviewerPhoto: string | null
   reviewerName: string
-  reviewerCountry: string
-  projectTitle: string
+  reviewerCountry: string | null
   reviewText: string
   starsQuantity: number
 }

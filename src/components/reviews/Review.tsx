@@ -12,7 +12,7 @@ export default function Review({ review }: { review: ReviewInterface }) {
     <div className="review">
       <div className="review__user">
         <img src={ photo } alt="User" onClick={ () => imagesState.setImages([ photo ]) } />
-        <p className="review__user--info"><span>{ review.reviewerName }</span><span>&nbsp;&#9866;&nbsp;</span><span>{ review.reviewerCountry }</span></p>
+        <p className="review__user--info"><span>{ review.reviewerName }</span>{ review.reviewerCountry === null ? <></> : <><span>&nbsp;&#9866;&nbsp;</span><span>{ review.reviewerCountry }</span></> }</p>
       </div>
       <div className="review__details">
         <a target="_blank" rel="noreferrer" href={ `${ FREELANCER_PROFILE_URL }?review_context_id=${ review.id }&review_type=project` }>
