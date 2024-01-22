@@ -8,6 +8,7 @@ export default defineConfig({
   plugins: [
     react(),
     ViteImageOptimizer({
+      exclude: /(^icon-)|(\.webp$)/i,
       jpg: {
         quality: 50,
       },
