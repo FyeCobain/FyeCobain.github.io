@@ -61,7 +61,7 @@ function dragElements(elements: SliderElement[], event: React.MouseEvent | React
 
 // Selects the current element based on the positions
 function getCurrentElementIndex(dragToLeft: boolean, slider: HTMLDivElement, elementsValues: SliderElement[]): number {
-  const elementPortion = 6
+  const elementPortion = 10
   let minorIndex = 0
   let minorDistance = dragToLeft
     ? Math.abs(slider.clientWidth / 2 - (elementsValues[minorIndex].currentLeftPixels + elementsValues[minorIndex].htmlElement.clientWidth / elementPortion))
