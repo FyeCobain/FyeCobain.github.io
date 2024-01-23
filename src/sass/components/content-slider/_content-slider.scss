@@ -9,6 +9,12 @@
   overflow-x: hidden;
 }
 
+.content-slider__element {
+  transition: left vars.$duration-normal;
+  display: flex;
+  justify-content: center;
+}
+
 /* MIXINS FOR SETTING THE SLIDER STYLES */
 
 // Show navigation
@@ -46,7 +52,7 @@
 }
 
 // All elements contained in the same column and row
-@mixin cols-0($width, $gap, $height-100: true) {
+@mixin cols-0($width, $gap, $height-100, $border-alpha) {
   width: $width;
   gap: $gap;
   grid-template-columns: 1fr;
@@ -119,7 +125,7 @@
 // Up to phone size
 @include mixins.phone-max {
   .content-slider--phone-0 {
-    @include cols-0(100%, 0, false);
+    @include cols-0(100%, 0, false, .5);
   }
 
   .content-slider--phone-1 {
@@ -134,7 +140,7 @@
 // Only tablet size
 @include mixins.tablet-only {
   .content-slider--tablet-0 {
-    @include cols-0(100%, 0, false);
+    @include cols-0(100%, 0, false, .5);
   }
 
   .content-slider--tablet-1 {
@@ -153,7 +159,7 @@
 // Only laptop size
 @include mixins.laptop {
   .content-slider--laptop-0 {
-    @include cols-0(100%, 0);
+    @include cols-0(100%, 0, true, 0);
   }
 
   .content-slider--laptop-1 {
@@ -178,10 +184,4 @@
   .content-slider--laptop-3 {
     @include cols-3(60%, 4rem);
   }
-}
-
-.content-slider__element {
-  transition: left vars.$duration-normal;
-  display: flex;
-  justify-content: center;
 }

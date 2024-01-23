@@ -4,7 +4,6 @@
 .review {
   display: grid;
   grid-template-columns: 1fr;
-  max-width: 90%;
   gap: .5rem;
   padding: 2rem 2.45rem 2rem 2rem;
   cursor: pointer;
@@ -62,9 +61,9 @@ p.review__user--info {
   blockquote {
     position: relative;
     max-width: 36rem;
-    font-size: 2rem;
     font-style: italic;
-    line-height: 1.35;
+    font-size: 1.8rem;
+    line-height: 1.4;
     margin: 0 0 1rem 0;
     text-align: justify;
 
@@ -78,8 +77,8 @@ p.review__user--info {
       width: 2.3rem;
       height: 2.3rem;
       position: absolute;
-      top: -6%;
-      left: -6%;
+      top: -1rem;
+      left: -1.8rem;
       background-image: url("data:image/svg+xml,%3Csvg clip-rule='evenodd' fill='%2311A6AE' fill-rule='evenodd' stroke-linejoin='round' stroke-miterlimit='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m20.622 4c.76 0 1.378.608 1.378 1.355 0 .531-.315 1.018-.843 1.302-1.212.645-2.614 2.735-2.983 4.286 2.38.538 3.8 2.394 3.8 4.564 0 2.169-1.859 4.493-4.627 4.493-3.501 0-5.096-2.882-5.096-5.561 0-5.742 6.32-10.439 8.371-10.439zm-10.251 0c.76 0 1.378.608 1.378 1.355 0 .531-.315 1.018-.843 1.302-1.212.645-2.614 2.735-2.983 4.286 2.38.538 3.8 2.394 3.8 4.564 0 2.169-1.859 4.493-4.627 4.493-3.501 0-5.096-2.882-5.096-5.561 0-5.742 6.32-10.439 8.371-10.439zm6.21 8.428c-.112-3 1.984-5.754 3.649-6.966-1.911.782-6.479 4.857-6.479 8.977 0 1.869.942 4.051 3.596 4.051 1.871 0 3.127-1.542 3.127-2.983 0-1.453-.862-3.166-3.893-3.079zm-10.251 0c-.112-3 1.984-5.754 3.649-6.966-1.911.782-6.479 4.857-6.479 8.977 0 1.869.942 4.051 3.596 4.051 1.871 0 3.127-1.542 3.127-2.983 0-1.453-.862-3.166-3.893-3.079z' fill-rule='nonzero'/%3E%3C/svg%3E");
     }
   }
@@ -127,13 +126,14 @@ p.review__user--info {
 
     blockquote {
       text-align: start;
+      line-height: 1.6;
     }
 
     blockquote::before {
       width: 2.55rem;
       height: 2.55rem;
-      top: -8%;
-      left: -6.5%;
+      top: -1.4rem;
+      left: -2.4rem;
     }
 
     .review__stars {

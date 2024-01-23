@@ -19,7 +19,7 @@ export default function ReviewsContainer() {
       reviewerName: 'Matheus M.',
       reviewerPhoto: reviewer1,
       reviewerCountry: isEnglish(i18n.language) ? 'Brazil' : 'Brasil',
-      reviewText: isEnglish(i18n.language) ? `I am very lucky, that among so many proposals, ${ NAME }'s caught my attention and was chosen. The result could not be better, it exceeded my expectations by far. Besides, the communication during the development was very good. An excellent professional in all aspects.` : `Tuve mucha suerte de que, entre tantas propuestas, la de ${ NAME } llamara mi atención y fuera elegida. El resultado no podría ser mejor, superó mis expectativas por mucho. Además, la comunicación durante el desarrollo fue muy buena. Un excelente profesional en todos los aspectos.`,
+      reviewText: isEnglish(i18n.language) ? `I am very lucky, that among so many proposals, ${ NAME }'s caught my attention and was chosen. The result could not be better, it exceeded my expectations by far. Besides, the communication was very good. An excellent professional in all aspects.` : `Tuve mucha suerte de que, entre tantas propuestas, la de ${ NAME } llamara mi atención y fuera elegida. El resultado no podría ser mejor, superó mis expectativas por mucho. Además, la comunicación fue bastante buena. Un excelente profesional en todos los aspectos.`,
       starsQuantity: 5,
     },
     {
@@ -33,8 +33,8 @@ export default function ReviewsContainer() {
     },
     {
       id: 31008049,
-      projectTitle: 'CONVERT MY HTML CODE INTO RESPONSIVE FORMAT',
-      reviewerName: 'Devakumaran Jaswant K',
+      projectTitle: 'Convert my HTML code into responsive format',
+      reviewerName: 'Jaswant K.',
       reviewerPhoto: null,
       reviewerCountry: isEnglish(i18n.language) ? 'USA' : 'EE. UU.',
       reviewText: isEnglish(i18n.language) ? 'ABSOLUTELY FABULOUS WORK, THANK YOU VERY MUCH!' : 'UN TRABAJO ABSOLUTAMENTE FABULOSO, ¡MUCHAS GRACIAS!',
@@ -71,7 +71,7 @@ export default function ReviewsContainer() {
 
   return (
     <ContentSlider className="reviews-container content-center" phoneCols={ 0 } tabletCols={ 0 } laptopCols={ 0 }>
-      {
+    {
       reviews.map((review: ReviewInterface, index: number) => <Review key={ index } review={ review } />)
     }
     </ContentSlider>
