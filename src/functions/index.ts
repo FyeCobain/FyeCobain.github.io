@@ -1,5 +1,6 @@
 import { isEnglish } from './lang'
 import { onDrag } from './callbacks'
-import { isAnAnchor, isURL, getClientX, getClientY, setGrabClasses, isPhoneSize, isTabletSize, isLaptopSize, isDesktopSize } from './general'
+import { isURL, isPhoneSize, isTabletSize, isLaptopSize, isDesktopSize } from './general'
+import { getClientX, getClientY, setGrabClasses } from './elements'
 
-export { isAnAnchor, isEnglish, onDrag, isURL, getClientX, getClientY, setGrabClasses, isPhoneSize, isTabletSize, isLaptopSize, isDesktopSize }
+export { isEnglish, onDrag, isURL, isPhoneSize, isTabletSize, isLaptopSize, isDesktopSize, getClientX, getClientY, setGrabClasses }

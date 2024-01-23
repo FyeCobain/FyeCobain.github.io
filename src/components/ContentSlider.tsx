@@ -2,7 +2,8 @@ import React, { type MutableRefObject, useRef, useState, useEffect } from 'react
 import { GoDotFill } from 'react-icons/go'
 import type { ContentSliderContextValueInterface, ContentSliderPropsInterface, SliderElement, DivNullable, ElementOnClick } from '@app/types-interfaces'
 import { ContentSliderContext } from '@app/contexts'
-import { getClientX, getClientY, setGrabClasses, isPhoneSize, isTabletSize, isLaptopSize, isDesktopSize, isAnAnchor } from '@app/functions'
+import { getClientX, getClientY, setGrabClasses, isPhoneSize, isTabletSize, isLaptopSize, isDesktopSize } from '@app/functions'
+import { getElementOfType } from '@app/functions/elements'
 
 // Returns true if the slider should be active
 function sliderIsActive(slider: HTMLDivElement | null): boolean {
@@ -45,7 +46,7 @@ function dragElements(elements: SliderElement[], event: React.MouseEvent | React
   let dragged = false
   elements.forEach((element: SliderElement) => {
     const xDifference = getClientX(event) - getClientX(startEvent)
-    if (Math.abs(xDifference) >= 25) {
+    if (Math.abs(xDifference) >= 25 || isLaptopSize() || isDesktopSize()) {
       dragged = true
       element.htmlElement.style.left = `${ element.currentLeftPixels + xDifference }px`
     }
@@ -119,7 +120,14 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
 
   // Handles the single click event
   function performClick(event: React.MouseEvent | React.TouchEvent) {
-    const index: number = findOnClickElement(onClicks, event.target as HTMLElement)
+    const element: HTMLElement | null = event.target as HTMLElement
+    const anchorElement: HTMLAnchorElement | null = getElementOfType<HTMLAnchorElement>(element, 'A')
+    if (anchorElement !== null && sliderIsActive(sliderRef.current)) {
+      ((anchorElement.cloneNode() as HTMLAnchorElement)).click()
+      return
+    }
+
+    const index: number = findOnClickElement(onClicks, element)
     if (index === -1) return
 
     const onClick = onClicks[index].onClick
@@ -133,7 +141,6 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
       return
     }
 
-    if (isAnAnchor(event.target as HTMLElement)) return
     if ('clientX' in event && event.button !== 0) return
     else if ('touches' in event && event.touches.length > 1) return
 
@@ -222,7 +229,7 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
       <div
         ref={ sliderRef }
         className={ (`content-slider--phone-${ phoneCols } content-slider--tablet-${ tabletCols } content-slider--laptop-${ laptopCols } ${ props.className }`).trim() }
-        onClick={ (event: React.MouseEvent) => isAnAnchor(event.target as HTMLElement) ? '' : event.preventDefault() }
+        onClick={ (event: React.MouseEvent) => sliderIsActive(sliderRef.current) ? event.preventDefault() : '' }
 
         onMouseDown={ handleOnMouseOrTouchDown }
         onMouseMove={ handleOnMouseOrTouchMove }
