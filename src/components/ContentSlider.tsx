@@ -5,6 +5,11 @@ import { ContentSliderContext } from '@app/contexts'
 import { getClientX, getClientY, setGrabClasses, isPhoneSize, isTabletSize, isLaptopSize, isDesktopSize } from '@app/functions'
 import { getElementOfType } from '@app/functions/elements'
 
+// Checks if the click or touch is not a drag and is short
+function isShortClickOrTouch(startTime: number, xDifference: number, yDifference: number): boolean {
+  return Date.now() - startTime <= 400 && Math.abs(xDifference) < 3 && Math.abs(yDifference) < 3
+}
+
 // Returns true if the slider should be active
 function sliderIsActive(slider: HTMLDivElement | null): boolean {
   if (slider === null) return false
@@ -123,7 +128,8 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
   function performClick(event: React.MouseEvent | React.TouchEvent) {
     const element: HTMLElement | null = event.target as HTMLElement
     const anchorElement: HTMLAnchorElement | null = getElementOfType<HTMLAnchorElement>(element, 'A')
-    if (anchorElement !== null && sliderIsActive(sliderRef.current)) {
+
+    if (anchorElement !== null) {
       ((anchorElement.cloneNode() as HTMLAnchorElement)).click()
       return
     }
@@ -137,11 +143,6 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
   }
 
   function handleOnMouseOrTouchDown(event: React.MouseEvent | React.TouchEvent) {
-    if (!sliderIsActive(sliderRef.current)) {
-      performClick(event)
-      return
-    }
-
     if ('clientX' in event && event.button !== 0) return
     else if ('touches' in event && event.touches.length > 1) return
 
@@ -153,7 +154,7 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
     ) return
 
     event.preventDefault()
-    setDragInProgress(true)
+    setDragInProgress(sliderIsActive(sliderRef.current))
     setStartEvent(event)
     setLastMoveEvent(event)
     setStartEventTime(Date.now())
@@ -161,9 +162,11 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
   }
 
   function handleOnMouseOrTouchMove(event: React.MouseEvent | React.TouchEvent) {
-    if (!dragInProgress || startEvent === null || sliderRef.current === null) return
+    if (startEvent === null || sliderRef.current === null) return
     if ('touches' in event && event.touches.length > 1) return
+    setLastMoveEvent(event)
 
+    if (!dragInProgress) return
     event.preventDefault()
     const dragged = dragElements(elementsValues, event, startEvent)
     if (dragged) {
@@ -175,15 +178,13 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
     }
     else if (dragStartScrollY === -1 && Math.abs(getClientY(event) - getClientY(startEvent)) < 5)
       setDragStartScrollY(mouseDownScrollY)
-
     setDragPerformed(dragged)
-    setLastMoveEvent(event)
   }
 
   function handleOnMouseOrTouchDragEnd(event: React.MouseEvent | React.TouchEvent) {
     setDragStartScrollY(-1)
 
-    if (!dragInProgress || sliderRef.current === null || startEvent === null || lastMoveEvent === null) return
+    if (startEvent === null || lastMoveEvent === null) return
 
     // In touch screens event.touches.length is 0
     let endEvent: React.MouseEvent | React.TouchEvent = event
@@ -192,17 +193,28 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
     if ('touches' in endEvent && endEvent.touches.length > 1)
       return
 
+    const xDifference = getClientX(startEvent) - getClientX(endEvent)
+    const yDifference = getClientY(startEvent) - getClientY(endEvent)
+
+    if (!dragInProgress || sliderRef.current === null) {
+      if (isShortClickOrTouch(startEventTime, xDifference, yDifference)) {
+        performClick(endEvent)
+        event.preventDefault()
+      }
+      return
+    }
+
     updateLeftValues()
     setDragInProgress(false)
     setGrabClasses(sliderRef.current, false)
     if (dragPerformed)
       setDragPerformed(false)
-    else if (Date.now() - startEventTime <= 400 && Math.abs(getClientY(startEvent) - getClientY(endEvent)) <= 3) {
-      event.preventDefault()
+    else if (isShortClickOrTouch(startEventTime, xDifference, yDifference)) {
       performClick(endEvent)
+      event.preventDefault()
     }
 
-    const index: number = getCurrentElementIndex(getClientX(startEvent) - getClientX(endEvent) > 0, sliderRef.current, elementsValues)
+    const index: number = getCurrentElementIndex(xDifference > 0, sliderRef.current, elementsValues)
     setCurrentElementIndex(index)
     setElementsPositions(index, elementsValues, sliderRef.current)
     updateLeftValues()
