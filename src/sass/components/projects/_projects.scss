@@ -4,7 +4,6 @@
 .projects {
   width: 100%;
   margin-top: vars.$margin-base;
-  max-width: vars.$width-normal;
 
   @include mixins.laptop {
     max-width: 100%;
