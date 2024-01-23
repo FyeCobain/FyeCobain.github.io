@@ -51,7 +51,9 @@ function dragElements(elements: SliderElement[], event: React.MouseEvent | React
   let dragged = false
   elements.forEach((element: SliderElement) => {
     const xDifference = getClientX(event) - getClientX(startEvent)
-    if (Math.abs(xDifference) >= 25 || isLaptopSize() || isDesktopSize()) {
+    if (
+      ((isPhoneSize() || isTabletSize()) && Math.abs(xDifference) >= 25) ||
+      ((isLaptopSize() || isDesktopSize()) && Math.abs(xDifference) >= 3)) {
       dragged = true
       element.htmlElement.style.left = `${ element.currentLeftPixels + xDifference }px`
     }
