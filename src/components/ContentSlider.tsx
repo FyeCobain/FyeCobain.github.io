@@ -88,6 +88,7 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
   const [ dragPerformed, setDragPerformed ] = useState<boolean>(false)
   const [ startEvent, setStartEvent ] = useState<React.MouseEvent | React.TouchEvent | null>(null)
   const [ lastMoveEvent, setLastMoveEvent ] = useState<React.MouseEvent | React.TouchEvent | null>(null)
+  const [ startEventTime, setStartEventTime ] = useState<number>(0)
   const [ currentElementIndex, setCurrentElementIndex ] = useState<number>(0)
   const [ mouseDownScrollY, setMouseDownScrollY ] = useState<number>(0)
   const [ dragStartScrollY, setDragStartScrollY ] = useState<number>(-1)
@@ -155,6 +156,7 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
     setDragInProgress(true)
     setStartEvent(event)
     setLastMoveEvent(event)
+    setStartEventTime(Date.now())
     setMouseDownScrollY(window.scrollY)
   }
 
@@ -195,7 +197,7 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
     setGrabClasses(sliderRef.current, false)
     if (dragPerformed)
       setDragPerformed(false)
-    else if (Math.abs(getClientY(startEvent) - getClientY(endEvent)) <= 3) {
+    else if (Date.now() - startEventTime <= 400 && Math.abs(getClientY(startEvent) - getClientY(endEvent)) <= 3) {
       event.preventDefault()
       performClick(endEvent)
     }
