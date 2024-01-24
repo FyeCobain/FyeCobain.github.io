@@ -19,7 +19,7 @@ export default function ReviewsContainer() {
       reviewerName: 'Matheus M.',
       reviewerPhoto: reviewer1,
       reviewerCountry: isEnglish(i18n.language) ? 'Brazil' : 'Brasil',
-      reviewText: isEnglish(i18n.language) ? `I am very lucky, that among so many proposals, ${ NAME }'s caught my attention and was chosen. The result could not be better, it exceeded my expectations by far. Besides, the communication was very good. An excellent professional in all aspects.` : `Tuve mucha suerte de que, entre tantas propuestas, la de ${ NAME } llamara mi atención y fuera elegida. El resultado no podría ser mejor, superó mis expectativas por mucho. Además, la comunicación fue bastante buena. Un excelente profesional en todos los aspectos.`,
+      reviewText: isEnglish(i18n.language) ? `I am very lucky, that among so many proposals, ${ NAME }'s caught my attention. The result could not be better, it exceeded my expectations by far. Besides, the communication was very good. An excellent professional in all aspects.` : `Tuve mucha suerte, de que entre tantas propuestas, la de ${ NAME } llamara mi atención. El resultado no podría ser mejor, superó mis expectativas por mucho. La comunicación fue bastante buena. Un excelente profesional en todos los aspectos.`,
       starsQuantity: 5,
     },
     {
@@ -64,7 +64,7 @@ export default function ReviewsContainer() {
       reviewerName: 'Gautam K.',
       reviewerPhoto: null,
       reviewerCountry: 'india',
-      reviewText: isEnglish(i18n.language) ? 'Very experienced in the automation project, I call him AutoHotkey Wzard! Thanks a lot brother for your great work and very helpful approach. Will surely like to work with you in near future. :)' : 'Muy experimentado en el projecto de automatización. ¡Yo lo llamo el mago de AutoHotkey! Muchas gracias hermano por tu gran trabajo y tu útil enfoque. Sin duda me gustará trabajar contigo en el futuro. :)',
+      reviewText: isEnglish(i18n.language) ? 'Very experienced in the automation project, I call him AutoHotkey Wzard! Thanks a lot brother for your great work and very helpful approach. Will surely like to work with you in near future. :)' : 'Muy experimentado en el projecto de automatización. ¡Yo le digo el mago de AutoHotkey! Muchas gracias hermano por tu gran trabajo y tu útil enfoque. Sin duda me gustará trabajar contigo en el futuro. :)',
       starsQuantity: 5,
     },
   ]
