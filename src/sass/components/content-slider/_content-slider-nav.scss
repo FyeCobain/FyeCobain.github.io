@@ -3,13 +3,18 @@
 
 .content-slider-nav {
 	justify-content: center;
-	position: relative;
-	bottom: 0;
 	font-size: 1.8rem;
-	padding-top: .5rem;
+
+  .content-slider-nav__icons {
+    display: flex;
+    padding-top: .5rem;
+    gap: .9rem;
+    padding-right: .22rem;
+  }
 
   svg {
     opacity: 0.25;
+    cursor: pointer;
   }
 
 	svg.current {
@@ -18,12 +23,18 @@
 	}
 
   @include mixins.tablet {
-    gap: .4rem;
     font-size: 2rem;
+
+    .content-slider-nav__icons {
+      gap: 1rem;
+    }
   }
 
   @include mixins.laptop {
-    gap: .8rem;
     font-size: 2.1rem;
+    
+    .content-slider-nav__icons {
+      gap: 1.2rem;
+    }
   }
 }
