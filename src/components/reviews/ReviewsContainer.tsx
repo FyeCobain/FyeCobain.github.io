@@ -60,7 +60,7 @@ export default function ReviewsContainer() {
     },
     {
       id: 29455764,
-      projectTitle: 'Looking for an AutoHotKey editor for simple automation',
+      projectTitle: 'Looking for an AutoHotKey editor',
       reviewerName: 'Gautam K.',
       reviewerPhoto: null,
       reviewerCountry: 'india',

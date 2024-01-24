@@ -11,4 +11,9 @@
   .reviews-container {
     margin-top: vars.$margin-short;
   }
+
+  .reviews__footer {
+    width: 100%;
+    font-size: vars.$font-size-normal;
+  }
 }

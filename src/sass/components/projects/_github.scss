@@ -2,7 +2,6 @@
 @use './../../mixins';
 
 .projects__github {
-    filter: brightness(85%);
     margin-top: vars.$margin-short;
     display: flex;
     flex-direction: column;
@@ -10,15 +9,20 @@
     align-items: center;
     
     img {
+      filter: brightness(85%);
       cursor: pointer;
       border-radius: .15rem;
       max-width: 100%;
+      transition: filter vars.$duration-short;
+
+      &:hover {
+        filter: brightness(95%);
+      }
     }
   
     p {
       width: 100%;
       margin-top: .75rem;
-      font-size: 1.85rem;
     }
 
     @include mixins.laptop {
