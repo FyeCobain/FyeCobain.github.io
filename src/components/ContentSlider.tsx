@@ -51,33 +51,15 @@ function dragElements(elements: SliderElement[], event: React.MouseEvent | React
   let dragged = false
   elements.forEach((element: SliderElement) => {
     const xDifference = getClientX(event) - getClientX(startEvent)
+    const yDifference = getClientY(event) - getClientY(startEvent)
     if (
-      ((isPhoneSize() || isTabletSize()) && Math.abs(xDifference) >= 25) ||
+      ((isPhoneSize() || isTabletSize()) && Math.abs(xDifference) >= 25 && Math.abs(yDifference) <= 10) ||
       ((isLaptopSize() || isDesktopSize()) && Math.abs(xDifference) >= 3)) {
       dragged = true
       element.htmlElement.style.left = `${ element.currentLeftPixels + xDifference }px`
     }
   })
   return dragged
-}
-
-// Selects the current element based on the positions
-function getCurrentElementIndex(dragToLeft: boolean, slider: HTMLDivElement, elementsValues: SliderElement[]): number {
-  const elementPortion = 10
-  let minorIndex = 0
-  let minorDistance = dragToLeft
-    ? Math.abs(slider.clientWidth / 2 - (elementsValues[minorIndex].currentLeftPixels + elementsValues[minorIndex].htmlElement.clientWidth / elementPortion))
-    : Math.abs(slider.clientWidth / 2 - (elementsValues[minorIndex].currentLeftPixels + elementsValues[minorIndex].htmlElement.clientWidth - (elementsValues[minorIndex].htmlElement.clientWidth / elementPortion)))
-  elementsValues.slice(1).forEach((elementValue: SliderElement, index: number) => {
-    const distance = dragToLeft
-      ? Math.abs(slider.clientWidth / 2 - (elementValue.currentLeftPixels + elementValue.htmlElement.clientWidth / elementPortion))
-      : Math.abs(slider.clientWidth / 2 - (elementValue.currentLeftPixels + elementValue.htmlElement.clientWidth - (elementValue.htmlElement.clientWidth / elementPortion)))
-    if (distance < minorDistance) {
-      minorDistance = distance
-      minorIndex = index + 1
-    }
-  })
-  return minorIndex
 }
 
 // Sets the new elements positions
@@ -216,7 +198,14 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
       event.preventDefault()
     }
 
-    const index: number = getCurrentElementIndex(xDifference > 0, sliderRef.current, elementsValues)
+    // Getting the index of the new active element
+    let index = currentElementIndex
+    if (xDifference > 0 && Math.abs(xDifference) >= 60) // Drag to left
+      index++
+    else if (xDifference < 0 && Math.abs(xDifference) >= 60) // Drag to right
+      index--
+    index = Math.min(Math.max(0, index), elementsValues.length - 1)
+
     setCurrentElementIndex(index)
     setElementsPositions(index, elementsValues, sliderRef.current)
     updateLeftValues()
