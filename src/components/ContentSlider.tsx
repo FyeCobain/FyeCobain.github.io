@@ -200,9 +200,9 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
 
     // Getting the index of the new active element
     let index = currentElementIndex
-    if (xDifference > 0 && Math.abs(xDifference) >= 60) // Drag to left
+    if (xDifference >= 60) // Drag to left
       index++
-    else if (xDifference < 0 && Math.abs(xDifference) >= 60) // Drag to right
+    else if (xDifference <= -60) // Drag to right
       index--
     index = Math.min(Math.max(0, index), elementsValues.length - 1)
 
