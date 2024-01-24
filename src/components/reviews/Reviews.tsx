@@ -14,7 +14,7 @@ export default function Reviews() {
       </div>
       <ReviewsContainer />
       <div className="reviews__footer">
-        <p>{ t('reviews.seeMoreAt') } <a href={ FREELANCER_PROFILE_URL } target="_blank" rel="noreferrer">Freelancer</a></p>
+        <p>{ t('reviews.go') } <a href={ FREELANCER_PROFILE_URL } target="_blank" rel="noreferrer">{ t('reviews.here') }</a> { t('reviews.forMore') }</p>
       </div>
     </section>
   )

@@ -62,7 +62,9 @@ export default i18n
           },
           reviews: {
             value: 'Reviews',
-            seeMoreAt: 'See more at',
+            go: 'Go',
+            here: 'here',
+            forMore: 'for more details',
           },
         },
       },
@@ -119,7 +121,9 @@ export default i18n
           },
           reviews: {
             value: 'Reseñas',
-            seeMoreAt: 'Ver más en',
+            go: 'Ir',
+            here: 'aquí',
+            forMore: 'para más detalles',
           },
         },
       },
