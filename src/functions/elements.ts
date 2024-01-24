@@ -15,6 +15,20 @@ export function getElementOfType<T extends HTMLElement | null>(element: HTMLElem
   return parentElement
 }
 
+// Returns true if the element or an ancestor has the class gived
+export function hasClass(element: HTMLElement, className: string): boolean {
+  if (element.classList.contains(className)) return true
+
+  let parentElement: HTMLElement | null = element.parentElement
+  while (parentElement !== null) {
+    if (parentElement.classList.contains(className))
+      return true
+    parentElement = parentElement.parentElement
+  }
+
+  return false
+}
+
 // Returns the 'clientX' value of the mouse or touch event
 export function getClientX(event: React.MouseEvent | React.TouchEvent): number {
   if ('clientX' in event)

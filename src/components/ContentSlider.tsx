@@ -3,12 +3,12 @@ import { GoDotFill } from 'react-icons/go'
 import type { ContentSliderContextValueInterface, ContentSliderPropsInterface, SliderElement, DivNullable, ElementOnClick } from '@app/types-interfaces'
 import { ContentSliderContext } from '@app/contexts'
 import { getClientX, getClientY, setGrabClasses, isPhoneSize, isTabletSize, isLaptopSize, isDesktopSize } from '@app/functions'
-import { getElementOfType } from '@app/functions/elements'
+import { getElementOfType, hasClass } from '@app/functions/elements'
 
 // Returns true if the element is part of the slider's UI components
 function isUIElement(element: HTMLElement): boolean {
-  return element.classList.contains('content-slider-nav__icons') ||
-    element.classList.contains('content-slider-nav--icon')
+  return hasClass(element, 'content-slider-nav__icons') ||
+  hasClass(element, 'content-slider-nav__icon')
 }
 
 // Checks if the click or touch is not a drag and is short
@@ -269,7 +269,7 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
               .map((index: number) =>
                 <GoDotFill
                   key={ index }
-                  className={ 'content-slider-nav--icon' + (index !== currentElementIndex ? '' : ' current')}
+                  className={ 'content-slider-nav__icon' + (index !== currentElementIndex ? '' : ' current')}
                   onClick={(_event: React.MouseEvent | React.TouchEvent) => console.log('TODO')}
                 />
               )
