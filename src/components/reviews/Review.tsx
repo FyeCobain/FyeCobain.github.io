@@ -3,12 +3,13 @@ import { IoStarSharp } from 'react-icons/io5'
 import { ContentSliderContext, ImagesContext } from '@app/contexts'
 import type { ContentSliderContextValueInterface, ImagesContextValueInterface, ReviewInterface } from '@app/types-interfaces'
 import { FREELANCER_PROFILE_URL } from '@app/consts/my.info'
+import unknown from '/img/reviewers/unknown.webp'
 
 export default function Review({ review }: { review: ReviewInterface }) {
   const imagesState: ImagesContextValueInterface = useContext(ImagesContext)
   const contentSliderState: ContentSliderContextValueInterface = useContext(ContentSliderContext)
   const imageRef: MutableRefObject<HTMLImageElement | null> = useRef(null)
-  const photo: string = review.reviewerPhoto ?? 'https://www.f-cdn.com/assets/main/en/assets/unknown.png'
+  const photo: string = review.reviewerPhoto ?? unknown
 
   useEffect(() => {
     contentSliderState.addOnClick({
