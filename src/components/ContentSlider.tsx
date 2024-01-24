@@ -5,6 +5,12 @@ import { ContentSliderContext } from '@app/contexts'
 import { getClientX, getClientY, setGrabClasses, isPhoneSize, isTabletSize, isLaptopSize, isDesktopSize } from '@app/functions'
 import { getElementOfType } from '@app/functions/elements'
 
+// Returns true if the element is part of the slider's UI components
+function isUIElement(element: HTMLElement): boolean {
+  return element.classList.contains('content-slider-nav__icons') ||
+    element.classList.contains('content-slider-nav--icon')
+}
+
 // Checks if the click or touch is not a drag and is short
 function isShortClickOrTouch(startTime: number, xDifference: number, yDifference: number): boolean {
   return Date.now() - startTime <= 400 && Math.abs(xDifference) < 3 && Math.abs(yDifference) < 3
@@ -127,6 +133,8 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
   }
 
   function handleOnMouseOrTouchDown(event: React.MouseEvent | React.TouchEvent) {
+    if (isUIElement(event.target as HTMLElement)) return
+
     if ('clientX' in event && event.button !== 0) return
     else if ('touches' in event && event.touches.length > 1) return
 
@@ -255,10 +263,18 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
           </div>)
         }
         <div className="content-slider-nav display-none">
-        {
-          Array.from((Array(elementsValues.length).keys()))
-            .map((index: number) => <GoDotFill key={ index } className={ index !== currentElementIndex ? '' : 'current'} />)
-        }
+          <div className="content-slider-nav__icons">
+          {
+            Array.from((Array(elementsValues.length).keys()))
+              .map((index: number) =>
+                <GoDotFill
+                  key={ index }
+                  className={ 'content-slider-nav--icon' + (index !== currentElementIndex ? '' : ' current')}
+                  onClick={(_event: React.MouseEvent | React.TouchEvent) => console.log('TODO')}
+                />
+              )
+          }
+          </div>
         </div>
       </div>
     </ContentSliderContext.Provider>
