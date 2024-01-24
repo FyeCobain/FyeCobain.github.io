@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { IoStarHalf } from 'react-icons/io5'
+import { FREELANCER_PROFILE_URL } from '@app/consts/my.info'
 import ReviewsContainer from './ReviewsContainer'
 
 export default function Reviews() {
@@ -12,6 +13,9 @@ export default function Reviews() {
         <IoStarHalf />
       </div>
       <ReviewsContainer />
+      <div className="reviews__footer">
+        <a href={ FREELANCER_PROFILE_URL } target="_blank" rel="noreferrer">{ t('reviews.seeMore') }</a>
+      </div>
     </section>
   )
 }

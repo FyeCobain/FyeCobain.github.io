@@ -2,7 +2,7 @@
 @use './../mixins';
 @use './../keyframes';
 
-button {
+button, .button {
   color: vars.$color-white;
   font-size: 1.7rem;
   background-color: vars.$color-bg-blue-1;
