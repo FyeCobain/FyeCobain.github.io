@@ -15,7 +15,7 @@ export function getElementOfType<T extends HTMLElement | null>(element: HTMLElem
   return parentElement
 }
 
-// Returns true if the element or an ancestor has the class gived
+// Returns true if the element or an ancestor has the given class
 export function hasClass(element: HTMLElement, className: string): boolean {
   if (element.classList.contains(className)) return true
 
