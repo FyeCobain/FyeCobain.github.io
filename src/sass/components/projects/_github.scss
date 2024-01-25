@@ -22,7 +22,7 @@
   
     p {
       width: 100%;
-      margin-top: .75rem;
+      margin-top: vars.$margin-simple;
     }
 
     @include mixins.laptop {

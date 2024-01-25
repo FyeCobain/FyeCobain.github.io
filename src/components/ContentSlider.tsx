@@ -4,11 +4,14 @@ import type { ContentSliderContextValueInterface, ContentSliderPropsInterface, S
 import { ContentSliderContext } from '@app/contexts'
 import { getClientX, getClientY, setGrabClasses, isPhoneSize, isTabletSize, isLaptopSize, isDesktopSize } from '@app/functions'
 import { getElementOfType, hasClass } from '@app/functions/elements'
+import { GrPrevious } from 'react-icons/gr'
 
 // Returns true if the element is part of the slider's UI components
 function isUIElement(element: HTMLElement): boolean {
   return hasClass(element, 'content-slider-nav__icons') ||
-  hasClass(element, 'content-slider-nav__icon')
+  hasClass(element, 'content-slider-nav__icon') ||
+  hasClass(element, 'content-slider-button--prev') ||
+  hasClass(element, 'content-slider-button--next')
 }
 
 // Checks if the click or touch is not a drag and is short
@@ -88,13 +91,26 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
   const [ mouseDownScrollY, setMouseDownScrollY ] = useState<number>(0)
   const [ dragStartScrollY, setDragStartScrollY ] = useState<number>(-1)
   const sliderRef: MutableRefObject<DivNullable> = useRef(null)
+  const navRef: MutableRefObject<DivNullable> = useRef(null)
+  const prevButtonRef: MutableRefObject<DivNullable> = useRef(null)
+  const nextButtonRef: MutableRefObject<DivNullable> = useRef(null)
 
   // Getting al the slider elements and setting up them initial styles
   useEffect(() => {
-    if (sliderRef.current === null) return
+    if (sliderRef.current === null || navRef.current === null || prevButtonRef.current === null || nextButtonRef.current === null) return
 
     const elems: HTMLDivElement[] = Array.from(sliderRef.current.querySelectorAll(':scope > .content-slider__element'))
       .map((element: Node) => element as HTMLDivElement)
+
+    if (elems.length > 1) {
+      if ((isPhoneSize() && props.phoneCols === 0) ||
+      (isTabletSize() && props.tabletCols === 0) ||
+      ((isLaptopSize() || isDesktopSize()) && props.laptopCols === 0))
+        navRef.current.classList.remove('display-none')
+
+      if ((isLaptopSize() || isDesktopSize()) && props.laptopCols === 0)
+        nextButtonRef.current.classList.remove('display-none')
+    }
 
     setElementsValues(initialStyleValues(sliderRef.current, elems))
   }, [])
@@ -133,13 +149,14 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
   }
 
   function handleOnMouseOrTouchDown(event: React.MouseEvent | React.TouchEvent) {
-    if (isUIElement(event.target as HTMLElement)) return
+    if (singleElement() || sliderRef.current === null || isUIElement(event.target as HTMLElement)) return
 
     if ('clientX' in event && event.button !== 0) return
     else if ('touches' in event && event.touches.length > 1) return
 
     // Checking if the click / touch was made between the first and the last slider element
-    const clickClientX = getClientX(event)
+    const clickClientX = getClientX(event) - sliderRef.current.offsetLeft
+
     if (
       clickClientX < elementsValues[0].htmlElement.offsetLeft ||
       clickClientX > elementsValues[elementsValues.length - 1].htmlElement.offsetLeft + elementsValues[elementsValues.length - 1].htmlElement.clientWidth
@@ -174,6 +191,11 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
   }
 
   function handleOnMouseOrTouchDragEnd(event: React.MouseEvent | React.TouchEvent) {
+    if (singleElement()) {
+      performClick(event)
+      event.preventDefault()
+    }
+
     setDragStartScrollY(-1)
 
     if (startEvent === null || lastMoveEvent === null) return
@@ -219,6 +241,11 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
     updateLeftValues()
   }
 
+  // Returns true if there's only one element
+  function singleElement(): boolean {
+    return elementsValues.length <= 1
+  }
+
   // Grid columns
   let phoneCols: string = 'n'
   if (props.phoneCols !== undefined)
@@ -241,7 +268,7 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
     <ContentSliderContext.Provider value={ contentSliderContext }>
       <div
         ref={ sliderRef }
-        className={ (`content-slider--phone-${ phoneCols } content-slider--tablet-${ tabletCols } content-slider--laptop-${ laptopCols } ${ props.className }`).trim() }
+        className={ (`${ !singleElement() ? 'cursor-pointer' : '' } content-slider--phone-${ phoneCols } content-slider--tablet-${ tabletCols } content-slider--laptop-${ laptopCols } ${ props.className }`).trim() }
         onClick={ (event: React.MouseEvent) => sliderIsActive(sliderRef.current) ? event.preventDefault() : '' }
 
         onMouseDown={ handleOnMouseOrTouchDown }
@@ -262,7 +289,7 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
           { child }
           </div>)
         }
-        <div className="content-slider-nav display-none">
+        <div ref={ navRef } className="content-slider-nav display-none">
           <div className="content-slider-nav__icons">
           {
             Array.from((Array(elementsValues.length).keys()))
@@ -275,6 +302,18 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
               )
           }
           </div>
+        </div>
+        <div
+          ref={ prevButtonRef }
+          className={ 'content-slider-button--prev display-none' }
+          onMouseDown={ (event: React.MouseEvent | React.TouchEvent) => event.preventDefault() }
+        ><GrPrevious />
+        </div>
+        <div
+          ref={ nextButtonRef }
+          className={ 'content-slider-button--next display-none' }
+          onMouseDown={ (event: React.MouseEvent | React.TouchEvent) => event.preventDefault() }
+        ><GrPrevious />
         </div>
       </div>
     </ContentSliderContext.Provider>

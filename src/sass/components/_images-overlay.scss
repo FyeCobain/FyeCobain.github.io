@@ -138,11 +138,12 @@
     display: none;
 
     @include mixins.tablet {
-      font-size: 6rem;
+      font-size: 5rem;
       display: block;
     }
 
     @include mixins.laptop {
+      font-size: 6rem;
       &:hover {
         color: $color;
       }
