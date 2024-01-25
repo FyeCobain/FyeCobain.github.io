@@ -103,13 +103,8 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
       .map((element: Node) => element as HTMLDivElement)
 
     if (elems.length > 1) {
-      if ((isPhoneSize() && props.phoneCols === 0) ||
-      (isTabletSize() && props.tabletCols === 0) ||
-      ((isLaptopSize() || isDesktopSize()) && props.laptopCols === 0))
-        navRef.current.classList.remove('display-none')
-
-      if ((isLaptopSize() || isDesktopSize()) && props.laptopCols === 0)
-        nextButtonRef.current.classList.remove('display-none')
+      navRef.current.classList.remove('display-none')
+      nextButtonRef.current.classList.remove('display-none')
     }
 
     setElementsValues(initialStyleValues(sliderRef.current, elems))
@@ -240,15 +235,14 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
   function setCurrentElement(newElementIndex: number, event?: MouseOrTouchEvent) {
     if (event !== undefined && 'clientX' in event && event.button !== 0) return
 
-    if (sliderRef.current === null || prevButtonRef.current === null || nextButtonRef.current === null)
-      return
+    if (sliderRef.current === null) return
 
     newElementIndex = Math.min(Math.max(0, newElementIndex), elementsValues.length - 1)
     setCurrentElementIndex(newElementIndex)
     setElementsPositions(newElementIndex, elementsValues, sliderRef.current)
     updateLeftValues()
 
-    if (isPhoneSize() || isTabletSize())
+    if (prevButtonRef.current === null || nextButtonRef.current === null)
       return
 
     // Hide / show 'previous' button

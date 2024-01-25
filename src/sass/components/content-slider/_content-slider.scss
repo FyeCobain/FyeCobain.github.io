@@ -46,14 +46,24 @@
 }
 
 // All elements contained in the same column and row
-@mixin cols-0($width, $gap, $height-100, $border-alpha) {
+@mixin cols-0($width, $gap, $height-100, $show-buttons: false) {
   width: $width;
   gap: $gap;
   grid-template-columns: 1fr;
 
+  .content-slider-nav {
+    display: flex
+  }
+
   @include col-row(1, 1);
 
   @include relative;
+
+  @if $show-buttons {
+    div[class^="content-slider-button"] {
+      display: flex;
+    }
+  }
 
   @if $height-100 {
     @include height-100;
@@ -117,7 +127,7 @@
 // Up to phone size
 @include mixins.phone-max {
   .content-slider--phone-0 {
-    @include cols-0(100%, 0, false, .5);
+    @include cols-0(100%, 0, false);
   }
 
   .content-slider--phone-1 {
@@ -132,7 +142,7 @@
 // Only tablet size
 @include mixins.tablet-only {
   .content-slider--tablet-0 {
-    @include cols-0(100%, 0, false, .5);
+    @include cols-0(100%, 0, false);
   }
 
   .content-slider--tablet-1 {
@@ -151,7 +161,7 @@
 // Only laptop size
 @include mixins.laptop {
   .content-slider--laptop-0 {
-    @include cols-0(100%, 0, true, 0);
+    @include cols-0(100%, 0, true, true);
   }
 
   .content-slider--laptop-1 {
