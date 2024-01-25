@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useCallback, useState, type MutableRefObject } from 'react'
-import type { DragCallbacksInterface, DivNullable, ImagesContextValueInterface } from '@app/types-interfaces'
+import type { DragCallbacksInterface, DivNullable, ImagesContextValueInterface, MouseOrTouchEvent } from '@app/types-interfaces'
 import { IoMdCloseCircleOutline } from 'react-icons/io'
 import { GrPrevious } from 'react-icons/gr'
 import { ImagesContext } from '@app/contexts'
@@ -69,7 +69,7 @@ function nextImg(imagesState: ImagesContextValueInterface) {
 }
 
 // Performs the drag movement
-function dragImg(event: React.MouseEvent | React.TouchEvent, startEvent: React.MouseEvent | React.TouchEvent) {
+function dragImg(event: MouseOrTouchEvent, startEvent: MouseOrTouchEvent) {
   const imgContainer: HTMLDivElement = (event.target as HTMLImageElement).parentNode as HTMLDivElement
   imgContainer.style.left = `${ getClientX(event) - getClientX(startEvent) }px`
 }
@@ -82,7 +82,7 @@ function addDragClasses(image: HTMLImageElement, add: boolean) {
 }
 
 // Restores the image original position
-function restoreImgPosition(mouseDownEvent: React.TouchEvent | React.MouseEvent | undefined) {
+function restoreImgPosition(mouseDownEvent: MouseOrTouchEvent | undefined) {
   if (mouseDownEvent !== undefined)
     ((mouseDownEvent.target as HTMLImageElement).parentNode as HTMLDivElement).style.left = ''
 }

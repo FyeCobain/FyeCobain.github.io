@@ -1,6 +1,6 @@
 import React, { type MutableRefObject, useRef, useState, useEffect } from 'react'
 import { GoDotFill } from 'react-icons/go'
-import type { ContentSliderContextValueInterface, ContentSliderPropsInterface, SliderElement, DivNullable, ElementOnClick } from '@app/types-interfaces'
+import type { ContentSliderContextValueInterface, ContentSliderPropsInterface, SliderElement, DivNullable, ElementOnClick, MouseOrTouchEvent, NullableMouseOrTouchEvent } from '@app/types-interfaces'
 import { ContentSliderContext } from '@app/contexts'
 import { getClientX, getClientY, setGrabClasses, isPhoneSize, isTabletSize, isLaptopSize, isDesktopSize } from '@app/functions'
 import { getElementOfType, hasClass } from '@app/functions/elements'
@@ -56,7 +56,7 @@ function initialStyleValues(slider: HTMLDivElement, elements: HTMLDivElement[]):
 }
 
 // Drags the elemets
-function dragElements(elements: SliderElement[], event: React.MouseEvent | React.TouchEvent, startEvent: React.MouseEvent | React.TouchEvent): boolean {
+function dragElements(elements: SliderElement[], event: MouseOrTouchEvent, startEvent: MouseOrTouchEvent): boolean {
   let dragged = false
   elements.forEach((element: SliderElement) => {
     const xDifference = getClientX(event) - getClientX(startEvent)
@@ -84,8 +84,8 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
   const [ onClicks, setOnClicks ] = useState<ElementOnClick[]>([])
   const [ dragInProgress, setDragInProgress ] = useState<boolean>(false)
   const [ dragPerformed, setDragPerformed ] = useState<boolean>(false)
-  const [ startEvent, setStartEvent ] = useState<React.MouseEvent | React.TouchEvent | null>(null)
-  const [ lastMoveEvent, setLastMoveEvent ] = useState<React.MouseEvent | React.TouchEvent | null>(null)
+  const [ startEvent, setStartEvent ] = useState<NullableMouseOrTouchEvent>(null)
+  const [ lastMoveEvent, setLastMoveEvent ] = useState<NullableMouseOrTouchEvent>(null)
   const [ startEventTime, setStartEventTime ] = useState<number>(0)
   const [ currentElementIndex, setCurrentElementIndex ] = useState<number>(0)
   const [ mouseDownScrollY, setMouseDownScrollY ] = useState<number>(0)
@@ -131,7 +131,7 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
   }
 
   // Handles the single click event
-  function performClick(event: React.MouseEvent | React.TouchEvent) {
+  function performClick(event: MouseOrTouchEvent) {
     const element: HTMLElement | null = event.target as HTMLElement
     const anchorElement: HTMLAnchorElement | null = getElementOfType<HTMLAnchorElement>(element, 'A')
 
@@ -148,7 +148,7 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
       onClick(event)
   }
 
-  function handleOnMouseOrTouchDown(event: React.MouseEvent | React.TouchEvent) {
+  function handleOnMouseOrTouchDown(event: MouseOrTouchEvent) {
     if (singleElement() || sliderRef.current === null || isUIElement(event.target as HTMLElement)) return
 
     if ('clientX' in event && event.button !== 0) return
@@ -170,7 +170,7 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
     setMouseDownScrollY(window.scrollY)
   }
 
-  function handleOnMouseOrTouchMove(event: React.MouseEvent | React.TouchEvent) {
+  function handleOnMouseOrTouchMove(event: MouseOrTouchEvent) {
     if (startEvent === null || sliderRef.current === null) return
     if ('touches' in event && event.touches.length > 1) return
     setLastMoveEvent(event)
@@ -190,7 +190,7 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
     setDragPerformed(dragged)
   }
 
-  function handleOnMouseOrTouchDragEnd(event: React.MouseEvent | React.TouchEvent) {
+  function handleOnMouseOrTouchDragEnd(event: MouseOrTouchEvent) {
     if (singleElement()) {
       performClick(event)
       event.preventDefault()
@@ -201,7 +201,7 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
     if (startEvent === null || lastMoveEvent === null) return
 
     // In touch screens event.touches.length is 0
-    let endEvent: React.MouseEvent | React.TouchEvent = event
+    let endEvent: MouseOrTouchEvent = event
     if ('touches' in endEvent && endEvent.touches.length === 0)
       endEvent = lastMoveEvent
     if ('touches' in endEvent && endEvent.touches.length > 1)
@@ -237,7 +237,7 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
   }
 
   // Sets the current element
-  function setCurrentElement(newElementIndex: number, event?: React.MouseEvent | React.TouchEvent) {
+  function setCurrentElement(newElementIndex: number, event?: MouseOrTouchEvent) {
     if (event !== undefined && 'clientX' in event && event.button !== 0) return
 
     if (sliderRef.current === null || prevButtonRef.current === null || nextButtonRef.current === null)
@@ -324,7 +324,7 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
                 <GoDotFill
                   key={ index }
                   className={ 'content-slider-nav__icon' + (index !== currentElementIndex ? '' : ' current')}
-                  onClick={(event: React.MouseEvent | React.TouchEvent) => setCurrentElement(index, event)}
+                  onClick={(event: MouseOrTouchEvent) => setCurrentElement(index, event)}
                 />
               )
           }
@@ -333,13 +333,13 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
         <div
           ref={ prevButtonRef }
           className={ 'content-slider-button--prev display-none' }
-          onMouseDown={ (event: React.MouseEvent | React.TouchEvent) => setCurrentElement(currentElementIndex - 1, event) }
+          onMouseDown={ (event: MouseOrTouchEvent) => setCurrentElement(currentElementIndex - 1, event) }
         ><GrPrevious />
         </div>
         <div
           ref={ nextButtonRef }
           className={ 'content-slider-button--next display-none' }
-          onMouseDown={ (event: React.MouseEvent | React.TouchEvent) => setCurrentElement(currentElementIndex + 1, event) }
+          onMouseDown={ (event: MouseOrTouchEvent) => setCurrentElement(currentElementIndex + 1, event) }
         ><GrPrevious />
         </div>
       </div>
