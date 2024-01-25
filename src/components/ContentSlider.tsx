@@ -228,17 +228,44 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
       event.preventDefault()
     }
 
-    // Getting the index of the new active element
     let index = currentElementIndex
-    if (xDifference >= 60) // Drag to left
-      index++
-    else if (xDifference <= -60) // Drag to right
+    if (xDifference <= -60) // Previous element
       index--
-    index = Math.min(Math.max(0, index), elementsValues.length - 1)
+    else if (xDifference >= 60) // Next element
+      index++
+    setCurrentElement(index)
+  }
 
-    setCurrentElementIndex(index)
-    setElementsPositions(index, elementsValues, sliderRef.current)
+  // Sets the current element
+  function setCurrentElement(newElementIndex: number, event?: React.MouseEvent | React.TouchEvent) {
+    if (event !== undefined && 'clientX' in event && event.button !== 0) return
+
+    if (sliderRef.current === null || prevButtonRef.current === null || nextButtonRef.current === null)
+      return
+
+    newElementIndex = Math.min(Math.max(0, newElementIndex), elementsValues.length - 1)
+    setCurrentElementIndex(newElementIndex)
+    setElementsPositions(newElementIndex, elementsValues, sliderRef.current)
     updateLeftValues()
+
+    if (isPhoneSize() || isTabletSize())
+      return
+
+    // Hide / show 'previous' button
+    if (newElementIndex === 0) {
+      if (!prevButtonRef.current.classList.contains('display-none'))
+        prevButtonRef.current.classList.add('display-none')
+    }
+    else if (prevButtonRef.current.classList.contains('display-none'))
+      prevButtonRef.current.classList.remove('display-none')
+
+    // Hide / show 'next' button
+    if (newElementIndex === elementsValues.length - 1) {
+      if (!nextButtonRef.current.classList.contains('display-none'))
+        nextButtonRef.current.classList.add('display-none')
+    }
+    else if (nextButtonRef.current.classList.contains('display-none'))
+      nextButtonRef.current.classList.remove('display-none')
   }
 
   // Returns true if there's only one element
@@ -297,7 +324,7 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
                 <GoDotFill
                   key={ index }
                   className={ 'content-slider-nav__icon' + (index !== currentElementIndex ? '' : ' current')}
-                  onClick={(_event: React.MouseEvent | React.TouchEvent) => console.log('TODO')}
+                  onClick={(event: React.MouseEvent | React.TouchEvent) => setCurrentElement(index, event)}
                 />
               )
           }
@@ -306,13 +333,13 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
         <div
           ref={ prevButtonRef }
           className={ 'content-slider-button--prev display-none' }
-          onMouseDown={ (event: React.MouseEvent | React.TouchEvent) => event.preventDefault() }
+          onMouseDown={ (event: React.MouseEvent | React.TouchEvent) => setCurrentElement(currentElementIndex - 1, event) }
         ><GrPrevious />
         </div>
         <div
           ref={ nextButtonRef }
           className={ 'content-slider-button--next display-none' }
-          onMouseDown={ (event: React.MouseEvent | React.TouchEvent) => event.preventDefault() }
+          onMouseDown={ (event: React.MouseEvent | React.TouchEvent) => setCurrentElement(currentElementIndex + 1, event) }
         ><GrPrevious />
         </div>
       </div>

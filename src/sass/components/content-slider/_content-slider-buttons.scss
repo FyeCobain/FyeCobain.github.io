@@ -3,15 +3,17 @@
 
 div[class^="content-slider-button"] {
   display: flex;
+  align-items: center;
   position: absolute;
+  top: 0;
+  bottom: 2.6rem; // nav padding-top + laptp svg font-size
   font-size: 6rem;
-  padding: 1rem .25rem 1rem 0;
   color: vars.$color-greene-light;
   background-color: rgba(vars.$color-bg-blue-2, .25);
-  border-radius: 2rem;
+  cursor: pointer;
 
-  @include mixins.laptop {
-    display: flex;
+  svg {
+    opacity: .7;
   }
 }
 
