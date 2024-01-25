@@ -63,6 +63,9 @@ export default i18n
           reviews: {
             value: 'Reviews',
           },
+          contact: {
+            value: 'Contact',
+          },
         },
       },
       es: {
@@ -118,6 +121,9 @@ export default i18n
           },
           reviews: {
             value: 'Reseñas',
+          },
+          contact: {
+            value: 'Contacto',
           },
         },
       },
