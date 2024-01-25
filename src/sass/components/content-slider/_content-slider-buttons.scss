@@ -2,7 +2,7 @@
 @use './../../mixins';
 
 div[class^="content-slider-button"] {
-  display: flex;
+  display: none;
   align-items: center;
   position: absolute;
   top: 0;
