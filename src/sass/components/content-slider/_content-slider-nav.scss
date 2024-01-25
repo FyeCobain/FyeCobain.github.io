@@ -2,6 +2,7 @@
 @use './../../mixins';
 
 .content-slider-nav {
+  display: flex;
 	justify-content: center;
 	font-size: 1.8rem;
 

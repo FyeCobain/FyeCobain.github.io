@@ -1,0 +1,26 @@
+@use './../../variables' as vars;
+@use './../../mixins';
+
+div[class^="content-slider-button"] {
+  display: flex;
+  position: absolute;
+  font-size: 6rem;
+  padding: 1rem .25rem 1rem 0;
+  color: vars.$color-greene-light;
+  background-color: rgba(vars.$color-bg-blue-2, .25);
+  border-radius: 2rem;
+
+  @include mixins.laptop {
+    display: flex;
+  }
+}
+
+.content-slider-button--prev {
+  left: -1.8%;
+}
+
+.content-slider-button--next {
+  transform: scaleX(-1);
+  left: unset;
+  right: -1.8%;
+}
