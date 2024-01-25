@@ -211,7 +211,7 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
     const yDifference = getClientY(startEvent) - getClientY(endEvent)
 
     if (!dragInProgress || sliderRef.current === null) {
-      if (isShortClickOrTouch(startEventTime, xDifference, yDifference)) {
+      if (isShortClickOrTouch(startEventTime, xDifference, yDifference) && getElementOfType<HTMLAnchorElement>(event.target as HTMLElement, 'A') === null) {
         performClick(endEvent)
         event.preventDefault()
       }
