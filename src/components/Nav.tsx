@@ -41,9 +41,11 @@ const setScrollListenerInterval = setInterval(() => {
     const FOLDER_ICON = document.getElementById('icon-folder')
     const REVIEWS = document.getElementById('reviews')
     const STAR_ICON = document.getElementById('icon-star')
+    const CONTACT = document.getElementById('contact')
+    const CHAT_ICON = document.getElementById('icon-chat')
 
     // If some element is null, do nothing
-    if (HEADER === null || HOME_ICON === null || ABOUT_ME === null || USER_ICON === null || PROJECTS === null || FOLDER_ICON === null || REVIEWS === null || STAR_ICON === null) {
+    if (HEADER === null || HOME_ICON === null || ABOUT_ME === null || USER_ICON === null || PROJECTS === null || FOLDER_ICON === null || REVIEWS === null || STAR_ICON === null || CONTACT === null || CHAT_ICON === null) {
       clearInterval(setScrollListenerInterval)
       return
     }
@@ -73,6 +75,12 @@ const setScrollListenerInterval = setInterval(() => {
         icon: STAR_ICON,
         unhideOffsetPercentage: 15,
         activeOffsetPercentage: 53.5,
+      },
+      {
+        section: CONTACT,
+        icon: CHAT_ICON,
+        unhideOffsetPercentage: 0,
+        activeOffsetPercentage: 0,
       },
     ]
 
@@ -233,7 +241,7 @@ export default function Nav() {
           <IoStarHalf />
         </div>
 
-        <div id="icon-chat" className="nav__icon">
+        <div id="icon-chat" className="nav__icon" onClick={ () => scrollTo('contact') }>
           <BsChatDots />
         </div>
 

@@ -1,0 +1,12 @@
+@use './../../variables' as vars;
+
+.contact {
+  margin-top: vars.$margin-base;
+
+  .section-heading {
+    svg {
+      font-size: 3.9rem;
+      margin-left: 1.85rem;
+    }
+  }
+}

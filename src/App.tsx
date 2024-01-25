@@ -7,6 +7,7 @@ import Header from '@components/header/Header'
 import AboutMe from '@components/aboutMe/AboutMe'
 import Projects from '@components/projects/Projects'
 import Reviews from '@components/reviews/Reviews'
+import Contact from '@components/contact/Contact'
 
 function App() {
   // Image state context for the image overlay
@@ -31,6 +32,7 @@ function App() {
       <AboutMe />
       <Projects />
       <Reviews />
+      <Contact />
     </ImagesContext.Provider>
   )
 }
