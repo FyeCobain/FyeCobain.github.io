@@ -3,7 +3,7 @@
 
 .media-link {
   @include mixins.comic-background-2(vars.$color-bg-blue-1);
-  padding: 1rem 2rem;
+  padding: 1rem 1.7rem;
   border-radius: .5rem;
   gap: 1.8rem;
 
@@ -11,19 +11,36 @@
     font-size: 1.7rem;
     color: vars.$color-greene-light;
   }
+
+  @include mixins.tablet {
+    padding: 1.5rem 10rem;
+  }
+
+  @include mixins.laptop {
+    padding: 1.1rem 3rem;
+  }
 }
 
 .media-link__icon {
-  padding-left: 2.8rem;
+  padding-left: 2.6rem;
   display: flex;
-  gap: .35rem;
+  gap: .25rem;
 
   svg:first-of-type {
     font-size: 3.75rem;
   }
 
   svg:last-of-type {
-    font-size: 2.25rem;
+    font-size: 2rem;
+  }
+
+  @include mixins.laptop {
+    padding-left: 2.9rem;
+    gap: .35rem;
+
+    svg:last-of-type {
+      font-size: 2.27rem;
+    }
   }
 }
 
