@@ -5,10 +5,11 @@ export default function EmailForm() {
 
   return (
     <div className="email-form-container content-center">
-      <p>{ t('contact.leaveAMessage') }</p>
+      <p>{ t('contact.sendMeAMessage') }</p>
       <form action="" className="email-form">
         <input type="email" placeholder={ t('contact.yourEmailAddress') } />
         <textarea placeholder={ `${ t('contact.message') }... ` } rows={ 4 }></textarea>
+        <button>{ t('contact.send') }</button>
       </form>
     </div>
   )
