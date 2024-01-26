@@ -65,6 +65,9 @@ export default i18n
           },
           contact: {
             value: 'Contact',
+            leaveAMessage: 'Leave a message',
+            yourEmailAddress: 'Your email address',
+            message: 'Message',
           },
         },
       },
@@ -124,6 +127,9 @@ export default i18n
           },
           contact: {
             value: 'Contacto',
+            leaveAMessage: 'Deja un mensaje',
+            yourEmailAddress: 'Tu dirección de correo',
+            message: 'Mensaje',
           },
         },
       },
