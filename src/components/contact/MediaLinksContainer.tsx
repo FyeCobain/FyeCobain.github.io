@@ -27,7 +27,7 @@ export default function MediainksContainer() {
       <MediaLink
         icon={ <LuMailPlus /> }
         url={ `mailto:${ EMAIL }?subject=${ t('header.hello') } ${ NAME }` }
-        ariaLabel='email'
+        ariaLabel='Email'
         text={ EMAIL }
         copyText={ EMAIL }
       />

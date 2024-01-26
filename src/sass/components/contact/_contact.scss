@@ -1,4 +1,5 @@
 @use './../../variables' as vars;
+@use './../../mixins';
 
 .contact {
   margin-top: vars.$margin-base;
@@ -19,4 +20,11 @@
   grid-template-columns: 1fr;
   justify-content: center;
   align-items: center;
+
+  @include mixins.laptop {
+    width: 80%;
+    grid-template-columns: 1fr 3fr;
+    align-items: start;
+    gap: 5rem;
+  }
 }
