@@ -18,7 +18,8 @@ export default function MediainksContainer() {
       <MediaLink
         icon={ <FaTelegram /> }
         url={ `https://t.me/${ TELEGRAM_USER }` }
-        text="Telegram"
+        text={ `@${ TELEGRAM_USER }` }
+        copyText={ `@${ TELEGRAM_USER }` }
       />
 
       <MediaLink
