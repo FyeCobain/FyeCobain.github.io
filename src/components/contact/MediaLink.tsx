@@ -39,7 +39,7 @@ export default function MediaLink(props: MediaLinkProps) {
       </a>
       <div className="media-link__text">
       {
-      props.copyText === undefined // || !window.isSecureContext
+      props.copyText === undefined || !window.isSecureContext
         ? <p>{ props.text }</p>
         : <div className="cursor-pointer" onClick={ () => copy(props.copyText) }>
           <p>{ props.text }</p>
