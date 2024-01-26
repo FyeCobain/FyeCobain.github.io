@@ -6,6 +6,7 @@ import { copyText } from '@app/functions'
 interface MediaLinkProps {
   icon: any
   url: string
+  ariaLabel: string
   text: string
   copyText?: string
 }
@@ -33,7 +34,7 @@ export default function MediaLink(props: MediaLinkProps) {
 
   return (
     <div className="media-link content-center">
-      <a className="media-link__icon" href={ props.url } target="_blank" rel="noreferrer">
+      <a className="media-link__icon" aria-label={ props.ariaLabel } href={ props.url } target="_blank" rel="noreferrer">
         { props.icon }
         <LiaExternalLinkSquareAltSolid />
       </a>

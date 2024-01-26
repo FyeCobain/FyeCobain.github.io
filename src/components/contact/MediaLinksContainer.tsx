@@ -12,12 +12,14 @@ export default function MediainksContainer() {
       <MediaLink
         icon={ <FaLinkedin /> }
         url={ `https://www.linkedin.com/in/${ LINKEDIN_SLUG }` }
+        ariaLabel='LinkedIn'
         text="LinkedIn"
       />
 
       <MediaLink
         icon={ <FaTelegram /> }
         url={ `https://t.me/${ TELEGRAM_USER }` }
+        ariaLabel='Telegram'
         text={ `@${ TELEGRAM_USER }` }
         copyText={ `@${ TELEGRAM_USER }` }
       />
@@ -25,6 +27,7 @@ export default function MediainksContainer() {
       <MediaLink
         icon={ <LuMailPlus /> }
         url={ `mailto:${ EMAIL }?subject=${ t('header.hello') } ${ NAME }` }
+        ariaLabel='email'
         text={ EMAIL }
         copyText={ EMAIL }
       />
