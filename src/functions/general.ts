@@ -17,3 +17,15 @@ export function isDesktopSize(): boolean {
 export function isURL(str: string): boolean {
   return str.trim().toLowerCase().startsWith('http')
 }
+
+export function copyText(text: string, onFulfilledCallback: any, onRejectCallback?: any, onErrorCallback?: any) {
+  try {
+    navigator.clipboard.writeText(text)
+      .then(res => onFulfilledCallback(res))
+      .catch(err => onRejectCallback !== undefined ? onRejectCallback(err) : '')
+  }
+  catch (err) {
+    if (onErrorCallback !== undefined)
+      onErrorCallback(err)
+  }
+}

@@ -1,8 +1,8 @@
-import { GITHUB_PROFILE_URL } from '@app/consts/my.info'
-import { isEnglish } from '@app/functions'
-import { useTranslation } from 'react-i18next'
-import { type ImagesContextValueInterface } from '@app/types-interfaces'
 import { useContext } from 'react'
+import { useTranslation } from 'react-i18next'
+import { GITHUB_USER } from '@app/consts'
+import { isEnglish } from '@app/functions'
+import { type ImagesContextValueInterface } from '@app/types-interfaces'
 import { ImagesContext } from '@app/contexts'
 import contributions from '/img/projects/github.png'
 
@@ -15,7 +15,7 @@ export default function GitHubInfo() {
     ? `GitHub ${ t('projects.contributions') }`
     : `${ t('projects.contributions') } GitHub`
 
-  const gitHubLink = <a href={ GITHUB_PROFILE_URL } target="_blank" rel="noreferrer">GitHub</a>
+  const gitHubLink = <a href={ `https://github.com/${ GITHUB_USER }` } target="_blank" rel="noreferrer">GitHub</a>
 
   return (
     <div className="projects__github">

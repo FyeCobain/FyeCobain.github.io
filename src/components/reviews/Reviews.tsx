@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { IoStarHalf } from 'react-icons/io5'
-import { FREELANCER_PROFILE_URL } from '@app/consts/my.info'
+import { FREELANCER_PROFILE_URL } from '@app/consts'
 import ReviewsContainer from './ReviewsContainer'
 
 export default function Reviews() {

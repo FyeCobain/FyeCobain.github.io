@@ -1,0 +1,8 @@
+@use './../../variables' as vars;
+
+.media-links-container {
+  margin-top: vars.$margin-short;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}

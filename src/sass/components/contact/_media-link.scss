@@ -1,0 +1,44 @@
+@use './../../variables' as vars;
+@use './../../mixins';
+
+.media-link {
+  @include mixins.comic-background-2(vars.$color-bg-blue-1);
+  padding: 1rem 2rem;
+  border-radius: .5rem;
+  gap: 1.8rem;
+
+  p {
+    font-size: 1.7rem;
+    color: vars.$color-greene-light;
+  }
+}
+
+.media-link__icon {
+  padding-left: 2.8rem;
+  display: flex;
+  gap: .35rem;
+
+  svg:first-of-type {
+    font-size: 3.75rem;
+  }
+
+  svg:last-of-type {
+    font-size: 2.25rem;
+  }
+}
+
+.media-link__text {
+  div {
+    display: flex;
+    gap: 1rem;
+    
+    &:hover p, &:hover svg{
+      color: lighten(vars.$color-greene, 25);
+    }
+  }
+  
+  svg {
+    font-size: 2.2rem;
+    color: vars.$color-greene-light;
+  }
+}
