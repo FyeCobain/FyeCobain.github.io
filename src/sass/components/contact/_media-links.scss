@@ -1,8 +1,13 @@
 @use './../../variables' as vars;
+@use './../../mixins';
 
 .media-links-container {
   margin-top: vars.$margin-short;
   display: flex;
   flex-direction: column;
   gap: 2rem;
+
+  @include mixins.laptop {
+    gap: 2rem;
+  }
 }
