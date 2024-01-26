@@ -2,9 +2,9 @@
 @use './../../mixins';
 
 .media-links-container {
-  margin-top: vars.$margin-short;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 2rem;
 
   @include mixins.laptop {

@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { BsChatDots } from 'react-icons/bs'
 import MediaLinksContainer from './MediaLinksContainer'
+import EmailForm from './EmailForm'
 
 export default function Contact() {
   const { t } = useTranslation()
@@ -13,6 +14,7 @@ export default function Contact() {
       </div>
       <div className="contact-container">
         <MediaLinksContainer />
+        <EmailForm />
       </div>
     </section>
   )

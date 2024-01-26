@@ -1,0 +1,37 @@
+@use './../../variables' as vars;
+
+.email-form-container {
+  margin-top: 2rem;
+
+  p {
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 2.5rem;
+  }
+}
+
+.email-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 87.5%;
+
+  input, textarea {
+    color: vars.$color-greene-light;
+    background-color: vars.$color-bg-primary;
+    background-color: transparent;
+    outline: none;
+    border-radius: .5rem;
+    font-size: 1.7rem;
+    border: 1px solid vars.$color-greene;
+    padding: 1rem;
+
+    &:focus {
+      border-color: lighten(vars.$color-greene-light, 35);
+    }
+  }
+
+  input {
+    height: 5rem;
+  }
+}

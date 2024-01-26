@@ -2,6 +2,7 @@
 
 .contact {
   margin-top: vars.$margin-base;
+  width: 100%;
 
   .section-heading {
     svg {
@@ -9,4 +10,13 @@
       margin-left: 1.85rem;
     }
   }
+}
+
+.contact-container {
+  margin-top: vars.$margin-base;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  align-items: center;
 }
