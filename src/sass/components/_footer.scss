@@ -1,0 +1,49 @@
+@use './../variables' as vars;
+@use './../mixins';
+
+.footer {
+  width: 100%;
+  background-color: vars.$color-bg-blue-1;
+  padding: .5rem 0;
+  text-align: center;
+  margin-top: 1.5rem;
+
+  p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    color: vars.$color-greene-light;
+  }
+
+  &__icon {
+    display: flex;
+
+    svg:first-of-type {
+      font-size: 3.5rem;
+    }
+
+    svg:last-of-type {
+      font-size: 2rem;
+    }
+  }
+
+  @include mixins.tablet {
+    margin-top: 7rem;
+  }
+
+  @include mixins.laptop {
+    padding: .75rem 0;
+    margin-top: 11.5rem;
+
+    &__icon {
+      svg:first-of-type {
+        font-size: 3.75rem;
+      }
+  
+      svg:last-of-type {
+        font-size: 2.27rem;
+      }
+    }
+  }
+}

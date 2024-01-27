@@ -25,7 +25,6 @@
   width: 100%;
 
   input, textarea {
-    color: vars.$color-greene-light;
     background-color: vars.$color-bg-primary;
     background-color: transparent;
     outline: none;
@@ -33,9 +32,14 @@
     font-size: 1.7rem;
     border: 1px solid vars.$color-greene;
     padding: 1rem;
+    color: vars.$color-greene-light;
 
     &:focus {
       border-color: lighten(vars.$color-greene-light, 35);
+    }
+
+    &::placeholder {
+      color: vars.$color-greene-light;
     }
   }
 
@@ -46,7 +50,7 @@
   button {
     width: auto;
     width: fit-content;
-    padding: .9rem 1.6rem;
+    padding: .85rem 1.55rem;
   }
 
   @include mixins.tablet {
