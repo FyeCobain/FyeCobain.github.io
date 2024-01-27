@@ -1,0 +1,22 @@
+.message-overlay {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.message {
+  position: absolute;
+  width: 45rem;
+  height: 20rem;
+  background-color: rgba(red, 0.5);
+
+  &__heading {
+    background-color: blue;
+  }
+}

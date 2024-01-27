@@ -69,6 +69,16 @@ export default i18n
             yourEmailAddress: 'Your email address',
             message: 'Message',
             send: 'Send',
+            email: {
+              ok: 'OK',
+              sended: 'Sended',
+              error: 'Error',
+              alert: 'Alert',
+              sendingOK: 'Your message has been sended :)',
+              sendingError: 'Error while sending the message :(',
+              tooShort: 'Message is too short',
+              writeYours: 'Please write your email address',
+            }
           },
         },
       },
@@ -132,6 +142,16 @@ export default i18n
             yourEmailAddress: 'Tu dirección de correo',
             message: 'Mensaje',
             send: 'Enviar',
+            email: {
+              ok: 'Aceptar',
+              sended: 'Enviado',
+              error: 'Error',
+              alert: 'Alerta',
+              sendingOK: 'Tu mensaje ha sido enviado :)',
+              sendingError: 'Error al enviar el mensaje :(',
+              tooShort: 'El mensaje es demasiado corto',
+              writeYours: 'Por favor escribe tu dirección de correo',
+            }
           },
         },
       },

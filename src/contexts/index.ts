@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import type { ImagesContextValueInterface, ContentSliderContextValueInterface, ElementOnClick } from '@app/types-interfaces'
+import type { ImagesContextValueInterface, ContentSliderContextValueInterface, ElementOnClick, MessageContextValueInterface, MessageIconType } from '@app/types-interfaces'
 
 // Images overlay context
 const defaultImagesContextValue: ImagesContextValueInterface = {
@@ -11,6 +11,16 @@ const defaultImagesContextValue: ImagesContextValueInterface = {
   setMaxHeight: (_maxHeight: boolean) => {},
 }
 export const ImagesContext = createContext<ImagesContextValueInterface>(defaultImagesContextValue)
+
+// Message overlay context
+const defaultMessageContextValue: MessageContextValueInterface = {
+  type: null,
+  title: null,
+  text: null,
+  onOK: () => {},
+  setMessage: (_type: MessageIconType, _title?: string | null, _text?: string | null, _onOk?: any) => {},
+}
+export const MessageContext = createContext<MessageContextValueInterface>(defaultMessageContextValue)
 
 // Content slider context
 const defaultContentSliderContextValue: ContentSliderContextValueInterface = {
