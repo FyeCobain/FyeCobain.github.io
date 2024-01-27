@@ -1,4 +1,4 @@
-import { type ElementOnClick } from '.'
+import type { MessageIconType, ElementOnClick } from '.'
 
 export interface ImagesContextValueInterface {
   images: string[]
@@ -7,6 +7,14 @@ export interface ImagesContextValueInterface {
   setCurrentImageIndex: (index: number) => void
   setImages: (images: string[]) => void
   setMaxHeight: (maxHeight: boolean) => void
+}
+
+export interface MessageContextValueInterface {
+  type: MessageIconType
+  title: string | null
+  text: string | null
+  onOK: any
+  setMessage: (type: MessageIconType, title?: string | null, text?: string | null, onOK?: any) => void
 }
 
 export interface ContentSliderContextValueInterface {
