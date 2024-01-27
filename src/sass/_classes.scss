@@ -39,7 +39,7 @@
 
 .bg-greene {
   @include mixins.laptop {
-    background-color: vars.$color-greene;
+    background-color: darken(vars.$color-greene, 5);
   }
 }
 

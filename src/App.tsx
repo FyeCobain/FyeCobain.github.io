@@ -8,6 +8,7 @@ import AboutMe from '@components/aboutMe/AboutMe'
 import Projects from '@components/projects/Projects'
 import Reviews from '@components/reviews/Reviews'
 import Contact from '@components/contact/Contact'
+import Footer from '@components/Footer'
 
 function App() {
   // Image state context for the image overlay
@@ -33,6 +34,7 @@ function App() {
       <Projects />
       <Reviews />
       <Contact />
+      <Footer />
     </ImagesContext.Provider>
   )
 }
