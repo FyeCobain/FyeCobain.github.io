@@ -27,6 +27,8 @@
 
     @include mixins.laptop {
       img {
+        height: 19rem;
+        width: 82rem;
         max-width: 90%;
       }
 
