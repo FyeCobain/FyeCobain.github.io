@@ -1,14 +1,17 @@
 import { useState, useRef, type ChangeEvent, useContext, type FormEvent, type MutableRefObject } from 'react'
+import emailjs from '@emailjs/browser'
 import { useTranslation } from 'react-i18next'
 import type { MessageContextValueInterface } from '@app/types-interfaces'
+import { isEnglish } from '@app/functions'
 import { MessageContext } from '@app/contexts'
-import { EMAIL } from '@app/consts'
+import { EMAIL, PUBLIC_KEY, SERVICE_ID, TEMPLATE_EN, TEMPLATE_ES } from '@app/consts'
 
 export default function EmailForm() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const messageState: MessageContextValueInterface = useContext(MessageContext)
   const emailInputRef: MutableRefObject<HTMLInputElement | null> = useRef(null)
   const messageTextAreaRef: MutableRefObject<HTMLTextAreaElement | null> = useRef(null)
+  const sendButtonRef: MutableRefObject<HTMLButtonElement | null> = useRef(null)
   const [ email, setEmail ] = useState<string>('')
   const [ message, setMessage ] = useState<string>('')
 
@@ -36,6 +39,12 @@ export default function EmailForm() {
     messageTextAreaRef.current.value = ''
     if (focus)
       focusMessageTextArea()
+  }
+
+  // Enables / disables the 'send button'
+  function setSendButtonDisabled(disabled: boolean) {
+    if (sendButtonRef.current !== null)
+      sendButtonRef.current.disabled = disabled
   }
 
   // On submit function
@@ -66,13 +75,27 @@ export default function EmailForm() {
     }
     messageTextAreaRef.current.value = messageValue
 
-    // TODO
-    messageState.setMessage('info', t('contact.email.sent'), t('contact.email.sendingOK'), () => {
-      if (emailInputRef.current !== null && messageTextAreaRef.current !== null) {
-        clearEmailInput(false)
-        clearMessageTextArea(false)
-      }
-    })
+    setSendButtonDisabled(true)
+
+    // Sending the email and showing the result
+    emailjs.send(SERVICE_ID, isEnglish(i18n.language) ? TEMPLATE_EN : TEMPLATE_ES, {
+      reply_to: emailValue,
+      message: messageValue,
+    }, PUBLIC_KEY)
+      .then(() => {
+        messageState.setMessage('info', t('contact.email.sent'), t('contact.email.sendingOK'), () => {
+          if (emailInputRef.current !== null && messageTextAreaRef.current !== null) {
+            clearEmailInput(false)
+            clearMessageTextArea(false)
+            setSendButtonDisabled(false)
+          }
+        })
+      })
+      .catch(() => {
+        messageState.setMessage('error', t('contact.email.error'), t('contact.email.sendingError'), () => {
+          setSendButtonDisabled(false)
+        })
+      })
   }
 
   return (
@@ -81,7 +104,7 @@ export default function EmailForm() {
       <form onSubmit={ onSubmit } className="email-form">
         <input ref={ emailInputRef } type="email" placeholder={ t('contact.yourEmailAddress') } onChange={ (e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value) } />
         <textarea ref={ messageTextAreaRef } placeholder={ `${ t('contact.message') }... ` } rows={ 4 } onChange={ (e: ChangeEvent<HTMLTextAreaElement>) => setMessage(e.target.value) }></textarea>
-        <button type="submit">{ t('contact.send') }</button>
+        <button ref={ sendButtonRef } type="submit">{ t('contact.send') }</button>
       </form>
     </div>
   )

@@ -1,7 +1,7 @@
 {
   "name": "fye-portfolio",
   "private": true,
-  "version": "0.23.0",
+  "version": "0.24.0",
   "type": "module",
   "scripts": {
     "dev": "vite --host",
@@ -10,6 +10,7 @@
     "prev": "vite preview --host"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.12.1",
     "i18next": "^23.7.12",
     "i18next-browser-languagedetector": "^7.2.0",
     "react": "^18.2.0",
