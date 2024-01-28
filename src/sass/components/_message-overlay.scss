@@ -27,6 +27,10 @@
   border-radius: 2%;
   border: 1px solid vars.$color-greene-light;
   @include mixins.comic-background-2(vars.$color-bg-blue-2);
+
+  @include mixins.laptop {
+    margin-left: vars.$scroll-bar-offset;
+  }
   
   &__heading {
     border-radius: 7% 7% 10% 10%;

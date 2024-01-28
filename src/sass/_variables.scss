@@ -1,3 +1,6 @@
+// General
+$scroll-bar-offset: 1.5rem;
+
 // Colors
 $color-bg-primary: #1F2041;
 $color-bg-blue-1: #1D3553;
@@ -11,12 +14,6 @@ $color-blue-light: #37BCFA;
 $color-gray: #888888;
 $color-yellow: #F5D38F;
 
-// Time
-$duration-short: 300ms;
-$duration-normal: 500ms;
-$duration-medium: 1s;
-$duration-long: 1.5s;
-
 // Margins / Paddings
 $margin-simple: 0.75rem;
 $margin-short: 3rem;
@@ -29,3 +26,9 @@ $width-base: 90rem;
 
 // Fonts
 $font-size-normal: 1.85rem;
+
+// Time
+$duration-short: 300ms;
+$duration-normal: 500ms;
+$duration-medium: 1s;
+$duration-long: 1.5s;
