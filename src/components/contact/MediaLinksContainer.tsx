@@ -21,7 +21,7 @@ export default function MediainksContainer() {
         url={ `https://t.me/${ TELEGRAM_USER }` }
         ariaLabel='Telegram'
         text={ `@${ TELEGRAM_USER }` }
-        copyText={ `@${ TELEGRAM_USER }` }
+        copyText={ `${ TELEGRAM_USER }` }
       />
 
       <MediaLink

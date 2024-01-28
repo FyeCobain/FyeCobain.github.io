@@ -30,13 +30,13 @@ export default function MessageOverlay() {
   let icon: any
   switch (messageState.type) {
     case 'info':
-      icon = <IoInformationCircle />
+      icon = <IoInformationCircle className="color-info" />
       break
     case 'warning':
-      icon = <IoWarning />
+      icon = <IoWarning className="color-warning" />
       break
     case 'error':
-      icon = <IoCloseCircle />
+      icon = <IoCloseCircle className="color-danger" />
       break
   }
 
@@ -45,10 +45,14 @@ export default function MessageOverlay() {
       <div className="message">
         <div className="message__heading">
           { icon }
-          <p>{ messageState.title }</p>
+          <div className="message__heading__title">
+            <p>{ messageState.title }</p>
+          </div>
         </div>
-        <p className="message-text">{ messageState.text }</p>
-        <button onClick={ onOKClick }>{ t('contact.email.ok') }</button>
+        <div className="message__body">
+          <p className="message__text">{ messageState.text }</p>
+          <button onClick={ onOKClick }>{ t('contact.email.ok') }</button>
+        </div>
       </div>
     </div>
   )

@@ -19,8 +19,19 @@
   &__icon {
     display: flex;
 
+    &:hover {
+      svg:first-of-type {
+        color: vars.$color-white;
+      }
+
+      svg:last-of-type {
+        color: lighten(vars.$color-greene, 15);
+      }
+    }
+
     svg:first-of-type {
       font-size: 3.5rem;
+      color: vars.$color-almost-white;
     }
 
     svg:last-of-type {
