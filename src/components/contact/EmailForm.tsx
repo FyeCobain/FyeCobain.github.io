@@ -67,7 +67,7 @@ export default function EmailForm() {
     messageTextAreaRef.current.value = messageValue
 
     // TODO
-    messageState.setMessage('info', t('contact.email.sended'), t('contact.email.sendingOK'), () => {
+    messageState.setMessage('info', t('contact.email.sent'), t('contact.email.sendingOK'), () => {
       if (emailInputRef.current !== null && messageTextAreaRef.current !== null) {
         clearEmailInput(false)
         clearMessageTextArea(false)

@@ -10,7 +10,7 @@
 
   p {
     font-size: 1.7rem;
-    color: vars.$color-greene-light;
+    color: vars.$color-almost-white;
   }
 
   @include mixins.tablet {
@@ -30,6 +30,15 @@
 
   svg:first-of-type {
     font-size: 3.75rem;
+    color: vars.$color-blue-light;
+  }
+
+  &:hover svg:first-of-type {
+    color: lighten(vars.$color-blue-light, 15);
+  }
+
+  &:hover svg:last-of-type {
+    color: lighten(vars.$color-greene, 15);
   }
 
   svg:last-of-type {
@@ -52,12 +61,12 @@
     gap: 1rem;
     
     &:hover p, &:hover svg{
-      color: lighten(vars.$color-greene, 25);
+      color: vars.$color-white;
     }
   }
   
   svg {
     font-size: 2.2rem;
-    color: vars.$color-greene-light;
+    color: vars.$color-almost-white;
   }
 }

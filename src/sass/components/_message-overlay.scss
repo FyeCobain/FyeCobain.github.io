@@ -1,3 +1,6 @@
+@use './../variables' as vars;
+@use './../mixins';
+
 .message-overlay {
   position: fixed;
   z-index: 2;
@@ -8,15 +11,65 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: rgba(black, .28);
+
+  @include mixins.laptop {
+    background-color: rgba(black, .2);
+  }
 }
 
 .message {
   position: absolute;
-  width: 45rem;
-  height: 20rem;
-  background-color: rgba(red, 0.5);
-
+  max-width: vars.$width-normal;
+  height: 16rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 2%;
+  border: 1px solid vars.$color-greene-light;
+  @include mixins.comic-background-2(vars.$color-bg-blue-2);
+  
   &__heading {
-    background-color: blue;
+    border-radius: 7% 7% 10% 10%;
+    display: flex;
+    align-items: center;
+    background-color: vars.$color-bg-blue-1;
+    padding: .5rem;
+    
+    svg {
+      font-size: 2.8rem;
+      width: 5rem;
+    }
+
+    &__title {
+      width: 100%;
+      padding-right: 5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    p {
+      border-radius: 2%;
+      color: vars.$color-greene-light;
+      font-size: 2.2rem;
+    }
+  }
+
+  &__body {
+    color: vars.$color-greene-light;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    p {
+      padding: 0 2rem;
+      text-align: center;
+    }
+
+    button {
+      padding: .85rem 1.1rem;
+    }
   }
 }
