@@ -21,3 +21,14 @@ button, .button {
 
   @include mixins.hover-glow(150ms, 1rem, vars.$color-white, vars.$color-greene-light, vars.$color-gray);
 }
+
+button:disabled {
+  color: darken(vars.$color-white, 30);
+  background-color: darken(vars.$color-bg-blue-1, 5);
+  border: 1px solid darken(vars.$color-greene, 5);
+
+  &:hover {
+    cursor: not-allowed;
+    box-shadow: none;    
+  }
+}
