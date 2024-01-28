@@ -11,7 +11,7 @@ export default function SkillsContainer() {
 
   const skills: string[][] = [
     [ // Frontend
-      'HTML 5',
+      'HTML',
       'CSS / SASS',
       'Tailwind',
       'Bootstrap / Bulma',
