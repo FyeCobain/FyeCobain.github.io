@@ -79,7 +79,7 @@ const setScrollListenerInterval = setInterval(() => {
       {
         section: CONTACT,
         icon: CHAT_ICON,
-        unhideOffsetPercentage: 10,
+        unhideOffsetPercentage: 13,
         activeOffsetPercentage: 53.5,
       },
     ]
