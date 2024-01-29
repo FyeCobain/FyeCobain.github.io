@@ -18,7 +18,7 @@ export default function Project({ project }: { project: ProjectInterface }) {
         imagesState.setImages(project.slider_images)
       },
     })
-  }, [])
+  }, [ project.slider_images ])
 
   return (
     <div className="project" >

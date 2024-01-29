@@ -113,9 +113,13 @@ export default function ContentSlider(props: ContentSliderPropsInterface) {
   // Adds a new onClick callbacks to the context
   function addOnClick(newElement: ElementOnClick) {
     setOnClicks((currentOnClicks: ElementOnClick[]) => {
-      return findOnClickElement(currentOnClicks, newElement.element) === -1
-        ? currentOnClicks.concat([ newElement ])
-        : currentOnClicks
+      const findedIndex = findOnClickElement(currentOnClicks, newElement.element)
+      if (findedIndex === -1)
+        return currentOnClicks.concat([ newElement ]) // Adding a new element and it's onClick
+      else {
+        currentOnClicks[findedIndex].onClick = newElement.onClick // Updating an element's onClick
+        return currentOnClicks
+      }
     })
   }
 
