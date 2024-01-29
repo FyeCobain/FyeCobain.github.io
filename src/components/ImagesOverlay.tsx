@@ -206,7 +206,7 @@ export default function ImagesOverlay() {
       <div key={ index } className="images-overlay__image" style={ { left: index === 0 ? '0%' : '100%' } }>
         <img
           src={ image }
-
+          alt={ image }
           className={ ((imagesState.images.length <= 1 ? '' : 'cursor-pointer') + (!imagesState.maxHeight ? '' : ' max-height-100vh')).trim() }
 
           // When the TOUCH event starts inside the element

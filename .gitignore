@@ -1,4 +1,4 @@
-public/files/*.apk
+public/files/*
 
 # Logs
 logs

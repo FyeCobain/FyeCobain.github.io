@@ -20,7 +20,7 @@ export default i18n
           header: {
             hello: 'Hello',
             im: "I am",
-            welcome: 'Welcome to my webpage!',
+            welcome: 'Welcome to my webpage',
           },
           alts: {
             photo: 'my photo',
@@ -93,7 +93,7 @@ export default i18n
           header: {
             hello: 'Hola',
             im: 'soy',
-            welcome: '¡Bienvenido(a) a mi página!',
+            welcome: 'Bienvenido(a) a mi página',
           },
           alts: {
             photo: 'mi foto',
