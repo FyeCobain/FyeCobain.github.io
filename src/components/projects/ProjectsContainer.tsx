@@ -18,13 +18,25 @@ import amaliche from '/img/projects/amaliche.png'
 import amaliche_1 from '/img/projects/amaliche_1.png'
 import amaliche_2 from '/img/projects/amaliche_2.png'
 import scenes_getter from '/img/projects/scenes_getter.png'
-import ahklicker_en from '/img/projects/ahklicker_en.png'
-import ahklicker_es from '/img/projects/ahklicker_es.png'
+import scenes_getter_1 from '/img/projects/scenes_getter_1.png'
+import scenes_getter_2 from '/img/projects/scenes_getter_2.png'
+import ahklicker_1_en from '/img/projects/ahklicker_1_en.png'
+import ahklicker_2_en from '/img/projects/ahklicker_2_en.png'
+import ahklicker_1_es from '/img/projects/ahklicker_1_es.png'
+import ahklicker_2_es from '/img/projects/ahklicker_2_es.png'
 
 export default function ProjectsContainer() {
   const { t, i18n } = useTranslation()
 
-  const ahklickerImage = isEnglish(i18n.language) ? ahklicker_en : ahklicker_es
+  const ahklickerImages: string[] = isEnglish(i18n.language)
+    ? [
+        ahklicker_1_en,
+        ahklicker_2_en,
+      ]
+    : [
+        ahklicker_1_es,
+        ahklicker_2_es,
+      ]
 
   const projects: ProjectInterface[] = [
     {
@@ -85,7 +97,10 @@ export default function ProjectsContainer() {
       link: null,
       description: t('projects.scenesGetter'),
       image: scenes_getter,
-      slider_images: [ scenes_getter ],
+      slider_images: [
+        scenes_getter_1,
+        scenes_getter_2,
+      ],
       maxHeight: true,
       languages: [ 'Phyton' ],
     },
@@ -93,8 +108,8 @@ export default function ProjectsContainer() {
       title: 'AHKlicker',
       link: 'https://github.com/FyeCobain/AHKlicker',
       description: 'Auto clicker',
-      image: ahklickerImage,
-      slider_images: [ ahklickerImage ],
+      image: ahklickerImages[0],
+      slider_images: ahklickerImages,
       maxHeight: true,
       languages: [ 'AutoHotkey' ],
     },
