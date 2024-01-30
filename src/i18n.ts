@@ -22,9 +22,6 @@ export default i18n
             im: "I am",
             welcome: 'Welcome to my webpage',
           },
-          alts: {
-            photo: 'my photo',
-          },
           info: {
             yearsOfExperience: 'Years of experience as a software developer',
             graduatedFrom: 'Graduated from',
@@ -94,9 +91,6 @@ export default i18n
             hello: 'Hola',
             im: 'soy',
             welcome: 'Bienvenido(a) a mi página',
-          },
-          alts: {
-            photo: 'mi foto',
           },
           info: {
             yearsOfExperience: 'Años de experiencia como desarrollador de software',

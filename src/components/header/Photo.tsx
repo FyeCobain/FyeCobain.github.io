@@ -2,7 +2,6 @@ import { useTranslation } from 'react-i18next'
 import { useContext } from 'react'
 import { type ImagesContextValueInterface } from '@app/types-interfaces'
 import { ImagesContext } from '@app/contexts'
-import me from '/img/me.jpg'
 import myself from '/img/myself.jpg'
 
 export default function Photo() {
@@ -18,7 +17,7 @@ export default function Photo() {
     <div className="header__photo content-center">
 
       <div className="header__photo-container">
-        <img width="200" height="200" alt={ t('alts.photo') } src={ me } onClick={ setImage } />
+        <div className="photo" onClick={ setImage }></div>
         <div className="header__photo-container--overlay"></div>
       </div>
 
