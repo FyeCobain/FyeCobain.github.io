@@ -138,17 +138,6 @@ export default function ImagesOverlay() {
   }, [ onKeyDownCallback ])
 
   useEffect(() => {
-    // Adding the 'overflow-hidden' and 'overscroll-none' classes to the body
-    if (imagesState.images.length > 0) {
-      document.documentElement.classList.add('overflow-hidden')
-      document.documentElement.classList.add('overscroll-none')
-    }
-    else {
-      document.documentElement.classList.remove('overflow-hidden')
-      document.documentElement.classList.remove('overscroll-none')
-      return
-    }
-
     // Adding the 'next' class to the image containers starting from the second one
     sliderRef?.current?.querySelectorAll('.images-overlay__image:not(:first-of-type)')
       .forEach((imgContainer: Element) => {
@@ -178,9 +167,6 @@ export default function ImagesOverlay() {
 
     onDrag(touchStartEvent.touches[0].clientX, touchStartEvent.touches[0].clientY, touchEndEvent.touches[0].clientX, touchEndEvent.touches[0].clientY, dragCallbakks, 60, 40)
   }
-
-  if (imagesState.images.length === 0)
-    return <></>
 
   const dragCallbakks: DragCallbacksInterface = {
     onUpDrag: null,

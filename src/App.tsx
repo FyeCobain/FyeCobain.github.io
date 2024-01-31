@@ -1,8 +1,6 @@
-import { useState } from 'react'
+import { useState, Suspense, lazy, useEffect } from 'react'
 import { ImagesContext, MessageContext } from './contexts'
 import type { MessageContextValueInterface, ImagesContextValueInterface, MessageIconType } from './types-interfaces'
-import MessageOverlay from '@components/MessageOverlay'
-import ImagesOverlay from '@components/ImagesOverlay'
 import Nav from '@components/Nav'
 import Header from '@components/header/Header'
 import AboutMe from '@components/aboutMe/AboutMe'
@@ -10,6 +8,8 @@ import Projects from '@components/projects/Projects'
 import Reviews from '@components/reviews/Reviews'
 import Contact from '@components/contact/Contact'
 import Footer from '@components/Footer'
+const ImagesOverlay = lazy(async() => await import('@components/ImagesOverlay'))
+const MessageOverlay = lazy(async() => await import('@components/MessageOverlay'))
 
 function App() {
   // Image state context for the image overlay
@@ -43,11 +43,38 @@ function App() {
     },
   }
 
+  useEffect(() => {
+    // Toggling the 'overflow-hidden' and 'overscroll-none' classes for the document
+    if (imagesState.images.length > 0 || messageState.type !== null) {
+      if (imagesState.images.length > 0)
+        document.documentElement.classList.add('overflow-hidden')
+      document.documentElement.classList.add('overscroll-none')
+    }
+    else {
+      document.documentElement.classList.remove('overflow-hidden')
+      document.documentElement.classList.remove('overscroll-none')
+    }
+  }, [
+    imagesState.images,
+    messageState.type,
+  ])
+
   return (
     <ImagesContext.Provider value={ imagesState }>
       <MessageContext.Provider value={ messageState }>
-        <ImagesOverlay />
-        <MessageOverlay />
+        {imagesState.images.length > 0 && (
+          <Suspense>
+            <ImagesOverlay />
+          </Suspense>
+        )
+        }
+        {
+          messageState.type !== null && (
+            <Suspense>
+              <MessageOverlay />
+            </Suspense>
+          )
+        }
         <Nav />
         <Header />
         <AboutMe />
