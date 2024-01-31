@@ -168,6 +168,9 @@ export default function ImagesOverlay() {
     onDrag(touchStartEvent.touches[0].clientX, touchStartEvent.touches[0].clientY, touchEndEvent.touches[0].clientX, touchEndEvent.touches[0].clientY, dragCallbakks, 60, 40)
   }
 
+  if (imagesState.images.length < 1)
+    return <></>
+
   const dragCallbakks: DragCallbacksInterface = {
     onUpDrag: null,
     onRightDrag: () => previousImg(imagesState),

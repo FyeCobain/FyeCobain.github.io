@@ -1,6 +1,7 @@
 import { useState, Suspense, lazy, useEffect } from 'react'
 import { ImagesContext, MessageContext } from './contexts'
 import type { MessageContextValueInterface, ImagesContextValueInterface, MessageIconType } from './types-interfaces'
+import ImagesOverlay from './components/ImagesOverlay'
 import Nav from '@components/Nav'
 import Header from '@components/header/Header'
 import AboutMe from '@components/aboutMe/AboutMe'
@@ -8,7 +9,6 @@ import Projects from '@components/projects/Projects'
 import Reviews from '@components/reviews/Reviews'
 import Contact from '@components/contact/Contact'
 import Footer from '@components/Footer'
-const ImagesOverlay = lazy(async() => await import('@components/ImagesOverlay'))
 const MessageOverlay = lazy(async() => await import('@components/MessageOverlay'))
 
 function App() {
@@ -62,12 +62,7 @@ function App() {
   return (
     <ImagesContext.Provider value={ imagesState }>
       <MessageContext.Provider value={ messageState }>
-        {imagesState.images.length > 0 && (
-          <Suspense>
-            <ImagesOverlay />
-          </Suspense>
-        )
-        }
+        <ImagesOverlay />
         {
           messageState.type !== null && (
             <Suspense>
