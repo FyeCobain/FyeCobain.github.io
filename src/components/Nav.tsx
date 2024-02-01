@@ -1,4 +1,4 @@
-import { type MutableRefObject, useRef } from 'react'
+import { type MutableRefObject, useRef, useEffect } from 'react'
 import { type i18n } from 'i18next'
 import { useTranslation } from 'react-i18next'
 import { IoLanguageOutline, IoStarHalf } from 'react-icons/io5'
@@ -206,6 +206,24 @@ function toggleLanguage(i18n: i18n) {
 export default function Nav() {
   const navRef: MutableRefObject<null> = useRef(null)
   const { i18n } = useTranslation()
+
+  useEffect(() => {
+    // Selecting the current section
+    const queryParams: URLSearchParams = new URLSearchParams(window.location.search)
+    let section: string | null = null
+    section = queryParams.get('section')
+    if (section !== null) {
+      const interval: number = window.setInterval(() => {
+        if (document.readyState !== 'loading') {
+          clearInterval(interval)
+          setTimeout(() => {
+            if (section !== null)
+              scrollTo(section)
+          }, 10)
+        }
+      }, 10)
+    }
+  }, [])
 
   function shrink(shrinked: boolean) {
     if (navRef.current === null) return
