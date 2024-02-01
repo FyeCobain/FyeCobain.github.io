@@ -6,7 +6,7 @@ import { AiOutlineHome, AiOutlineUser } from 'react-icons/ai'
 import { VscFolder } from 'react-icons/vsc'
 import { BsChatDots, BsMenuDown } from 'react-icons/bs'
 import { GrClose } from 'react-icons/gr'
-import { isEnglish } from '@app/functions'
+import { isEnglish, getQueryParam } from '@app/functions'
 import { ENGLISH_US, SPANISH_MX } from '@app/consts'
 
 interface ScrollCheckInterface {
@@ -209,9 +209,7 @@ export default function Nav() {
 
   useEffect(() => {
     // Selecting the current section
-    const queryParams: URLSearchParams = new URLSearchParams(window.location.search)
-    let section: string | null = null
-    section = queryParams.get('section')
+    const section: string | null = getQueryParam('section')
     if (section !== null) {
       const interval: number = window.setInterval(() => {
         if (document.readyState !== 'loading') {

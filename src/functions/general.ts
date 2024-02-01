@@ -29,3 +29,8 @@ export function copyText(text: string, onFulfilledCallback: any, onRejectCallbac
       onErrorCallback(err)
   }
 }
+
+export function getQueryParam(paramName: string): string | null {
+  const queryParams: URLSearchParams = new URLSearchParams(window.location.search)
+  return queryParams.get(paramName)
+}

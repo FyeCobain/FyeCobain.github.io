@@ -1,14 +1,25 @@
 import { type MutableRefObject, useContext, useEffect, useRef } from 'react'
 import type { ProjectInterface, ImagesContextValueInterface, ContentSliderContextValueInterface } from '@app/types-interfaces'
 import { ImagesContext, ContentSliderContext } from '@app/contexts'
-import { isURL } from '@app/functions'
+import { getQueryParam, isURL } from '@app/functions'
 import { LiaExternalLinkSquareAltSolid } from 'react-icons/lia'
 import { IoMdDownload } from 'react-icons/io'
 
-export default function Project({ project }: { project: ProjectInterface }) {
+export default function Project({ index, project }: { index: number, project: ProjectInterface }) {
   const imagesState: ImagesContextValueInterface = useContext(ImagesContext)
   const contentSliderState: ContentSliderContextValueInterface = useContext(ContentSliderContext)
   const imageRef: MutableRefObject<HTMLImageElement | null> = useRef(null)
+
+  useEffect(() => {
+    // Showing the images in the slider
+    if (index > 0) return
+
+    const show: string | null = getQueryParam('show')
+    if (show !== null && show.trim().toLowerCase() === 'true') {
+      imagesState.setMaxHeight(project.maxHeight)
+      imagesState.setImages(project.slider_images)
+    }
+  }, [])
 
   useEffect(() => {
     contentSliderState.addOnClick({

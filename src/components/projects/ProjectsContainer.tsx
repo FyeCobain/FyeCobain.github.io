@@ -1,6 +1,6 @@
 import type { ProjectInterface } from '@app/types-interfaces'
 import { useTranslation } from 'react-i18next'
-import { isEnglish } from '@app/functions'
+import { getQueryParam, isEnglish } from '@app/functions'
 import { PATH_NAME } from '@app/consts'
 import ContentSlider from '@components/ContentSlider'
 import Project from './Project'
@@ -116,10 +116,8 @@ export default function ProjectsContainer() {
   ]
 
   // Selecting the first project
-  const queryParams: URLSearchParams = new URLSearchParams(window.location.search)
-  let projectId: number | null = null
-  projectId = Number(queryParams.get('project'))
-  if (!isNaN(projectId)) {
+  let projectId: number | null = Number(getQueryParam('project'))
+  if (projectId !== null && !isNaN(projectId)) {
     projectId = Math.floor(projectId)
     if (projectId > 1 && projectId <= projects.length) {
       const firstProject: ProjectInterface = projects[0]
@@ -132,7 +130,7 @@ export default function ProjectsContainer() {
     <ContentSlider className="projects-container" phoneCols={ 0 } tabletCols={ 2 } laptopCols={ 3 }>
     {
       projects.map((project: ProjectInterface, index: number) =>
-      <Project key={ index } project={ project } />)
+      <Project key={ index } index={ index } project={ project } />)
     }
     </ContentSlider>
   )
