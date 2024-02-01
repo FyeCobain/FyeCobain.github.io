@@ -40,15 +40,6 @@ export default function ProjectsContainer() {
 
   const projects: ProjectInterface[] = [
     {
-      title: 'Dracula Junior',
-      link: 'https://marketplace.visualstudio.com/items?itemName=FyeCobain.dracula-junior',
-      description: t('projects.vscTheme'),
-      image: dracula_junior,
-      slider_images: [ dracula_junior ],
-      maxHeight: false,
-      languages: [],
-    },
-    {
       title: 'Rozen Maiden',
       link: null,
       description: 'Fansite',
@@ -76,6 +67,15 @@ export default function ProjectsContainer() {
       ],
       maxHeight: true,
       languages: [ 'Android' ],
+    },
+    {
+      title: 'Dracula Junior',
+      link: 'https://marketplace.visualstudio.com/items?itemName=FyeCobain.dracula-junior',
+      description: t('projects.vscTheme'),
+      image: dracula_junior,
+      slider_images: [ dracula_junior ],
+      maxHeight: false,
+      languages: [],
     },
     {
       title: 'Amaliche Club',
@@ -114,6 +114,19 @@ export default function ProjectsContainer() {
       languages: [ 'AutoHotkey' ],
     },
   ]
+
+  // Selecting the first project
+  const queryParams: URLSearchParams = new URLSearchParams(window.location.search)
+  let projectId: number | null = null
+  projectId = Number(queryParams.get('project'))
+  if (!isNaN(projectId)) {
+    projectId = Math.floor(projectId)
+    if (projectId > 1 && projectId <= projects.length) {
+      const firstProject: ProjectInterface = projects[0]
+      projects[0] = projects[projectId - 1]
+      projects[projectId - 1] = firstProject
+    }
+  }
 
   return (
     <ContentSlider className="projects-container" phoneCols={ 0 } tabletCols={ 2 } laptopCols={ 3 }>
