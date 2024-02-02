@@ -11,13 +11,17 @@ export default function Project({ index, project }: { index: number, project: Pr
   const imageRef: MutableRefObject<HTMLImageElement | null> = useRef(null)
 
   useEffect(() => {
-    // Showing the images in the slider
     if (index > 0) return
 
-    const show: string | null = getQueryParam('show')
-    if (show !== null && show.trim().toLowerCase() === 'true') {
-      imagesState.setMaxHeight(project.maxHeight)
-      imagesState.setImages(project.slider_images)
+    // Selecting the current image to show
+    let imageId: number | null = Number(getQueryParam('image'))
+    if (imageId !== null && !isNaN(imageId)) {
+      imageId = Math.floor(imageId)
+      if (imageId >= 1 && imageId <= project.slider_images.length) {
+        imagesState.setMaxHeight(project.maxHeight)
+        imagesState.setCurrentImageIndex(imageId - 1)
+        imagesState.setImages(project.slider_images)
+      }
     }
   }, [])
 

@@ -138,17 +138,23 @@ export default function ImagesOverlay() {
   }, [ onKeyDownCallback ])
 
   useEffect(() => {
-    // Adding the 'next' class to the image containers starting from the second one
-    sliderRef?.current?.querySelectorAll('.images-overlay__image:not(:first-of-type)')
-      .forEach((imgContainer: Element) => {
+    const imagesNodeList: NodeListOf<Element> | undefined = sliderRef?.current?.querySelectorAll('.images-overlay__image')
+    let imagesNodeArray: Element[] = []
+    if (imagesNodeList !== undefined)
+      imagesNodeArray = Array.from(imagesNodeList)
+
+    // Adding / removing the 'prev' and 'next' classes to the image containers
+    imagesNodeArray.forEach((imgContainer: Element, index: number) => {
+      if (index < imagesState.currentImageIndex)
+        imgContainer.classList.add('prev')
+      else if (index > imagesState.currentImageIndex)
         imgContainer.classList.add('next')
-      })
+    })
 
     // Removing the style attribute
-    sliderRef?.current?.querySelectorAll('.images-overlay__image')
-      .forEach((imgContainer: Element) => {
-        (imgContainer as HTMLElement).removeAttribute('style')
-      })
+    imagesNodeArray.forEach((imageContainer: Element) => {
+      imageContainer.removeAttribute('style')
+    })
   }, [ imagesState.images ])
 
   // Returns true if there is only one image (or less)
